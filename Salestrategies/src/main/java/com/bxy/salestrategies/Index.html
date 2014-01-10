@@ -1,11 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:wicket="http://wicket.apache.org">
 
-    <body>
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+    <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />      
+        <title>Sales Strategies</title>
+<!--
+        <link rel="stylesheet" type="text/css" media="all" href="http://ui-cloud.com/wp-content/themes/uicloud-v2/style.css" />
+        <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="http://ui-cloud.com/wp-content/themes/uicloud-v2/js/fancybox/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="http://ui-cloud.com/wp-content/themes/uicloud-v2/js/base.js"></script>-->
 
-        <span wicket:id="border">
-            <span wicket:id="birthday">在这里输出生日信息</span>
-        </span>  
+
+            <link rel="stylesheet" type="text/css" media="all" href="Menu/css/style.css" /> 
+                <script src="Menu/js/jquery-1.9.1.js"></script>
+                <script src="Menu/js/jquery.fancybox.js"></script>
+                <script src="Menu/js/base.js"></script>
+        
+
+    </head>
+
+    <body class="home blog">
+
+        <div class="header-wrap">
+            <div class="header">
+                <ul class="nav clearfix">	
+                    <li class="item"><a href="http://ui-cloud.com/"><img src="http://ui-cloud.com/wp-content/themes/uicloud-v2/images/icons/20px/icon-uicloud.png" /></a></li>
+                    <li class="item compact">
+                        <a href="#menu"><img src="http://ui-cloud.com/wp-content/themes/uicloud-v2/images/icons/20px/menu-white.png" /></a>
+                        <div class="menu menu-right">
+                            <div class="block">
+                                <ul class="sub-menu">						        
+                                    <li><a href="http://ui-cloud.com/browse/">Browse</a></li>
+                                    <li><a href="http://ui-cloud.com/categories/">Categories</a></li>
+                                    <li><a href="http://ui-cloud.com/blog/">Blog</a></li>
+                                    <li><a href="http://ui-cloud.com/submit/">Submit</a></li>						
+                                    <li><a href="http://ui-cloud.com/about/">About</a></li>
+                                    <li><a href="http://ui-cloud.com/contact/">Feedback</a></li>
+                                    <li><a href="http://ui-cloud.com/button-builder/">Button Builder</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!--                    <li wicket:id="menu" class="" ><a href="#" wicket:id="link"><span wicket:id="caption"></span> </a></li> -->
+                    <li class="item screen " id="navitem-account"  wicket:id="Account"><a >Account</a></li>
+                    <li class="item screen"><a href="http://ui-cloud.com/categories/">Contact</a></li>
+                    <li class="item screen"><a href="http://ui-cloud.com/blog/">Opportunity</a></li>
+                    <li class="item screen"><a href="http://ui-cloud.com/submit/">Competitor</a></li>						
+                    <li class="item screen"><a href="http://ui-cloud.com/button-builder/">User</a></li>
+                    <li class="item right">
+                        <form class="form-search" name="search_form" method="get" id="searchform" action="http://ui-cloud.com/">
+                            <input type="text" value="" placeholder="Enter UI keywords" name="s" id="s" />
+                            <input class="btn" type="submit" name="submit" id="searchsubmit" value="Search"/>	
+                        </form>			</li>
+                </ul>
+            </div>
+        </div>	
+        <span id="top"></span>  
+
+        <div class="content-wrap background-xmas">
+            <div class="content master-width clearfix">
+
+                <wicket:child />
+
+            </div>			
+        </div>
     </body>
 </html>
