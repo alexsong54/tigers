@@ -24,14 +24,14 @@ public class Index extends WebPage
     
     
      static{
+       
         ImmutableMap.Builder<String, MenuItem> builder = new ImmutableMap.Builder<String,MenuItem>();
         MenuItem item = new MenuItem();
-        item.setCaption("<i class=\"icon-home icon-large\"></i>主页");
+       // item.setCaption("Account");
         item.setDestination(Account.class);
         item.setId("navitem-homepage");
         builder.put("home", item);
         pageMenuMap = builder.build();
-       
    }
     public Index()
     {
@@ -58,8 +58,8 @@ public class Index extends WebPage
         
         
         
-        BookmarkablePageLink Account = new BookmarkablePageLink("Account",Account.class );
-        add(Account);
+//        BookmarkablePageLink Account = new BookmarkablePageLink("Account",Account.class );
+//        add(Account);
     }
     
     

@@ -6,6 +6,7 @@
 
 package com.bxy.salestrategies;
 
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.border.Border;
 import org.apache.wicket.markup.html.border.BoxBorder;
@@ -14,7 +15,7 @@ import org.apache.wicket.markup.html.border.BoxBorder;
  *
  * @author Sam
  */
-public class Account extends Index
+public class Account extends WebPage
 {  
     public Account(){
         Border border = new BoxBorder("border");

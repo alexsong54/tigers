@@ -259,7 +259,7 @@ ul.grid-blog li.item .block p { margin: 16px; }
 .tags .block-blue a:hover { color: #3396CE; }
 
 /* blog article */
-.blog .content { max-width: 1080px;}
+.blog .content { max-width: 98%;}
 .title-block .title-block-inner { overflow: hidden; }
 .title-block .title-block-inner img { width: 100%; height: auto; }
 .title-block .title-block-inner h1 { margin: 8px; padding-bottom: 8px; border-bottom: 1px dotted #CCC; }

@@ -5,7 +5,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 public class WicketApplication extends WebApplication {
 
 	public Class getHomePage() {
-		return Index.class;
+		return Login.class;
 	}
 
 	public WicketApplication() {
