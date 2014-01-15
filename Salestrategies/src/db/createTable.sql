@@ -247,5 +247,5 @@ CREATE TABLE `strategies`.`opportunitycontactteam` (
   `val` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
   
-  INSERT INTO `strategies`.`user` (`id`, `name`, `employee_number`, `gender`, `password`) VALUES ('-1', 'admin', 'admin', '1', '827ccb0eea8a706c4c34a16891f84e7b');
+  INSERT INTO `strategies`.`user` (`id`, `name`, `employee_number`, `gender`, `password`,`login_name` ) VALUES ('-1', 'admin', 'admin', '1', '827ccb0eea8a706c4c34a16891f84e7b','admin');
 
