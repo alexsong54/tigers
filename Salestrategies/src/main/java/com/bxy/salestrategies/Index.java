@@ -2,10 +2,19 @@ package com.bxy.salestrategies;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
+
+import com.bxy.salestrategies.common.SignInSession;
+import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.model.User;
+import com.bxy.salestrategies.userlog.LogInOut;
+import com.bxy.salestrategies.util.Utility;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -30,36 +39,94 @@ public class Index extends WebPage
         item.setDestination(Account.class);
         item.setId("navitem-homepage");
         builder.put("home", item);
+        
+        item = new MenuItem();
+        item.setCaption("<i class=\"icon-hospital icon-large\"></i>Account");
+        item.setDestination(AccountPage.class);
+        item.setId("navitem-account");
+        builder.put("account", item);
+        
+        item = new MenuItem();
+        item.setCaption("<i class=\"icon-user-md icon-large\"></i>Contact");
+        item.setDestination(ContactPage.class);
+        item.setId("navitem-contact");
+        builder.put("contact", item);
+        
+        item = new MenuItem();
+        item.setCaption("<i class=\"icon-calendar icon-large\"></i>Opportunity");
+        item.setDestination(OpportunityPage.class);
+        item.setId("navitem-opportunity");
+        builder.put("opportunity", item);
+
+        
+        item = new MenuItem();
+        item.setCaption("<i class=\"icon-comment icon-large\"></i>Competitor");
+        item.setDestination(CompetitorPage.class);
+        item.setId("navitem-competitor");
+        builder.put("competitor", item);
+        
+        item = new MenuItem();
+        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>User");
+        item.setDestination(UserPage.class);
+        item.setId("navitem-user");
+        builder.put("user", item);
+   
         pageMenuMap = builder.build();
        
    }
     public Index()
     {
-//        List<String> menulist = Lists.newArrayList();
-//        menulist.add("home");;
-//        ArrayList<MenuItem> menu = Lists.newArrayList();
-//        for(String key:menulist){
-//	        menu.add(pageMenuMap.get(key));
-//	  }
-//        
-//        ListView lv = new ListView("menu", menu) {
-//            @Override
-//            protected void populateItem(ListItem item) {
-//                MenuItem menuitem = (MenuItem) item.getModelObject();
-//                BookmarkablePageLink link = new BookmarkablePageLink("link", menuitem.getDestination());
-//                link.add(new Label("caption", menuitem.getCaption()).setEscapeModelStrings(false));
-//                item.add(link);
-//                item.add(new AttributeAppender("id", Model.of(menuitem.getId())));
-//                
-//            }
-//        };  
-//        add(lv);
+		//add(new Label("title", new PropertyModel<String>(this, "pageTitle")));
+		User user = DAOImpl.getUserInfoById(Integer.parseInt(((SignInSession) getSession()).getUserId()));
+		//TODO get function work with real id
+		List<String> menulist = new ArrayList();
+		menulist.add("home");
+		menulist.add("account");
+		menulist.add("contact");
+		menulist.add("opportunity");
+		menulist.add("competitor");
+		menulist.add("user");
+		
+		//populate menu items. TODO componentize it. pass arg: menuList
+		ArrayList<MenuItem> menu = Lists.newArrayList();
+	    for(String key:menulist){
+	        menu.add(pageMenuMap.get(key));
+	    }
         
+        //@SuppressWarnings("unchecked")
+        ListView lv = new ListView("menu", menu) {
+            @Override
+            protected void populateItem(ListItem item) {
+                MenuItem menuitem = (MenuItem) item.getModelObject();
+                BookmarkablePageLink link = new BookmarkablePageLink("link", menuitem.getDestination());
+                link.add(new Label("caption", menuitem.getCaption()).setEscapeModelStrings(false));
+                item.add(link);
+                item.add(new AttributeAppender("id", Model.of(menuitem.getId())));
+               // item.add(new SimpleAttributeModifier("class", "my-css-class"));
+                
+            }
+        };  
+        add(lv);
         
+        add(new Link("signout_link"){
+
+            @Override
+            public void onClick() {
+                SignInSession   session =  (SignInSession) getSession();
+                LogInOut loginout = new LogInOut();
+                loginout.setLoginName(session.getUser());
+                loginout.setLogints(System.currentTimeMillis());
+                loginout.setSessionId(session.getId());
+                Utility.printStat(Utility.STAT_LOG_IN_OUT,loginout,LogInOut.class);
+                session.invalidate();
+                this.setResponsePage(Login.class);
+            }
+            
+        });
+        BookmarkablePageLink user_settings_link = new BookmarkablePageLink("user_settings_link",UserPage.class);
+        add(user_settings_link);
+        user_settings_link.add(new Label("loginName",user.getName()));
         
-        
-        BookmarkablePageLink Account = new BookmarkablePageLink("Account",Account.class );
-        add(Account);
     }
     
     
@@ -108,3 +175,4 @@ class MenuItem implements  IModel {
         this.id = id;
     }
 }
+

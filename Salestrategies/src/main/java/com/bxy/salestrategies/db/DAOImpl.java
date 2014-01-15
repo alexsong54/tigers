@@ -198,4 +198,19 @@ public class DAOImpl {
 
 	        return map;
 	    }
+	    public static User getUserInfoById(int id) {
+	        Connection conn = null;
+	        User user = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<User> h = new BeanHandler<User>(User.class);
+	            user = run.query(conn, "SELECT * FROM user where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return user;
+	    }
 }

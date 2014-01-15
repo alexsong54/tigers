@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.PropertyModel;
 
 import com.bxy.salestrategies.common.Entity;
@@ -32,7 +31,7 @@ public class AccountPage extends Index{
 	   Map<String, Entity> entities = Configuration.getEntityTable();
 	   final Entity entity = entities.get("account");
 	   //setPageTitle(entity.getDisplay());
-	   Form form = new Form("form")
+	   /*Form form = new Form("form")
 	    {
 
 	      @Override
@@ -79,7 +78,7 @@ public class AccountPage extends Index{
 	        //tdata = DAOImpl.queryEntityWithFilter(sql, entity.getFilterField(), ft);
 
 	      }
-	    }
+	    }*/
 	   // add(new AdvancedSearchPanel("advancedSearch","account"));
 	    
 	    //add(new PageableTablePanel("datalist", entity, tdata, null));

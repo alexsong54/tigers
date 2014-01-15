@@ -103,7 +103,7 @@ $(document).ready(function () {
     });
 
 
-    $('#slideshow').cycle({
+/*    $('#slideshow').cycle({
         fx: 'scrollHorz',
         speed: '125',
         timeout: 0,
@@ -114,7 +114,7 @@ $(document).ready(function () {
             // return sel string for existing anchor
             return '#itemnav li:eq(' + (idx) + ') a';
         }
-    });
+    });*/
 
     if ($('#slideshow').children().length <= 1) {
         $('.arrow-left').hide();

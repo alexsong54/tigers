@@ -43,17 +43,16 @@
                             </div>
                         </div>
                     </li>
-                    <!--                    <li wicket:id="menu" class="" ><a href="#" wicket:id="link"><span wicket:id="caption"></span> </a></li> -->
-                    <li class="item screen " id="navitem-account"  wicket:id="Account"><a >Account</a></li>
-                    <li class="item screen"><a href="http://ui-cloud.com/categories/">Contact</a></li>
-                    <li class="item screen"><a href="http://ui-cloud.com/blog/">Opportunity</a></li>
-                    <li class="item screen"><a href="http://ui-cloud.com/submit/">Competitor</a></li>						
-                    <li class="item screen"><a href="http://ui-cloud.com/button-builder/">User</a></li>
-                    <li class="item right">
+                   <li wicket:id="menu" class="item screen" ><a href="#" wicket:id="link"><span wicket:id="caption"></span> </a></li>
+                   <li class="item right">
                         <form class="form-search" name="search_form" method="get" id="searchform" action="http://ui-cloud.com/">
                             <input type="text" value="" placeholder="Enter UI keywords" name="s" id="s" />
                             <input class="btn" type="submit" name="submit" id="searchsubmit" value="Search"/>	
-                        </form>			</li>
+                        </form>			
+                   </li>
+                   <li  class="item right"><a wicket:id="signout_link">退出</a></li> 
+                   <li  class="item right"><a wicket:id="user_settings_link" ><span wicket:id="loginName" >[login name]</span></a></li>
+             		
                 </ul>
             </div>
         </div>	

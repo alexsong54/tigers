@@ -15,7 +15,7 @@ public final class DBConnector {
         try {      
             Context initContext = new InitialContext();
             Context envContext  = (Context)initContext.lookup("java:/comp/env");
-            dataSource = (DataSource)envContext.lookup("jdbc/strategie");
+            dataSource = (DataSource)envContext.lookup("jdbc/strategies");
         } catch (NamingException e) {
             throw new ExceptionInInitializerError(e);
         }

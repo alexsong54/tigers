@@ -3,13 +3,14 @@ package com.bxy.salestrategies.model;
 public class User {
 	private int id;
 	private String Name;
-	private String LoginName;
+	private String Login_name;
 	private String password;
-	public String getLoginName() {
-		return LoginName;
+	
+	public String getLogin_name() {
+		return Login_name;
 	}
-	public void setLoginName(String loginName) {
-		LoginName = loginName;
+	public void setLogin_name(String login_name) {
+		Login_name = login_name;
 	}
 	public String getPassword() {
 		return password;
