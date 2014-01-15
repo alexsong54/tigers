@@ -1,11 +1,14 @@
-CREATE SCHEMA `strategie` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
-CREATE TABLE `strategie`.`account` (
+CREATE SCHEMA `strategies` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
+
+GRANT ALL ON crmdb.* TO 'crm' IDENTIFIED BY '';
+GRANT ALL ON crmdb.* TO 'crm'@'localhost' IDENTIFIED BY '';
+CREATE TABLE `strategies`.`account` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-ALTER TABLE `strategie`.`account` 
+ALTER TABLE `strategies`.`account` 
 ADD COLUMN `country` INT NULL AFTER `name`,
 ADD COLUMN `province` INT NULL AFTER `country`,
 ADD COLUMN `city` INT NULL AFTER `province`,
@@ -24,7 +27,7 @@ ADD COLUMN `created_by` VARCHAR(45) NULL AFTER `owner`,
 ADD COLUMN `create_date` DATE NULL AFTER `created_by`,
 ADD COLUMN `modified_by` VARCHAR(45) NULL AFTER `create_date`,
 ADD COLUMN `modifier_date` DATE NULL AFTER `modified_by`;
-ALTER TABLE `strategie`.`account` 
+ALTER TABLE `strategies`.`account` 
 CHANGE COLUMN `create_date` `create_date` DATETIME NULL DEFAULT NULL ,
 CHANGE COLUMN `modifier_date` `modifier_date` DATETIME NULL DEFAULT NULL ,
 CHANGE COLUMN `owner` `owner` INT NULL DEFAULT NULL ,
@@ -32,12 +35,12 @@ CHANGE COLUMN `created_by` `created_by` INT NULL DEFAULT NULL ,
 CHANGE COLUMN `modified_by` `modified_by` INT NULL DEFAULT NULL ;
 
 
-CREATE TABLE `strategie`.`contact` (
+CREATE TABLE `strategies`.`contact` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
   
-  ALTER TABLE `strategie`.`contact` 
+  ALTER TABLE `strategies`.`contact` 
 ADD COLUMN `account_id` INT NOT NULL AFTER `name`,
 ADD COLUMN `department` VARCHAR(45) NULL AFTER `account_id`,
 ADD COLUMN `status` INT NULL AFTER `department`,
@@ -53,16 +56,16 @@ ADD COLUMN `owner` VARCHAR(45) NULL AFTER `created_by`,
 ADD COLUMN `create_date` DATETIME NULL AFTER `owner`,
 ADD COLUMN `modified_by` VARCHAR(45) NULL AFTER `create_date`,
 ADD COLUMN `modifier_date` DATETIME NULL AFTER `modified_by`;
-ALTER TABLE `strategie`.`contact` 
+ALTER TABLE `strategies`.`contact` 
 CHANGE COLUMN `created_by` `created_by` INT NULL DEFAULT NULL ,
 CHANGE COLUMN `owner` `owner` INT NULL DEFAULT NULL ,
 CHANGE COLUMN `modified_by` `modified_by` INT NULL DEFAULT NULL ;
 
-  CREATE TABLE `strategie`.`user` (
+  CREATE TABLE `strategies`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
-  ALTER TABLE `strategie`.`user` 
+  ALTER TABLE `strategies`.`user` 
 ADD COLUMN `employee_number` VARCHAR(45) NULL AFTER `name`,
 ADD COLUMN `gender` INT NULL AFTER `employee_number`,
 ADD COLUMN `job_title` INT NULL AFTER `gender`,
@@ -78,11 +81,11 @@ ADD COLUMN `create_date` DATETIME NULL AFTER `created_by`,
 ADD COLUMN `modified_by` INT NULL AFTER `create_date`,
 ADD COLUMN `modifier_date` DATETIME NULL AFTER `modified_by`;
 
-  CREATE TABLE `strategie`.`activity` (
+  CREATE TABLE `strategies`.`activity` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
-  ALTER TABLE `strategie`.`activity` 
+  ALTER TABLE `strategies`.`activity` 
 ADD COLUMN `opportunity_id` INT NULL AFTER `name`,
 ADD COLUMN `account_id` INT NULL AFTER `opportunity_id`,
 ADD COLUMN `countact_id` INT NULL AFTER `account_id`,
@@ -98,11 +101,11 @@ ADD COLUMN `call_property` INT NULL AFTER `duration_mininute`,
 ADD COLUMN `description` VARCHAR(455) NULL AFTER `call_property`;
 
   
-  CREATE TABLE `strategie`.`opportunity` (
+  CREATE TABLE `strategies`.`opportunity` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
-  ALTER TABLE `strategie`.`opportunity` 
+  ALTER TABLE `strategies`.`opportunity` 
 ADD COLUMN `owner` INT NULL AFTER `name`,
 ADD COLUMN `account_id` INT NULL AFTER `owner`,
 ADD COLUMN `stage_name` INT NULL AFTER `account_id`,
@@ -118,12 +121,12 @@ ADD COLUMN `created_date` DATETIME NULL AFTER `created_by`,
 ADD COLUMN `modified_by` INT NULL AFTER `created_date`,
 ADD COLUMN `modified_date` DATETIME NULL AFTER `modified_by`;
 
-  CREATE TABLE `strategie`.`competitor` (
+  CREATE TABLE `strategies`.`competitor` (
   `idcompetitor` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`idcompetitor`));
   
-ALTER TABLE `strategie`.`competitor` 
+ALTER TABLE `strategies`.`competitor` 
 ADD COLUMN `responsible_person` INT NULL AFTER `name`,
 ADD COLUMN `advantage` VARCHAR(2555) NULL AFTER `responsible_person`,
 ADD COLUMN `disadvantage` VARCHAR(2555) NULL AFTER `advantage`,
@@ -133,7 +136,7 @@ ADD COLUMN `modified_by` INT NULL AFTER `crete_date`,
 ADD COLUMN `modifier_date` DATETIME NULL AFTER `modified_by`,
 ADD COLUMN `statue` INT NULL AFTER `modifier_date`;
 
-CREATE TABLE `strategie`.`accountuserteam` (
+CREATE TABLE `strategies`.`accountuserteam` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `account_id` INT NULL,
   `user_id` INT NULL,
@@ -147,7 +150,7 @@ CREATE TABLE `strategie`.`accountuserteam` (
   `created_by` INT NULL,
   PRIMARY KEY (`id`));
  
-  CREATE TABLE `strategie`.`countactuserteam` (
+  CREATE TABLE `strategies`.`countactuserteam` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `contact_id` INT NULL,
   `user_id` INT NULL,
@@ -156,7 +159,7 @@ CREATE TABLE `strategie`.`accountuserteam` (
   `created_by` INT NULL,
   `modified_date` DATETIME NULL,
   PRIMARY KEY (`id`));
-  CREATE TABLE `strategie`.`dna` (
+  CREATE TABLE `strategies`.`dna` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `owner` INT NULL,
@@ -175,7 +178,7 @@ CREATE TABLE `strategie`.`accountuserteam` (
   `customer_coals_and_objectives` VARCHAR(455) NULL,
   `customer_political_agenda` VARCHAR(455) NULL,
   PRIMARY KEY (`id`));
-CREATE TABLE `strategie`.`politicalmap` (
+CREATE TABLE `strategies`.`politicalmap` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `contact_id` INT NULL,
   `opportunity_id` INT NULL,
@@ -189,14 +192,14 @@ CREATE TABLE `strategie`.`politicalmap` (
   `created_by` INT NULL,
   `created_date` DATETIME NULL,
   PRIMARY KEY (`id`));
-CREATE TABLE `strategie`.`opportunitycontactteam` (
+CREATE TABLE `strategies`.`opportunitycontactteam` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `opportunity_id` INT NULL,
   `contact_id` INT NULL,
   `isowner` INT NULL,
   PRIMARY KEY (`id`));
   
-  CREATE TABLE `strategie`.`target_acquisition` (
+  CREATE TABLE `strategies`.`target_acquisition` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `opportunity_id` INT NULL,
   `user_id` INT NULL,
@@ -218,3 +221,31 @@ CREATE TABLE `strategie`.`opportunitycontactteam` (
   `modified_by` INT NULL,
   `modified_date` DATETIME NULL,
   PRIMARY KEY (`id`));
+
+  CREATE TABLE `strategies`.`descision` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `val` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+  CREATE TABLE `strategies`.`power_line` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `val` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+  CREATE TABLE `strategies`.`relation_status` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `val` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+  CREATE TABLE `strategies`.`stage` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `val` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+  
+  CREATE TABLE `strategies`.`buying_style` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `val` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+  
+  INSERT INTO `strategies`.`user` (`id`, `name`, `employee_number`, `gender`, `password`) VALUES ('-1', 'admin', 'admin', '1', '827ccb0eea8a706c4c34a16891f84e7b');
+
