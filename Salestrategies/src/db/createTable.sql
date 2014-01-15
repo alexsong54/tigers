@@ -59,9 +59,9 @@ CHANGE COLUMN `owner` `owner` INT NULL DEFAULT NULL ,
 CHANGE COLUMN `modified_by` `modified_by` INT NULL DEFAULT NULL ;
 
   CREATE TABLE `strategie`.`user` (
-  `iduser` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`iduser`));
+  PRIMARY KEY (`id`));
   ALTER TABLE `strategie`.`user` 
 ADD COLUMN `employee_number` VARCHAR(45) NULL AFTER `name`,
 ADD COLUMN `gender` INT NULL AFTER `employee_number`,
