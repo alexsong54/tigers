@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+	<entity>
+		<name>account</name>
+		<display>客户</display>
+		<globalsearch>true</globalsearch>
+		<externalField>bdm_code</externalField>
+	</entity>
+</entities>
