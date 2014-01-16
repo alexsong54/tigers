@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.dbutils.DbUtils;
@@ -18,6 +20,8 @@ import com.bxy.salestrategies.model.Account;
 import com.bxy.salestrategies.model.Contact;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
 /**
  * 数据查询中
@@ -26,6 +30,13 @@ import com.google.common.collect.Lists;
  */
 public class DAOImpl {
 	 private static final Logger logger = Logger.getLogger(DAOImpl.class);
+	 private static Cache<String, String> pickListCache = CacheBuilder.newBuilder()
+	            .maximumSize(1000).expireAfterWrite(10, TimeUnit.MINUTES)
+	            .build();
+	    
+	 private static Cache<String, String> relationDataCache = CacheBuilder.newBuilder()
+            .maximumSize(1000).expireAfterWrite(10, TimeUnit.MINUTES)
+            .build();
 	    /**
 	     * 登录
 	     * @param loginName
@@ -138,7 +149,6 @@ public class DAOImpl {
 	            conn = DBConnector.getConnection();
 	            QueryRunner run = new QueryRunner();
 	            lMap = (List) run.query(conn, sql, new MapListHandler(), params);
-
 	        } catch (SQLException e) {
 	            logger.error("failed to queryEntityRelationList", e);
 	        } finally {
@@ -211,5 +221,48 @@ public class DAOImpl {
 	            DBHelper.closeConnection(conn);
 	        }
 	        return user;
+	    }
+	    public static String queryPickListByIdCached(final String picklist, final String id){
+	        String value = "";
+	        try{
+	            value =  pickListCache.get(picklist + "_" + id, new Callable<String>() {
+	                @Override
+	                public String call() throws Exception {                   
+	                    return queryPickListById(picklist,id);
+	                }
+	          });
+	        }catch(Exception e){
+	            logger.error("Failed to get data from cache",e);
+	        }
+	        
+	        //logger.debug("hitRate:"+pickListCache.stats().hitRate() + " size:"+ pickListCache.size());
+	        return value;
+	    }
+	    
+	    public static String queryPickListById(String picklist, String id) {
+	        String query = "select id, val from " + picklist + " where id=? ";
+	        // logger.debug(query);
+	        String result = "";
+	        Connection conn = null;
+	        Map map = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            map = (Map) run.query(conn, query, new MapHandler(), id);
+	            if (map != null) {
+	                Object value = map.get("val");
+	                if (value != null) {
+	                    result = (String) value;
+	                }
+	            }
+
+	        } catch (SQLException e) {
+	            logger.error("failed to get queryPickListById", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+
+	        return result;
+
 	    }
 }

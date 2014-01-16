@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 
 import com.bxy.salestrategies.AccountPage;
+import com.bxy.salestrategies.common.IFormatter;
 import com.bxy.salestrategies.userlog.LogObj;
 import com.google.gson.Gson;
 
@@ -50,6 +51,21 @@ public class Utility {
         Gson gson = new Gson();   
         String js = gson.toJson(object, typeOfSrc);
         logger.info("STAT."+type +"="+js);
+    }
+	
+    public static String formatValue(String formatter, String value) {
+        String res = value;
+        try {
+            if (formatter != null) {
+                Class clazz = Class.forName(formatter);
+                IFormatter formatterImplement = (IFormatter) clazz.newInstance();
+                res = formatterImplement.format(value);
+            }
+        } catch (Exception e) {
+            logger.error("failed to format value",e);
+        }
+        return res;
+
     }
 
 }

@@ -1,0 +1,43 @@
+<wicket:panel>
+    <script>
+        $(document).ready(function() {
+        });
+    </script>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <strong>
+                <span wicket:id="table_title">我的</span>
+            </strong>
+        </div>
+        <div wicket:id="data">
+        <table  id="dt" style="width: 100%;" class="table table-responsive table-hover table-condensed">
+            <thead>
+                <tr class="active">
+                    <th class="table-hide " wicket:id="columnNameRepeater"><span  wicket:id="columnName"></span></th>
+                    <!-- <th>actions</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr wicket:id="dataRowRepeater">
+                    <td class="table-hide " wicket:id="columnRepeater"><span wicket:id="celldata"></span></td>
+                    <!-- 	<td><input type="submit" wicket:id="delete" value="delete" /></td> -->
+                    <!-- <td wicket:id="name"></td> -->
+                </tr>
+            </tbody>
+           <tfoot>
+                <tr>
+                   <td colspan="20"><div  wicket:id="navigator"></div></td>
+                </tr>
+            </tfoot>
+        </table>
+         
+        </div>
+    </div>
+    <wicket:fragment wicket:id="detailFragment">
+        <a href="#" wicket:id="detailclick"><wicket:container wicket:id="caption" /></a>
+    </wicket:fragment>
+
+     <wicket:fragment wicket:id="downloadlinkFragment">
+       <a  wicket:id="downloadlink"><wicket:container wicket:id="fn" /></a >
+       </wicket:fragment>
+</wicket:panel>

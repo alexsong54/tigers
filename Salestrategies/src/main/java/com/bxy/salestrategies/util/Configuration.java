@@ -24,6 +24,8 @@ import org.apache.log4j.Logger;
 
 
 
+
+
 import com.bxy.salestrategies.common.Entity;
 import com.bxy.salestrategies.common.Field;
 import com.google.common.collect.ArrayListMultimap;
@@ -65,10 +67,9 @@ public class Configuration {
             for (HierarchicalConfiguration sub : hp) {
                 Entity entity = new Entity();
                 enitites.add(entity);
-                entity.setName( sub.getString("name"));
+                entity.setName(sub.getString("name"));
                 entity.setDisplay(sub.getString("display"));
                 entity.setSql(sub.getString("sql"));
-                entity.setSql_ent(sub.getString("sql-ent"));
                 String filterField = sub.getString("filterField");
                 if(filterField !=null){
                     entity.setFilterField(filterField);
@@ -83,6 +84,7 @@ public class Configuration {
                     field.setDisplay(sub2.getString("display"));
                     field.setName(sub2.getString("name"));
                     field.setPriority(Integer.parseInt(sub2.getString("priority")));
+                    entity.setGlobalsearch(Boolean.parseBoolean(sub.getString("globalsearch"))); 
                 String picklist = sub2.getString("picklist");
                 if(picklist!=null && picklist.trim().length()!=0){
                     field.setPicklist(picklist);
