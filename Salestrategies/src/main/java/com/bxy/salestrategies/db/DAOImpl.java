@@ -265,4 +265,51 @@ public class DAOImpl {
 	        return result;
 
 	    }
+	    public static String queryCachedRelationDataById(final String tableName, final String id){
+	        String value = "";
+	        try{
+	            value =  relationDataCache.get(tableName + "_" + id, new Callable<String>() {
+	                @Override
+	                public String call() throws Exception {                   
+	                    return queryRelationDataById(tableName,id);
+	                }
+	          });
+	        }catch(Exception e){
+	            logger.error("Failed to get data from cache",e);
+	        }
+	        return value;
+	    }
+	    public static String queryRelationDataById(final String tableName, final String id){
+	        String query="";
+	        if(tableName.equals("province")){
+	             query = "select id, val from " + tableName + " where id=? ";
+	        }else{
+	             query = "select id, name from " + tableName + " where id=? ";
+	        }
+	        String result = "";
+	        Connection conn = null;
+	        Map map = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            map = (Map) run.query(conn, query, new MapHandler(), id);
+	            if (map != null) {
+	                 Object value=null;
+	                if(tableName.equals("province")){
+	                     value = map.get("val");
+	                }else{
+	                     value = map.get("name");
+	                }
+	                if (value != null) {
+	                    result = (String) value;
+	                }
+	            }
+
+	        } catch (SQLException e) {
+	            logger.error("failed to get queryPickListById", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return result;
+	    }
 }

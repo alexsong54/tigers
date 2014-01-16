@@ -26,6 +26,9 @@ import org.apache.log4j.Logger;
 
 
 
+
+
+
 import com.bxy.salestrategies.common.Entity;
 import com.bxy.salestrategies.common.Field;
 import com.google.common.collect.ArrayListMultimap;
@@ -91,10 +94,34 @@ public class Configuration {
                 }else{
                     field.setPicklist(null);
                 }
+                
+                String relationTable = sub2.getString("relationTable");
+                if(relationTable!=null && relationTable.trim().length()!=0){
+                    field.setRelationTable(relationTable);
+                }else{
+                    field.setRelationTable(null);
+                }
+                
                 String default_value = sub2.getString("default-value");
                 if(default_value !=null){
                     field.setDefault_value(default_value);
-                    //System.out.println("default_value:"+field.getDefault_value());
+                }
+                
+                String alias = sub2.getString("alias");
+                if(alias!=null && alias.trim().length()!=0){
+                    field.setAlias(alias);
+                }else{
+                    field.setAlias(null);
+                }
+                String formatter = sub2.getString("formatter");
+                if(formatter !=null){
+                    field.setFormatter(formatter);
+                }
+                
+                
+                String fieldGroup = sub2.getString("fieldGroup");
+                if(fieldGroup !=null){
+                    field.setFieldGroup(fieldGroup);
                 }
                 
                 String default_value_type = sub2.getString("default-value-type");

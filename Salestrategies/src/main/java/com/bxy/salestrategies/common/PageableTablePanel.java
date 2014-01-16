@@ -116,13 +116,13 @@ public class PageableTablePanel extends Panel{
 	                              value = "无";
 	                            }
 	                            columnitem.add(new Label("celldata", value));
-	                        }/* else if(f.getRelationTable() != null){
+	                        } else if(f.getRelationTable() != null){
 	                            String value = Utility.formatValue(f.getFormatter(), DAOImpl.queryCachedRelationDataById(f.getRelationTable(), String.valueOf(map.get(f.getName()))));
 	                            if(value.equals("null")||value.isEmpty()){
 	                              value = "无";
 	                            }
 	                            columnitem.add(new Label("celldata", value));
-	                        }*/else {
+	                        }else {
 	                           
 	                             String value = Utility.formatValue(f.getFormatter(), String.valueOf(map.get(f.getName())));
 	                            final String filepath =Utility.formatValue(f.getFormatter(), String.valueOf(map.get(f.getName())));

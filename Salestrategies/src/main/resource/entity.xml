@@ -17,7 +17,7 @@
 				<isEditable>false</isEditable>
 				<isSearchable>false</isSearchable>
 				<field-type>String</field-type>
-				<isParam>true</isParam> <!-- 关联表的创建的参数 -->
+				<isParam>true</isParam>
 				<priority>0</priority>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
@@ -50,7 +50,7 @@
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
-			<!-- <field>
+			<field>
 				<name>type</name>
 				<display>客户类型</display>
 				<isRequired>false</isRequired>
@@ -59,15 +59,15 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<picklist></picklist>
+				<picklist>account_type_pl</picklist>
 				<field-type>picklist</field-type>
 				<priority>1</priority>
 				<isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>status</name>
-				<display>状态</display>
+				<name>industry</name>
+				<display>行业</display>
 				<data-type>number</data-type>
 				<isRequired>false</isRequired>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -75,23 +75,9 @@
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
 				<field-type>picklist</field-type>
-				<picklist></picklist>
+				<picklist>account_industry_pl</picklist>
 				<priority>1</priority>
 				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field> -->
-			<field>
-				<name>employee_number</name>
-				<display>员工数</display>
-				<isRequired>false</isRequired>
-				<data-type>number</data-type>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<pattern>number</pattern>
-				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
-				<field-type>number</field-type>
-				<priority>1</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -109,25 +95,113 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>office_tel</name>
-				<display>电话</display>
+				<name>employee_number</name>
+				<display>员工数</display>
+				<isRequired>false</isRequired>
+				<data-type>number</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<pattern>number</pattern>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>number</field-type>
+				<priority>1</priority><isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>status</name>
+				<display>状态</display>
+				<data-type>number</data-type>
 				<isRequired>true</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<picklist>status_pl</picklist>
+				<field-type>picklist</field-type>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>website</name>
+				<display>网址</display>
+				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
 				<field-type>String</field-type>
-				<priority>1</priority>
+				<priority>2</priority>
 				<isShow>true</isShow>
 				<isParam>true</isParam>
-				<fieldGroup>关键信息</fieldGroup>
+				<fieldGroup>基本信息</fieldGroup>
+			</field>
+			<field>
+				<name>office_tel</name>
+				<display>电话</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>2</priority>
+				<isShow>true</isShow>
+				<isParam>true</isParam>
+				<fieldGroup>基本信息</fieldGroup>
+			</field>
+			<field>
+				<name>fax</name>
+				<display>传真</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>2</priority>
+				<isShow>true</isShow>
+				<isParam>true</isParam>
+				<fieldGroup>基本信息</fieldGroup>
+			</field>
+			<field>
+				<name>date_of_establish</name>
+				<display>成立时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>2</priority><isShow>true</isShow>
+				<fieldGroup>基本信息</fieldGroup>
 			</field>
 			<field>
 				<name>address</name>
 				<display>地址</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>2</priority>
+				<isShow>true</isShow>
+				<isParam>true</isParam>
+				<fieldGroup>基本信息</fieldGroup>
+			</field>
+			<field>
+				<name>owner</name>
+				<display>负责人</display>
 				<isRequired>true</isRequired>
 				<data-type>text</data-type>
+				<alias>userId</alias>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -135,8 +209,83 @@
 				<field-type>String</field-type>
 				<priority>1</priority>
 				<isShow>true</isShow>
-				<isParam>true</isParam>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<relationTable>user</relationTable>
+				<default-value-type>var</default-value-type>
+				<default-value>user.id\,user.name</default-value>
 				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>ownerName_val</name>
+				<display>负责人</display>
+				<isRequired>false</isRequired>
+				<alias>owner</alias>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>false</isVisible>
+				<isEditable>false</isEditable>
+				<isSearchable>true</isSearchable>
+				<field-type>String</field-type>
+				<priority>2</priority><isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>created_by</name>
+				<display>创建人</display>
+				<data-type>text</data-type>
+				<isRequired>false</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>create_date</name>
+				<display>创建时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_by</name>
+				<display>修改人</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modifier_date</name>
+				<display>修改时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
 			</field>
 		</fields>
 	</entity>
@@ -157,7 +306,7 @@
 			<isEditable>false</isEditable>
 			<isSearchable>false</isSearchable>
 			<field-type>String</field-type>
-			<isParam>true</isParam> <!-- 关联表的创建的参数 -->
+			<isParam>true</isParam>
 			<priority>0</priority>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
@@ -234,6 +383,97 @@
 			<isParam>true</isParam>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
+		<field>
+				<name>owner</name>
+				<display>负责人</display>
+				<isRequired>true</isRequired>
+				<data-type>text</data-type>
+				<alias>userId</alias>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<relationTable>user</relationTable>
+				<default-value-type>var</default-value-type>
+				<default-value>user.id\,user.name</default-value>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>ownerName_val</name>
+				<display>负责人</display>
+				<isRequired>false</isRequired>
+				<alias>owner</alias>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>false</isVisible>
+				<isEditable>false</isEditable>
+				<isSearchable>true</isSearchable>
+				<field-type>String</field-type>
+				<priority>2</priority><isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>created_by</name>
+				<display>创建人</display>
+				<data-type>text</data-type>
+				<isRequired>false</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>create_date</name>
+				<display>创建时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_by</name>
+				<display>修改人</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modifier_date</name>
+				<display>修改时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
 	</fields>
 	</entity>
 	<entity>
@@ -347,6 +587,97 @@
 				<isRequired>true</isRequired>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
+			<field>
+				<name>owner</name>
+				<display>负责人</display>
+				<isRequired>true</isRequired>
+				<data-type>text</data-type>
+				<alias>userId</alias>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<relationTable>user</relationTable>
+				<default-value-type>var</default-value-type>
+				<default-value>user.id\,user.name</default-value>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>ownerName_val</name>
+				<display>负责人</display>
+				<isRequired>false</isRequired>
+				<alias>owner</alias>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>false</isVisible>
+				<isEditable>false</isEditable>
+				<isSearchable>true</isSearchable>
+				<field-type>String</field-type>
+				<priority>2</priority><isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>created_by</name>
+				<display>创建人</display>
+				<data-type>text</data-type>
+				<isRequired>false</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>create_date</name>
+				<display>创建时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_by</name>
+				<display>修改人</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modifier_date</name>
+				<display>修改时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
 		</fields>
 	</entity>
 	<entity>
@@ -412,6 +743,97 @@
 				<field-type>number</field-type>
 				<priority>1</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>owner</name>
+				<display>负责人</display>
+				<isRequired>true</isRequired>
+				<data-type>text</data-type>
+				<alias>userId</alias>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<relationTable>user</relationTable>
+				<default-value-type>var</default-value-type>
+				<default-value>user.id\,user.name</default-value>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>ownerName_val</name>
+				<display>负责人</display>
+				<isRequired>false</isRequired>
+				<alias>owner</alias>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>false</isVisible>
+				<isEditable>false</isEditable>
+				<isSearchable>true</isSearchable>
+				<field-type>String</field-type>
+				<priority>2</priority><isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>created_by</name>
+				<display>创建人</display>
+				<data-type>text</data-type>
+				<isRequired>false</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>create_date</name>
+				<display>创建时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_by</name>
+				<display>修改人</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modifier_date</name>
+				<display>修改时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
 			</field>
 		</fields>
 	</entity>
@@ -509,6 +931,97 @@
 			<isParam>true</isParam>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
+		<field>
+				<name>owner</name>
+				<display>负责人</display>
+				<isRequired>true</isRequired>
+				<data-type>text</data-type>
+				<alias>userId</alias>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<relationTable>user</relationTable>
+				<default-value-type>var</default-value-type>
+				<default-value>user.id\,user.name</default-value>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>ownerName_val</name>
+				<display>负责人</display>
+				<isRequired>false</isRequired>
+				<alias>owner</alias>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>false</isVisible>
+				<isEditable>false</isEditable>
+				<isSearchable>true</isSearchable>
+				<field-type>String</field-type>
+				<priority>2</priority><isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>created_by</name>
+				<display>创建人</display>
+				<data-type>text</data-type>
+				<isRequired>false</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>create_date</name>
+				<display>创建时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_by</name>
+				<display>修改人</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modifier_date</name>
+				<display>修改时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
 	</fields>
 	</entity>
 </entities>
