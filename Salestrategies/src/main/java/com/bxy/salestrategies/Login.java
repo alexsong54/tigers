@@ -84,6 +84,7 @@ public final class Login extends WebPage
                  error(errmsg);
         	}else{
             	User user = DAOImpl.getUserByLoginName(getUsername());
+            	System.out.println("user:"+user.getId());
             	if(null!=user){
               	        	// Sign the user in
             	  

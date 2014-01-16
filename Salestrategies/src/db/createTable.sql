@@ -122,7 +122,7 @@ ADD COLUMN `modified_by` INT NULL AFTER `created_date`,
 ADD COLUMN `modified_date` DATETIME NULL AFTER `modified_by`;
 
   CREATE TABLE `strategies`.`competitor` (
-  `idcompetitor` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`idcompetitor`));
   

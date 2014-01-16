@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <entities>
 	<entity>
 		<name>account</name>
@@ -1024,4 +1025,118 @@
 			</field>
 	</fields>
 	</entity>
+
+
+	<entity>
+		<name>data_audit</name>
+		<display>修改历史</display>
+		<sql-admin>select * from data_audit</sql-admin>
+		<fields>
+			<field>
+				<name>id</name>
+				<display>Id</display>
+				<isPrimaryKey>true</isPrimaryKey>
+				<data-type>text</data-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>false</isVisible>
+				<isEditable>false</isEditable>
+				<field-type>String</field-type>
+				<priority>0</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>entity_name</name>
+				<display>表名</display>
+				<isPrimaryKey>false</isPrimaryKey>
+				<data-type>text</data-type>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>2</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>record_id</name>
+				<display>修改位置</display>
+				<isPrimaryKey>false</isPrimaryKey>
+				<data-type>text</data-type>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>2</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>column_name</name>
+				<display>修改字段名</display>
+				<isPrimaryKey>false</isPrimaryKey>
+				<data-type>text</data-type>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>old_value</name>
+				<display>改前值</display>
+				<field-type>String</field-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<data-type>text</data-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>new_value</name>
+				<display>改后值</display>
+				<isPrimaryKey>false</isPrimaryKey>
+				<data-type>text</data-type>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>modifier</name>
+				<display>修改人</display>
+				<isPrimaryKey>false</isPrimaryKey>
+				<data-type>text</data-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<field-type>String</field-type>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>modify_time</name>
+				<display>修改时间</display>
+				<isPrimaryKey>false</isPrimaryKey>
+				<data-type>text</data-type>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>1</priority>
+				<field-type>String</field-type>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+		</fields>
+	</entity>
+
 </entities>
