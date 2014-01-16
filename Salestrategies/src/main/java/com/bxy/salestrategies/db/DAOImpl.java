@@ -18,7 +18,6 @@ import com.bxy.salestrategies.model.Account;
 import com.bxy.salestrategies.model.Contact;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
-import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 /**
  * 数据查询中

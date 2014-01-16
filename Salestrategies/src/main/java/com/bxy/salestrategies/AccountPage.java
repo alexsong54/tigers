@@ -79,12 +79,9 @@ public class AccountPage extends Index{
 
 	      }
 	    }*/
-	   // add(new AdvancedSearchPanel("advancedSearch","account"));
 	    
 	    //add(new PageableTablePanel("datalist", entity, tdata, null));
 
-	   // List<Choice> choices = DAOImpl.queryPickList(entity.getFieldByName(entity.getFilterField()).getPicklist());
 	    
-	   // add(new FilterPanel("filterPanel", choices, filter, AccountPage.class,entity));
 	  }
 }

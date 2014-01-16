@@ -1,7 +1,7 @@
 CREATE SCHEMA `strategies` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
 
-GRANT ALL ON crmdb.* TO 'crm' IDENTIFIED BY '';
-GRANT ALL ON crmdb.* TO 'crm'@'localhost' IDENTIFIED BY '';
+GRANT ALL ON strategies.* TO 'crm' IDENTIFIED BY '';
+GRANT ALL ON strategies.* TO 'crm'@'localhost' IDENTIFIED BY '';
 CREATE TABLE `strategies`.`account` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
