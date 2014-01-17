@@ -17,6 +17,7 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.log4j.Logger;
 
 import com.bxy.salestrategies.model.Account;
+import com.bxy.salestrategies.model.Activity;
 import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.model.Contact;
 import com.bxy.salestrategies.model.User;
@@ -313,6 +314,24 @@ public class DAOImpl {
 	        }
 	        return result;
 	    }
+//	    
+	    
+	    public static Activity getActivityById(int entityId){
+	    	System.out.println("根据活动ID获取用户");
+	        Connection conn = null;
+	        Activity activity = new Activity();
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Activity> h = new BeanHandler<Activity>(Activity.class);
+	            activity = run.query(conn, "SELECT * FROM activity where id=?", h, entityId);
+	        } catch (SQLException e) {
+	            logger.error("failed to get all accounts", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return activity; 
+	    }
 	    public static List<Choice> queryPickList(String picklist) {
 	        String query = null;
 	        if(picklist.equalsIgnoreCase("product")){
@@ -336,4 +355,147 @@ public class DAOImpl {
 
 	        return choices;
 	    }
+	    
+	    public static int deleteRecord(String entityId,String entityName) {
+	        String sql = "";
+	        if(entityName.equals("coaching")||entityName.equalsIgnoreCase("willcoaching")){
+	          sql = "DELETE from activity where id = " + entityId;
+	        }else{
+	          sql = "DELETE from " + entityName +" where id = " + entityId;
+	        }
+	        logger.debug("delte record sql:"+ sql);
+	        Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	          
+	            inserts += run.update(conn, sql);
+	            
+	        } catch (Exception e) {
+	            logger.error("failed to delete  calendar event", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+
+	        return inserts;
+	    }
+	    
+	    public static boolean updateCrmUserReport(String from, String to){
+	        String  sql=" UPDATE crmuser SET reportto=? where reportto =?";
+	        Connection conn = null;
+	        
+	        int updates = 0;
+	        try{
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            updates += run.update(conn, sql, to, from);
+	            logger.debug("updateCrmUserReport success!");
+	        } catch (Exception e){
+	            logger.error("failed to updateCrmUserReport",e);
+	        }finally{
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(updates>0){
+	            return true;
+	        }
+	        return false;
+	    }
+	    
+	    public static void doneRecord(String id,String entityName, String time ) {
+	    	String sql = "";
+	      
+	    	sql = "UPDATE  activity SET status= 2 ,act_endtime = '"+ time +"'  where id = " + id;
+	    	logger.debug("UPDATE sql is:"+sql);
+	    	Connection conn = null;
+	    	try {
+	    		conn = DBConnector.getConnection();
+	    		QueryRunner run = new QueryRunner();
+	    		int inserts = 0;
+	    		inserts += run.update(conn, sql);
+	    		System.out.println("inserted:" + inserts);
+	    	} catch (Exception e) {
+	           logger.error("failed to add new calendar event", e);
+	    	} finally {
+	           DBHelper.closeConnection(conn);
+	    	}
+	   }
+	    //reset password
+	    public static int  resetUserPassword(int entityId){
+	    	System.out.println("reset password");
+	    	String  sql=" UPDATE userinfo SET password= ?, num_of_signIn = 0 where id =?";
+	        Connection conn = null;
+	        int insert = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<User> h = new BeanHandler<User>(User.class);
+	            insert = run.update(conn, sql,DigestUtils.md5Hex("12345"),entityId);
+	    		logger.debug("reset password success!");
+	        } catch (SQLException e) {
+	            logger.error("failed to get all accounts", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return insert;
+	    }
+	  //修改用户激活状态
+	    public static void updateUserActivited(int entityId){
+	    	String  sql=" UPDATE userinfo SET isActivited=? where id =?";
+	        Connection conn = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<User> h = new BeanHandler<User>(User.class);
+	            run.update(conn, sql,1,entityId);
+	    		logger.debug("update activited success!");
+	        } catch (SQLException e) {
+	            logger.error("failed to get all accounts", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	    }
+	  //修改活动状态为未执行
+	    public static boolean updateActivityStatusById(int entityId){
+	    	String sql = "UPDATE activity SET status=3 where id=?";
+	        Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql,entityId);
+	        } catch (Exception e) {
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    public static List<Choice> queryPickListByFilter(String picklist,String filterName, String filterValue) {
+	        String query = null;
+	        if(picklist.equalsIgnoreCase("product")){
+	           query = "select id, name from " + picklist + " where "+filterName+"=?";
+	        }else{
+	          query = "select id, val from " + picklist + " where "+filterName+"=?"; 
+	        }
+	          List<Choice> choices = Lists.newArrayList();
+	          Connection conn = null;
+	          try {
+	              conn = DBConnector.getConnection();
+	              QueryRunner run = new QueryRunner();
+	              ResultSetHandler<List<Choice>> h = new BeanListHandler<Choice>(Choice.class);
+	              choices = run.query(conn, query, h,filterValue);
+
+	          } catch (SQLException e) {
+	              logger.error("failed to get queryPickListById", e);
+	          } finally {
+	              DBHelper.closeConnection(conn);
+	          }
+
+	          return choices;
+
+	      }
 }

@@ -202,7 +202,7 @@ public class PageableTablePanel extends Panel{
 	                    Param p = (Param) getParent().getParent().getDefaultModelObject();
 	                    System.out.println(p + " id:" + p.getId() + " name:" + p.getEntityName());
 	                    String entityName = p.getEntityName();
-	                    //setResponsePage(new EntityDetailPage(entityName, p.getId()));
+	                    setResponsePage(new EntityDetailPage(entityName, p.getId()));
 	                }
 	            }.add(new Label("caption", new Model<String>(caption))));
 	        }

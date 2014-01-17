@@ -1,0 +1,54 @@
+
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+	<script>
+		$(document).ready(function() {
+			$('.dropdown-toggle').dropdown();
+
+		});
+	</script>
+		
+	<div class="btn-group full">
+			<div class="btn-group-right" wicket:id="addCon"></div>
+			<div class="btn-group-right" wicket:id="delCon"></div>
+			<div class="btn-group-right" wicket:id="editCon" id="editCon"></div>
+			<div class="btn-group-right" wicket:id="resetPwdCon"></div>
+			<div class="btn-group-right" wicket:id="doneCon" id="done"></div>
+			<div class="btn-group-right" wicket:id="downloadCon" id="download"></div>
+			<div class="btn-group-right" wicket:id="noExecuteCon" ></div>
+			<div class="btn-group-right" wicket:id="mergeCon" ></div>
+			<div class="btn-group-right" wicket:id="ineffectiveCon"></div>
+			
+	</div>
+	<wicket:fragment wicket:id="addFragment">
+		<!-- <a href="#myModal" class="btn btn-hg btn-mini btn-info" data-toggle="modal"></a> -->
+		<a href="#" class="btn  btn-sm  btn-mini btn-primary" wicket:id="create_new_data_btn"><i class="icon-plus"></i>新建</a>
+	</wicket:fragment>
+	<wicket:fragment   wicket:id="delFragment">
+		<a class="btn btn-sm btn-danger btn-mini"  wicket:id="del_data_btn"  onclick="javascript:return ConfirmDel();" href="#">
+  <i class="icon-trash icon-large"></i>删除</a>
+		<!-- <a href="#" class="btn btn-mini btn-info"  ></a>
+		<a class="btn btn-mini btn-info">删除</a> -->
+	</wicket:fragment>
+	<wicket:fragment wicket:id="editFragment">
+		<a href="#" class="btn btn-sm btn-mini btn-primary" wicket:id="edit_data_btn"><i class="icon-edit icon-large"></i>编辑</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="resetPwdFragment">
+		<a href="#" class="btn btn-sm btn-mini btn-danger" wicket:id="resetPwd_data_btn"  onclick="javascript:return resetPwd();"><i class="icon-refresh icon-large"></i>重置密码</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="doneFragment">
+		<a href="#" class="btn btn-sm btn-mini btn-success" wicket:id="done_data_btn" ><i class="icon-ok icon-large"></i>完成</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="downLoadFragment">
+		<a href="#" class="btn btn-sm btn-mini btn-info" wicket:id="downLoad_account_btn" ><i class="icon-download-alt icon-large"></i>下载</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="noExecuteFragment">
+		<a href="#" class="btn btn-sm btn-mini btn-warning" wicket:id="noExecute_data_btn" ><i class="icon-remove-sign icon-large"></i>未执行</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="mergeFragment">
+		<a href="#" class="btn btn-sm btn-mini btn-warning" wicket:id="merge_data_btn" ><i class="icon-remove-sign icon-large"></i>合并</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="ineffectiveFragment">
+		<a href="#" class="btn btn-sm btn-mini btn-warning" wicket:id="ineffective_data_btn" onclick="javascript:return ConfirmIne();" ><i class="icon-remove-sign icon-large"></i>失效</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="emptyFragment"></wicket:fragment>
+</wicket:panel>

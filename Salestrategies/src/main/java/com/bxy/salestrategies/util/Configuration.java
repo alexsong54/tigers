@@ -49,6 +49,7 @@ public class Configuration {
                 entity.setName(sub.getString("name"));
                 entity.setDisplay(sub.getString("display"));
                 entity.setSql(sub.getString("sql"));
+                entity.setSql_ent(sub.getString("sql-ent"));
                 String filterField = sub.getString("filterField");
                 if(filterField !=null){
                     entity.setFilterField(filterField);
@@ -141,4 +142,12 @@ public class Configuration {
 
         return enitites;
     }
+	public static List<String> getSortedFieldGroupNames() {
+		// TODO Auto-generated method stub
+		List<String> list = Lists.newArrayList();
+        list.add("关键信息");
+        list.add("基本信息");
+        list.add("附加信息");
+		return list;
+	}
 }

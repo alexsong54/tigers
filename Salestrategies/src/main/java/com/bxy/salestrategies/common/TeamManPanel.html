@@ -1,0 +1,84 @@
+<wicket:panel>
+    <script>
+        $(document).ready(function() {
+            $("#add_relation_link").click(function(e){
+                // location.href = './mount/searchCRMUser?eventid='+calEvent.id;
+            });
+        });
+
+    </script>
+
+    <div class="">
+        <div class="">
+            <div class="" >
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span wicket:id="title"></span>
+                        <div class="pull-right operation-bar btn-group-right team-btn">
+                            <div class="btn-group-team">
+                                <a id="add_relation_link" wicket:id="add_users_link" target="_blank" class="btn btn-sm  btn-mini btn-info">添加</a>
+                            </div>
+                            <div class="btn-group-team">
+                                <a  wicket:id="remove_team_member_click" class="btn btn-sm btn-danger btn-mini">删除</a>
+                            </div>
+<!--                             <div class="btn-group-team"> -->
+<!--                                 <a  wicket:id="edit_team_member_click" class="btn btn-sm btn-mini btn-primary">编辑</a> -->
+<!--                             </div> -->
+                        </div>
+                    </div>
+                    <form wicket:id="form">
+                        <span wicket:id="group">
+                            <table id="dt" style="width: 100%" class="table table-responsive table-hover table-condensed">
+                                <thead>
+                                    <tr class="active">
+                                        <th class="table-hide " wicket:id="columnNameRepeater">
+                                            <span wicket:id="columnName"></span></th>
+                                        <th class="table-check">
+                                            <input type="checkbox"  wicket:id="checkboxs"/>
+                                            <label wicket:id="checkboxs_label" class="chk-header"><span></span></label>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr wicket:id="dataRowRepeater">
+                                        <td class="table-hide " wicket:id="columnRepeater"><span wicket:id="celldata"></span></td>
+                                        <td>
+                                            <input  type="checkbox" wicket:id="checkbox"/>
+                                            <label wicket:id="checkbox_label"><span></span></label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                     <tr>
+                                         <td colspan="20"><div  wicket:id="navigator"></div></td>
+                                     </tr>
+                                </tfoot>
+                            </table>
+                        </span>
+                    </form>
+                    <wicket:fragment wicket:id="detailFragment">
+                        <a href="#" wicket:id="detailclick"><wicket:container wicket:id="caption" /></a>
+                    </wicket:fragment>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">表单</h3>
+        </div>
+        <div class="modal-body">
+            <!--  form start -->
+
+            <span wicket:id="formPanel"></span>
+
+            <!--  form end -->
+        </div>
+        <!-- 		<div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <button class="btn btn-primary">确定</button>
+        </div> -->
+    </div>
+
+</wicket:panel>

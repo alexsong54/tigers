@@ -1,0 +1,206 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+    <script>
+        $(document).ready(function() {
+        	$("#daypart").change(function(){
+        		var daypart = $("#daypart").val();
+        		var startTime = $("#starttime").val()+"";
+    			var endTime = $("#endtime").val()+"";
+    			startTime = moment(startTime).format("YYYY-MM-DDTHH:mm:ss");
+    			endTime = moment(endTime).format("YYYY-MM-DDTHH:mm:ss");
+        		if(daypart==1){
+        			var startDate = startTime.split('T')[0].concat("T08:00");
+        			var endDate = endTime.split('T')[0].concat("T11:30");
+        		}else{
+        			var startDate = startTime.split('T')[0].concat("T13:00");
+        			var endDate = endTime.split('T')[0].concat("T18:00");
+        		}
+        		$("#starttime").val(startDate);
+    			$("#endtime").val(endDate);
+        	});
+            
+        });
+        
+        function validateFields(){
+        	Date.prototype.format = function (format) { 
+        		var o = { 
+        		"M+": this.getMonth() + 1, 
+        		"d+": this.getDate(), 
+        		"h+": this.getHours(), 
+        		"m+": this.getMinutes(), 
+        		"s+": this.getSeconds(), 
+        		"q+": Math.floor((this.getMonth() + 3) / 3), 
+        		"S": this.getMilliseconds() 
+        		} 
+        		if (/(y+)/.test(format)) { 
+        		format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length)); 
+        		} 
+        		for (var k in o) { 
+        		if (new RegExp("(" + k + ")").test(format)) { 
+        		format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length)); 
+        		} 
+        		} 
+        		return format; 
+        		} 
+        	var today=new Date();
+            var ago7Day = new Date(Date.parse(new Date().toString()) - 86400000*6);
+            var lastWeek = ago7Day.format('yyyy-MM-dd hh:mm'); //“7天前” 
+            var isValidated = true;
+            $( '.required-field').each(function( index ) {
+                console.log( index + ": " + $( this ).text() );
+                if(jQuery.isEmptyObject($(this).val())){
+                    isValidated = false;
+                }
+              });
+            var checkflag = true;
+            $( '.required-pickList').each(function( index ) {
+                console.log( index + ": " + $( this ).text() );
+                if(jQuery.isEmptyObject($(this).val())){
+                	checkflag = false;
+                }
+              });
+            var checkTime = true;
+            var startTime = $("#starttime").val();
+            var endTime = $("#endtime").val();
+            var publishDate = $("#publishDate").val();
+            var expired = $("#expired").val();
+            var validstartTime = moment(startTime, "YYYY-MM-DD HH:mm:ss",true).isValid();
+            var validendTime = moment(endTime, "YYYY-MM-DD HH:mm:ss",true).isValid();
+            var validstartTimeForT = moment(startTime).isValid();
+            var validendTimeForT = moment(endTime).isValid();
+            
+            if(null != startTime){
+            	if(validstartTime || validstartTimeForT){
+            		startTime = moment(startTime).format("YYYY-MM-DDTHH:mm:ss");
+            		$("#starttime").val(moment(startTime).format("YYYY-MM-DDTHH:mm:ss"));	
+                }else{
+                	
+                	alert("时间格式不对!请更改为正确格式！如:2014-01-01 08:08");
+                	checkTime = false;
+                }
+            }
+            if(null != endTime && checkTime){
+            	if(validendTime || validendTimeForT){
+            		endTime = moment(endTime).format("YYYY-MM-DDTHH:mm:ss");
+            		$("#endtime").val(moment(endTime).format("YYYY-MM-DDTHH:mm:ss"));
+                	
+                }else{
+                	alert("时间格式不对!请更改为正确格式！如:2014-01-01 08:08");
+                	checkTime = false;
+                }
+            }
+            var startTimeForendTime = (new Date(startTime)).getTime();
+            
+            var endDateForstartTime = (new Date(endTime)).getTime();
+            if(checkTime && ((startTimeForendTime>endDateForstartTime) || (publishDate>expired))){
+            	alert("开始时间不能大于结束时间！");
+            	checkTime = false;
+            }else if(checkTime&&startTime<lastWeek){
+            	alert("开始时间不能为七天以前！");
+            	checkTime = false;
+            }
+            if(isValidated&&checkflag&&checkTime){
+//             	if($("#crmuser_name").length > 0 && jQuery.isEmptyObject($("#crmuser_name").val())){
+//               	  	alert("请查询添入岗位编码！");
+//                     return false;
+//                 }else
+                if($("#contact_name").length > 0 && jQuery.isEmptyObject($("#contact_name").val())){
+              	  	alert("请查询添入拜访医生！");
+                    return false;
+                }else if($("#userInfo_name").length > 0 && jQuery.isEmptyObject($("#userInfo_name").val())){
+              	  	alert("请查询添入被辅导人！");
+                    return false;
+                }else  if($("#account_name").length > 0 && jQuery.isEmptyObject($("#account_name").val())) {
+                    alert("请查询填入医院！");
+                    return false;
+                }else{
+                    return true;
+                }
+                
+            }else{
+            	if(checkTime==false){
+            		return false;
+            	}else{
+            		alert("红色标记字段为必填字段");
+                    return false;
+            	}
+            }
+  
+        }
+        function reloadpage(){
+        }
+    </script>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+            <div wicket:id="promptDiv" class="alert  alert-warning" >
+			<span wicket:id="promptButton" class="close" data-dismiss="alert"></span>
+			<span wicket:id="prompt" ><strong></strong></span>
+			<span wicket:id="promptForAccount" ><strong></strong></span>
+			<span wicket:id="promptForCrmuser" ><strong></strong></span>
+			<span wicket:id="promptFordate" ><strong></strong></span>
+		</div>
+            	<div class="title">
+                     <span wicket:id="name"></span>
+                 </div>
+                <form wicket:id="form" class="form-horizontal"  >
+                    <fieldset>
+                        <div wicket:id="fieldGroupRepeater">
+                            <div class="panel panel-info " style="">
+                                <div class="panel-heading">
+                                        <span wicket:id="groupname"></span>
+                                    
+                                </div>
+                                <div class="table-content panel-body">
+                                    <div  class="table-cell form-group"  wicket:id="dataRowRepeater">
+                                        <div class="table-column " wicket:id="columnRepeater"><div wicket:id="editdata" class="form_datetime"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="submit" onClick="return validateFields();" wicket:id="save" class="btn btn-primary" value="保存"  />
+                                <input type="submit" onClick="return validateFields();" wicket:id="saveAndNew"class="btn btn-primary" value="保存&新建"  />
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+	<wicket:fragment wicket:id="textFragment">
+		<span wicket:id="celldata"></span>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="layoutFragment">
+		<span wicket:id="add"></span>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="textInputFragment">
+		<input wicket:id="input" class="form-control input-sm" />
+	</wicket:fragment>
+	<wicket:fragment wicket:id="dropDownFragment">
+		<select wicket:id="dropDownInput" class="form-control input-sm" ></select>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="textAreaFragment">
+		<textarea  wicket:id="address" row="2" cols="40"  class="form-control input-sm" ></textarea >
+	</wicket:fragment>
+	<wicket:fragment wicket:id="radioChoiceFragment">
+		<span  wicket:id="radioChoiceinput" ></span>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="bjgtextAreaFragment">
+        <textarea  wicket:id="description" cols="100" rows="8" class="from-control"></textarea >
+    </wicket:fragment>
+    <wicket:fragment wicket:id="fileUplodeFragment"> 
+        <input type="file" class="form-control input-sm" wicket:id="fileUplode"/> 
+    </wicket:fragment>
+	<wicket:fragment wicket:id="relationTableSearchFragment">
+       <div class="input-group">
+		<input type="text" required="required" readonly wicket:id="selected_value_input" class="form-control input-sm"/>
+		<span class="input-group-addon input-sm"> 
+		   <a href="#" class="" wicket:id="search_btn" id="search_click"  title="查找">查找</a>
+        </span>
+        <input type="hidden" class="form-control  input-sm" style="width:0px;height:0px;" wicket:id="selected_id_hidden" />&nbsp;&nbsp;
+        </div>
+	</wicket:fragment>
+</wicket:panel>

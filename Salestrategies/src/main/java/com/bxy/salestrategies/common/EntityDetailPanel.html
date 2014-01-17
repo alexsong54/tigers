@@ -1,0 +1,62 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+	<script>
+        $(document).ready(function() {
+        		var status = $("#status").text();
+        		if(status=="完成"){
+        			$("#editCon").hide();
+        			$("#done").hide();
+        		}
+        		var eventType = $("#event_type").text();
+        		var event_type = "辅导"
+        		console.info(eventType+"name"+event_type)
+        		if(eventType=="辅导"){
+        			$(".4:first").hide();
+        			$(".5:first").hide();
+        			$(".7:first").hide();
+        		}else if(eventType=="拜访"){
+        			$(".collapse:last").hide();
+            		$("h5:last").hide();
+            		$(".6:first").hide();
+        		}else{
+        			
+        		}
+        });
+        
+    </script>
+
+	<div class="">
+		<div class="">
+			<div class="">
+				<div wicket:id="fieldGroupRepeater">
+
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							    
+								<a wicket:id="divButton"  data-toggle="collapse" href=""><span wicket:id="groupname"></span></a>
+							</h4>
+						</div>
+						<div wicket:id="panel_body_div" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div wicket:id="divRepeater">
+									<div class="table table-hover table-condensed  " >
+										<div class="table-cell" wicket:id="dataRowRepeater">
+											<div class="table-column-view " wicket:id="columnRepeater">
+												<div wicket:id="celldata"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<wicket:fragment wicket:id="detailFragment">
+			<a href="#" wicket:id="detailclick"><wicket:container wicket:id="caption" /></a>
+	</wicket:fragment>
+</wicket:panel>

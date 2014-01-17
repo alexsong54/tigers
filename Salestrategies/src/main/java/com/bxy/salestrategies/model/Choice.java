@@ -1,7 +1,10 @@
 package com.bxy.salestrategies.model;
 
-public class Choice {
-	private long id;
+
+import java.io.Serializable;
+
+public class Choice implements Serializable {
+    private long id;
     private String key;
     private String val;
     private String name;

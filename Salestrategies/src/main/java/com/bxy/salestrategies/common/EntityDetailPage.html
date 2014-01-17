@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+    <body>
+        <wicket:extend>
+            <script>
+                $(document).ready(function() {
+                    var teamPanel = $("#teamPanel").text();
+                    if(teamPanel == ""){
+                    	$("#accordion1").hide();
+                    }
+                });
+                function ConfirmDel() {
+                    if (confirm("真的要删除吗？")){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                function ConfirmIne() {
+                    if (confirm("真的要失效吗？")){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                function resetPwd() {
+                    if (confirm("确定要重置密码吗？")){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            </script>
+            <div class="container">
+                <div class="row">
+             		<div wicket:id="promptDiv" class="alert  alert-warning" >
+	 					<span wicket:id="promptButton" class="close" data-dismiss="alert"></span>
+						<span wicket:id="prompt" ><strong></strong></span>
+					</div>
+                    <!-- right container -->
+                    <div class="">
+                        <div class="title" >
+                            <span wicket:id="name">我的</span>
+                            <div class="pull-right full">
+                                <div wicket:id="operationBar">[operation bar]</div>
+                            </div>
+                        </div>
+                        <div class="detailed" wicket:id="detailed"></div>
+                        <div style="height:20px;">
+                        </div>
+                        <div style="background-color:#BDD3EB; height:2px;">
+                        </div>
+                        <div style="height:20px;">
+                        </div>
+<!--                         <div class="" id="accordion1"> -->
+<!-- <!--                             <div  class="relationBlock"> --> 
+<!-- <!--                                 <span wicket:id="teamPanel" id="teamPanel"></span> --> 
+<!-- <!--                             </div> -->
+<!-- <!--                             <div id=relation> --> 
+<!-- <!--                                 <div class="relationBlock" wicket:id="teamPanel2"  id=relation2></div> --> 
+<!-- <!--                             </div> -->
+<!-- <!--                             <div id=relation2> --> 
+<!-- <!--                                 <div class="relationBlock" wicket:id="teamPanel3"  id=relation3></div> --> 
+<!-- <!--                             </div> --> 
+<!-- <!--                             <div id=relation3> --> 
+<!-- <!--                                 <div class="relationBlock" wicket:id="teamPanel4"  id=relation4></div> --> 
+<!-- <!--                             </div> --> 
+<!--                         </div> -->
+
+                    </div>
+                    <!-- end of right container -->
+
+                </div>
+            </div>
+        </wicket:extend>
+    </body>
+</html>

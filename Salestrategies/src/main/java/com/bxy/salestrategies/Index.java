@@ -71,6 +71,11 @@ public class Index extends WebPage
         item.setId("navitem-user");
         builder.put("user", item);
    
+        item = new MenuItem();
+        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Activity");
+        item.setDestination(ActivityPage.class);
+        item.setId("navitem-activity");
+        builder.put("activity", item);
         pageMenuMap = builder.build();
        
    }
@@ -86,6 +91,7 @@ public class Index extends WebPage
 		menulist.add("opportunity");
 		menulist.add("competitor");
 		menulist.add("user");
+		menulist.add("activity");
 		
 		//populate menu items. TODO componentize it. pass arg: menuList
 		ArrayList<MenuItem> menu = Lists.newArrayList();
