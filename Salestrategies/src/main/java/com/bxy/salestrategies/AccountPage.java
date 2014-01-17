@@ -14,7 +14,11 @@ import com.bxy.salestrategies.common.PageableTablePanel;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.util.Configuration;
 import com.google.common.collect.Lists;
-
+/**
+ * 
+ * @author brenda
+ *
+ */
 public class AccountPage extends Index{
 	private static final Logger logger = Logger.getLogger(AccountPage.class);
 	private String search_target = "";

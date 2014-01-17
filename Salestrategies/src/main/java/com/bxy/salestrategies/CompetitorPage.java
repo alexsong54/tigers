@@ -9,7 +9,11 @@ import com.bxy.salestrategies.common.Entity;
 import com.bxy.salestrategies.common.PageableTablePanel;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.util.Configuration;
-
+/**
+ * 
+ * @author brenda
+ *
+ */
 public class CompetitorPage extends Index{
 	private static final Logger logger = Logger.getLogger(ContactPage.class);
 	private String search_target = "";

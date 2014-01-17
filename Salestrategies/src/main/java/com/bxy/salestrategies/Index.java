@@ -36,7 +36,7 @@ public class Index extends WebPage
         ImmutableMap.Builder<String, MenuItem> builder = new ImmutableMap.Builder<String,MenuItem>();
         MenuItem item = new MenuItem();
         item.setCaption("<i class=\"icon-home icon-large\"></i>主页");
-        item.setDestination(Account.class);
+        item.setDestination(HomePage.class);
         item.setId("navitem-homepage");
         builder.put("home", item);
         
