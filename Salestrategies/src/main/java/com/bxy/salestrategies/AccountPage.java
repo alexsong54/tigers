@@ -6,8 +6,10 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.bxy.salestrategies.common.Entity;
+import com.bxy.salestrategies.common.FilterPanel;
 import com.bxy.salestrategies.common.PageableTablePanel;
 import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.util.Configuration;
 /**
  * 
@@ -34,5 +36,7 @@ public class AccountPage extends Index{
 	   String sql = entity.getSql();
 	   tdata = DAOImpl.queryEntityRelationList(sql);
 	   add(new PageableTablePanel("datalist", entity, tdata, null));
+	   List<Choice> choices = DAOImpl.queryPickList(entity.getFieldByName(entity.getFilterField()).getPicklist());
+	   add(new FilterPanel("filterPanel", choices, filter, AccountPage.class,entity));
    }
 }

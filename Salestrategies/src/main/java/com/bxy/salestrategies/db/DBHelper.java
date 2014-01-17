@@ -25,7 +25,6 @@ public class DBHelper {
 		InputStream inputStream = DBHelper.class.getResourceAsStream("/dbconfig.properties");
 		try {
 			dbProperties.load(inputStream);
-			System.out.println("userName:"+dbProperties.getProperty("db.username"));
 		} catch (IOException e) {
 			logger.error("failed to load properties files"+e);
 			e.printStackTrace();

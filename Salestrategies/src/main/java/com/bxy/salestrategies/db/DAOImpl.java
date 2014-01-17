@@ -17,6 +17,7 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.log4j.Logger;
 
 import com.bxy.salestrategies.model.Account;
+import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.model.Contact;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
@@ -311,5 +312,28 @@ public class DAOImpl {
 	            DBHelper.closeConnection(conn);
 	        }
 	        return result;
+	    }
+	    public static List<Choice> queryPickList(String picklist) {
+	        String query = null;
+	        if(picklist.equalsIgnoreCase("product")){
+	          query =  "select id, name from " + picklist;
+	        }else{
+	          query =  "select id, val from " + picklist;
+	        }
+	        List<Choice> choices = Lists.newArrayList();
+	        Connection conn = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<List<Choice>> h = new BeanListHandler<Choice>(Choice.class);
+	            choices = run.query(conn, "SELECT * FROM " + picklist, h);
+
+	        } catch (SQLException e) {
+	            logger.error("failed to get queryPickListById", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+
+	        return choices;
 	    }
 }

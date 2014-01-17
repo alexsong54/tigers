@@ -8,19 +8,19 @@
 @font-face { font-family: SegeoUI; src: url('fonts/segoeuib.ttf'); font-weight: bold; }
 
 /* global styles */
-* { margin: 0; padding: 0; }
+
 a { color: #007CC2; text-decoration: none; }
 a:hover { color: #3396CE; }
 a { font-weight: bold; }
 img { border: none; outline: none; }
-body { background: #FFF; font: 14px Cambria, Georgia, serif; color: #4D4D4D; min-width: 960px; }
+body { }
 p { line-height: 150%; margin-bottom: 24px; }
 h1 { margin: 0.5em 0; font-size: 26px; }
 h2, h3, h4 { margin: 1.5em 0 0.5em; }
 h1, h2, h3 { font-family: Cambria, Georgia, serif; }
 .text-small { font-size: 12px; }
 .text-center { text-align: center; }
-ol,ul { margin-left: 2em; line-height: 150%; }
+ol,ul { }
 .hidden { display: none; }
 
 /* layout */
@@ -48,7 +48,7 @@ ol,ul { margin-left: 2em; line-height: 150%; }
 .home .background-7 { background: url(images/bg-07.png) center; }
 .home .background-xmas { background: url(images/bg-xmas-01.png) center; }
 .home .content .logo { margin: 128px 0 16px; max-width: 95%; }
-.home .content { max-width: 960px; text-align: center; background-image: none; }
+.home .content { }
 .home .content h2 { margin: 8px 0; font-size: 18px; }
 .home .search { position: relative; left: auto; top: auto; width: 100%; margin: 80px auto; text-align: center; line-height: 200%; }
 .home .search-input { color: #999; margin-bottom: 8px; min-width: 70%; }
@@ -72,7 +72,7 @@ ol,ul { margin-left: 2em; line-height: 150%; }
 .clearfix { display:block; }
 
 /* nav & menu */
-.nav { margin: 0; }
+.nav {  }
 .nav li.item { float: left; list-style: none;  margin-right: 4px; position: relative; }
 .nav li.item a { color: #FFF; font-size: 14px; display: block; padding: 4px 8px; border-radius: 2px; }
 .nav li.item a:hover, .nav li.item a.active { background-color: #3396CE; }

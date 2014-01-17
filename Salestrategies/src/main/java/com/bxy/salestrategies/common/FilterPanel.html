@@ -1,0 +1,32 @@
+
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-toggle').dropdown();
+
+        });
+    </script>
+
+    <div class="">
+        <div class="" >
+            <div class="panel panel-success">  
+                <form wicket:id="side_bar_form" id="form" action="">
+                    <div wicket:id="group">
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr wicket:id="rowRepeater">
+                                    <td>
+                                        <input type="checkbox" wicket:id="type" />
+                                    </td>
+                                    <td><span wicket:id="name"></span></td>
+                                    <td><span wicket:id="num"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</wicket:panel>

@@ -102,7 +102,6 @@ public class Index extends WebPage
                 link.add(new AttributeAppender("id", Model.of(menuitem.getId())));
                 link.add(new Label("caption", menuitem.getCaption()).setEscapeModelStrings(false));
                 item.add(link);
-                
             }
         };  
         add(lv);

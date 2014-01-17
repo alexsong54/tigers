@@ -5,7 +5,7 @@
 		<display>客户</display>
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM account</sql>
-		<filterField>name</filterField>
+		<filterField>type</filterField>
 		<fields>
 			<field>
 				<name>id</name>
@@ -558,7 +558,7 @@
 			<field>
 				<name>starttime</name>
 				<display>开始时间</display>
-				<data-type>text</data-type>
+				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -574,7 +574,7 @@
 			<field>
 				<name>endtime</name>
 				<display>结束时间</display>
-				<data-type>text</data-type>
+				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>

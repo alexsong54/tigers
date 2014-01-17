@@ -1,41 +1,17 @@
 package com.bxy.salestrategies.util;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.log4j.Logger;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import com.bxy.salestrategies.common.Entity;
 import com.bxy.salestrategies.common.Field;
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-import com.google.gson.annotations.Expose;
 
 public class Configuration {
     private static final Logger logger = Logger.getLogger(Configuration.class);

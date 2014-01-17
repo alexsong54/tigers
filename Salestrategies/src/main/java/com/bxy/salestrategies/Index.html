@@ -14,9 +14,12 @@
 
 
             <link rel="stylesheet" type="text/css" media="all" href="Menu/css/style.css" /> 
-                <script src="Menu/js/jquery-1.9.1.js"></script>
-                <script src="Menu/js/jquery.fancybox.js"></script>
-                <script src="Menu/js/base.js"></script>
+            <script src="Menu/js/jquery-1.9.1.js"></script>
+            <script src="Menu/js/jquery.fancybox.js"></script>
+            <script src="Menu/js/base.js"></script>
+            <link rel="stylesheet" type="text/css" media="all" href="bootstrap/css/bootstrap.css" /> 
+            <link rel="stylesheet" type="text/css" media="all" href="css/extra.css" /> 
+                
         
 
     </head>
@@ -44,15 +47,14 @@
                         </div>
                     </li>
                    <li wicket:id="menu" class="item screen" ><a href="#" wicket:id="link"><span wicket:id="caption"></span> </a></li>
+                   <li  class="item right"><a wicket:id="signout_link">退出</a></li> 
+                   <li  class="item right"><a wicket:id="user_settings_link" ><span wicket:id="loginName" >[login name]</span></a></li>
                    <li class="item right">
                         <form class="form-search" name="search_form" method="get" id="searchform" action="http://ui-cloud.com/">
                             <input type="text" value="" placeholder="Enter UI keywords" name="s" id="s" />
                             <input class="btn" type="submit" name="submit" id="searchsubmit" value="Search"/>	
                         </form>			
                    </li>
-                   <li  class="item right"><a wicket:id="signout_link">退出</a></li> 
-                   <li  class="item right"><a wicket:id="user_settings_link" ><span wicket:id="loginName" >[login name]</span></a></li>
-             		
                 </ul>
             </div>
         </div>	
