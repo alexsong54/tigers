@@ -99,10 +99,9 @@ public class Index extends WebPage
             protected void populateItem(ListItem item) {
                 MenuItem menuitem = (MenuItem) item.getModelObject();
                 BookmarkablePageLink link = new BookmarkablePageLink("link", menuitem.getDestination());
+                link.add(new AttributeAppender("id", Model.of(menuitem.getId())));
                 link.add(new Label("caption", menuitem.getCaption()).setEscapeModelStrings(false));
                 item.add(link);
-                item.add(new AttributeAppender("id", Model.of(menuitem.getId())));
-               // item.add(new SimpleAttributeModifier("class", "my-css-class"));
                 
             }
         };  

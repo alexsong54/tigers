@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <entities>
 	<entity>
 		<name>account</name>
@@ -1026,7 +1025,6 @@
 	</fields>
 	</entity>
 
-
 	<entity>
 		<name>data_audit</name>
 		<display>修改历史</display>
@@ -1138,5 +1136,4 @@
 			</field>
 		</fields>
 	</entity>
-
 </entities>
