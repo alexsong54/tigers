@@ -1,3 +1,12 @@
+.tableTdStyle{
+	margin-right:0px;
+	width:90%;
+}
+.tableThStyle{
+	background-color:#000000;
+	color:#ffffff; 
+	text-align: center;
+}
 .folatLeft{
 	text-align:left;
 }
@@ -53,9 +62,8 @@
 .footer {
     text-align: center;
     clear: both;
-    background-color: #FFF;
-    color: #777;
-    font-size: 15px;
+    color:black;
+    font-size: 18px;
     padding-top: 5px;
 }
 .row-fluid .span12 {
@@ -462,7 +470,25 @@ a:hover, a:focus {
         margin-top: -9px;
     }
 }
-
+@media (min-width: 768px) {
+  .bs-example {
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #fff;
+    border-width: 1px;
+    border-color: #ddd;
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
+  }
+  .bs-example + .highlight {
+    margin-top: -16px;
+    margin-left: 0;
+    margin-right: 0;
+    border-width: 1px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
 @media ( max-width : 440px) {
     .table-column {
         float: left;

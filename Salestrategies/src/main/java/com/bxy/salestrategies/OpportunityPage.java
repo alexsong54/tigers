@@ -30,5 +30,6 @@ public class OpportunityPage extends Index{
 	   String sql = entity.getSql();
 	   tdata = DAOImpl.queryEntityRelationList(sql);
 	   add(new PageableTablePanel("datalist", entity, tdata, null));
+	   add(new DnaPanel("dnaPanel"));
    }
 }

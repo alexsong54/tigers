@@ -57,7 +57,7 @@ public final class Login extends WebPage
             	if(null!=user){
       	            if (session.signIn(getUsername(),getPassword()))
                     {
-      	            	setResponsePage(new Index());
+      	            	setResponsePage(new HomePage());
                     }
       	            else
       	            {
