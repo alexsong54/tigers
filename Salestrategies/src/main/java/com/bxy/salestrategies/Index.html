@@ -62,9 +62,26 @@
             <div class="header">
                 <ul class="nav clearfix">	
                     <li class="item"><a href="#"><img src="http://ui-cloud.com/wp-content/themes/uicloud-v2/images/icons/20px/icon-uicloud.png" /></a></li>
+
                     <li class="item compact">
-                        <a href="#"><img src="http://ui-cloud.com/wp-content/themes/uicloud-v2/images/icons/20px/menu-white.png" /></a>
-                    </li>
+				<a href="#"><img src="http://ui-cloud.com/wp-content/themes/uicloud-v2/images/icons/20px/menu-white.png" /></a>
+				<div class="menu menu-right">
+					<div class="block">
+						<ul class="sub-menu">						        
+						    <li><a href="./wicket/bookmarkable/com.bxy.salestrategies.HomePage">主页</a></li>
+						    <li><a href="./wicket/bookmarkable/com.bxy.salestrategies.AccountPage">Account</a></li>
+						    <li><a href="./wicket/bookmarkable/com.bxy.salestrategies.ContactPage">Contact</a></li>
+						    <li><a href="./wicket/bookmarkable/com.bxy.salestrategies.OpportunityPage">Opportunity</a></li>						
+						    <li><a href="./wicket/bookmarkable/com.bxy.salestrategies.CompetitorPage">Competitor</a></li>
+						    <li><a href="./wicket/bookmarkable/com.bxy.salestrategies.UserPage">User</a></li>
+						    <li><a href="./wicket/bookmarkable/com.bxy.salestrategies.ActivityPage">Activity</a></li>
+						   
+						</ul>
+					</div>
+				</div>
+			</li>
+                    
+                    
                     <li wicket:id="menu" class="item screen" ><a href="#" wicket:id="link"><span wicket:id="caption"></span> </a></li>
                     <li  class="item screen right"><a wicket:id="signout_link">退出</a></li> 
                     <li  class="item screen right"><a wicket:id="user_settings_link" ><span wicket:id="loginName" >[login name]</span></a></li>
