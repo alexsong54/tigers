@@ -1,4 +1,4 @@
-package com.bxy.salestrategies.common;
+package com.bxy.salestrategies;
 
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
@@ -64,6 +64,7 @@ public class SignInSession  extends AuthenticatedWebSession{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
 	@Override
 	public Roles getRoles() {
 		// TODO Auto-generated method stub

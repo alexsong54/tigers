@@ -4,7 +4,6 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 
-import com.bxy.salestrategies.common.SignInSession;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.User;
 import com.bxy.salestrategies.userlog.LogInOut;

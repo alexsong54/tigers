@@ -36,6 +36,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.behavior.AttributeAppender;
 
+import com.bxy.salestrategies.SignInSession;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.User;
 import com.bxy.salestrategies.util.Configuration;

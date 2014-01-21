@@ -7,8 +7,8 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
+
 import com.bxy.salestrategies.model.User;
-import com.bxy.salestrategies.common.SignInSession;
 import com.bxy.salestrategies.db.DAOImpl;
 
 public final class Login extends WebPage

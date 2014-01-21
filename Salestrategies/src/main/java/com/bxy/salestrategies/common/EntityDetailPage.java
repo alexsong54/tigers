@@ -28,6 +28,7 @@ import com.bxy.salestrategies.AccountPage;
 import com.bxy.salestrategies.ActivityPage;
 import com.bxy.salestrategies.ContactPage;
 import com.bxy.salestrategies.Index;
+import com.bxy.salestrategies.SignInSession;
 import com.bxy.salestrategies.UserPage;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Activity;
