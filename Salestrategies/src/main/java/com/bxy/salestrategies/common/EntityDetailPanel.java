@@ -103,7 +103,7 @@ public class EntityDetailPanel extends Panel {
 
            
 
-            int num_of_row = (numOfField / this.number_of_column) + 1;
+            int num_of_row = (numOfField / this.number_of_column)+1;
 
             for (int i = 0; i < num_of_row; i++) {
                 AbstractItem item = new AbstractItem(dataRowRepeater.newChildId());

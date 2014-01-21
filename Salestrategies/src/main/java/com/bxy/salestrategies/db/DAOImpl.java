@@ -1,6 +1,10 @@
 package com.bxy.salestrategies.db;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -16,10 +20,13 @@ import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.log4j.Logger;
 
+import com.bxy.salestrategies.common.Entity;
 import com.bxy.salestrategies.model.Account;
+import com.bxy.salestrategies.model.AccountUserTeam;
 import com.bxy.salestrategies.model.Activity;
 import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.model.Contact;
+import com.bxy.salestrategies.model.ContactUserTeam;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
 import com.google.common.cache.Cache;
@@ -498,4 +505,446 @@ public class DAOImpl {
 	          return choices;
 
 	      }
+	    public static boolean updateRecord(String id,String entityName, List<String> fieldNames, List<String> values ) {
+	    	 String sql = "";
+	    	 int i=0;
+	         for(String name:fieldNames){
+	             if(i==0){
+	            	 sql = name +" = "+ values.get(i)  ;
+	             }else{
+	        	    sql = sql + "," + name +" = "+ values.get(i)  ;	 
+	             }
+	        	 i++;
+	         }
+	        	sql = "UPDATE  "+entityName+ " SET "+sql+" where id = " + id;
+	        logger.debug("UPDATE sql is:"+sql);
+	        Connection conn = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            int inserts = 0;
+	            inserts += run.update(conn, sql);
+
+	            System.out.println("inserted:" + inserts);
+	            return true;
+	        } catch (Exception e) {
+	            logger.error("failed to add new calendar event", e);
+	            return false;
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	    }
+	  //查询所有用户登录名
+	     public static List<String> getLoginNames(String entityId){
+	     	Connection conn = null;
+	         List<String> loginNames = Lists.newArrayList();
+	         List<User> users = Lists.newArrayList();
+	         try {
+	             conn = DBConnector.getConnection();
+	             QueryRunner run = new QueryRunner();
+	             ResultSetHandler<List<User>> h = new BeanListHandler<User>(User.class);
+	             users = run.query(conn, "SELECT * FROM user where id!=?",h,entityId);
+	         } catch (SQLException e) {
+	             logger.error("failed to get all accounts", e);
+	         } finally {
+	             DBHelper.closeConnection(conn);
+	         }
+	         for(User userInfo:users){
+	         	loginNames.add(userInfo.getName());
+	         }
+	         return loginNames;
+	     }
+	     public static Entity getEntityById(String tableName,String id) {
+	         Connection conn = null;
+	         Entity entity = null;
+	         try {
+	             conn = DBConnector.getConnection();
+	             QueryRunner run = new QueryRunner();
+	             ResultSetHandler<Entity> h = new BeanHandler<Entity>(Entity.class);
+
+	             entity = run.query(conn, "SELECT * FROM "+tableName + " where id=?", h, id);
+
+	         } catch (SQLException e) {
+	             logger.error("failed to get all entity", e);
+	         } finally {
+	             DBHelper.closeConnection(conn);
+	         }
+
+	         return entity;
+	     }
+	     //修改历史
+	     public static void insertAudit(String entityName, String columnName,String oldValue,String newValue,String entityId,String userName) throws Exception {
+	            Connection conn = null;
+	            long ts= System.currentTimeMillis();
+	            SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            String date_value = dateformat.format(ts);
+	            try {
+	                conn = DBHelper.getConnection();
+	                QueryRunner run = new QueryRunner();
+	                int inserts = run.update(conn, "INSERT INTO data_audit (entity_name,record_id,modify_time,modifier,column_name,old_value,new_value) VALUES (?,?,?,?,?,?,?)",entityName,entityId,date_value,userName,columnName,oldValue,newValue);
+
+	                logger.info(String.format("%s row inserted into insertRelationOfAccountIDCRMUserID!", inserts));
+
+	            } catch (SQLException e) {
+	                logger.error("failed to insertRelationOfAccountIDCRMUserID", e);
+	            } finally {
+	                DBHelper.closeConnection(conn);
+	        }
+
+	    }
+	     //查询所有用户登录名
+	     public static List<String> getAllLoginNames(){
+	     	Connection conn = null;
+	         List<String> loginNames = Lists.newArrayList();
+	         List<User> users = Lists.newArrayList();
+	         try {
+	             conn = DBConnector.getConnection();
+	             QueryRunner run = new QueryRunner();
+	             ResultSetHandler<List<User>> h = new BeanListHandler<User>(User.class);
+	             users = run.query(conn, "SELECT * FROM userInfo ",h);
+	         } catch (SQLException e) {
+	             logger.error("failed to get all accounts", e);
+	         } finally {
+	             DBHelper.closeConnection(conn);
+	         }
+	         for(User userInfo:users){
+	         	loginNames.add(userInfo.getName());
+	         }
+	         return loginNames;
+	     }
+	     
+	     public static long createNewUser(String entityName,List<String> fieldNames,List<String> values,String userId){
+	     	String fieldssql = Joiner.on(",").join(fieldNames);
+	         String valuesql = Joiner.on(",").join(values);
+	         fieldssql = fieldssql + ",num_of_signIn,password";
+	    	 	valuesql =  valuesql + ",0,'"+DigestUtils.md5Hex("12345")+"'";
+	    	 	logger.debug("fieldssql sql is:"+fieldssql);
+	    	 	logger.debug("valuesql sql is:"+valuesql);
+	    	 	String sql = "INSERT INTO "+entityName+" ("+fieldssql+") VALUES ("+valuesql+")";
+	     
+	    	 	logger.debug("insert sql is:"+sql);
+
+	 	    Connection conn = null;
+	 	    //PreparedStatement statement = null;
+	 	    ResultSet generatedKeys = null;
+	 	    PreparedStatement statement = null;
+	 	    long key=-1;
+	         try {
+	 			conn = DBConnector.getConnection();
+	 			statement  = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+	 	        int affectedRows = statement.executeUpdate();
+	 	     
+	 	        generatedKeys = statement.getGeneratedKeys();
+	             if (generatedKeys.next()) {
+	                 //user.setId(generatedKeys.getLong(1));
+	                  key = generatedKeys.getLong(1);
+	             } else {
+	                 logger.error("failed to insert data");
+	                 return -1;
+	             }
+	 	        System.out.println("add crmuser is True");
+	 	        return key;
+	 		} catch (SQLException e) {
+	 			// TODO Auto-generated catch block
+	 			e.printStackTrace();
+	         } finally {
+	             if (generatedKeys != null) try { generatedKeys.close(); } catch (SQLException logOrIgnore) {}
+	             if (statement != null) try { statement.close(); } catch (SQLException logOrIgnore) {}
+	             if (conn != null) try { conn.close(); } catch (SQLException logOrIgnore) {}
+	         }
+	         return -1L;
+	     }
+	     public static long createNewRecord(String entityName, List<String> fieldNames, List<String> values,String userId){   
+	         String fieldssql = Joiner.on(",").join(fieldNames);
+	         String valuesql = Joiner.on(",").join(values);
+	        if(entityName.equals("activity")){
+	        	 fieldssql = fieldssql.replaceAll("accountId,","").trim();
+	        	 valuesql = valuesql + "," +userId;
+	        	 
+	        	 fieldssql = fieldssql + ",event_type";
+	             valuesql = valuesql + "," +1;
+	             fieldssql = fieldssql + ",status";
+	             valuesql = valuesql + "," +1;
+	         }
+	         logger.debug("fieldssql sql is:"+fieldssql);
+	         logger.debug("valuesql sql is:"+valuesql);
+	         String sql = "INSERT INTO "+entityName+" ("+fieldssql+") VALUES ("+valuesql+")";
+	        
+	        logger.debug("insert sql is:"+sql);
+	        System.out.println("insert sql is:"+sql);
+	        Connection conn = null;
+	        //PreparedStatement statement = null;
+	        ResultSet generatedKeys = null;
+	        PreparedStatement statement = null;
+	        long key = -1;
+	        try {
+	            conn = DBConnector.getConnection();
+	            
+	            statement  = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+	            
+	            int affectedRows = statement.executeUpdate();
+	            if (affectedRows == 0) {
+	                logger.error("Failed to insert data");
+	                return -1;
+	            }
+	            
+	            generatedKeys = statement.getGeneratedKeys();
+	            if (generatedKeys.next()) {
+	                //user.setId(generatedKeys.getLong(1));
+	                 key = generatedKeys.getLong(1);
+	            } else {
+	                logger.error("failed to insert data");
+	                return -1;
+	            }
+	            
+	        } catch (Exception e) {
+	            logger.error("failed to add new calendar event", e);
+	        } finally {
+	            if (generatedKeys != null) try { generatedKeys.close(); } catch (SQLException logOrIgnore) {}
+	            if (statement != null) try { statement.close(); } catch (SQLException logOrIgnore) {}
+	            if (conn != null) try { conn.close(); } catch (SQLException logOrIgnore) {}
+	        }
+	        
+	        return key;
+
+	    }
+	     //
+	     public static String getCreateRecordByEntity(String entityName){
+	            String result;
+	            String sql="select Max(id) as target from "+entityName+"";
+	            List<Map<String,Object>> lt=DAOImpl.queryEntityRelationList(sql);
+	            result=String.valueOf(lt.get(0).get("target").toString());
+	            return result;
+	     }
+	     
+	     public static void insert2UserRelationTable(String entityName,String userId,String entityId){
+	         String sql = null;
+	         long ts= System.currentTimeMillis();
+	         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	         String date_value = dateformat.format(ts);
+	         if(entityName.equalsIgnoreCase("account_delect")){//暂不需要
+	             sql = "INSERT INTO accountcrmuser ( accountId, userId) VALUES ("+entityId+","+userId+")";
+	         }else if(entityName.equalsIgnoreCase("contact_delect")){//暂不需要
+	             sql = "INSERT INTO contactcrmuser ( contactId, userId) VALUES ("+entityId+","+userId+")";
+	         }else if(entityName.equalsIgnoreCase("activity")){
+	             sql = "INSERT INTO activitycrmuser ( activityId, userId) VALUES ("+entityId+","+userId+")";
+	         }else if (entityName.equalsIgnoreCase("user")){
+	           sql = "INSERT INTO user_position ( userId,status,isPrimary,whenadded) VALUES ("+userId+",1,1,'"+date_value+"')";
+	         }
+	         if(sql == null) {
+	             logger.error("entityName error");
+	             return;
+	         }
+	         
+	         Connection conn = null;
+	         try {
+	             conn = DBConnector.getConnection();
+	             QueryRunner run = new QueryRunner();
+	             int inserts = 0;
+	             inserts += run.update(conn, sql);
+
+	             System.out.println("inserted:" + inserts);
+	         } catch (Exception e) {
+	             logger.error("failed to add new calendar event", e);
+	         } finally {
+	             DBHelper.closeConnection(conn);
+	         }
+	     }
+	     //添加用户
+	     public static List searchUser(String search_target) {
+	         	if(search_target == null|| search_target.equalsIgnoreCase("*")){
+	     	          search_target = "";
+	         	}
+	             String sql = "select * from (  select * from user where  (user.id !=-1) AND (name like '%"+search_target+"%' OR employee_number like '%"+search_target+"%' OR report_to like '%"+search_target+"%')) as a";
+	             logger.debug(sql );
+	             Connection conn = null;
+	             List lMap = Lists.newArrayList();
+	             try {
+	                 conn = DBConnector.getConnection();
+	                 QueryRunner run = new QueryRunner();
+	                 lMap = (List) run.query(conn, sql, new MapListHandler());
+
+	             } catch (SQLException e) {
+	                 logger.error("failed to get user", e);
+	             } finally {
+	                 DBHelper.closeConnection(conn);
+	             }
+	             return lMap;
+	         }
+	     //查询客户
+	     public static List searchCRMAccount(String search_target) {
+	         if(search_target == null|| search_target.equalsIgnoreCase("*")){
+	           search_target = "";
+	       }
+	           String sql = "select * from (select * from account where (account.id > 0 ) AND  (name like '%"+search_target+"%' OR tel like '%"+search_target+"%' OR fax like '%"+search_target+"%')) as a";
+	           logger.debug(sql );
+	           Connection conn = null;
+	           List lMap = Lists.newArrayList();
+	           try {
+	               conn = DBConnector.getConnection();
+	               QueryRunner run = new QueryRunner();
+	               lMap = (List) run.query(conn, sql, new MapListHandler());
+
+	           } catch (SQLException e) {
+	               logger.error("failed to get user", e);
+	           } finally {
+	               DBHelper.closeConnection(conn);
+	           }
+
+	           return lMap;
+	       }
+	       //查询联系人
+	       public static List searchCRMContact(String search_target) {
+	         if(search_target == null|| search_target.equalsIgnoreCase("*")){
+	           search_target = "";
+	       }
+	         String sql = "select * from (select * from contact where (contact.id > 0) AND (name like '%"+search_target+"%' OR office_tel like '%"+search_target+"%' OR cellphone like '%"+search_target+"%')) as a";
+	         logger.debug(sql );
+	         Connection conn = null;
+	         List lMap = Lists.newArrayList();
+	         try {
+	             conn = DBConnector.getConnection();
+	             QueryRunner run = new QueryRunner();
+	             lMap = (List) run.query(conn, sql, new MapListHandler());
+
+	         } catch (SQLException e) {
+	             logger.error("failed to get user", e);
+	         } finally {
+	             DBHelper.closeConnection(conn);
+	         }
+
+	         return lMap;
+	     }
+	       //添加团队关系
+	       public static void insertRelationOfEntityIDCRMUserID(String entityName, String cId, String userId ,int type) throws Exception {
+	           int contactId = Integer.parseInt(cId);
+	           int uid = Integer.parseInt(userId);
+	           if (contactId != 0 && uid != 0) {
+	               String sql = "";
+	               long ts= System.currentTimeMillis();
+	               SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	               String date_value = dateformat.format(ts);
+	               if(entityName.equalsIgnoreCase("contact")){
+	                   sql = "INSERT INTO contactcrmuser (userId,contactId) VALUES (?,?)";
+	               }else if(entityName.equalsIgnoreCase("account")){
+	                   sql = "INSERT INTO accountcrmuser (userId,accountId) VALUES (?,?)";
+	               }else if(entityName.equalsIgnoreCase("user")){
+	                   sql = "INSERT INTO user_position (userId,whenadded,isPrimary) VALUES (?,?,?)";
+	               }else if(entityName.equalsIgnoreCase("user")){
+	                   if(type == 0||type==4){
+	                       sql = "INSERT INTO accountcrmuser (accountId,userId) VALUES (?,?)";
+	                   }else if(type == 1){
+	                       sql = "INSERT INTO contactcrmuser (contactId,userId) VALUES (?,?)";
+	                   }else if(type == 2){
+	                       sql = "INSERT INTO user_position (userId,whenadded,isPrimary) VALUES (?,?,?)";
+	                   }else{
+	                       sql = "update  crmuser set reportto = ?  where id = "+userId+" ";
+	                   }
+	               }
+	               int isPrimary = 1;
+	               Connection conn = null;
+	               try {
+	                   conn = DBConnector.getConnection();
+	                   QueryRunner run = new QueryRunner();
+	                   int inserts = 0;
+	                   if(entityName.equalsIgnoreCase("user")||type==2){
+	                     inserts = run.update(conn, sql, userId,date_value,isPrimary);
+//	                   }else if(type == 3){
+//	                   	inserts = run.update(conn, sql, userId);
+	                   } else {
+	                     inserts = run.update(conn, sql, userId,cId);
+	                   }
+
+	                   logger.info(String.format("%s row inserted into insertRelationOfEntityIDCRMUserID!", inserts));
+
+	               } catch (SQLException e) {
+	                   logger.error("failed to insertRelationOfEntityIDCRMUserID", e);
+	               } finally {
+	                   DBHelper.closeConnection(conn);
+	               }
+
+	           }
+	       }
+	       //查询客户与用户关系
+	       public static AccountUserTeam getAccountsByAccountUserTeamId(int id) {
+	    	   AccountUserTeam accounts = null;
+	          ResultSetHandler<AccountUserTeam> h = new BeanHandler<AccountUserTeam>(AccountUserTeam.class);
+	          Connection conn = null;
+	          try {
+	              QueryRunner run = new QueryRunner();
+	              conn = DBConnector.getConnection();
+	              accounts = run.query(conn, "select * from accountuserteam  where id=?", h, id);
+	          } catch (Exception e) {
+	              logger.error("failed to get city table data", e);
+	          } finally {
+	              DBHelper.closeConnection(conn);
+	          }
+	          return accounts;
+	      }
+	       public static ContactUserTeam getUserPositionById(int uid) {
+	           Connection conn = null;
+	           ContactUserTeam cut = new ContactUserTeam();
+	           try {
+	               conn = DBConnector.getConnection();
+	               QueryRunner run = new QueryRunner();
+	               ResultSetHandler<ContactUserTeam> h = new BeanHandler<ContactUserTeam>(ContactUserTeam.class);
+	               cut = run.query(conn, "SELECT * from  contactuserteam  where id=?  ", h,  uid);
+
+	           } catch (SQLException e) {
+	               logger.error("failed to get all accounts", e);
+	           } finally {
+	               DBHelper.closeConnection(conn);
+	           }
+
+	           return cut;
+	       }
+	       //删除记录
+	       public static void removeEntityFromTeam(String teamtable, String id) {
+	           String sql = "delete from "+teamtable+" where id="+id;
+	           if(teamtable.equalsIgnoreCase("crmuser")){
+	           	sql = "update  "+teamtable+" set reportto = 0 where id="+id;
+	           }
+	           logger.debug("sserserserser"+ sql);
+	           Connection conn = null;
+	           try {
+	               conn = DBConnector.getConnection();
+	               QueryRunner run = new QueryRunner();
+	               int inserts = 0;
+	               inserts += run.update(conn, sql);
+
+	               System.out.println("removed:" + inserts);
+	           } catch (Exception e) {
+	               logger.error("removeContactFromTeam", e);
+	           } finally {
+	               DBHelper.closeConnection(conn);
+	           }
+	           
+	       }
+	       //关系历史
+	       public static void insertRealtionHestory(String teamtable,String user,int positionId,int otherId) {
+	       	String sql = null;
+	       	long ts= System.currentTimeMillis();
+	           SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	           String date_value = dateformat.format(ts);
+	           if(teamtable.equalsIgnoreCase("userinfo")||teamtable.equalsIgnoreCase("user_position")){
+	           		sql = "insert into userposition_relation_history (position_id, user_id, modify_time, modifier) values("+positionId+","+otherId+",'"+date_value+"','"+user+"') ";
+	           }else if(teamtable.equalsIgnoreCase("accountcrmuser")){
+	               	sql = "insert into accountcrmuser_relation_history (position_id,account_id,modify_time,modifier) values("+positionId+","+otherId+",'"+date_value+"','"+user+"') ";
+	           }
+	           logger.debug("sserserserser"+ sql);
+	           Connection conn = null;
+	           try {
+	               conn = DBConnector.getConnection();
+	               QueryRunner run = new QueryRunner();
+	               int inserts = 0;
+	               inserts += run.update(conn, sql);
+
+	               System.out.println("removed:" + inserts);
+	           } catch (Exception e) {
+	               logger.error("removeContactFromTeam", e);
+	           } finally {
+	               DBHelper.closeConnection(conn);
+	           }
+	           
+	       }
 }

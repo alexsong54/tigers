@@ -37,8 +37,12 @@ import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.behavior.AttributeAppender;
 
 import com.bxy.salestrategies.SignInSession;
+import com.bxy.salestrategies.SearchCRMUserPage;
 import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.model.AccountUserTeam;
+import com.bxy.salestrategies.model.ContactUserTeam;
 import com.bxy.salestrategies.model.User;
+import com.bxy.salestrategies.util.CRMUtility;
 import com.bxy.salestrategies.util.Configuration;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -73,15 +77,12 @@ public class TeamManPanel extends Panel {
        }
         Entity entity=null ;
         if(en.equalsIgnoreCase("account")||en.equalsIgnoreCase("contact")){
-          if(type == 0){
-            entity = Configuration.getEntityByName("crmuser");
-            add(new Label("title","岗位"));
-            }else if(type == 1){
-              entity = Configuration.getEntityByName("userinfo");
+         if(type == 1){
+              entity = Configuration.getEntityByName("user");
               add(new Label("title","用户"));
             } 
           }
-        else if(en.equalsIgnoreCase("userInfo")){
+        else if(en.equalsIgnoreCase("user")){
         	 entity = Configuration.getEntityByName("user_position");
              add(new Label("title"," 用户岗位关系"));
         }
@@ -94,7 +95,7 @@ public class TeamManPanel extends Panel {
                 add(new Label("title","医生"));
             }
             else if (type == 2){
-              entity = Configuration.getEntityByName("userInfo");
+              entity = Configuration.getEntityByName("user");
               add(new Label("title","用户"));
             }
             else if (type == 3){
@@ -111,39 +112,30 @@ public class TeamManPanel extends Panel {
         final String entityName = entity.getName();
         Form form = new Form("form");
         add(form);
-        if(roleId != 1){
-          WebMarkupContainer con = new WebMarkupContainer("remove_team_member_click");
-            add(con);
-            con.setVisible(false);
-            //con.add(new AttributeAppender("style", new Model("display:none;"), ";"));
-       
-        }else{
+//        if(roleId != 1){
+//          WebMarkupContainer con = new WebMarkupContainer("remove_team_member_click");
+//            add(con);
+//            con.setVisible(false);
+//            //con.add(new AttributeAppender("style", new Model("display:none;"), ";"));
+//       
+//        }else{
         
            add(new SubmitLink("remove_team_member_click",form){
            @Override      
            public void onSubmit(){
              String teamtable = "";
            if(currentEntityName.equalsIgnoreCase("account")){
-               teamtable = "accountcrmuser";
+               teamtable = "accountuserteam";
            }else if(currentEntityName.equalsIgnoreCase("contact")){
-               teamtable = "contactcrmuser";
-           }else if(currentEntityName.equalsIgnoreCase("crmuser")){
+               teamtable = "contactuserteam";
+           }else if(currentEntityName.equalsIgnoreCase("user")){
                if(type == 0){
-                   teamtable = "accountcrmuser";
+                   teamtable = "accountuserteam";
                }else if(type == 1){
-                   teamtable = "contactcrmuser";
+                   teamtable = "contactuserteam";
                }else if(type == 2){
-                   teamtable = "user_position";
-               }else if(type ==4){
-            	   try{
-                    	 delete(Integer.parseInt(entityId));
-                     }catch(Exception e){
-                     }    
-               }else {
-                 teamtable = "crmuser";
+                   teamtable = "opportunityuserteam";
                }
-           }else if(currentEntityName.equalsIgnoreCase("userinfo")){
-        	   teamtable = "user_position";
            }
             
            for(String rid:selectedRowIds){
@@ -151,27 +143,18 @@ public class TeamManPanel extends Panel {
             	 int positionId = 0;
             	 int otherId = 0;
             	 String fromtable = teamtable;
-            	  if(teamtable.equalsIgnoreCase("accountcrmuser")){
-            		  AccountCRMUserRelation acr =  DAOImpl.getAccountsByAccountCrmuserId(Integer.parseInt(rid));
-            		  positionId =  acr.getCrmuserId();
-            		  otherId = acr.getAccountId();
+            	  if(teamtable.equalsIgnoreCase("accountuserteam")){
+            		  AccountUserTeam aut =  DAOImpl.getAccountsByAccountUserTeamId(Integer.parseInt(rid));
+            		  otherId = aut.getAccountId();
             		  fromtable = teamtable;
-            	  }else if(teamtable.equalsIgnoreCase("user_position")){
-            		  UserPosition up =  DAOImpl.getUserPositionById(Integer.parseInt(rid));
-            		  positionId =  up.getPositionId();
-            		  otherId = up.getUserId();
-            		  fromtable = "userinfo";
+            	  }else if(teamtable.equalsIgnoreCase("countactuserteam")){
+            		  ContactUserTeam cut =  DAOImpl.getUserPositionById(Integer.parseInt(rid));
+            		  otherId = cut.getUserId();
+            		  fromtable = "user";
             	  }
-                  if((type==3)&&fromtable.equalsIgnoreCase("crmuser")){
-                	  User userinfo = DAOImpl.getCrmUserById(entityId);
-                	  DAOImpl.updateCrmUserReportById(rid, String.valueOf(userinfo.getReportto()));
-                	  User reporttouser = DAOImpl.getCrmUserById(userinfo.getReportto());
-                	  DAOImpl.insertAudit(entityName, "上级岗位", userinfo.getName(),reporttouser.getName(), rid, user);
-                  }else{
                 	  DAOImpl.removeEntityFromTeam(teamtable,rid);
                 	  DAOImpl.insertRealtionHestory(fromtable,user,positionId,otherId);
-                  }
-                
+                 
              }catch(Exception e){
                  
              }
@@ -183,13 +166,13 @@ public class TeamManPanel extends Panel {
       
              }
            });
-       }
+//       }
         //add button submission
-        if(roleId != 1){
-        	 WebMarkupContainer con = new WebMarkupContainer("add_users_link");
-             add(con);
-             con.setVisible(false);
-        }else{
+//        if(roleId != 1){
+//        	 WebMarkupContainer con = new WebMarkupContainer("add_users_link");
+//             add(con);
+//             con.setVisible(false);
+//        }else{
         	add(new Link<Void>("add_users_link"){
 
                 @Override
@@ -199,10 +182,10 @@ public class TeamManPanel extends Panel {
                 
             });
 
-        }
+//        }
         CheckGroup group = new CheckGroup("group",new PropertyModel(this,"selectedRowIds"));
         form.add(group); 
-        if(roleId == 1){
+//        if(roleId == 1){
             if(type!=4){
             	CheckGroupSelector chks = new CheckGroupSelector("checkboxs");
                 group.add(chks);
@@ -217,14 +200,14 @@ public class TeamManPanel extends Panel {
                 group.add(container);
                 group.add(container_label);
             }
-        }else{
-            WebMarkupContainer container = new WebMarkupContainer("checkboxs");
-            container.setVisible(false);
-            WebMarkupContainer container_label = new WebMarkupContainer("checkboxs_label");
-            container_label.setVisible(false);
-            group.add(container);
-            group.add(container_label);
-        }
+//        }else{
+//            WebMarkupContainer container = new WebMarkupContainer("checkboxs");
+//            container.setVisible(false);
+//            WebMarkupContainer container_label = new WebMarkupContainer("checkboxs_label");
+//            container_label.setVisible(false);
+//            group.add(container);
+//            group.add(container_label);
+//        }
         //set column name
         RepeatingView columnNameRepeater = new RepeatingView("columnNameRepeater");
         group.add(columnNameRepeater);
@@ -301,15 +284,15 @@ public class TeamManPanel extends Panel {
                         if(value.equals("null")||value.equals("")||value.equals("dummy")){
                           value = "无";
                         }
-                        if (roleId==1) {
+//                        if (roleId==1) {
                         	columnitem.add(new DetailLinkFragment("celldata", "detailFragment", this.getParent().getParent().getParent(),value,f.getRelationTable(),String.valueOf(map.get(f.getName()))));
-                        }else{
-                        	if(!f.getRelationTable().equalsIgnoreCase("crmuser")){
-                        		columnitem.add(new DetailLinkFragment("celldata", "detailFragment", this.getParent().getParent().getParent(),value,f.getRelationTable(),String.valueOf(map.get(f.getName()))));
-                        	}else{
-                        		columnitem.add(new Label("celldata", value)).setEscapeModelStrings(false);
-                        	}
-                        }
+//                        }else{
+//                        	if(!f.getRelationTable().equalsIgnoreCase("crmuser")){
+//                        		columnitem.add(new DetailLinkFragment("celldata", "detailFragment", this.getParent().getParent().getParent(),value,f.getRelationTable(),String.valueOf(map.get(f.getName()))));
+//                        	}else{
+//                        		columnitem.add(new Label("celldata", value)).setEscapeModelStrings(false);
+//                        	}
+//                        }
                         
                     }else {
                         String value = CRMUtility.formatValue(f.getFormatter(), String.valueOf(map.get(f.getName())));
@@ -329,7 +312,7 @@ public class TeamManPanel extends Panel {
 //                item.add(container_label);
 //            }
             
-            if(roleId == 1){
+//            if(roleId == 1){
                 if(type!=4){
                 	Check chk = new Check("checkbox", new Model(String.valueOf(rowId)));
                     container_label.add(new AttributeAppender("for", new Model(chk.getMarkupId()), " "));        
@@ -339,11 +322,11 @@ public class TeamManPanel extends Panel {
                     container.setVisible(false);
                     item.add(container);
                 }
-            }else{
-                WebMarkupContainer container = new WebMarkupContainer("checkbox");
-                container.setVisible(false);
-                item.add(container);
-            }
+//            }else{
+//                WebMarkupContainer container = new WebMarkupContainer("checkbox");
+//                container.setVisible(false);
+//                item.add(container);
+//            }
          
             
         }
@@ -406,101 +389,6 @@ public class TeamManPanel extends Panel {
         add(new Check("checkbox",Imodel));
       }
       
-    }
-    private ArrayList<Integer> queryPosition(int positionId)
-    {
-	  	ArrayList<Integer> ids = new ArrayList<>();
-	  	
-	  	int level = queryPositionLevel(positionId);
-	  	
-	  	if(level == 11)
-	  	{
-	  		ids.add(positionId);
-	  	}
-	  	else if(level > 11)
-	  	{
-	  		for(int id : queryPositionByParent(positionId))
-	  		{
-	  			level = queryPositionLevel(positionId);
-	  			
-	  			if(level == 11)
-	  			{
-	  				ids.add(level);
-	  			}
-	  			else if(level > 11)
-	  			{
-	  				ids.addAll(queryPosition(id));
-	  			}
-	  		}
-	  	}
-	  	
-	  	return ids;
-    }
-    
-    private String getCondition(int positionId)
-    {
-  	  ArrayList<Integer> ids = queryPosition(positionId);
-  	  StringBuilder sb = new StringBuilder();
-  	  if(ids != null && ids.size() > 0)
-  	  {
-  		  sb = new StringBuilder();
-  		  sb.append("position_id in(");
-  		  sb.append(ids.get(0));
-  		  ids.remove(0);
-  		    		  
-  		  for(int id : ids)
-  		  {
-  			  sb.append(",");
-  			  sb.append(id);
-  		  }
-  		  
-  		  sb.append(")");
-  	  }
-
-
-  	  return sb.toString();
-    }
-    private int queryPositionLevel(int positionId)
-    {
-    	int level = 100;
-    	
-    	Map position = DAOImpl.queryEntityById("select * from crmuser where id = ?", String.valueOf(positionId));
-    	if(position.size() > 0)
-    	{
-    		level = (int) position.get("level");
-    	}
-    	
-    	return level;
-    }
-    
-    private ArrayList<Integer> queryPositionByParent(int positionId)
-    {
-    	List list = DAOImpl.searchCRMUserByManager(String.valueOf(positionId), "");
-    	ArrayList<Integer> ids = new ArrayList<>();
-    	for(Object o : list)
-    	{
-    		Map map = (Map) o;
-    		ids.add(Integer.valueOf((Integer)map.get("id")));
-    	}
-    	
-    	return ids;
-    }
-    private void delete(int positionId)
-    {
-    	int level = queryPositionLevel(positionId);
-    	
-    	if(level == 11)
-    	{
-    		DAOImpl.deleteAccountTeamWithPositionId(positionId);
-    	}
-    	else if(level > 1)
-    	{
-    		ArrayList<Integer> ids = queryPositionByParent(positionId);
-    		for(int id : ids)
-    		{
-    			delete(id);
-    		}
-    	}
     }
    
 }

@@ -32,6 +32,7 @@ import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
 
 import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.util.CRMUtility;
 import com.bxy.salestrategies.util.Utility;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -151,7 +152,70 @@ public class PageableTablePanel extends Panel{
 
 	        datacontainer.add(nav);
 	        datacontainer.setVersioned(false);
+	        ICRUDActionListener actionListener = new DefaultCRUDActionListener(){
+	            @Override
+	            public void create() { 
+	            	if(entity.getName().equals("coaching")){
+//	            		setResponsePage(new ActivitySelectPage());     
+	            	}else{
+	            		setResponsePage(new CreateDataPage(entity.getName(),params));     
+	            	}
+	            }
+	            @Override
 
+	            public void downLoadBtn() throws Exception {     
+	                String exported_filename = null;
+	                try {
+//	                    exported_filename = DataExporter.export(entity.getName(), mapList);
+	                } catch (Exception e) {
+	                    logger.debug("failed to export file for " + entity.getName(), e);
+	                }
+	                if (exported_filename != null) {
+
+	                    final File file = new File(exported_filename);
+	                    String filename="";
+	                    if(entity.getName().equalsIgnoreCase("crmuser")){
+	                        filename="岗位信息";
+	                    }else if(entity.getName().equalsIgnoreCase("account")){
+	                        filename="医院";
+	                    }else if(entity.getName().equalsIgnoreCase("contact")){
+	                        filename="医生";
+	                    }else if(entity.getName().equalsIgnoreCase("userinfo")){
+	                        filename="用户";
+	                    }else if(entity.getName().equalsIgnoreCase("activity")){
+	                        filename="活动";
+	                    }
+	                    
+	                    String display_fileName = UrlEncoder.QUERY_INSTANCE.encode("导出_"+filename+".zip", Charset.forName("UTF-8"));
+
+	                    IResourceStream resourceStream = new FileResourceStream(new org.apache.wicket.util.file.File(file));
+	                    getRequestCycle().scheduleRequestHandlerAfterCurrent(new ResourceStreamRequestHandler(resourceStream) {
+	                        @Override
+	                        public void respond(IRequestCycle requestCycle) {
+	                            super.respond(requestCycle);
+	                            Files.remove(file);
+	                        }
+	                    }.setFileName(display_fileName).setContentDisposition(ContentDisposition.ATTACHMENT));
+
+	                } else {
+	                    logger.debug("Failed to export file for:" + entity.getName());
+
+	                }
+	            
+
+	            }
+				@Override
+				public void merge() {
+					// TODO Auto-generated method stub
+					
+				}
+				@Override
+				public void ineffective() {
+					// TODO Auto-generated method stub
+					
+				}    
+	        };
+	        add(new CRUDPanel("operationBar",entity.getName(),null, CRMUtility.getPermissionOfEntityList(entity.getName()),actionListener));
 	    }
 
 	    public PageableTablePanel(String id, IModel<?> model) {

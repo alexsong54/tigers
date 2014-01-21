@@ -173,12 +173,13 @@
 				<name>date_of_establish</name>
 				<display>成立时间</display>
 				<isRequired>false</isRequired>
-				<data-type>text</data-type>
+				<data-type>datetime</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<field-type>String</field-type>
+				<field-type>string</field-type>
+				<formatter>com.bxy.salestrategies.common.TimestampFormatter</formatter>
 				<priority>2</priority><isShow>true</isShow>
 				<fieldGroup>基本信息</fieldGroup>
 			</field>
@@ -202,7 +203,7 @@
 				<display>负责人</display>
 				<isRequired>true</isRequired>
 				<data-type>text</data-type>
-				<alias>userId</alias>
+<!-- 				<alias>userId</alias> -->
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -295,6 +296,7 @@
 	<display>客户员工</display>
 	<globalsearch>true</globalsearch>
 	<sql>SELECT * FROM contact</sql>
+	<sql-ent>SELECT * FROM contact where id =?</sql-ent>
 	<filterField>name</filterField>
 	<fields>
 		<field>
@@ -482,6 +484,7 @@
 		<display>业务机会</display>
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM opportunity</sql>
+		<sql-ent>SELECT * FROM opportunity where id = ?</sql-ent>
 		<filterField>name</filterField>
 		<fields>
 			<field>
@@ -686,6 +689,7 @@
 		<display>竞争对手</display>
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM competitor</sql>
+		<sql-ent>SELECT * FROM competitor where id =?</sql-ent>
 		<filterField>name</filterField>
 		<fields>
 			<field>

@@ -51,6 +51,9 @@
             	navOuterHeight = offsetTop - sideBarMargin
           }
 
+            if (navOuterHeight==null){
+                        navOuterHeight = offsetTop - sideBarMargin
+                      }
            return (this.top = offsetTop - navOuterHeight - sideBarMargin)
           }
         , bottom: function () {

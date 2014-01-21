@@ -144,9 +144,9 @@ public class CRMUtility {
 
 	        EnumSet<Permissions> permission = null;
 	        if (entityName.equalsIgnoreCase("account")) {
-	                permission = EnumSet.of(CRUDPanel.Permissions.DEL);
+	                permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.EDIT);
 	        }else if(entityName.equalsIgnoreCase("contact") ){
-	        		 permission = EnumSet.of(CRUDPanel.Permissions.DEL);
+	        		 permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.EDIT);
 	        }else if( entityName.equalsIgnoreCase("calendar")|| entityName.equalsIgnoreCase("product")){
 	        		 permission = EnumSet.of(CRUDPanel.Permissions.EDIT,CRUDPanel.Permissions.DEL);
 	        }else if(entityName.equalsIgnoreCase("activity")){
@@ -154,63 +154,24 @@ public class CRMUtility {
 	        }else if(entityName.equalsIgnoreCase("coaching")||entityName.equalsIgnoreCase("willcoaching")){
 	            permission = EnumSet.of(CRUDPanel.Permissions.EDIT,CRUDPanel.Permissions.DONE,CRUDPanel.Permissions.noExecute);
 	        }else if(entityName.equalsIgnoreCase("user")){
-	                permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.RESETPWD);
+	                permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.RESETPWD,CRUDPanel.Permissions.EDIT);
 	        }
 	        return permission;
 	    }
 	    
 	    
-    public static EnumSet<Permissions> getPermissionOfEntityList(int roleId, String entityName) {
+    public static EnumSet<Permissions> getPermissionOfEntityList( String entityName) {
 
         EnumSet<Permissions> permission = null;
-        if (entityName.equalsIgnoreCase("account")||entityName.equalsIgnoreCase("product")||entityName.equalsIgnoreCase("productline")||entityName.equalsIgnoreCase("productcategory")) {
-            if (roleId == 1) {
-                permission = EnumSet.of(CRUDPanel.Permissions.ADD,CRUDPanel.Permissions.DOWNLOAD);
-            }
-        }else if(entityName.equalsIgnoreCase("contact")||entityName.equalsIgnoreCase("calendar")){
-        	permission = EnumSet.of(CRUDPanel.Permissions.ADD,CRUDPanel.Permissions.DOWNLOAD );
-        }else if(entityName.equalsIgnoreCase("activity")){
-        	if(roleId == 3){
+        if (entityName.equalsIgnoreCase("account")) {
+                permission = EnumSet.of(CRUDPanel.Permissions.ADD);
+        }else if(entityName.equalsIgnoreCase("contact")){
+        	permission = EnumSet.of(CRUDPanel.Permissions.ADD );
+        }else if(entityName.equalsIgnoreCase("activity")||entityName.equalsIgnoreCase("opportunity")){
         		permission = EnumSet.of(CRUDPanel.Permissions.ADD);
-        	}else if(roleId == 1){
-        		permission = EnumSet.of(CRUDPanel.Permissions.DOWNLOAD);
-        	}else{
-        		permission = null;
-        	}
-        }else if(entityName.equalsIgnoreCase("coaching")){
-          if(roleId==1){
-        	  permission = EnumSet.of(CRUDPanel.Permissions.DOWNLOAD);
-          }else if(roleId ==2){
-        	  permission = EnumSet.of(CRUDPanel.Permissions.ADD);
-          }
-        }else if(entityName.equalsIgnoreCase("crmuser")||entityName.equalsIgnoreCase("userInfo")){
-            
-            if (roleId == 1) {
-                permission = EnumSet.of(CRUDPanel.Permissions.ADD,CRUDPanel.Permissions.DOWNLOAD);
-            }
-        }else if(entityName.equalsIgnoreCase("alert")||entityName.equalsIgnoreCase("alertAttachment")){
-        	if(roleId == 1){
+        }else if(entityName.equalsIgnoreCase("user")||entityName.equalsIgnoreCase("competitor")){
                 permission = EnumSet.of(CRUDPanel.Permissions.ADD);
-        	}
-        }else if(entityName.equalsIgnoreCase("user_position")){
-        	if(roleId == 1){
-                permission = EnumSet.of(CRUDPanel.Permissions.ADD);
-        	}
-        }else if(entityName.equalsIgnoreCase("province")||entityName.equalsIgnoreCase("city")){
-	        	if(roleId == 1){
-	        permission = EnumSet.of(CRUDPanel.Permissions.ADD);
-	        	}
-	 }else if(entityName.equalsIgnoreCase("user_position_query")||entityName.equalsIgnoreCase("user_position_account")){
-        	if(roleId == 1){
-                permission = EnumSet.of(CRUDPanel.Permissions.DOWNLOAD);
-        	}
         }
-//        else if(entityName.equalsIgnoreCase("upLoad")){
-//          
-//          if (roleId == 1) {
-//              permission = EnumSet.of(CRUDPanel.Permissions.DOWNLOAD);
-//          }
-//      }
         return permission;
     }
 	    public static String MD5Base64(String src) {

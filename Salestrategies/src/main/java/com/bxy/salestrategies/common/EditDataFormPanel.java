@@ -53,6 +53,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.file.File;
 
 import com.bxy.salestrategies.SignInSession;
+import com.bxy.salestrategies.SelectEntryPage;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.util.CRMUtility;
@@ -253,20 +254,7 @@ public class EditDataFormPanel extends Panel {
 
                                 modifyNameToModel.put(currentField.getDisplay(), choiceModel);
                                 fieldNameToModel.put(currentField.getName(), choiceModel);
-                                if(roleId!=1){
-                                	String val = "";
-                                	if(currentField.getName().equals("grade")&&schema.getName().equals("contact")){
-                                    	val = DAOImpl.getTargetById("val",value,"contact_grade_pl");
-                                    	TextFragment textField = new TextFragment("editdata", "textFragment", this,val);
-                                    	textField.add(new AttributeAppender("class",new Model("folatLeft")," "));
-                                		columnitem.add(textField);
-                                    }else{
-                                    	columnitem.add(new DropDownChoiceFragment("editdata", "dropDownFragment", this, ids, list, choiceModel,currentField));
-                                    }
-                                	
-                                }else{
                                 	columnitem.add(new DropDownChoiceFragment("editdata", "dropDownFragment", this, ids, list, choiceModel,currentField));
-                                }
                             }
                         }
                     } else if (currentField.getRelationTable() != null) {
@@ -363,17 +351,17 @@ public class EditDataFormPanel extends Panel {
                                 
                             }else {
                                 IModel<String> textModel = new Model<String>("");
-                                if(schema.getName().equals("contact")&&currentField.getName().equals("name")&&roleId!=1){
-                                	IModel<String> textValue = new Model<String>(value);
-                                	fieldNameToModel.put(currentField.getName(), textValue);
-                                	TextFragment text = new TextFragment("editdata", "textFragment", this,value);
-                                	text.add(new AttributeAppender("class",new Model("folatLeft")," "));
-                                	columnitem.add(text);
-                                }else{
+//                                if(schema.getName().equals("contact")&&currentField.getName().equals("name")&&roleId!=1){
+//                                	IModel<String> textValue = new Model<String>(value);
+//                                	fieldNameToModel.put(currentField.getName(), textValue);
+//                                	TextFragment text = new TextFragment("editdata", "textFragment", this,value);
+//                                	text.add(new AttributeAppender("class",new Model("folatLeft")," "));
+//                                	columnitem.add(text);
+//                                }else{
                                 	fieldNameToModel.put(currentField.getName(), textModel);
                                 	TextInputFragment  textInput = new TextInputFragment("editdata", "textInputFragment", this, textModel, value, currentField);
                                 	columnitem.add(textInput);
-                                }
+//                                }
                             }
                         }
                     }
@@ -386,7 +374,7 @@ public class EditDataFormPanel extends Panel {
             @Override
             public void onSubmit() {
             	 try {
-					if(!saveEntity(fieldNameToModel,modifyNameToModel,data,schema,entityId,userName)){
+					if(!saveEntity(fieldNameToModel,modifyNameToModel,data,schema,entityId,userId)){
 					 	div.add(new AttributeAppender("style",new Model("display:block"),";"));
 					 	group.add(new AttributeAppender("style",new Model("display:block"),";"));
 					 	if(schema.getName().equals("account")){
@@ -430,7 +418,7 @@ public class EditDataFormPanel extends Panel {
 			@Override
 			public void onSubmit() {
                 try {
-                	if(!saveEntity(fieldNameToModel,modifyNameToModel,data,schema,entityId,userName)){
+                	if(!saveEntity(fieldNameToModel,modifyNameToModel,data,schema,entityId,userId)){
 					 	div.add(new AttributeAppender("style",new Model("display:block"),";"));
 					 	group.add(new AttributeAppender("style",new Model("display:block"),";"));
 					 	if(schema.getName().equals("account")){
@@ -455,7 +443,8 @@ public class EditDataFormPanel extends Panel {
 	                        promptFordate.add(new AttributeAppender("style", new Model("display:block"), ";"));
 	                    }
 						promptButton.add(new AttributeAppender("style",new Model("display:block"),";"));
-					 }else{
+					 }
+                	else{
 						 setResponsePage(new CreateDataPage(schema.getName(),null));
 					 }
 				} catch (Exception e) {
@@ -485,7 +474,7 @@ public class EditDataFormPanel extends Panel {
 	}
     
 	@SuppressWarnings("null")
-	public  boolean saveEntity(Map<String, IModel> fieldNameToModel,Map<String, IModel> modifyNameToModel, final Map data,Entity schema,String entityId,String userName ) throws Exception{
+	public  boolean saveEntity(Map<String, IModel> fieldNameToModel,Map<String, IModel> modifyNameToModel, final Map data,Entity schema,String entityId,String userId ) throws Exception{
 		logger.debug("the form was submitted!");
 		logger.debug(fieldNameToModel);
 		String fileName = "";
@@ -521,7 +510,7 @@ public class EditDataFormPanel extends Panel {
 		if(schema.getName().equals("activity")){
        	 	daypart = (Long) fieldNameToModel.get("activity_daypart").getObject();
         }
-		if(schema.getName().equals("userinfo")){
+		if(schema.getName().equals("user")){
        	 	loginName = fieldNameToModel.get("loginName").getObject().toString();
         }
 		for (String k : fieldNameToModel.keySet()) {
@@ -529,9 +518,6 @@ public class EditDataFormPanel extends Panel {
 			names.add(k);
 			Field field = schema.getFieldByName(k);
 			IModel currentModel = fieldNameToModel.get(k);
-            if(field.getPriority()==5){
-            	total_score+=Integer.parseInt(fieldNameToModel.get(k).getObject().toString());
-            }
             //判断filed是否能为空，若为空则给出提示，不执行保存事件，若不为空在执行保存事件
 			Object obj = currentModel.getObject() ;
 			String value = null;
@@ -558,16 +544,19 @@ public class EditDataFormPanel extends Panel {
 
                     } else {
                     	value = "'" + (String)obj + "'";
+                    	System.out.println(value);
                     }
 
                 } else if (obj instanceof Choice) {
                     value = String.valueOf(((Choice) obj).getId());
+                    System.out.println(value);
                 } else {
                 	if(field.getDataType().equals("file")){
                     	value = "'"+fileName+"'";
                     }else{
                     	value = String.valueOf(obj) ;
                     }
+                	System.out.println(value);
                 }
             }else{  
             	if(field.getPicklist()!=null||field.getDataType().equalsIgnoreCase("number")){
@@ -575,29 +564,24 @@ public class EditDataFormPanel extends Panel {
             	}else{
             		value = "'"+fileName+"'";
             	}
+            	System.out.println(value);
             }
 			values.add(value);
-                        if(field.getName().toString().equals("productlineId")&&schema.getName().equals("product")){
-                                    productlineId=value;
-                           }   
-                        if(field.getName().toString().equals("productId")&&schema.getName().equals("productcategory")){
-                                 productlineId=DAOImpl.getTargetById("productlineId",value,"product");
-                                  }   
 	}
 
 		
 		 List<Field> autoFields = schema.getAutoFields();
          for(Field f:autoFields){
             
-           if(f.getName().equalsIgnoreCase("modify_datetime")){
+           if(f.getName().equalsIgnoreCase("modify_date")){
                names.add(f.getName());
                
              values.add("'"+dateformat.format(new Date())+"'");
            }
            
-           if(f.getName().equalsIgnoreCase("modifier")){
+           if(f.getName().equalsIgnoreCase("modified_by")){
                names.add(f.getName());
-             values.add("'"+userName+"'");
+			values.add("'"+userId+"'");
            }
          }
 		
@@ -610,16 +594,10 @@ public class EditDataFormPanel extends Panel {
 			values.add("'"+endDate+"'");
       	  	names.add("endtime");
         }
-		if(!table_name.equalsIgnoreCase("userinfo")){
-                   if(table_name.equalsIgnoreCase("product")){
-                        DAOImpl.updateProductCategoryWhenEditProduct(entityId, productlineId);	  
-                     }
-                   if(table_name.equalsIgnoreCase("productcategory")){
-                       
-                        DAOImpl.updateProductlineWhenEditcategory(entityId, productlineId);	  
-                     }
+		if(!table_name.equalsIgnoreCase("user")){
+			System.out.println(names.toString()+values.toString());
                 if(DAOImpl.updateRecord(entityId,table_name,names,values)){
-					recordValueChanges(data, schema, entityId, userName, values, names,table_name);
+					recordValueChanges(data, schema, entityId, userId, values, names,table_name);
 					return true;
 				} else{
 					return false;
@@ -630,7 +608,7 @@ public class EditDataFormPanel extends Panel {
             	return false;
             }else{
             	DAOImpl.updateRecord(entityId,table_name,names,values);
-            	recordValueChanges(data, schema, entityId, userName, values,names, table_name);
+            	recordValueChanges(data, schema, entityId, userId, values,names, table_name);
         		return true;
             }
        }
@@ -736,7 +714,7 @@ public static  void recordValueChanges(final Map data, Entity schema,
             PageParameters params = new PageParameters();
             params.set("en", entityName);
             params.set("excludeName", excludeEntityName);
-            params.set("target", (long) model.getObject());
+            params.set("target", model.getObject());
             params.set("eid", eid);
 
             PopupSettings popupSettings = new PopupSettings("查找");

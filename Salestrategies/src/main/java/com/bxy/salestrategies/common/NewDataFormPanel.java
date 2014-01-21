@@ -2,6 +2,8 @@ package com.bxy.salestrategies.common;
 
 
 import com.bxy.salestrategies.SignInSession;
+import com.bxy.salestrategies.PageFactory;
+import com.bxy.salestrategies.SelectEntryPage;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.model.User;
@@ -290,16 +292,8 @@ public class NewDataFormPanel extends Panel
                                 List<Long> ids = Lists.newArrayList();
                                 for (Choice p : pickList)
                                 {
-                                    if (currentField.getName().equals("product"))
-                                    {
-                                        list.put(p.getId(), p.getName());
-                                        ids.add(p.getId());
-                                    }
-                                    else
-                                    {
                                         list.put(p.getId(), p.getVal());
                                         ids.add(p.getId());
-                                    }
                                 }
                                 IModel choiceModel = new Model(default_key);
                                 models.put(currentField.getName(), choiceModel);
@@ -478,17 +472,12 @@ public class NewDataFormPanel extends Panel
                           promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
                           promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                           promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                    }else if (entity.getName().equals("userinfo")){
+                    }else if (entity.getName().equals("user")){
                     	 promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
                          promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
                          promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                          promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                    }else if(entity.getName().equals("crmuser")){
-                    	 promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                         promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                    	 promptForCrmuser.add(new AttributeAppender("style", new Model("display:block"), ";"));
-                    	 promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                    }else if(entity.getName().equals("activity")||entity.getName().equals("coaching")||entity.getName().equalsIgnoreCase("willcoaching")){
+                    }else if(entity.getName().equals("activity")){
                     	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
@@ -499,16 +488,7 @@ public class NewDataFormPanel extends Panel
                 else
                 {
                         String entityName=entity.getName().toString();
-                        if (entityName.equals("province") || entityName.equals("city"))
-                        {
-                            setResponsePage(PageFactory.createPageToDetail(entity.getName(), NewRecordId));
-                        }else if(entityName.equals("productline") || entityName.equals("product")||entityName.equals("productcategory")){
-                           setResponsePage(PageFactory.createPageTree(entity.getName(),NewRecordId)) ;
-                        }else if(entityName.equalsIgnoreCase("alertattachment")){
-                        	setResponsePage(new EntityDetailPage("alert",String.valueOf(params.get("alert.id"))));
-                        }else{
-                            setResponsePage(new EntityDetailPage(entityName,String.valueOf(entityId)));
-                        }
+                        setResponsePage(new EntityDetailPage(entityName,String.valueOf(entityId)));
                 }
             }
         });
@@ -518,7 +498,7 @@ public class NewDataFormPanel extends Panel
             @Override
             public void onSubmit()
             {
-            	Long entityId = saveEntity(models, entity, userId, userName, posId);
+            	Long entityId = saveEntity(models, entity, userId, userName);
                 if (entityId<0)
                 {
                     div.add(new AttributeAppender("style", new Model("display:block"), ";"));
@@ -567,26 +547,6 @@ public class NewDataFormPanel extends Panel
         logger.debug(models);
         String fileName = "";
         String srcForFile = "";
-        if(entity.getName().equals("alertattachment")){
-        	FileUpload fileupload = fileUploadField.getFileUpload();
-            String outputfolder = CRMUtility.readFileAttribure("uploadpath");
- 
-            java.io.File tmpDir = null;
-            tmpDir = Files.createTempDir();
-            if (fileupload != null)
-            {
-                  
-                  fileName = fileupload.getClientFileName();
-                  srcForFile = fileName.split("\\.")[0] +System.currentTimeMillis()+"."+fileName.split("\\.")[1];
-                  String tmpFileName = outputfolder +srcForFile;
-                  try {
-					fileupload.writeTo(new File(tmpFileName));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-        }
         List<String> fieldNames = Lists.newArrayList();
         List<String> values = Lists.newArrayList();
         int total_score = 0;
@@ -601,7 +561,7 @@ public class NewDataFormPanel extends Panel
             daypart = (Long) models.get("activity_daypart").getObject();
         }
         String loginName = "";
-        if (entity.getName().equals("userinfo"))
+        if (entity.getName().equals("user"))
         {
             loginName = models.get("loginName").getObject().toString();
         }
@@ -614,10 +574,6 @@ public class NewDataFormPanel extends Panel
             if (field.getPriority() == 5)
             {
                 total_score += Integer.parseInt(models.get(key).getObject().toString());
-            }
-            if (key.equals("productId") && entity.getName().toString().equals("productcategory"))
-            {
-                productlineId = DAOImpl.getTargetById("productlineId", String.valueOf(models.get(key).getObject()), "product");
             }
             if (models.get(key).getObject() instanceof String)
             {
@@ -682,43 +638,25 @@ public class NewDataFormPanel extends Panel
         List<Field> autoFields = entity.getAutoFields();
         for (Field f : autoFields)
         {
-            if (f.getName().equalsIgnoreCase("modify_datetime") || f.getName().equalsIgnoreCase("whenadded"))
+            if (f.getName().equalsIgnoreCase("modifier_date") || f.getName().equalsIgnoreCase("create_date"))
             {
                 values.add("'" + dateformat.format(new Date()) + "'");
             }
 
-            if (f.getName().equalsIgnoreCase("owner") || f.getName().equalsIgnoreCase("modifier")
-              || f.getName().equalsIgnoreCase("responsible_person"))
+            if (f.getName().equalsIgnoreCase("modified_by") || f.getName().equalsIgnoreCase("created_by"))
             {
-                values.add("'" + userName + "'");
+                values.add("'" + userId + "'");
             }
-            if (f.getName().equalsIgnoreCase("crmuserID"))
-            {
-                values.add("'" + posId + "'");
-            }
-            if(f.getName().equals("srcForFile")){
-            	values.add("'"+srcForFile+"'");
-            }
+            
             fieldNames.add(f.getName());
 
         }
-        if (entity.getName().equals("willcoaching") || entity.getName().equals("coaching"))
-        {
-            values.add("" + total_score + "");
-            fieldNames.add("total_score");
-        }
-        else if (entity.getName().equals("activity"))
+         if (entity.getName().equals("activity"))
         {
             values.add("'" +endDate + "'");
             fieldNames.add("endtime");
         }
-        if (entity.getName().equals("productcategory"))
-        {
-            values.add(productlineId);
-            fieldNames.add("productlineId");
-        }
-        //if entity is crmuser  add loginName
-        if ("userinfo".equals(entity.getName()))
+        if ("user".equals(entity.getName()))
         {
             long crmuserkey = -1;
             List<String> loginNames = DAOImpl.getAllLoginNames();
@@ -728,38 +666,19 @@ public class NewDataFormPanel extends Panel
             }
             else
             {
-                crmuserkey = DAOImpl.createNewCrmUser(entity.getName(), fieldNames, values, posId);
+                crmuserkey = DAOImpl.createNewUser(entity.getName(), fieldNames, values, userId);
                 return crmuserkey;
             }
-            /*if (crmuserkey >0 ) {
-             UserInfo userinfo = DAOImpl.getUserById((int)crmuserkey);
-             //                	CRMUser crmuser = DAOImpl.getCrmUserById((int)crmuserkey);
-             //此时需发送邮件
-             long crmUserCode = userinfo.getTs();
-             String sendEmail = String.valueOf(models.get("email").getObject());
-             //创建激活码 getUserByuserCode
-             //传递邮箱地址，用户code.
-             SendEmail.sendMail(String.valueOf(crmUserCode) + "_"+ userinfo.getId(), sendEmail);
-             }*/
         }
         else
         {
         	long generatedId =-1;
-            generatedId = DAOImpl.createNewRecord(entity.getName(), fieldNames, values, posId);
+            generatedId = DAOImpl.createNewRecord(entity.getName(), fieldNames, values, userId);
             if (generatedId > 0)
             {
-                if (entity.getName().equals("coaching") || entity.getName().equals("willcoaching"))
-                {
-                	NewRecordId = DAOImpl.getCreateRecordByEntity("activity");
-                    DAOImpl.insert2UserRelationTable(entity.getName(), userId, posId, models.get("coacheeId").getObject().toString(),
-                      String.valueOf(generatedId));
-                }
-                else
-                {
                 	NewRecordId = DAOImpl.getCreateRecordByEntity(entity.getName());
-                    DAOImpl.insert2UserRelationTable(entity.getName(), userId, posId, "string",
+                    DAOImpl.insert2UserRelationTable(entity.getName(), userId,
                     String.valueOf(generatedId));
-                }
 
             }
             return generatedId;
@@ -827,7 +746,7 @@ public class NewDataFormPanel extends Panel
             {
                 dropDownChoice.setNullValid(true);
             }
-            if (entity.getName().equals("activity") || entity.getName().equals("coaching") || entity.getName().equals("willcoaching"))
+            if (entity.getName().equals("activity") )
             {
                 dropDownChoice.add(new AttributeAppender("class", new Model("required-pickList"), " "));
             }
