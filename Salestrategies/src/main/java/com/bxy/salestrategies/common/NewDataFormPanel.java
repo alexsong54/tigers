@@ -556,14 +556,14 @@ public class NewDataFormPanel extends Panel
         //找出title属性，判断实体名称，先声明
         Long daypart = 0l;
         StringBuffer title = new StringBuffer();
-        if (entity.getName().equals("activity"))
-        {
-            daypart = (Long) models.get("activity_daypart").getObject();
-        }
+//        if (entity.getName().equals("activity"))
+//        {
+//            daypart = (Long) models.get("activity_daypart").getObject();
+//        }
         String loginName = "";
         if (entity.getName().equals("user"))
         {
-            loginName = models.get("loginName").getObject().toString();
+            loginName = models.get("login_name").getObject().toString();
         }
         for (String key : models.keySet())
         {
@@ -571,10 +571,10 @@ public class NewDataFormPanel extends Panel
             logger.debug("currentFieldkey:" + key);
             Field field = entity.getFieldByName(key);
             logger.debug("currentField:" + field);
-            if (field.getPriority() == 5)
-            {
-                total_score += Integer.parseInt(models.get(key).getObject().toString());
-            }
+//            if (field.getPriority() == 5)
+//            {
+//                total_score += Integer.parseInt(models.get(key).getObject().toString());
+//            }
             if (models.get(key).getObject() instanceof String)
             {
                 if (field.getDataType().equalsIgnoreCase("datetime-local") )
@@ -651,11 +651,11 @@ public class NewDataFormPanel extends Panel
             fieldNames.add(f.getName());
 
         }
-         if (entity.getName().equals("activity"))
-        {
-            values.add("'" +endDate + "'");
-            fieldNames.add("endtime");
-        }
+//         if (entity.getName().equals("activity"))
+//        {
+//            values.add("'" +endDate + "'");
+//            fieldNames.add("endtime");
+//        }
         if ("user".equals(entity.getName()))
         {
             long crmuserkey = -1;

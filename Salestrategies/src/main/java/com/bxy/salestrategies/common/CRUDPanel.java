@@ -81,32 +81,31 @@ public class CRUDPanel extends Panel {
                     @Override
                     public void onClick() {
                         listener.update();
-                        //setResponsePage(new EditDataPage(entity.getName(),entityId));
                     }
                 };
             	editfrag.addOrReplace(link);
             	//根据entityId获取对象，获取开始时间，然后判断时间是否未来时则隐藏
-				if(entityName.equals("activity")||entityName.equals("coaching")||entityName.equals("willcoaching")){
-					Activity activity = DAOImpl.getActivityById(Integer.parseInt(entityId));
-	                Date newDate = new Date();
-	                Calendar cal = Calendar.getInstance();
-	                cal.setTime(newDate);
-	                cal.set(Calendar.DATE,cal.get(Calendar.DATE)-7);
-	                newDate = cal.getTime();
-	                Date startTime =activity.getStarttime();
-	                if(startTime.compareTo(newDate)<0){
-	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-	                }else if(activity.getStatus()==3||activity.getStatus()==2){
-	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-	                }
-                }
+//				if(entityName.equals("activity")){
+//					Activity activity = DAOImpl.getActivityById(Integer.parseInt(entityId));
+//	                Date newDate = new Date();
+//	                Calendar cal = Calendar.getInstance();
+//	                cal.setTime(newDate);
+//	                cal.set(Calendar.DATE,cal.get(Calendar.DATE)-7);
+//	                newDate = cal.getTime();
+//	                Date startTime =activity.getStarttime();
+//	                if(startTime.compareTo(newDate)<0){
+//	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+//	                }else if(activity.getStatus()==3||activity.getStatus()==2){
+//	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+//	                }
+//                }
             	addOrReplace(editfrag);
             }else{
                 addOrReplace(new Fragment("editCon","emptyFragment",this));
             }
             //判断如果entityName为crmuser,则添加重置密码按钮
             	if (userPerms.contains(Permissions.RESETPWD)) {
-            		if(entityName.equals("userinfo")){
+            		if(entityName.equals("user")){
 	                	Fragment editfrag = new Fragment("resetPwdCon","resetPwdFragment",this);
 	                	editfrag.add(new Link("resetPwd_data_btn") {
 	                        @Override
@@ -134,16 +133,16 @@ public class CRUDPanel extends Panel {
 	                    }
 	                };
 	                addfrag.add(link);
-	                //根据entityId获取对象，获取开始时间，然后判断时间是否未来时则隐藏
-					if(entityName.equals("activity")||entityName.equals("coaching")||entityName.equals("willcoaching")){
+//	                根据entityId获取对象，获取开始时间，然后判断时间是否未来时则隐藏
+					if(entityName.equals("activity")){
 						Activity activity = DAOImpl.getActivityById(Integer.parseInt(entityId));
 		                Date newDate = new Date();
 		                Date startTime = activity.getStarttime();
-		                if(startTime.compareTo(newDate)>=0){
-		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-		                }else if(activity.getStatus()==3){
-		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-		                }
+//		                if(startTime.compareTo(newDate)>=0){
+//		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+//		                }else if(activity.getStatus()==3){
+//		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+//		                }
 	                }
 	                add(addfrag);
             	}else{

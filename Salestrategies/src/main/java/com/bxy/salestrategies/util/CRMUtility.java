@@ -143,16 +143,14 @@ public class CRMUtility {
 	    public static EnumSet<Permissions> getPermissionForEntity( String entityName) {
 
 	        EnumSet<Permissions> permission = null;
-	        if (entityName.equalsIgnoreCase("account")) {
+	        if (entityName.equalsIgnoreCase("account")||entityName.equalsIgnoreCase("opportunity")) {
 	                permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.EDIT);
 	        }else if(entityName.equalsIgnoreCase("contact") ){
 	        		 permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.EDIT);
 	        }else if( entityName.equalsIgnoreCase("calendar")|| entityName.equalsIgnoreCase("product")){
 	        		 permission = EnumSet.of(CRUDPanel.Permissions.EDIT,CRUDPanel.Permissions.DEL);
 	        }else if(entityName.equalsIgnoreCase("activity")){
-		            permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.DONE,CRUDPanel.Permissions.noExecute);
-	        }else if(entityName.equalsIgnoreCase("coaching")||entityName.equalsIgnoreCase("willcoaching")){
-	            permission = EnumSet.of(CRUDPanel.Permissions.EDIT,CRUDPanel.Permissions.DONE,CRUDPanel.Permissions.noExecute);
+		            permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.DONE,CRUDPanel.Permissions.noExecute,CRUDPanel.Permissions.EDIT);
 	        }else if(entityName.equalsIgnoreCase("user")){
 	                permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.RESETPWD,CRUDPanel.Permissions.EDIT);
 	        }

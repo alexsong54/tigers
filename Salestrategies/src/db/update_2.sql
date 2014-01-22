@@ -10,3 +10,20 @@ CREATE TABLE `strategies`.`opportunityuserteam` (
 
   ALTER TABLE `strategies`.`account` 
 ADD COLUMN `industry` INT NULL AFTER `modifier_date`;
+
+ALTER TABLE `strategies`.`activity` 
+ADD COLUMN `modified_by` INT NULL AFTER `description`,
+ADD COLUMN `modifier_date` DATETIME NULL AFTER `modified_by`;
+ALTER TABLE `strategies`.`activity` 
+ADD COLUMN `status` INT NULL AFTER `modifier_date`;
+ALTER TABLE `strategies`.`opportunity` 
+CHANGE COLUMN `created_date` `create_date` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `strategies`.`opportunity` 
+CHANGE COLUMN `modified_date` `modifier_date` DATETIME NULL DEFAULT NULL ;
+
+ALTER TABLE `strategies`.`competitor` 
+ADD COLUMN `owner` INT NULL AFTER `statue`;
+ALTER TABLE `strategies`.`competitor` 
+CHANGE COLUMN `crete_date` `create_date` DATETIME NULL DEFAULT NULL ;
+
+

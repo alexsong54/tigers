@@ -324,7 +324,7 @@ public class DAOImpl {
 //	    
 	    
 	    public static Activity getActivityById(int entityId){
-	    	System.out.println("根据活动ID获取用户");
+	    	System.out.println("根据活动ID获取用户"+entityId);
 	        Connection conn = null;
 	        Activity activity = new Activity();
 	        try {
@@ -657,21 +657,10 @@ public class DAOImpl {
 	     public static long createNewRecord(String entityName, List<String> fieldNames, List<String> values,String userId){   
 	         String fieldssql = Joiner.on(",").join(fieldNames);
 	         String valuesql = Joiner.on(",").join(values);
-	        if(entityName.equals("activity")){
-	        	 fieldssql = fieldssql.replaceAll("accountId,","").trim();
-	        	 valuesql = valuesql + "," +userId;
-	        	 
-	        	 fieldssql = fieldssql + ",event_type";
-	             valuesql = valuesql + "," +1;
-	             fieldssql = fieldssql + ",status";
-	             valuesql = valuesql + "," +1;
-	         }
 	         logger.debug("fieldssql sql is:"+fieldssql);
 	         logger.debug("valuesql sql is:"+valuesql);
 	         String sql = "INSERT INTO "+entityName+" ("+fieldssql+") VALUES ("+valuesql+")";
 	        
-	        logger.debug("insert sql is:"+sql);
-	        System.out.println("insert sql is:"+sql);
 	        Connection conn = null;
 	        //PreparedStatement statement = null;
 	        ResultSet generatedKeys = null;
@@ -946,5 +935,26 @@ public class DAOImpl {
 	               DBHelper.closeConnection(conn);
 	           }
 	           
+	       }
+	       //查询联系人
+	       public static List searchContact(String search_target) {
+	           if(search_target == null|| search_target.equalsIgnoreCase("*")){
+	               search_target = "";
+	           }
+	           String sql = "select * from (select contact.*,contact.name as cname,account.name as aname from contact left join account ON contact.account_id = account.id left join contactuserteam ON contact.id = contactuserteam.contact_id where contact.name like '%"+search_target+"%' OR account.name like '%"+search_target+"%' )  as a";
+	           Connection conn = null;
+	           List lMap = Lists.newArrayList();
+	           try {
+	               conn = DBConnector.getConnection();
+	               QueryRunner run = new QueryRunner();
+	               lMap = (List) run.query(conn, sql, new MapListHandler());
+
+	           } catch (SQLException e) {
+	               logger.error("failed to get user", e);
+	           } finally {
+	               DBHelper.closeConnection(conn);
+	           }
+
+	           return lMap;
 	       }
 }

@@ -507,9 +507,9 @@ public class EditDataFormPanel extends Panel {
                 String productlineId="-1";
 		String loginName = "";
 		StringBuffer endDate = new StringBuffer();
-		if(schema.getName().equals("activity")){
-       	 	daypart = (Long) fieldNameToModel.get("activity_daypart").getObject();
-        }
+//		if(schema.getName().equals("activity")){
+//       	 	daypart = (Long) fieldNameToModel.get("activity_daypart").getObject();
+//        }
 		if(schema.getName().equals("user")){
        	 	loginName = fieldNameToModel.get("loginName").getObject().toString();
         }
@@ -586,14 +586,14 @@ public class EditDataFormPanel extends Panel {
          }
 		
         String table_name  = schema.getName();
-        if(table_name.equalsIgnoreCase("coaching")||table_name.equalsIgnoreCase("willcoaching")){
-            table_name = "activity";
-            names.add("total_score");
-            values.add("'"+total_score+"'");
-        }else if(schema.getName().equals("activity")){
-			values.add("'"+endDate+"'");
-      	  	names.add("endtime");
-        }
+//        if(table_name.equalsIgnoreCase("coaching")||table_name.equalsIgnoreCase("willcoaching")){
+//            table_name = "activity";
+//            names.add("total_score");
+//            values.add("'"+total_score+"'");
+//        }else if(schema.getName().equals("activity")){
+//			values.add("'"+endDate+"'");
+//      	  	names.add("endtime");
+//        }
 		if(!table_name.equalsIgnoreCase("user")){
 			System.out.println(names.toString()+values.toString());
                 if(DAOImpl.updateRecord(entityId,table_name,names,values)){

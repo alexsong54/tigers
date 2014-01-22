@@ -19,7 +19,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
 import com.bxy.salestrategies.common.Entity;
-import com.bxy.salestrategies.common.SignInSession;
+import com.bxy.salestrategies.common.Field;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.util.Configuration;
 import com.google.common.collect.Lists;
@@ -100,30 +100,22 @@ public class SelectEntryPage extends WebPage {
                                         map.put("num_of_visiting", activity_contact_map.get(contactId).get("ct"));
                                     }
                                  }
-                                 
                                  //sorting
                                  //Collections.s`
-                                 Collections.sort(maplist,new Comparator<Map>(){
-
-                                            @Override
-                                            public int compare(Map o1, Map o2) {
-                                                Object obj1 = o1.get("num_of_visiting");
-                                                Object obj2 = o2.get("num_of_visiting");
-                                                if(obj1 == null || obj2 == null) return 0;
-                                                 long  v1 =  (long)o1.get("num_of_visiting");
-                                                 long  v2 =  (long)o2.get("num_of_visiting");
-                                                 return (int)(v2-v1);
-                                               
-                                            }
-                                     
-                                 });
-                                 
-                                 
-                                 break;
-                              }
+//                                 Collections.sort(maplist,new Comparator<Map>(){
+//                                            @Override
+//                                            public int compare(Map o1, Map o2) {
+//                                                Object obj1 = o1.get("num_of_visiting");
+//                                                Object obj2 = o2.get("num_of_visiting");
+//                                                if(obj1 == null || obj2 == null) return 0;
+//                                                 long  v1 =  (long)o1.get("num_of_visiting");
+//                                                 long  v2 =  (long)o2.get("num_of_visiting");
+//                                                 return (int)(v2-v1);
+//                                            }
+//                                 });
                     } else if (tragetEntity.equalsIgnoreCase("user")) {
                         // maplist = DAOImpl.searchCRMUser(search_target);
-                        maplist = DAOImpl.searchCRMUser(search_target);
+                        maplist = DAOImpl.searchUser(search_target);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", -1);
                         dummy.put("name", "无");
@@ -131,60 +123,15 @@ public class SelectEntryPage extends WebPage {
 
                     } else if (tragetEntity.equalsIgnoreCase("contact")) {
                         // maplist = DAOImpl.searchCRMUser(search_target);
-                        maplist = DAOImpl.searchMergeContact(search_target);
+                        maplist = DAOImpl.searchContact(search_target);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", -1);
                         dummy.put("name", "无");
                         maplist.add(dummy);
 
                     }
-                } else if(relationTableName.equalsIgnoreCase("crmuser")){
-                    //maplist = DAOImpl.searchCRMUser(search_target);
-                  if (tragetEntity.equalsIgnoreCase("crmuser")){
-                    maplist = DAOImpl.searchManager(search_target,excludeId);
-                  }else if(tragetEntity.equalsIgnoreCase("coaching")||tragetEntity.equalsIgnoreCase("willcoaching")){
-                    String sql = assembleSearchingSQL(roleId, entity);
-                    if(roleId==1){
-                      maplist  = DAOImpl.queryEntityRelationList(sql);
-                      Map dummy = Maps.newHashMap();
-                      dummy.put("id", -1);
-                      dummy.put("name", "无");
-                      maplist.add(dummy);
-                    }else if(roleId == 2){
-                     
-                     // sql = entity.getSqlManagerCoaching();
-                      sql = "select * from (select crmuser.id as id, crmuser.name as name, crmuser.code ,userinfo.name as userInfoName from crmuser,userinfo,user_position where crmuser.id=user_position.positionId"
-                      		+ " and user_position.userId=userInfo.id and crmuser.reportto=?) as aquery";
-                      logger.debug("sql XXXXX:" + sql);
-                      maplist  = DAOImpl.queryEntityRelationList(sql,posId);
-                    }else if(roleId == 3){
-                      maplist  = DAOImpl.queryEntityRelationList(sql,posId);
-                      Map dummy = Maps.newHashMap();
-                      dummy.put("id", -1);
-                      dummy.put("name", "无");
-                      maplist.add(dummy);
-                    }
-                  }else if(tragetEntity.equalsIgnoreCase("userInfo")){
-                   if(target.equalsIgnoreCase("-1")){
-                     maplist = DAOImpl.searchPositionCRMUser(search_target);
-                   }else {
-                     maplist = DAOImpl.searchCRMUser(search_target);
-                   }
-                    Map dummy = Maps.newHashMap();
-                    dummy.put("id", -1);
-                    dummy.put("name", "无");
-                    maplist.add(dummy);
-                  }else if(tragetEntity.equalsIgnoreCase("user_position")){
-                      
-                      maplist = DAOImpl.searchPositionCRMUser(search_target);
-                      Map dummy = Maps.newHashMap();
-                      dummy.put("id", -1);
-                      dummy.put("name", "无");
-                      maplist.add(dummy);
-                      
-                   }
-               }else if (relationTableName.equalsIgnoreCase("userinfo")) {
-                    String sql = assembleSearchingSQL(roleId, entity);
+                }else if (relationTableName.equalsIgnoreCase("user")) {
+                    String sql = assembleSearchingSQL( entity);
 //                    if(){
                       maplist  = DAOImpl.queryEntityRelationList(sql);
 //                    }
@@ -195,16 +142,16 @@ public class SelectEntryPage extends WebPage {
                     maplist.add(dummy);
 
                 }else if (relationTableName.equalsIgnoreCase("productline")) {
-                    String sql = assembleSearchingSQL(roleId, entity);
+                    String sql = assembleSearchingSQL(entity);
                     maplist  = DAOImpl.queryEntityRelationList(sql);
 
                 }else if (relationTableName.equalsIgnoreCase("product")) {
-                    String sql = assembleSearchingSQL(roleId, entity);
+                    String sql = assembleSearchingSQL(entity);
                     maplist  = DAOImpl.queryEntityRelationList(sql);
 
                 }
                 else if (relationTableName.equalsIgnoreCase("province")) {
-                    String sql = assembleSearchingSQL(roleId, entity);
+                    String sql = assembleSearchingSQL( entity);
                     logger.debug("d；"+sql);
                     maplist  = DAOImpl.queryEntityRelationList(sql);
 
@@ -294,6 +241,20 @@ public class SelectEntryPage extends WebPage {
         add(nav);
         setVersioned(false);
         
+    }
+    private String assembleSearchingSQL( final Entity entity) {
+        String sql = entity.getSql();
+        
+        search_target = (search_target==null || search_target.equalsIgnoreCase("*"))? "":search_target;
+        
+        List<Field> searchableFields = entity.getSearchableFields();
+        String joint = " like '%"+search_target+"%'";
+        String likequery = "";
+        for(Field sf:searchableFields){
+            likequery = likequery + " OR "+ sf.getName() + joint;
+        }
+         sql =  sql + " where name like '%"+search_target+"%' " + likequery ;
+        return sql;
     }
 
 }
