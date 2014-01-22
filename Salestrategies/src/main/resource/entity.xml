@@ -39,7 +39,7 @@
 			<field>
 				<name>legal_representative</name>
 				<display>法人</display>
-				<isRequired>true</isRequired>
+				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -69,7 +69,7 @@
 			<field>
 				<name>industry</name>
 				<display>行业</display>
-				<data-type>number</data-type>
+				<data-type>text</data-type>
 				<isRequired>false</isRequired>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -113,7 +113,7 @@
 				<name>status</name>
 				<display>状态</display>
 				<data-type>number</data-type>
-				<isRequired>true</isRequired>
+				<isRequired>false</isRequired>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -173,13 +173,12 @@
 				<name>date_of_establish</name>
 				<display>成立时间</display>
 				<isRequired>false</isRequired>
-				<data-type>datetime</data-type>
+				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
 				<field-type>string</field-type>
-				<formatter>com.bxy.salestrategies.common.TimestampFormatter</formatter>
 				<priority>2</priority><isShow>true</isShow>
 				<fieldGroup>基本信息</fieldGroup>
 			</field>
@@ -201,9 +200,8 @@
 			<field>
 				<name>owner</name>
 				<display>负责人</display>
-				<isRequired>true</isRequired>
+				<isRequired>false</isRequired>
 				<data-type>text</data-type>
-<!-- 				<alias>userId</alias> -->
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -228,7 +226,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>false</isVisible>
 				<isEditable>false</isEditable>
-				<isSearchable>true</isSearchable>
+				<isSearchable>false</isSearchable>
 				<field-type>String</field-type>
 				<priority>2</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
@@ -330,7 +328,7 @@
 		<field>
 			<name>department</name>
 			<display>部门</display>
-			<isRequired>true</isRequired>
+			<isRequired>false</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
@@ -358,7 +356,7 @@
 		</field>
 		<field>
 			<name>account_id</name>
-			<display>医院名称</display>
+			<display>客户名称</display>
 			<isRequired>false</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
@@ -374,7 +372,7 @@
 		<field>
 			<name>office_tel</name>
 			<display>电话</display>
-			<isRequired>true</isRequired>
+			<isRequired>false</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
@@ -389,7 +387,7 @@
 		<field>
 			<name>telephone</name>
 			<display>地址</display>
-			<isRequired>true</isRequired>
+			<isRequired>false</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
@@ -404,9 +402,8 @@
 		<field>
 				<name>owner</name>
 				<display>负责人</display>
-				<isRequired>true</isRequired>
+				<isRequired>false</isRequired>
 				<data-type>text</data-type>
-<!-- 				<alias>userId</alias> -->
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -431,7 +428,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>false</isVisible>
 				<isEditable>false</isEditable>
-				<isSearchable>true</isSearchable>
+				<isSearchable>false</isSearchable>
 				<field-type>String</field-type>
 				<priority>2</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
@@ -591,23 +588,9 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>expected_revenue</name>
-				<display>预期收入</display>
-				<isRequired>false</isRequired>
-				<data-type>number</data-type>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
-				<field-type>number</field-type>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<isParam>true</isParam>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
 				<name>start_date</name>
 				<display>开始时间</display>
+				<isRequired>false</isRequired>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -624,6 +607,7 @@
 			<field>
 				<name>end_date</name>
 				<display>结束时间</display>
+				<isRequired>false</isRequired>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -638,11 +622,25 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
+				<name>expected_revenue</name>
+				<display>预期收入</display>
+				<isRequired>false</isRequired>
+				<data-type>number</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>number</field-type>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<isParam>true</isParam>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
 				<name>owner</name>
 				<display>负责人</display>
-				<isRequired>true</isRequired>
+				<isRequired>false</isRequired>
 				<data-type>text</data-type>
-<!-- 				<alias>userId</alias> -->
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -667,7 +665,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>false</isVisible>
 				<isEditable>false</isEditable>
-				<isSearchable>true</isSearchable>
+				<isSearchable>false</isSearchable>
 				<field-type>String</field-type>
 				<priority>2</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
@@ -769,7 +767,7 @@
 			<field>
 				<name>advantage</name>
 				<display>优点</display>
-				<isRequired>true</isRequired>
+				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -798,7 +796,7 @@
 			<field>
 				<name>owner</name>
 				<display>负责人</display>
-				<isRequired>true</isRequired>
+				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -824,7 +822,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>false</isVisible>
 				<isEditable>false</isEditable>
-				<isSearchable>true</isSearchable>
+				<isSearchable>false</isSearchable>
 				<field-type>String</field-type>
 				<priority>2</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
@@ -939,6 +937,21 @@
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
 		<field>
+			<name>login_name</name>
+			<display>登录名</display>
+			<isRequired>true</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<field-type>String</field-type>
+			<priority>2</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>关键信息</fieldGroup>
+		</field>
+		<field>
 			<name>job_title</name>
 			<display>职位</display>
 			<isRequired>false</isRequired>
@@ -955,7 +968,7 @@
 		<field>
 			<name>office_tel</name>
 			<display>固定电话</display>
-			<isRequired>true</isRequired>
+			<isRequired>false</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
@@ -970,7 +983,7 @@
 		<field>
 			<name>telephone</name>
 			<display>移动电话</display>
-			<isRequired>true</isRequired>
+			<isRequired>false</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
@@ -982,55 +995,6 @@
 			<isParam>true</isParam>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
-		<field>
-			<name>login_name</name>
-			<display>登录名</display>
-			<isRequired>true</isRequired>
-			<data-type>text</data-type>
-			<isPrimaryKey>false</isPrimaryKey>
-			<isDetailLink>false</isDetailLink>
-			<isVisible>true</isVisible>
-			<isEditable>true</isEditable>
-			<field-type>String</field-type>
-			<priority>2</priority>
-			<isShow>true</isShow>
-			<isParam>true</isParam>
-			<fieldGroup>关键信息</fieldGroup>
-		</field>
-		<field>
-				<name>owner</name>
-				<display>负责人</display>
-				<isRequired>true</isRequired>
-				<data-type>text</data-type>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
-				<field-type>String</field-type>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<relationTable>user</relationTable>
-				<default-value-type>var</default-value-type>
-				<default-value>user.id\,user.name</default-value>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>ownerName_val</name>
-				<display>负责人</display>
-				<isRequired>false</isRequired>
-				<alias>owner</alias>
-				<data-type>text</data-type>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>false</isVisible>
-				<isEditable>false</isEditable>
-				<isSearchable>true</isSearchable>
-				<field-type>String</field-type>
-				<priority>2</priority><isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
 			<field>
 				<name>created_by</name>
 				<display>创建人</display>
@@ -1282,9 +1246,52 @@
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
+<!-- 			<field> -->
+<!-- 				<name>user_id</name> -->
+<!-- 				<display>用户名称</display> -->
+<!-- 				<isRequired>false</isRequired> -->
+<!-- 				<data-type>text</data-type> -->
+<!-- 				<isPrimaryKey>false</isPrimaryKey> -->
+<!-- 				<isDetailLink>false</isDetailLink> -->
+<!-- 				<isVisible>true</isVisible> -->
+<!-- 				<isEditable>true</isEditable> -->
+<!-- 				<field-type>auto</field-type> -->
+<!-- 				<relationTable>user</relationTable> -->
+<!-- 				<priority>1</priority><isShow>true</isShow> -->
+<!-- 				<isParam>true</isParam> -->
+<!-- 				<fieldGroup>关键信息</fieldGroup> -->
+<!-- 			</field> -->
 			<field>
-				<name>user_id</name>
-				<display>用户名称</display>
+				<name>start_time</name>
+				<display>开始时间</display>
+				<isRequired>false</isRequired>
+				<data-type>datetime-local</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>String</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>end_time</name>
+				<display>结束时间</display>
+				<isRequired>false</isRequired>
+				<data-type>datetime-local</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>String</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>type</name>
+				<display>类型</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -1292,7 +1299,7 @@
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
 				<field-type>String</field-type>
-				<relationTable>user</relationTable>
+				<picklist>status_pl</picklist>
 				<priority>1</priority><isShow>true</isShow>
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>

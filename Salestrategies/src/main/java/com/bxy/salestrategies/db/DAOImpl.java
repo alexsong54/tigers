@@ -519,6 +519,7 @@ public class DAOImpl {
 	        	 i++;
 	         }
 	        	sql = "UPDATE  "+entityName+ " SET "+sql+" where id = " + id;
+	        	System.out.println(sql);
 	        logger.debug("UPDATE sql is:"+sql);
 	        Connection conn = null;
 	        try {
@@ -618,8 +619,8 @@ public class DAOImpl {
 	     public static long createNewUser(String entityName,List<String> fieldNames,List<String> values,String userId){
 	     	String fieldssql = Joiner.on(",").join(fieldNames);
 	         String valuesql = Joiner.on(",").join(values);
-	         fieldssql = fieldssql + ",num_of_signIn,password";
-	    	 	valuesql =  valuesql + ",0,'"+DigestUtils.md5Hex("12345")+"'";
+	         fieldssql = fieldssql + ",password";
+	    	 	valuesql =  valuesql + ",'"+DigestUtils.md5Hex("12345")+"'";
 	    	 	logger.debug("fieldssql sql is:"+fieldssql);
 	    	 	logger.debug("valuesql sql is:"+valuesql);
 	    	 	String sql = "INSERT INTO "+entityName+" ("+fieldssql+") VALUES ("+valuesql+")";
@@ -662,7 +663,7 @@ public class DAOImpl {
 	         logger.debug("fieldssql sql is:"+fieldssql);
 	         logger.debug("valuesql sql is:"+valuesql);
 	         String sql = "INSERT INTO "+entityName+" ("+fieldssql+") VALUES ("+valuesql+")";
-	        
+	        System.out.println(sql);
 	        Connection conn = null;
 	        //PreparedStatement statement = null;
 	        ResultSet generatedKeys = null;

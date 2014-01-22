@@ -556,10 +556,6 @@ public class NewDataFormPanel extends Panel
         //找出title属性，判断实体名称，先声明
         Long daypart = 0l;
         StringBuffer title = new StringBuffer();
-//        if (entity.getName().equals("activity"))
-//        {
-//            daypart = (Long) models.get("activity_daypart").getObject();
-//        }
         String loginName = "";
         if (entity.getName().equals("user"))
         {
@@ -571,39 +567,9 @@ public class NewDataFormPanel extends Panel
             logger.debug("currentFieldkey:" + key);
             Field field = entity.getFieldByName(key);
             logger.debug("currentField:" + field);
-//            if (field.getPriority() == 5)
-//            {
-//                total_score += Integer.parseInt(models.get(key).getObject().toString());
-//            }
             if (models.get(key).getObject() instanceof String)
             {
-                if (field.getDataType().equalsIgnoreCase("datetime-local") )
-                {
-                    //if the filed has formatter, we guess the field saved in data base is in long 
-                    Date date = new Date();
-                    String dateTime = String.valueOf(models.get(key).getObject());
-                    if (entity.getName().equals("activity"))
-                    {
-                        if (key.equals("starttime"))
-                        {
-                            if (daypart == 1)
-                            {
-                                dateTime = dateTime.split("T")[0].concat("T08:00");
-                                endDate.append(dateTime.split("T")[0].concat("T11:30"));
-                            }
-                            else
-                            {
-                                dateTime = dateTime.split("T")[0].concat("T13:00");
-                                endDate.append(dateTime.split("T")[0].concat("T18:00"));
-                            }
-                        }
-                    }
-                    values.add("'"+String.valueOf(dateTime)+"'");
-
-                }else{
                     values.add("'" + (String) models.get(key).getObject() + "'");
-                }
-
             }
             else if (models.get(key).getObject() instanceof Choice)
             {
@@ -611,26 +577,7 @@ public class NewDataFormPanel extends Panel
             }
             else
             {
-                if (field.getName().equals("title"))
-                {
-                    if (null == (String) models.get(key).getObject())
-                    {
-                            title.append("拜访:");
-                            String callName = DAOImpl.queryRelationDataById("contact", models.get("contactId").getObject().toString());
-                            title.append(callName);
-                        values.add("'" + title.toString() + "'");
-                    }
-                    else
-                    {
-                        values.add("'" + (String) models.get(key).getObject() + "'");
-                    }
-                }else if(key.equals("fileName")){
-                	values.add("'"+fileName+"'");
-                }
-                else
-                {
                     values.add(String.valueOf(models.get(key).getObject()));
-                }
             }
 
         }
@@ -651,11 +598,6 @@ public class NewDataFormPanel extends Panel
             fieldNames.add(f.getName());
 
         }
-//         if (entity.getName().equals("activity"))
-//        {
-//            values.add("'" +endDate + "'");
-//            fieldNames.add("endtime");
-//        }
         if ("user".equals(entity.getName()))
         {
             long crmuserkey = -1;
@@ -738,14 +680,7 @@ public class NewDataFormPanel extends Panel
                       return String.valueOf(id);
                   }
               }));
-            if (currentField.getPriority() == 5)
-            {
-                dropDownChoice.setNullValid(false);
-            }
-            else
-            {
                 dropDownChoice.setNullValid(true);
-            }
             if (entity.getName().equals("activity") )
             {
                 dropDownChoice.add(new AttributeAppender("class", new Model("required-pickList"), " "));
@@ -793,7 +728,7 @@ public class NewDataFormPanel extends Panel
                     }
                 });
             }
-            if (entity.getName().equals("activity") || entity.getName().equals("coaching") || entity.getName().equals("willcoaching"))
+            if (entity.getName().equals("activity") )
             {
                 dropDown.add(new AttributeAppender("class", new Model("required-pickList"), " "));
             }

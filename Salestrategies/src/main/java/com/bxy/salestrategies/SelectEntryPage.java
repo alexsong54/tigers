@@ -33,7 +33,7 @@ import org.apache.wicket.markup.html.list.PageableListView;
 /**
  * 
  * 
- * @author Feiyun
+ * @author Dong
  */
 public class SelectEntryPage extends WebPage {
     private static final Logger logger = Logger.getLogger(SelectEntryPage.class);
@@ -78,8 +78,6 @@ public class SelectEntryPage extends WebPage {
                     	String sql = entity.getSql();
 
                         maplist = DAOImpl.queryEntityRelationList(sql);
-                                 
-                                 
                                  Entity activityEnt = entities.get("activity");
                                  String actSQL = activityEnt.getSql();
                                  actSQL  = "select contactName,count(contactName) as ct from ("+ actSQL + ") as bact where status=2 group by contactName";
@@ -100,30 +98,17 @@ public class SelectEntryPage extends WebPage {
                                         map.put("num_of_visiting", activity_contact_map.get(contactId).get("ct"));
                                     }
                                  }
-                                 //sorting
-                                 //Collections.s`
-//                                 Collections.sort(maplist,new Comparator<Map>(){
-//                                            @Override
-//                                            public int compare(Map o1, Map o2) {
-//                                                Object obj1 = o1.get("num_of_visiting");
-//                                                Object obj2 = o2.get("num_of_visiting");
-//                                                if(obj1 == null || obj2 == null) return 0;
-//                                                 long  v1 =  (long)o1.get("num_of_visiting");
-//                                                 long  v2 =  (long)o2.get("num_of_visiting");
-//                                                 return (int)(v2-v1);
-//                                            }
-//                                 });
                     } else if (tragetEntity.equalsIgnoreCase("user")) {
                         // maplist = DAOImpl.searchCRMUser(search_target);
                         maplist = DAOImpl.searchUser(search_target);
                         Map dummy = Maps.newHashMap();
-                        dummy.put("id", -1);
+                        dummy.put("id", 0);
                         dummy.put("name", "无");
                         maplist.add(dummy);
 
-                    } else if (tragetEntity.equalsIgnoreCase("contact")) {
-                        // maplist = DAOImpl.searchCRMUser(search_target);
-                        maplist = DAOImpl.searchContact(search_target);
+                    } else if (tragetEntity.equalsIgnoreCase("account")) {
+                    	String sql = assembleSearchingSQL( entity);
+                        maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", -1);
                         dummy.put("name", "无");
@@ -132,32 +117,21 @@ public class SelectEntryPage extends WebPage {
                     }
                 }else if (relationTableName.equalsIgnoreCase("user")) {
                     String sql = assembleSearchingSQL( entity);
-//                    if(){
-                      maplist  = DAOImpl.queryEntityRelationList(sql);
-//                    }
-//                     maplist  = DAOImpl.queryEntityRelationList(sql,userId);
+                    maplist  = DAOImpl.queryEntityRelationList(sql);
+                    Map dummy = Maps.newHashMap();
+                    dummy.put("id", 0);
+                    dummy.put("name", "无");
+                    maplist.add(dummy);
+                                                              
+                }else if (relationTableName.equalsIgnoreCase("opportunity")||relationTableName.equalsIgnoreCase("competitor")||
+                		relationTableName.equalsIgnoreCase("activity")) {
+                    String sql = assembleSearchingSQL(entity);
+                    maplist  = DAOImpl.queryEntityRelationList(sql);
                     Map dummy = Maps.newHashMap();
                     dummy.put("id", -1);
                     dummy.put("name", "无");
                     maplist.add(dummy);
 
-                }else if (relationTableName.equalsIgnoreCase("productline")) {
-                    String sql = assembleSearchingSQL(entity);
-                    maplist  = DAOImpl.queryEntityRelationList(sql);
-
-                }else if (relationTableName.equalsIgnoreCase("product")) {
-                    String sql = assembleSearchingSQL(entity);
-                    maplist  = DAOImpl.queryEntityRelationList(sql);
-
-                }
-                else if (relationTableName.equalsIgnoreCase("province")) {
-                    String sql = assembleSearchingSQL( entity);
-                    logger.debug("d；"+sql);
-                    maplist  = DAOImpl.queryEntityRelationList(sql);
-
-                }else if(relationTableName.equalsIgnoreCase("alert")){
-                	String sql = "select * from alert";
-                	maplist  = DAOImpl.queryEntityRelationList(sql);
                 }
                 //this.setResponsePage(cls, parameters)
                 
