@@ -1,3 +1,6 @@
+.tableBorderStyle{
+	border:1px solid #000000;
+}
 .tableTdStyle{
 	margin-right:0px;
 	width:90%;

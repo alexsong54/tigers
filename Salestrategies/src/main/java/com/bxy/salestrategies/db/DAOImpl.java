@@ -27,6 +27,8 @@ import com.bxy.salestrategies.model.Activity;
 import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.model.Contact;
 import com.bxy.salestrategies.model.ContactUserTeam;
+import com.bxy.salestrategies.model.Dna;
+import com.bxy.salestrategies.model.DnaImplement;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
 import com.google.common.cache.Cache;
@@ -957,4 +959,78 @@ public class DAOImpl {
 
 	           return lMap;
 	       }
+	    /**
+	     * 修改dna信息
+	     * @param entityId
+	     * @return
+	     */
+	    public static boolean updatednaById(String entityId,String dna_tta,String dna_pop,String dna_qbu,String dna_cco,String dna_cpa){
+	    	String sql = "UPDATE dna SET temporary_technichal_advantage = ?,projects_or_problem = ?,quantifiable_business_outcome = ?,customer_coals_and_objectives = ?,customer_political_agenda = ?  where id=?";
+	        Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql,dna_tta,dna_pop,dna_qbu,dna_cco,dna_cpa,entityId);
+	            System.out.println("sql:"+sql);
+	        } catch (Exception e) {
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    public static Dna getDnaById(String id) {
+	        Connection conn = null;
+	        Dna dna = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Dna> h = new BeanHandler<Dna>(Dna.class);
+	            dna = run.query(conn, "SELECT * FROM dna where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return dna;
+	    }
+	    public static boolean updatednaImplementById(String entityId,String dna_tta,String dna_pop,String dna_qbu,String dna_cco,String dna_cpa){
+	    	String sql = "UPDATE dna_implement SET temporary_technichal_advantage = ?,projects_or_problem = ?,quantifiable_business_outcome = ?,customer_coals_and_objectives = ?,customer_political_agenda = ?  where id=?";
+	        Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql,dna_tta,dna_pop,dna_qbu,dna_cco,dna_cpa,entityId);
+	            System.out.println("sql:"+sql);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    public static DnaImplement getDnaImplementById(String id) {
+	        Connection conn = null;
+	        DnaImplement dnaImplement = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<DnaImplement> h = new BeanHandler<DnaImplement>(DnaImplement.class);
+	            dnaImplement = run.query(conn, "SELECT * FROM dna_implement where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return dnaImplement;
+	    }
 }

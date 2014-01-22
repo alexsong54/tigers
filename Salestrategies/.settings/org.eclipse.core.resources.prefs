@@ -2,10 +2,15 @@ eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 <<<<<<< HEAD
 encoding//src/main/java/com/bxy/salestrategies/DnaPanel.html=UTF-8
+<<<<<<< HEAD
 encoding//src/main/java/com/bxy/salestrategies/Login.html=UTF-8
 =======
 encoding//src/main/java/com/bxy/salestrategies/common/CRUDPanel.html=UTF-8
 >>>>>>> add new and edit function
+=======
+encoding//src/main/java/com/bxy/salestrategies/common/EntityDetailPanel.html=UTF-8
+>>>>>>> add Dna
 encoding//src/main/java/com/bxy/salestrategies/common/FilterPanel.html=UTF-8
+encoding//src/main/java/com/bxy/salestrategies/common/NewDataFormPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/PageableTablePanel.html=UTF-8
 encoding/<project>=UTF-8

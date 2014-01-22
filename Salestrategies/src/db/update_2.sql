@@ -25,5 +25,3 @@ ALTER TABLE `strategies`.`competitor`
 ADD COLUMN `owner` INT NULL AFTER `statue`;
 ALTER TABLE `strategies`.`competitor` 
 CHANGE COLUMN `crete_date` `create_date` DATETIME NULL DEFAULT NULL ;
-
-
