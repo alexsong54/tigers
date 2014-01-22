@@ -45,7 +45,7 @@ $(document).ready(function () {
     //        }
     //    });
 
-    $('.fancybox').fancybox({
+/*    $('.fancybox').fancybox({
         padding: 16,
         width: '70%',
         height: '80%',
@@ -57,7 +57,7 @@ $(document).ready(function () {
         padding: 16,
         autoSize: true,      
         openEffect: 'fade'
-    });
+    });*/
 
     $('.form-search input[type=text]').focus(function () {
         $(this).animate({ width: '160px' }, 'normal');

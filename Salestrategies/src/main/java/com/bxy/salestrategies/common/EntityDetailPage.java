@@ -27,6 +27,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import com.bxy.salestrategies.AccountPage;
 import com.bxy.salestrategies.ActivityPage;
 import com.bxy.salestrategies.ContactPage;
+import com.bxy.salestrategies.DnaPanel;
 import com.bxy.salestrategies.Index;
 import com.bxy.salestrategies.SignInSession;
 import com.bxy.salestrategies.UserPage;
@@ -230,13 +231,13 @@ public class EntityDetailPage extends Index {
 				// TODO Auto-generated method stub
 				
 			}
-
-
          };
-
-
-
-         add(new CRUDPanel("operationBar",entity.getName(),id, CRMUtility.getPermissionForEntity(entity.getName()),actionListener));
+         if(entity.getName().equals("opportunity")){
+  	  	     add(new DnaPanel("dnaPanel",id,id));
+         }else{
+        	 add(new Label("dnaPanel",""));
+         }
+	  	   add(new CRUDPanel("operationBar",entity.getName(),id, CRMUtility.getPermissionForEntity(entity.getName()),actionListener));
     }
 
 }

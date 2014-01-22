@@ -24,7 +24,7 @@ public class DnaPanel extends Panel{
 	public DnaPanel(String id,final String dnaID,final String dna_implementID) {
 		super(id);
 		//根据id获取dna和dnaimplement
-		Dna dna = DAOImpl.getDnaById(dnaID);
+		Dna dna = DAOImpl.getDnaByOpportunityId(dnaID);
 		add(new Label("title","The Strategic Selling DNA Strand "));
 		Form form = new Form("form") {
 	            @Override
@@ -62,7 +62,7 @@ public class DnaPanel extends Panel{
 		form.add(dna_cpa);
 		add(form);
 		
-		DnaImplement DnaImplement = DAOImpl.getDnaImplementById(dna_implementID);
+		DnaImplement DnaImplement = DAOImpl.getDnaImplementByOpptunityId(dna_implementID);
 		Form dnaImplementForm = new Form("dnaImplementForm") {
 	            @Override
 	            protected void onSubmit() {
