@@ -594,7 +594,7 @@
 			<field>
 				<name>start_date</name>
 				<display>开始时间</display>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -611,7 +611,7 @@
 			<field>
 				<name>end_date</name>
 				<display>结束时间</display>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
