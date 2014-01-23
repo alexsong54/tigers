@@ -584,6 +584,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
+				<picklist>opportunity_type_pl</picklist>
 				<field-type>number</field-type>
 				<priority>1</priority>
 				<isShow>true</isShow>

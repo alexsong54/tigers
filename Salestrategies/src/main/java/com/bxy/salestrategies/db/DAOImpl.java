@@ -817,11 +817,11 @@ public class DAOImpl {
 	               SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	               String date_value = dateformat.format(ts);
 	               if(entityName.equalsIgnoreCase("contact")){
-	                   sql = "INSERT INTO contactcrmuser (userId,contactId) VALUES (?,?)";
+	                   sql = "INSERT INTO contactcrmuserteam (user_id,contact_id) VALUES (?,?)";
 	               }else if(entityName.equalsIgnoreCase("account")){
-	                   sql = "INSERT INTO accountcrmuser (userId,accountId) VALUES (?,?)";
+	                   sql = "INSERT INTO accountcrmuserteam (user_id,account_id) VALUES (?,?)";
 	               }else if(entityName.equalsIgnoreCase("user")){
-	                   sql = "INSERT INTO user_position (userId,whenadded,isPrimary) VALUES (?,?,?)";
+	                   sql = "INSERT INTO user_position (user_id,whenadded,isPrimary) VALUES (?,?,?)";
 	               }else if(entityName.equalsIgnoreCase("user")){
 	                   if(type == 0||type==4){
 	                       sql = "INSERT INTO accountcrmuser (accountId,userId) VALUES (?,?)";

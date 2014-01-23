@@ -64,8 +64,8 @@ public class EntityDetailPage extends Index {
 	    	add(operationBar);
 	        WebMarkupContainer detailed = new WebMarkupContainer("detailed");
 	    	add(detailed);
-//	    	WebMarkupContainer teamPanel = new WebMarkupContainer("teamPanel");
-//	    	add(teamPanel);
+	    	WebMarkupContainer teamPanel = new WebMarkupContainer("teamPanel");
+	    	add(teamPanel);
 //	    	WebMarkupContainer teamPanel2 = new WebMarkupContainer("teamPanel2");
 //	    	add(teamPanel2);
 //	    	WebMarkupContainer teamPanel3 = new WebMarkupContainer("teamPanel3");
@@ -104,12 +104,13 @@ public class EntityDetailPage extends Index {
         add(new EntityDetailPanel("detailed",entity,map,id,3,entityName));
         
 
-//         if(entityName.equalsIgnoreCase("account")){
-//             add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+         if(entityName.equalsIgnoreCase("account")){
+             add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 //             add(new EmptyPanel("teamPanel2"));
 //             add(new EmptyPanel("teamPanel3"));
 //             add(new EmptyPanel("teamPanel4"));
-//         }else if(entityName.equalsIgnoreCase("crmuser")){
+         }
+//         else if(entityName.equalsIgnoreCase("crmuser")){
 //             add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 //             add(new EmptyPanel("teamPanel2"));
 //             add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
@@ -120,12 +121,12 @@ public class EntityDetailPage extends Index {
 //           add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
 //           add(new EmptyPanel("teamPanel4"));
 //       }
-//         else{
-//             add(new EmptyPanel("teamPanel"));
-//             add(new EmptyPanel("teamPanel2"));
-//             add(new EmptyPanel("teamPanel3"));
-//             add(new EmptyPanel("teamPanel4"));
-//         }
+       else{
+            add(new EmptyPanel("teamPanel"));
+//            add(new EmptyPanel("teamPanel2"));
+//            add(new EmptyPanel("teamPanel3"));
+//            add(new EmptyPanel("teamPanel4"));
+        }
 
          add(new AbstractAjaxBehavior(){
 

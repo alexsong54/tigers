@@ -65,7 +65,7 @@ public class TeamManPanel extends Panel {
         //team sql
         String teamSql = "";
         if(en.equalsIgnoreCase("account")){
-           
+        	teamSql = "select * from (select user.*,accountuserteam.id as rid from accountuserteam left join user on user.id = accountuserteam.user_id where account_id = ?) as atable";
         }else if(en.equalsIgnoreCase("contact")){
         }else if(en.equalsIgnoreCase("user")){
         }
@@ -74,13 +74,12 @@ public class TeamManPanel extends Panel {
     	    mapList = DAOImpl.queryEntityRelationList(teamSql);
        } else {
     	    mapList = DAOImpl.queryEntityRelationList(teamSql, entityId); 
+    	    System.out.println(entityId);
        }
         Entity entity=null ;
-        if(en.equalsIgnoreCase("account")||en.equalsIgnoreCase("contact")){
-         if(type == 1){
+        if(en.equalsIgnoreCase("account")){
               entity = Configuration.getEntityByName("user");
               add(new Label("title","用户"));
-            } 
           }
         else if(en.equalsIgnoreCase("user")){
         	 entity = Configuration.getEntityByName("user_position");
@@ -89,10 +88,10 @@ public class TeamManPanel extends Panel {
         else{
             if(type == 0){
         	  entity = Configuration.getEntityByName("account");
-        	  add(new Label("title","医院"));
+        	  add(new Label("title","客户"));
             }else if(type == 1){
                 entity = Configuration.getEntityByName("contact");
-                add(new Label("title","医生"));
+                add(new Label("title","联系人"));
             }
             else if (type == 2){
               entity = Configuration.getEntityByName("user");
