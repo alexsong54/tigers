@@ -179,6 +179,8 @@
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
 				<field-type>string</field-type>
+				<default-value-type>var</default-value-type>
+				<default-value>start_datetime</default-value>
 				<priority>2</priority><isShow>true</isShow>
 				<fieldGroup>基本信息</fieldGroup>
 			</field>
@@ -350,6 +352,7 @@
 			<pattern>text</pattern>
 			<isVisible>true</isVisible>
 			<isEditable>true</isEditable>
+			<picklist>job_title_pl</picklist>
 			<field-type>String</field-type>
 			<priority>1</priority><isShow>true</isShow>
 			<fieldGroup>关键信息</fieldGroup>
@@ -962,6 +965,7 @@
 			<isVisible>true</isVisible>
 			<isEditable>true</isEditable>
 			<field-type>String</field-type>
+			<picklist>job_title_pl</picklist>
 			<priority>1</priority><isShow>true</isShow>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>

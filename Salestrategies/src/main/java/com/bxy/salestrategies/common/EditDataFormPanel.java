@@ -511,7 +511,7 @@ public class EditDataFormPanel extends Panel {
 //       	 	daypart = (Long) fieldNameToModel.get("activity_daypart").getObject();
 //        }
 		if(schema.getName().equals("user")){
-       	 	loginName = fieldNameToModel.get("loginName").getObject().toString();
+       	 	loginName = fieldNameToModel.get("login_name").getObject().toString();
         }
 		for (String k : fieldNameToModel.keySet()) {
 			
@@ -524,22 +524,11 @@ public class EditDataFormPanel extends Panel {
 			String modifyValue = null;
 			if(obj!=null){
                 if (obj instanceof String) {
-                    if (field.getDataType().equalsIgnoreCase("datetime-local")) {
+                    if (field.getDataType().equalsIgnoreCase("datetime-local")||field.getDataType().equalsIgnoreCase("Date")) {
                         // if the filed has formatter, we guess the
                         // field saved in data base is in long
                         Date date = new Date();
                         String dateTime = String.valueOf(fieldNameToModel.get(k).getObject());
-                        if(schema.getName().equals("activity")){
-    	                        if(k.equals("starttime")){
-    	                        	if(daypart==1){
-    	                        		dateTime = dateTime.split("T")[0].concat("T08:00");
-    	                        		endDate.append(dateTime.split("T")[0].concat("T11:30"));
-    	                        	}else{
-    	                        		dateTime = dateTime.split("T")[0].concat("T13:00");
-    	                        		endDate.append(dateTime.split("T")[0].concat("T18:00"));
-    	                        	}
-    	                        }
-                        }
                        value = String.valueOf("'"+dateTime+"'");
 
                     } else {
@@ -586,14 +575,6 @@ public class EditDataFormPanel extends Panel {
          }
 		
         String table_name  = schema.getName();
-//        if(table_name.equalsIgnoreCase("coaching")||table_name.equalsIgnoreCase("willcoaching")){
-//            table_name = "activity";
-//            names.add("total_score");
-//            values.add("'"+total_score+"'");
-//        }else if(schema.getName().equals("activity")){
-//			values.add("'"+endDate+"'");
-//      	  	names.add("endtime");
-//        }
 		if(!table_name.equalsIgnoreCase("user")){
 			System.out.println(names.toString()+values.toString());
                 if(DAOImpl.updateRecord(entityId,table_name,names,values)){
