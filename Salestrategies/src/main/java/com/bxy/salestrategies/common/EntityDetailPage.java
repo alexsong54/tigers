@@ -233,7 +233,7 @@ public class EntityDetailPage extends Index {
 			}
          };
          if(entity.getName().equals("opportunity")){
-  	  	     add(new DnaPanel("dnaPanel",id,id));
+  	  	     add(new DnaPanel("dnaPanel",id));
          }else{
         	 add(new Label("dnaPanel",""));
          }

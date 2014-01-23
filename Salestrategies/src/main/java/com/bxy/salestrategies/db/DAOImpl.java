@@ -1032,4 +1032,42 @@ public class DAOImpl {
 	        }
 	        return dnaImplement;
 	    }
+	    public static boolean addDna(String opportunityID,String dna_tta,String dna_pop,String dna_qbu,String dna_cco,String dna_cpa){
+	    	String sql = "insert into dna (opportunity_id,temporary_technichal_advantage,projects_or_problem ,quantifiable_business_outcome,customer_coals_and_objectives,customer_political_agenda) values ("+opportunityID+",'"+dna_tta+"','"+dna_pop+"','"+dna_qbu+"','"+dna_cco+"','"+dna_cpa+"')";
+	    	Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    public static boolean addDnaImplement(String opportunityID,String dna_tta,String dna_pop,String dna_qbu,String dna_cco,String dna_cpa){
+	    	String sql = "insert into dna_implement (opportunity_id,temporary_technichal_advantage,projects_or_problem ,quantifiable_business_outcome,customer_coals_and_objectives,customer_political_agenda) values ("+opportunityID+",'"+dna_tta+"','"+dna_pop+"','"+dna_qbu+"','"+dna_cco+"','"+dna_cpa+"')";
+	    	Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
 }
