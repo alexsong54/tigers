@@ -359,3 +359,41 @@ ul.tab-horizontal li.item { list-style: none; float: left; padding: 8px 16px 12p
 ul.tab-horizontal li.active { background: url('images/arrow-up-gray.png') no-repeat bottom center; } 
 ul.tab-horizontal li.active a { color: #999; }
 
+@media screen and (max-width: 720px)
+ {
+     .nav li.compact { display: list-item; }
+     .nav li.screen { display: none; } 
+     .post-social { float: none; }    
+ }
+ @media screen and (max-width: 480px)
+ {
+     .master-width { width: 98%; }
+     body { min-width: 320px; }        
+     .home .content { background: none; }
+     .home .content .logo { width: 85%; margin-top: 32px; }
+     .home .content .home-note { font-size: 16px; margin: 0 16px; }
+     .home .search { margin: 48px 0; }
+     .home .search input { width: 90%; margin: 0 0 16px 0; padding: 12px 2.5%; }
+     .home .search input[type="submit"] { width: 95%; }
+     ul.features li.item { float: none; width: 100%; }
+     ul.features li.item .inner { margin: 8px 16px; }    
+     ul.grid-main li.item { width: 100%; float: none; }
+     .content-main { width: 95%; float: none; margin: 0 auto; }
+     .sidebar { width: 95%; float: none; margin: 0 auto; }
+     ul.list-blog { margin: 0; }
+     ul.list-blog li.item .list-blog-thumbnail { float: none; text-align: center; margin: 0; }
+     ul.list-blog li.item .list-blog-thumbnail .block { display: inline-block; }
+     ul.list-blog li.item .list-blog-content h3 { margin-top: 0; }
+     ul.grid-set li {  }
+     ul.grid-set li.item .block .block-info-popup .block { width: 144px; }
+     ul.grid-set li.item .block .block-info-popup ul.list-meta li .meta-label { color: #999; padding-left: 16px; display: block; }    
+     ul.grid-set li.item .block .block-info-popup ul.list-meta li .meta-value { float: none; display: block; margin-top: 4px; }
+     ul.list-comment ul.children { margin-left: 0px; }
+     .blog-content { padding-left: 0; }
+     .blog-content blockquote, .blog-content pre,
+     .blog-content .block-image { margin-left: 0; max-width: 95%; }    
+     .pagination-wrap { float: none; clear: both; }  
+     .section-left, .section-right { float: none; width: 100%; }      
+     .login-block { margin: 32px auto; }
+     ul.grid-blog { -moz-column-count: 1; -moz-column-gap: 0; -webkit-column-count: 1; -webkit-column-gap: 0; column-count: 1; column-gap: 0; }    
+ }
