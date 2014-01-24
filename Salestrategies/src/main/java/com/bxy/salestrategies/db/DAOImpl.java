@@ -912,33 +912,6 @@ public class DAOImpl {
 	           }
 	           
 	       }
-	       //关系历史
-	       public static void insertRealtionHestory(String teamtable,String user,int positionId,int otherId) {
-	       	String sql = null;
-	       	long ts= System.currentTimeMillis();
-	           SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	           String date_value = dateformat.format(ts);
-	           if(teamtable.equalsIgnoreCase("userinfo")||teamtable.equalsIgnoreCase("user_position")){
-	           		sql = "insert into userposition_relation_history (position_id, user_id, modify_time, modifier) values("+positionId+","+otherId+",'"+date_value+"','"+user+"') ";
-	           }else if(teamtable.equalsIgnoreCase("accountcrmuser")){
-	               	sql = "insert into accountcrmuser_relation_history (position_id,account_id,modify_time,modifier) values("+positionId+","+otherId+",'"+date_value+"','"+user+"') ";
-	           }
-	           logger.debug("sserserserser"+ sql);
-	           Connection conn = null;
-	           try {
-	               conn = DBConnector.getConnection();
-	               QueryRunner run = new QueryRunner();
-	               int inserts = 0;
-	               inserts += run.update(conn, sql);
-
-	               System.out.println("removed:" + inserts);
-	           } catch (Exception e) {
-	               logger.error("removeContactFromTeam", e);
-	           } finally {
-	               DBHelper.closeConnection(conn);
-	           }
-	           
-	       }
 	       //查询联系人
 	       public static List searchContact(String search_target) {
 	           if(search_target == null|| search_target.equalsIgnoreCase("*")){

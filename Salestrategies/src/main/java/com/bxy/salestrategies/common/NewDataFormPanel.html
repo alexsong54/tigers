@@ -24,12 +24,11 @@
               });
             if(isValidated&&checkflag){
             	if($("#contact_name").length > 0 && jQuery.isEmptyObject($("#contact_name").val())){
-              	  	alert("请查询添联系人！");
+              	  	alert("请查询添入联系人！");
                     return false;
                 }else if($("#opportunity_name").length > 0 && jQuery.isEmptyObject($("#opportunity_name").val())){
-                		alert("请查询添入商机名称！");
+                		alert("请查询添入商机！");
                         return false;
-                	}
                 }else  if($("#account_name").length > 0 && jQuery.isEmptyObject($("#account_name").val())) {
                     alert("请查询填入客户！");
                     return false;
@@ -47,7 +46,6 @@
 			<span wicket:id="promptButton" class="close" data-dismiss="alert"></span>
 			<span wicket:id="prompt" ><strong></strong></span>
 			<span wicket:id="promptForAccount" ><strong></strong></span>
-			<span wicket:id="promptForCrmuser" ><strong></strong></span>
 			<span wicket:id="promptFordate" ><strong></strong></span>
 		</div>
         <form wicket:id="form" class="form-horizontal" >
@@ -92,7 +90,7 @@
         <select class="form-control input-sm" wicket:id="dropDownInput"></select>
     </wicket:fragment>
     <wicket:fragment wicket:id="bjgtextAreaFragment">
-        <textarea  wicket:id="description" cols="100" rows="8" class="from-control"></textarea >
+        <textarea  wicket:id="description"  class="from-control"></textarea >
     </wicket:fragment>
     <wicket:fragment wicket:id="relationTableSearchFragment">
   <div class="input-group">

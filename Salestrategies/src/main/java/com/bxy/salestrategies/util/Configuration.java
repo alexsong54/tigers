@@ -62,6 +62,7 @@ public class Configuration {
                     fields.add(field);
                     field.setDataType(sub2.getString("data-type"));
                     field.setDisplay(sub2.getString("display"));
+                    field.setPattern(sub2.getString("pattern"));
                     field.setName(sub2.getString("name"));
                     field.setPriority(Integer.parseInt(sub2.getString("priority")));
                     entity.setGlobalsearch(Boolean.parseBoolean(sub.getString("globalsearch"))); 
@@ -115,7 +116,10 @@ public class Configuration {
                 if(parentNode !=null){
                     field.setParentNode(parentNode);
                 }
-                
+//                String pattern = sub2.getString("pattern");
+//                if(pattern !=null){
+//                    field.setPattern(pattern);
+//                }
                 String fieldtype = sub2.getString("field-type");
                 if(fieldtype !=null){
                     field.setFieldType(fieldtype);

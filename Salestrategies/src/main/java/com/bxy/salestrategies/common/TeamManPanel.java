@@ -111,13 +111,6 @@ public class TeamManPanel extends Panel {
         final String entityName = entity.getName();
         Form form = new Form("form");
         add(form);
-//        if(roleId != 1){
-//          WebMarkupContainer con = new WebMarkupContainer("remove_team_member_click");
-//            add(con);
-//            con.setVisible(false);
-//            //con.add(new AttributeAppender("style", new Model("display:none;"), ";"));
-//       
-//        }else{
         
            add(new SubmitLink("remove_team_member_click",form){
            @Override      
@@ -144,15 +137,15 @@ public class TeamManPanel extends Panel {
             	 String fromtable = teamtable;
             	  if(teamtable.equalsIgnoreCase("accountuserteam")){
             		  AccountUserTeam aut =  DAOImpl.getAccountsByAccountUserTeamId(Integer.parseInt(rid));
-            		  otherId = aut.getAccountId();
+            		  otherId = aut.getAccount_id();
             		  fromtable = teamtable;
             	  }else if(teamtable.equalsIgnoreCase("countactuserteam")){
             		  ContactUserTeam cut =  DAOImpl.getUserPositionById(Integer.parseInt(rid));
-            		  otherId = cut.getUserId();
+            		  otherId = cut.getContact_id();
             		  fromtable = "user";
             	  }
                 	  DAOImpl.removeEntityFromTeam(teamtable,rid);
-                	  DAOImpl.insertRealtionHestory(fromtable,user,positionId,otherId);
+//                	  DAOImpl.insertRealtionHestory(fromtable,user,otherId);
                  
              }catch(Exception e){
                  

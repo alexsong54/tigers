@@ -16,6 +16,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>false</isVisible>
 				<isEditable>false</isEditable>
+				<pattern> </pattern>
 				<isSearchable>false</isSearchable>
 				<field-type>String</field-type>
 				<isParam>true</isParam>
@@ -32,6 +33,7 @@
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
 				<field-type>String</field-type>
+				<pattern>color:red</pattern>
 				<priority>1</priority><isShow>true</isShow>
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
@@ -39,6 +41,7 @@
 			<field>
 				<name>legal_representative</name>
 				<display>法人</display>
+				<pattern></pattern>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -54,6 +57,7 @@
 			<field>
 				<name>type</name>
 				<display>客户类型</display>
+				<pattern></pattern>
 				<isRequired>false</isRequired>
 				<data-type>number</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -69,6 +73,7 @@
 			<field>
 				<name>industry</name>
 				<display>行业</display>
+				<pattern></pattern>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -83,6 +88,7 @@
 			</field>
 			<field>
 				<name>revenue</name>
+				<pattern></pattern>
 				<display>年收入</display>
 				<isRequired>false</isRequired>
 				<data-type>number</data-type>
@@ -97,6 +103,7 @@
 			</field>
 			<field>
 				<name>employee_number</name>
+				<pattern></pattern>
 				<display>员工数</display>
 				<isRequired>false</isRequired>
 				<data-type>number</data-type>
@@ -111,6 +118,7 @@
 			</field>
 			<field>
 				<name>status</name>
+				<pattern></pattern>
 				<display>状态</display>
 				<data-type>number</data-type>
 				<isRequired>false</isRequired>
@@ -126,9 +134,10 @@
 			</field>
 			<field>
 				<name>website</name>
+				<pattern></pattern>
 				<display>网址</display>
 				<isRequired>false</isRequired>
-				<data-type>text</data-type>
+				<data-type>url</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -141,9 +150,10 @@
 			</field>
 			<field>
 				<name>office_tel</name>
+				<pattern></pattern>
 				<display>电话</display>
 				<isRequired>false</isRequired>
-				<data-type>text</data-type>
+				<data-type>tel</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -156,6 +166,7 @@
 			</field>
 			<field>
 				<name>fax</name>
+				<pattern></pattern>
 				<display>传真</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
@@ -171,6 +182,7 @@
 			</field>
 			<field>
 				<name>date_of_establish</name>
+				<pattern></pattern>
 				<display>成立时间</display>
 				<isRequired>false</isRequired>
 				<data-type>Date</data-type>
@@ -186,6 +198,7 @@
 			</field>
 			<field>
 				<name>address</name>
+				<pattern></pattern>
 				<display>地址</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
@@ -201,6 +214,7 @@
 			</field>
 			<field>
 				<name>owner</name>
+				<pattern></pattern>
 				<display>负责人</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
@@ -235,6 +249,7 @@
 			</field>
 			<field>
 				<name>created_by</name>
+				<pattern></pattern>
 				<display>创建人</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
@@ -250,6 +265,7 @@
 			</field>
 			<field>
 				<name>create_date</name>
+				<pattern></pattern>
 				<display>创建时间</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
@@ -265,6 +281,7 @@
 			<field>
 				<name>modified_by</name>
 				<display>修改人</display>
+				<pattern></pattern>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -278,6 +295,7 @@
 			</field>
 			<field>
 				<name>modifier_date</name>
+				<pattern></pattern>
 				<display>修改时间</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
@@ -316,6 +334,7 @@
 		<field>
 			<name>name</name>
 			<display>姓名</display>
+			<pattern>color:red</pattern>
 			<isRequired>true</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
@@ -360,6 +379,7 @@
 		<field>
 			<name>account_id</name>
 			<display>客户名称</display>
+			<pattern></pattern>
 			<isRequired>false</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
@@ -376,7 +396,7 @@
 			<name>office_tel</name>
 			<display>电话</display>
 			<isRequired>false</isRequired>
-			<data-type>text</data-type>
+			<data-type>tel</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
 			<isVisible>true</isVisible>
@@ -519,6 +539,7 @@
 			<field>
 				<name>name</name>
 				<display>业务名称</display>
+				<pattern>color:red</pattern>
 				<isRequired>true</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -757,6 +778,7 @@
 			<field>
 				<name>name</name>
 				<display>名称</display>
+				<pattern>color:red</pattern>
 				<isRequired>true</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -772,7 +794,7 @@
 				<name>advantage</name>
 				<display>优点</display>
 				<isRequired>false</isRequired>
-				<data-type>text</data-type>
+				<data-type>bjgtextarea</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -787,7 +809,7 @@
 				<name>disadvantage</name>
 				<display>缺点</display>
 				<isRequired>false</isRequired>
-				<data-type>text</data-type>
+				<data-type>bjgtextarea</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<pattern>text</pattern>
@@ -914,6 +936,7 @@
 		<field>
 			<name>name</name>
 			<display>姓名</display>
+			<pattern>color:red</pattern>
 			<isRequired>true</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
@@ -928,6 +951,7 @@
 		<field>
 			<name>employee_number</name>
 			<display>雇员编码</display>
+			<pattern>color:red</pattern>
 			<isRequired>true</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
@@ -943,6 +967,7 @@
 		<field>
 			<name>login_name</name>
 			<display>登录名</display>
+			<pattern>color:red</pattern>
 			<isRequired>true</isRequired>
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
@@ -974,7 +999,7 @@
 			<name>office_tel</name>
 			<display>固定电话</display>
 			<isRequired>false</isRequired>
-			<data-type>text</data-type>
+			<data-type>tel</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
 			<isVisible>true</isVisible>
@@ -989,7 +1014,7 @@
 			<name>telephone</name>
 			<display>移动电话</display>
 			<isRequired>false</isRequired>
-			<data-type>text</data-type>
+			<data-type>tel</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
 			<isVisible>true</isVisible>
@@ -1195,6 +1220,7 @@
 			<field>
 				<name>name</name>
 				<display>活动名称</display>
+				<pattern>color:red</pattern>
 				<isRequired>true</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -1209,6 +1235,7 @@
 			<field>
 				<name>opportunity_id</name>
 				<display>商机名称</display>
+				<pattern>color:red</pattern>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -1224,6 +1251,7 @@
 			<field>
 				<name>account_id</name>
 				<display>客户名称</display>
+				<pattern>color:red</pattern>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -1239,6 +1267,7 @@
 			<field>
 				<name>countact_id</name>
 				<display>联系人名称</display>
+				<pattern>color:red</pattern>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>

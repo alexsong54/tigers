@@ -54,13 +54,23 @@ public class Field implements Serializable
   @Expose
   private String parentNode;
   @Expose
-  private String fieldType;
+  private String pattern;
   @Expose
   private int tooltip;
   @Expose
   private boolean isExistsDefaultValue;
+  @Expose
+  private String fieldType;
 
-  public boolean isRequired()
+  public String getPattern() {
+	return pattern;
+}
+
+public void setPattern(String pattern) {
+	this.pattern = pattern;
+}
+
+public boolean isRequired()
   {
     return isRequired;
   }

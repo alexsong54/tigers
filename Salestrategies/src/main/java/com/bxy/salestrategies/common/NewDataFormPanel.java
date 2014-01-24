@@ -57,11 +57,7 @@ import com.google.common.io.Files;
 public class NewDataFormPanel extends Panel
 {
 
-    private static final Logger logger = Logger
-      .getLogger(NewDataFormPanel.class);
-    private Properties server = new Properties();
-    private String email = "";
-    private int port = 25;
+    private static final Logger logger = Logger.getLogger(NewDataFormPanel.class);
     private static String NewRecordId = "-1";
     private Map<String, List<Field>> addFieldGroupMap = Maps.newHashMap();
     private static int NUM_OF_COLUMN = 1;
@@ -69,7 +65,6 @@ public class NewDataFormPanel extends Panel
     private Map<String, DropDownChoiceFragment> childDropDownComponent = Maps.newHashMap();
     private List<FileUploadField> fileFields = Lists.newArrayList();
     private static Map<String,Object> paramsForProduct;
-    private static FileUploadField fileUploadField= new FileUploadField("fileUplode");
     public NewDataFormPanel(String id, final Entity entity, final Map<String, Object> params)
     {
         super(id);
@@ -87,7 +82,6 @@ public class NewDataFormPanel extends Panel
         final Map<String, IModel> models = Maps.newHashMap();
         final String userName = ((SignInSession) getSession()).getUser();
         final String userId = ((SignInSession) getSession()).getUserId();
-//        final String userId = ((SignIn2Session) getSession()).getUserId();
         List<Field> fields = entity.getFields();
         for (Field f : fields)
         {
@@ -110,10 +104,8 @@ public class NewDataFormPanel extends Panel
         group.add(promptButton);
         final Label promptLabel = new Label("prompt", "提示:用户登录名已存在！");
         group.add(promptLabel);
-        final Label promptLabelForAccount = new Label("promptForAccount", "提示:医院BDM编码已存在！");
+        final Label promptLabelForAccount = new Label("promptForAccount", "提示:客户名称已存在！");
         group.add(promptLabelForAccount);
-        final Label promptForCrmuser = new Label("promptForCrmuser", "提示:岗位编码已存在！");
-        group.add(promptForCrmuser);
         final Label promptFordate = new Label("promptFordate", "提示:时间格式不正确！");
         group.add(promptFordate);
         div.add(new AttributeAppender("style", new Model("display:none"), ";"));
@@ -124,7 +116,6 @@ public class NewDataFormPanel extends Panel
         RepeatingView fieldGroupRepeater = new RepeatingView("fieldGroupRepeater");
         add(fieldGroupRepeater);
         paramsForProduct=params;
-        //System.out.println("paramsForProduct:"+paramsForProduct);
         for (String gn : groupNames)
         {
             List<Field> groupfields = addFieldGroupMap.get(gn);
@@ -177,23 +168,15 @@ public class NewDataFormPanel extends Panel
                         {
                             TextFragment textField = new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":");
                             textField.add(new AttributeAppender("style", new Model("font-weight:bold;"), ";"));
-                            if (currentField.getPriority() == 5)
-                            {
-                                String message = CRMUtility.getToolTipById(String.valueOf(currentField.getTooltip()));
-                                textField.add(new AttributeModifier("data-content", message));
-                                textField.add(new AttributeAppender("class", new Model<String>("icon-question-sign"), " "));
-                                textField.add(new AttributeModifier("title", currentField.getDisplay()));
-                                textField.add(new AttributeAppender("class", new Model<String>("tooltip-test"), " "));
-                            }
                             columnitem.add(textField);
-                            if (currentField.isRequired())
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model("color:red"), ";"));
-                            }
-                            else
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-                            }
+//                            if (currentField.isRequired())
+//                            {
+                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
+//                            }
+//                            else
+//                            {
+//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
+//                            }
                         }
                         else
                         {
@@ -232,7 +215,6 @@ public class NewDataFormPanel extends Panel
                             {
                                 default_key = Long.parseLong(currentField.getDefault_value());
                             }
-                            logger.debug("default_key:" + default_key + " name:" + currentField.getName());
 
                             if (currentField.getParentNode() != null || currentField.getChildNode() != null)
                             {
@@ -307,14 +289,14 @@ public class NewDataFormPanel extends Panel
                         if (j % 2 == 0)
                         {
                             columnitem.add(new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold"), ";")));
-                            if (currentField.isRequired())
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model("color:red"), ";"));
-                            }
-                            else
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-                            }
+//                            if (currentField.isRequired())
+//                            {
+                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
+//                            }
+//                            else
+//                            {
+//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
+//                            }
                         }
                         else
                         {
@@ -339,14 +321,14 @@ public class NewDataFormPanel extends Panel
                         if (j % 2 == 0)
                         {
                             columnitem.add(new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold"), ";")));
-                            if (currentField.isRequired())
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model("color:red"), ";"));
-                            }
-                            else
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-                            }
+//                            if (currentField.isRequired())
+//                            {
+                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
+//                            }
+//                            else
+//                            {
+//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
+//                            }
                         }
                         else
                         {
@@ -386,14 +368,14 @@ public class NewDataFormPanel extends Panel
                         if (j % 2 == 0)
                         {
                             columnitem.add(new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold;"), ";")));
-                            if (currentField.isRequired())
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model("color:red"), ";"));
-                            }
-                            else
-                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-                            }
+//                            if (currentField.isRequired())
+//                            {
+                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
+//                            }
+//                            else
+//                            {
+//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
+//                            }
                         }
                         else
                         {
@@ -425,11 +407,6 @@ public class NewDataFormPanel extends Panel
                             else if (currentField.getDataType().equalsIgnoreCase("bjgtextarea"))
                             {
                                 columnitem.add(new BigtextareaFrag("celldatafield", "bjgtextAreaFragment", this, defaultModel, currentField));
-                            }
-                            else if (currentField.getDataType().equalsIgnoreCase("file"))
-                            {
-                                models.put(currentField.getName(), defaultModel);
-                                columnitem.add(new FileUploadFragment("celldatafield", "fileUplodeFragment", this, defaultModel));
                             }
                             else if (currentField.getDataType().equals("datetime-local"))
                             {
@@ -470,17 +447,14 @@ public class NewDataFormPanel extends Panel
                     if(entity.getName().equals("account")){
                     	  promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                           promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
-                          promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                           promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
                     }else if (entity.getName().equals("user")){
                     	 promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
                          promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                         promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                          promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
                     }else if(entity.getName().equals("activity")){
                     	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                        promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptFordate.add(new AttributeAppender("style", new Model("display:block"), ";"));
                     }
                     promptButton.add(new AttributeAppender("style", new Model("display:block"), ";"));
@@ -504,24 +478,16 @@ public class NewDataFormPanel extends Panel
                     div.add(new AttributeAppender("style", new Model("display:block"), ";"));
                     group.add(new AttributeAppender("style", new Model("display:block"), ";"));
                     if(entity.getName().equals("account")){
-                  	  promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
+                  	    promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
-                        promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                  }else if (entity.getName().equals("userinfo")){
-                  	 promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
+                  }else if (entity.getName().equals("user")){
+                  	   promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
                        promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                       promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                        promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                  }else if(entity.getName().equals("crmuser")){
-                  	 promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                       promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                  	 promptForCrmuser.add(new AttributeAppender("style", new Model("display:block"), ";"));
-                  	 promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                  }else if(entity.getName().equals("activity")||entity.getName().equals("coaching")||entity.getName().equalsIgnoreCase("willcoaching")){
+                  }else if(entity.getName().equals("activity")){
                   	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                       promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
-                      promptForCrmuser.add(new AttributeAppender("style", new Model("display:none"), ";"));
                       promptFordate.add(new AttributeAppender("style", new Model("display:block"), ";"));
                   }
                     promptButton.add(new AttributeAppender("style", new Model("display:block"), ";"));
@@ -816,18 +782,6 @@ public class NewDataFormPanel extends Panel
         }
     }
 
-    private class FileUploadFragment extends Fragment
-    {
-
-        public FileUploadFragment(String id, String markupId, MarkupContainer markupProvider, IModel model)
-        {
-            super(id, markupId, markupProvider);
-            // TODO Auto-generated constructor stub 
-            fileUploadField = new FileUploadField("fileUplode", model);
-            add(fileUploadField);
-            fileFields.add(fileUploadField);
-        }
-    }
 
     private class TextInputFragment extends Fragment
     {

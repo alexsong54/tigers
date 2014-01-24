@@ -307,8 +307,7 @@ public class EditDataFormPanel extends Panel {
                 		}
                     } else {
                         if (j % 2 == 0) {
-                            columnitem
-                                    .add(new TextFragment("editdata", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold;"), ";")));
+                            columnitem.add(new TextFragment("editdata", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold;"), ";")));
                             if (currentField.isRequired()) {
                                 columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model("color:red"), ";"));
                             } else {
@@ -460,25 +459,6 @@ public class EditDataFormPanel extends Panel {
 		logger.debug("the form was submitted!");
 		logger.debug(fieldNameToModel);
 		String fileName = "";
-        if(schema.getName().equals("alertattachment")){
-        	FileUpload fileupload = fileUploadField.getFileUpload();
-        	String outputfolder = CRMUtility.readFileAttribure("fileUpdatePath");
-            java.io.File tmpDir = null;
-            tmpDir = Files.createTempDir();
-            if (fileupload != null)
-            {
-                  String tmpFileName = outputfolder+ fileupload.getClientFileName();
-                  fileName = fileupload.getClientFileName();
-                  try {
-					fileupload.writeTo(new File(tmpFileName));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }else{
-            	fileName = alertFileName;
-            }
-        }
 
 		List<String> values = Lists.newArrayList();
 		List<String> names = Lists.newArrayList();
@@ -515,19 +495,16 @@ public class EditDataFormPanel extends Panel {
 
                     } else {
                     	value = "'" + (String)obj + "'";
-                    	System.out.println(value);
                     }
 
                 } else if (obj instanceof Choice) {
                     value = String.valueOf(((Choice) obj).getId());
-                    System.out.println(value);
                 } else {
                 	if(field.getDataType().equals("file")){
                     	value = "'"+fileName+"'";
                     }else{
                     	value = String.valueOf(obj) ;
                     }
-                	System.out.println(value);
                 }
             }else{  
             	if(field.getPicklist()!=null||field.getDataType().equalsIgnoreCase("number")){
@@ -535,7 +512,6 @@ public class EditDataFormPanel extends Panel {
             	}else{
             		value = "'"+fileName+"'";
             	}
-            	System.out.println(value);
             }
 			values.add(value);
 	}
