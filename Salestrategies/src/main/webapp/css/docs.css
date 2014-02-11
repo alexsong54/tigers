@@ -474,7 +474,7 @@ body {
   }
   .bs-sidebar.affix {
     position: fixed; /* Undo the static from mobile first approach */
-    top: 100px;
+    top: 110px;
   }
   .bs-sidebar.affix-bottom {
     position: absolute; /* Undo the static from mobile first approach */
@@ -489,7 +489,7 @@ body {
   /* Widen the fixed sidebar again */
   .bs-sidebar.affix-bottom,
   .bs-sidebar.affix {
-    width: 309px;
+    width: 361px;
   }
 }
 
