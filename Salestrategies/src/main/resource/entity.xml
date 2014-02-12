@@ -368,7 +368,6 @@
 			<data-type>text</data-type>
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
-			<pattern>text</pattern>
 			<isVisible>true</isVisible>
 			<isEditable>true</isEditable>
 			<picklist>job_title_pl</picklist>
