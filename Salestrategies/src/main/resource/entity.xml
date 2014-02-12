@@ -315,7 +315,7 @@
 	<globalsearch>true</globalsearch>
 	<sql>SELECT * FROM contact</sql>
 	<sql-ent>SELECT * FROM contact where id =?</sql-ent>
-	<filterField>name</filterField>
+	<filterField>job_title</filterField>
 	<fields>
 		<field>
 			<name>id</name>
@@ -342,7 +342,8 @@
 			<isVisible>true</isVisible>
 			<isEditable>true</isEditable>
 			<field-type>String</field-type>
-			<priority>1</priority><isShow>true</isShow>
+			<priority>1</priority>
+			<isShow>true</isShow>
 			<isParam>true</isParam>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
@@ -358,7 +359,6 @@
 			<field-type>String</field-type>
 			<priority>1</priority>
 			<isShow>true</isShow>
-			<isParam>true</isParam>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
 		<field>
@@ -520,7 +520,7 @@
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM opportunity</sql>
 		<sql-ent>SELECT * FROM opportunity where id = ?</sql-ent>
-		<filterField>name</filterField>
+		<filterField>stage_name</filterField>
 		<fields>
 			<field>
 				<name>id</name>
@@ -594,6 +594,21 @@
 				<priority>1</priority>
 				<isShow>true</isShow>
 				<isParam>true</isParam>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>stage_name</name>
+				<display>项目阶段</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<pattern>text</pattern>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<picklist>opportunity_stage_pl</picklist>
+				<field-type>String</field-type>
+				<priority>1</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -759,7 +774,6 @@
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM competitor</sql>
 		<sql-ent>SELECT * FROM competitor where id =?</sql-ent>
-		<filterField>name</filterField>
 		<fields>
 			<field>
 				<name>id</name>
@@ -917,7 +931,7 @@
 	<globalsearch>true</globalsearch>
 	<sql>SELECT * FROM user</sql>
 	<sql-ent>SELECT * FROM user where id = ?</sql-ent>
-	<filterField>name</filterField>
+	<filterField>job_title</filterField>
 	<fields>
 		<field>
 			<name>id</name>
@@ -1201,7 +1215,6 @@
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM activity </sql>
 		<sql-ent>SELECT * FROM activity where id = ?</sql-ent>
-		<filterField>name</filterField>
 		<fields>
 			<field>
 				<name>id</name>

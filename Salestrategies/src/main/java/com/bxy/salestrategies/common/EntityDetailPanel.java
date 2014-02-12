@@ -165,7 +165,6 @@ public class EntityDetailPanel extends Panel {
                             rawvalue = (rawvalue == null) ? "" : rawvalue;
                             String value = CRMUtility.formatValue(currentField.getFormatter(), String.valueOf(rawvalue));
                             value = (value == null) ? "" : value;
-                            
                             if (currentField.getDataType().equalsIgnoreCase("bjgtextarea")){
                             	Label label = new Label("celldata", value);
                             	label.setEscapeModelStrings(false);

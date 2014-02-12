@@ -47,7 +47,8 @@ public final class WicketApplication extends WebApplication {
        // add your configuration here
         getSharedResources().add("image", new FolderResource(new File(getServletContext().getRealPath("image"))));
         mountResource("/image", new SharedResourceReference("image"));
-
+        mountPage("/mount/AccountPage",AccountPage.class);
+        
         // Register the authorization strategy
         getSecuritySettings().setAuthorizationStrategy(new IAuthorizationStrategy()
         {

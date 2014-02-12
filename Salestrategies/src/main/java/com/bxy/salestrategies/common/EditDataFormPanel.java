@@ -82,7 +82,7 @@ public class EditDataFormPanel extends Panel {
 	 */ 
 	public EditDataFormPanel(String id, final Entity schema,  final Map data,final String entityId ,final Class previousPageClass,final PageParameters prePageParams) {
 		super(id);
-      	   add(new Label("name",String.valueOf(data.get("name"))));
+      	add(new Label("name",String.valueOf(data.get("name"))));
 		//final Map<String, IModel> models = Maps.newHashMap();
 		final Map<String, IModel> fieldNameToModel = Maps.newLinkedHashMap();
 		final Map<String, IModel> modifyNameToModel = Maps.newLinkedHashMap();
@@ -248,11 +248,11 @@ public class EditDataFormPanel extends Panel {
                                 if(data.get(currentField.getName())!=null){
                                    value = data.get(currentField.getName()).toString();
                                 }
+                                System.out.println("value");
                                 IModel choiceModel = new Model(Long.parseLong(value));
-
                                 modifyNameToModel.put(currentField.getDisplay(), choiceModel);
                                 fieldNameToModel.put(currentField.getName(), choiceModel);
-                                	columnitem.add(new DropDownChoiceFragment("editdata", "dropDownFragment", this, ids, list, choiceModel,currentField));
+                                columnitem.add(new DropDownChoiceFragment("editdata", "dropDownFragment", this, ids, list, choiceModel,currentField));
                             }
                         }
                     } else if (currentField.getRelationTable() != null) {
@@ -315,7 +315,6 @@ public class EditDataFormPanel extends Panel {
                             }
                             fieldNames.add(currentField.getName());
                         } else {
-
                             Object rawvalue = data.get(currentField.getName());
                             rawvalue = (rawvalue == null) ? "" : rawvalue;
                             String value = CRMUtility.formatValue(currentField.getFormatter(), String.valueOf(rawvalue));
@@ -347,7 +346,7 @@ public class EditDataFormPanel extends Panel {
                                 columnitem.add(textInput);
                                 
                             }else {
-                                IModel<String> textModel = new Model<String>("");
+                                  IModel<String> textModel = new Model<String>("");
 //                                if(schema.getName().equals("contact")&&currentField.getName().equals("name")&&roleId!=1){
 //                                	IModel<String> textValue = new Model<String>(value);
 //                                	fieldNameToModel.put(currentField.getName(), textValue);
@@ -476,7 +475,6 @@ public class EditDataFormPanel extends Panel {
        	 	loginName = fieldNameToModel.get("login_name").getObject().toString();
         }
 		for (String k : fieldNameToModel.keySet()) {
-			
 			names.add(k);
 			Field field = schema.getFieldByName(k);
 			IModel currentModel = fieldNameToModel.get(k);
@@ -534,7 +532,7 @@ public class EditDataFormPanel extends Panel {
 		
         String table_name  = schema.getName();
 		if(!table_name.equalsIgnoreCase("user")){
-			System.out.println(names.toString()+values.toString());
+			System.out.println("names:"+names.toString()+values.toString());
                 if(DAOImpl.updateRecord(entityId,table_name,names,values)){
 					recordValueChanges(data, schema, entityId, userId, values, names,table_name);
 					return true;
