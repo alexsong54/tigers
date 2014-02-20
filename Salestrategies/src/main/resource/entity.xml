@@ -182,7 +182,7 @@
 			</field>
 			<field>
 				<name>date_of_establish</name>
-				<pattern></pattern>
+				<pattern>color:red</pattern>
 				<display>成立时间</display>
 				<isRequired>false</isRequired>
 				<data-type>Date</data-type>
@@ -1212,7 +1212,7 @@
 	<name>activity</name>
 		<display>活动</display>
 		<globalsearch>true</globalsearch>
-		<sql>SELECT * FROM activity </sql>
+		<sql>SELECT * from activity  </sql>
 		<sql-ent>SELECT * FROM activity where id = ?</sql-ent>
 		<fields>
 			<field>
@@ -1272,12 +1272,13 @@
 				<isEditable>true</isEditable>
 				<field-type>String</field-type>
 				<relationTable>account</relationTable>
-				<priority>1</priority><isShow>true</isShow>
+				<priority>1</priority>
+				<isShow>true</isShow>
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>countact_id</name>
+				<name>contact_id</name>
 				<display>联系人名称</display>
 				<pattern>color:red</pattern>
 				<isRequired>false</isRequired>

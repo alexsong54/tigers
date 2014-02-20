@@ -106,6 +106,8 @@ public class NewDataFormPanel extends Panel
         group.add(promptLabel);
         final Label promptLabelForAccount = new Label("promptForAccount", "提示:客户名称已存在！");
         group.add(promptLabelForAccount);
+        final Label promptLabelForDateOfEstablish = new Label("promptForDateOfEstablish", "提示:请填入公司成立时间！");
+        group.add(promptLabelForDateOfEstablish);
         final Label promptFordate = new Label("promptFordate", "提示:时间格式不正确！");
         group.add(promptFordate);
         div.add(new AttributeAppender("style", new Model("display:none"), ";"));
@@ -447,14 +449,17 @@ public class NewDataFormPanel extends Panel
                     if(entity.getName().equals("account")){
                     	  promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                           promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
+                          promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:block"), ";"));
                           promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
                     }else if (entity.getName().equals("user")){
                     	 promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
                          promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+                         promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
                          promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
                     }else if(entity.getName().equals("activity")){
                     	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+                        promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptFordate.add(new AttributeAppender("style", new Model("display:block"), ";"));
                     }
                     promptButton.add(new AttributeAppender("style", new Model("display:block"), ";"));
@@ -480,14 +485,17 @@ public class NewDataFormPanel extends Panel
                     if(entity.getName().equals("account")){
                   	    promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                         promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
+                        promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:block"), ";"));
                         promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
                   }else if (entity.getName().equals("user")){
                   	   promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
                        promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+                       promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
                        promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
                   }else if(entity.getName().equals("activity")){
                   	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                       promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+                      promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
                       promptFordate.add(new AttributeAppender("style", new Model("display:block"), ";"));
                   }
                     promptButton.add(new AttributeAppender("style", new Model("display:block"), ";"));

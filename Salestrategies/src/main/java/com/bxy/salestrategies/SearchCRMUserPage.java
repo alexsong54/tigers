@@ -83,9 +83,19 @@ public class SearchCRMUserPage extends WebPage {
             protected void onSubmit() {
                 logger.debug("the form was submitted!");
                 List<Map> maplist = null;
-
-                if (entityname.equals("account") || entityname.equals("contact")) {
+                if (entityname.equals("account") ) {
                     maplist = DAOImpl.searchUser(search_target);
+                }else if(entityname.equals("contact")){
+                	 if(type==0){
+                		 maplist = DAOImpl.searchUser(search_target);
+                	 }else if(type==1){
+                		 maplist = DAOImpl.searchOpportunity(search_target,entityId);}
+                }else if(entityname.equals("opportunity") ){
+                    if (type == 0) {
+                        maplist = DAOImpl.searchCRMAccount(search_target);
+                    }else if (type == 1) {
+                      maplist = DAOImpl.searchCRMContact(search_target);
+                    }
                 }else {
                     if (type == 0||type==4) {
                         maplist = DAOImpl.searchCRMAccount(search_target);
@@ -117,9 +127,9 @@ public class SearchCRMUserPage extends WebPage {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form)
             {
                 logger.debug("seletedUserIds:" + selectedUserIds);
-              for (String positionId : selectedUserIds) {
+              for (String userId : selectedUserIds) {
                   try {
-                      DAOImpl.insertRelationOfEntityIDCRMUserID(entityname, entityId,positionId ,type);
+                      DAOImpl.insertRelationOfEntityIDCRMUserID(entityname, entityId,userId ,type);
 
                   } catch (Exception e) {
                   

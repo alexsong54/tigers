@@ -3,6 +3,7 @@ package com.bxy.salestrategies;
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
@@ -13,6 +14,7 @@ import org.apache.wicket.request.component.IRequestableComponent;
 import org.apache.wicket.request.resource.SharedResourceReference;
 import org.apache.wicket.util.file.File;
 
+import com.bxy.salestrategies.common.EntityDetailPage;
 import com.bxy.salestrategies.util.Utility;
 
 public final class WicketApplication extends WebApplication {
@@ -22,7 +24,12 @@ public final class WicketApplication extends WebApplication {
     {
     }
 
-
+	@Override
+    public RuntimeConfigurationType getConfigurationType() {
+        // TODO Auto-generated method stub
+        return RuntimeConfigurationType.DEVELOPMENT;
+    } 
+	
 	@Override
     public Class<? extends Page> getHomePage()
     {
@@ -48,7 +55,8 @@ public final class WicketApplication extends WebApplication {
         getSharedResources().add("image", new FolderResource(new File(getServletContext().getRealPath("image"))));
         mountResource("/image", new SharedResourceReference("image"));
         mountPage("/mount/AccountPage",AccountPage.class);
-        
+        mountPage("/mount/EntityDetailPage",EntityDetailPage.class);
+        mountPage("/mount/searchCRMUser", SearchCRMUserPage.class);
         // Register the authorization strategy
         getSecuritySettings().setAuthorizationStrategy(new IAuthorizationStrategy()
         {

@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/DnaPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/Login.html=UTF-8
+encoding//src/main/java/com/bxy/salestrategies/SearchCRMUserPage.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/CRUDPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/EditDataFormPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/EntityDetailPanel.html=UTF-8

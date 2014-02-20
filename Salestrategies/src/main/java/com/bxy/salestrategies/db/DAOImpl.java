@@ -768,7 +768,7 @@ public class DAOImpl {
 	         if(search_target == null|| search_target.equalsIgnoreCase("*")){
 	           search_target = "";
 	       }
-	           String sql = "select * from (select * from account where (account.id > 0 ) AND  (name like '%"+search_target+"%' OR tel like '%"+search_target+"%' OR fax like '%"+search_target+"%')) as a";
+	           String sql = "select * from (select * from account where (account.id > 0 ) AND  (name like '%"+search_target+"%' OR office_tel like '%"+search_target+"%' OR fax like '%"+search_target+"%')) as a";
 	           logger.debug(sql );
 	           Connection conn = null;
 	           List lMap = Lists.newArrayList();
@@ -785,14 +785,36 @@ public class DAOImpl {
 
 	           return lMap;
 	       }
+	     //查询商机
+	     public static List searchOpportunity(String search_target,String contactId) {
+	         if(search_target == null|| search_target.equalsIgnoreCase("*")){
+	           search_target = "";
+	       }
+	           String sql = "select * from (select opportunity.* from opportunity left join opportunitycontactteam on opportunity.id = opportunitycontactteam.opportunity_id  left join contact on opportunitycontactteam.contact_id = contact.id where (contact.id != "+contactId+" ) AND  (opportunity.name like '%"+search_target+"%' )) as a";
+	           logger.debug(sql );
+	           Connection conn = null;
+	           List lMap = Lists.newArrayList();
+	           try {
+	               conn = DBConnector.getConnection();
+	               QueryRunner run = new QueryRunner();
+	               lMap = (List) run.query(conn, sql, new MapListHandler());
+	           } catch (SQLException e) {
+	               logger.error("failed to get user", e);
+	           } finally {
+	               DBHelper.closeConnection(conn);
+	           }
+
+	           return lMap;
+	       }
 	       //查询联系人
 	       public static List searchCRMContact(String search_target) {
 	         if(search_target == null|| search_target.equalsIgnoreCase("*")){
 	           search_target = "";
 	       }
-	         String sql = "select * from (select * from contact where (contact.id > 0) AND (name like '%"+search_target+"%' OR office_tel like '%"+search_target+"%' OR cellphone like '%"+search_target+"%')) as a";
+	         String sql = "select * from (select * from contact where (contact.id > 0) AND (name like '%"+search_target+"%' OR office_tel like '%"+search_target+"%' OR telephone like '%"+search_target+"%')) as a";
 	         logger.debug(sql );
 	         Connection conn = null;
+	         System.out.println(sql);
 	         List lMap = Lists.newArrayList();
 	         try {
 	             conn = DBConnector.getConnection();
@@ -811,22 +833,28 @@ public class DAOImpl {
 	       public static void insertRelationOfEntityIDCRMUserID(String entityName, String cId, String userId ,int type) throws Exception {
 	           int contactId = Integer.parseInt(cId);
 	           int uid = Integer.parseInt(userId);
+	           
 	           if (contactId != 0 && uid != 0) {
 	               String sql = "";
 	               long ts= System.currentTimeMillis();
 	               SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	               String date_value = dateformat.format(ts);
 	               if(entityName.equalsIgnoreCase("contact")){
-	                   sql = "INSERT INTO contactcrmuserteam (user_id,contact_id) VALUES (?,?)";
+	            	   if(type == 0){
+	            		   sql = "INSERT INTO contactuserteam (user_id,contact_id) VALUES (?,?)";
+	            	   }else if(type == 1){
+	            		   sql = "INSERT INTO opportunitycontactteam (opportunity_id,contact_id) VALUES (?,?)";
+	            	   }
+	                   
 	               }else if(entityName.equalsIgnoreCase("account")){
-	                   sql = "INSERT INTO accountcrmuserteam (user_id,account_id) VALUES (?,?)";
+	                   sql = "INSERT INTO accountuserteam (user_id,account_id) VALUES (?,?)";
 	               }else if(entityName.equalsIgnoreCase("user")){
 	                   sql = "INSERT INTO user_position (user_id,whenadded,isPrimary) VALUES (?,?,?)";
 	               }else if(entityName.equalsIgnoreCase("user")){
 	                   if(type == 0||type==4){
-	                       sql = "INSERT INTO accountcrmuser (accountId,userId) VALUES (?,?)";
+	                       sql = "INSERT INTO accountuserteam (userId,accountId) VALUES (?,?)";
 	                   }else if(type == 1){
-	                       sql = "INSERT INTO contactcrmuser (contactId,userId) VALUES (?,?)";
+	                       sql = "INSERT INTO contactuserteam (userId,contactId) VALUES (?,?)";
 	                   }else if(type == 2){
 	                       sql = "INSERT INTO user_position (userId,whenadded,isPrimary) VALUES (?,?,?)";
 	                   }else{

@@ -98,6 +98,8 @@ public class EditDataFormPanel extends Panel {
         group.add(promptButton);
         final Label promptLabel = new Label("prompt","提示:用户登录名已存在！");
         group.add(promptLabel);
+        final Label promptLabelForDateOfEstablish = new Label("promptForDateOfEstablish", "提示:请填入公司成立时间！");
+        group.add(promptLabelForDateOfEstablish);
         final Label promptLabelForAccount = new Label("promptForAccount", "提示:客户名称已存在！");
         group.add(promptLabelForAccount);
         final Label promptFordate = new Label("promptFordate", "提示:时间格式不正确！");
@@ -376,14 +378,17 @@ public class EditDataFormPanel extends Panel {
 					 	if(schema.getName().equals("account")){
 		                  	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                        promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
+	                        promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:block"), ";"));
 	                        promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                    }else if (schema.getName().equals("userinfo")){
 	                    	promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
 	                    	promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+	                    	promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                    	promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                    }else if(schema.getName().equals("activity")){
 	                    	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                        promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+	                        promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                        promptFordate.add(new AttributeAppender("style", new Model("display:block"), ";"));
 	                    }
 						promptButton.add(new AttributeAppender("style",new Model("display:block"),";"));
@@ -412,14 +417,17 @@ public class EditDataFormPanel extends Panel {
 					 	if(schema.getName().equals("account")){
 		                  	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                        promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
+	                        promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:block"), ";"));
 	                        promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                    }else if (schema.getName().equals("userinfo")){
 	                    	promptLabel.add(new AttributeAppender("style", new Model("display:block"), ";"));
 	                    	promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+	                    	promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                    	promptFordate.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                    }else if(schema.getName().equals("activity")){
 	                    	promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                        promptLabelForAccount.add(new AttributeAppender("style", new Model("display:none"), ";"));
+	                        promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:none"), ";"));
 	                        promptFordate.add(new AttributeAppender("style", new Model("display:block"), ";"));
 	                    }
 						promptButton.add(new AttributeAppender("style",new Model("display:block"),";"));
