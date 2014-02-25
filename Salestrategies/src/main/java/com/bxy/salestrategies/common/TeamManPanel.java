@@ -116,9 +116,6 @@ public class TeamManPanel extends Panel {
                  }else if(type==1){
                   entity = Configuration.getEntityByName("opportunity");
                   add(new Label("title","商机"));}
-        }else if(en.equalsIgnoreCase("user")){
-        	 entity = Configuration.getEntityByName("user_position");
-             add(new Label("title"," 用户岗位关系"));
         }else if(en.equalsIgnoreCase("opportunity")){
         	if(type == 0){
         		entity = Configuration.getEntityByName("user");

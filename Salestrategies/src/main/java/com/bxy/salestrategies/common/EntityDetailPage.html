@@ -33,6 +33,29 @@
             </script>
             <div class="container">
                 <div class="row">
+                <div class="col-md-3">
+                        <div class="bs-sidebar hidden-print" role="complementary">
+                            <ul class="nav bs-sidenav">
+
+                                <li>
+                                    <a href="#entityname" wicket:id = entityName>entityname</a>
+                                </li>
+                                <li>
+                                    <a href="#teamPanel" wicket:id = mao1>teampanel</a>
+                                </li>
+                                <li>
+                                    <a href="#relation2" wicket:id = mao2>team</a>
+                                </li><li>
+                                    <a href="#relation3" wicket:id = mao3 >panle</a>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                    
              		<div wicket:id="promptDiv" class="alert  alert-warning" >
 	 					<span wicket:id="promptButton" class="close" data-dismiss="alert"></span>
 						<span wicket:id="prompt" ><strong></strong></span>
@@ -40,7 +63,7 @@
                     <!-- right container -->
                     <div class="">
                         <div class="title" >
-                            <span wicket:id="name">我的</span>
+                            <span wicket:id="name" id = entityname>我的</span>
                             <div class="pull-right full">
                                 <div wicket:id="operationBar">[operation bar]</div>
                             </div>
@@ -72,7 +95,7 @@
                          <span wicket:id="dnaPanel">data table</span>
                      </div>
                     <!-- end of right container -->
-
+					</div>
                 </div>
             </div>
         </wicket:extend>

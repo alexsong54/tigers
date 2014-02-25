@@ -60,6 +60,10 @@ public class EntityDetailPage extends Index {
 	        div.add(groupitem);
 	        add(div);
 	        add(new Label("name","null"));
+	        add(new Label("entityName","null"));
+	        add(new Label("mao1","null"));
+	        add(new Label("mao2","null"));
+	        add(new Label("mao3","null"));
 	        WebMarkupContainer operationBar = new WebMarkupContainer("operationBar");
 	    	add(operationBar);
 	        WebMarkupContainer detailed = new WebMarkupContainer("detailed");
@@ -100,33 +104,48 @@ public class EntityDetailPage extends Index {
         Map map = DAOImpl.queryEntityById(entity.getSql_ent(), String.valueOf(lid));
         System.out.println("dfadfafgafdgfd" +map);
         add(new Label("name",String.valueOf(map.get("name"))));
-        
+        add(new Label("entityName",String.valueOf(map.get("name"))));
         add(new EntityDetailPanel("detailed",entity,map,id,3,entityName));
         
 
          if(entityName.equalsIgnoreCase("account")){
-             add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+        	 add(new Label("mao1","用户"));
+             add(new Label("mao2","联系人"));
+             add(new Label("mao3",""));
+        	 add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
              add(new EmptyPanel("teamPanel3"));
-//             add(new EmptyPanel("teamPanel4"));
+             //             add(new EmptyPanel("teamPanel4"));
          }
          else if(entityName.equalsIgnoreCase("contact")){
-             add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+        	 add(new Label("mao1","用户"));
+             add(new Label("mao2","商机"));
+             add(new Label("mao3",""));
+        	 add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
              add(new EmptyPanel("teamPanel3"));
 //             add(new TeamManPanel("teamPanel4",entityName,String.valueOf(lid),3));
          }
          else if(entityName.equalsIgnoreCase("opportunity")){
+        	 add(new Label("mao1","团队"));
+             add(new Label("mao2","联系人"));
+             add(new Label("mao3","DNA"));
 	    	add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	        add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
            add(new EmptyPanel("teamPanel3"));
 //           add(new EmptyPanel("teamPanel4"));
        }else if(entityName.equalsIgnoreCase("user")){
+    	   add(new Label("mao1","客户"));
+           add(new Label("mao2","联系人"));
+           add(new Label("mao3","商机"));
 	    	add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	        add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
            add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
     	   
        }else{
+    	   add(new Label("mao1",""));
+           add(new Label("mao2",""));
+           add(new Label("mao3",""));
             add(new EmptyPanel("teamPanel"));
             add(new EmptyPanel("teamPanel2"));
             add(new EmptyPanel("teamPanel3"));
