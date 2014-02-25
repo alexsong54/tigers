@@ -414,15 +414,14 @@ public class DAOImpl {
 	    public static void doneRecord(String id,String entityName, String time ) {
 	    	String sql = "";
 	      
-	    	sql = "UPDATE  activity SET status= 2 ,act_endtime = '"+ time +"'  where id = " + id;
-	    	logger.debug("UPDATE sql is:"+sql);
+	    	sql = "UPDATE  activity SET status= 2 ,activity_end_time = '"+ time +"'  where id = " + id;
 	    	Connection conn = null;
 	    	try {
 	    		conn = DBConnector.getConnection();
 	    		QueryRunner run = new QueryRunner();
 	    		int inserts = 0;
 	    		inserts += run.update(conn, sql);
-	    		System.out.println("inserted:" + inserts);
+	    		
 	    	} catch (Exception e) {
 	           logger.error("failed to add new calendar event", e);
 	    	} finally {

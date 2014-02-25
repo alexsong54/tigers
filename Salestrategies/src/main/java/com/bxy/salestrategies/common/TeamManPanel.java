@@ -78,6 +78,13 @@ public class TeamManPanel extends Panel {
         		teamSql = "select * from (select opportunity.*,opportunity.id as rid from opportunity left join opportunitycontactteam on opportunitycontactteam.opportunity_id = opportunity.id left join contact on contact.id = opportunitycontactteam.contact_id  where contact.id = ?) as atable";
         	}
         }else if(en.equalsIgnoreCase("user")){
+        	if(type == 0){
+        		teamSql = "select * from (select account.*,account.id as rid  from account left join accountuserteam on account.id = accountuserteam.account_id left join user on accountuserteam.user_id = user.id where user.id = ? ) as atable";
+        	}else if(type == 1){
+        		teamSql = "select * from (select contact.* ,contact.id as rid from contact left join contactuserteam on contact.id = contactuserteam.contact_id left join user on contactuserteam.user_id = user.id where user.id = ?) as atable ";
+        	}else if(type == 2){
+        		teamSql = "select * from (select opportrunity.* ,opportunity.id as rid from opportunity left join opportrunityuserteam on opportunity.id = opportunityuserteam.opportunity_id left join user on opportunityuserteam.user_id = user.id where user.id = ?) as atable ";
+        	}
         }else if(en.equalsIgnoreCase("opportunity")){
         	if(type==0){
         		teamSql = "select * from (select user.*,user.id as rid from opportunityuserteam left join user on user.id = opportunityuserteam.user_id where opportunity_id = ?) as atable";
@@ -120,6 +127,17 @@ public class TeamManPanel extends Panel {
                   entity = Configuration.getEntityByName("contact");
                   add(new Label("title","联系人"));
               }
+        }else if(en.equalsIgnoreCase("user")){
+        	if(type == 0){
+        		entity = Configuration.getEntityByName("account");
+                add(new Label("title","客户"));
+              }else if(type == 1){
+                  entity = Configuration.getEntityByName("contact");
+                  add(new Label("title","联系人"));
+              }else if(type == 2){
+                  entity = Configuration.getEntityByName("opportunity");
+                  add(new Label("title","商机"));
+              }
         }
 //        else{
 //            if(type == 0){
@@ -153,9 +171,18 @@ public class TeamManPanel extends Panel {
            public void onSubmit(){
              String teamtable = "";
            if(currentEntityName.equalsIgnoreCase("account")){
-               teamtable = "accountuserteam";
+               if(type == 0){
+            	   teamtable = "accountuserteam";
+               }else if(type == 1){
+            	   teamtable = "contact";
+               }
            }else if(currentEntityName.equalsIgnoreCase("contact")){
-               teamtable = "contactuserteam";
+        	   if(type == 0){
+        		   teamtable = "contactuserteam";
+               }else if(type == 1){
+            	   teamtable = "opportunirycontactteam";
+               }
+        	   
            }else if(currentEntityName.equalsIgnoreCase("user")){
                if(type == 0){
                    teamtable = "accountuserteam";
@@ -196,8 +223,6 @@ public class TeamManPanel extends Panel {
         	   if(selectedRowIds.size()>0){
         		   setResponsePage(new EntityDetailPage(currentEntityName,etId));
         	   }
-           
-      
              }
            });
 //       }

@@ -1346,7 +1346,7 @@
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
 				<field-type>String</field-type>
-				<picklist>status_pl</picklist>
+				<picklist>activity_type</picklist>
 				<priority>1</priority><isShow>true</isShow>
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>

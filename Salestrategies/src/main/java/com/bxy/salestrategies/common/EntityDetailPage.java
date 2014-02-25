@@ -68,8 +68,8 @@ public class EntityDetailPage extends Index {
 	    	add(teamPanel);
 	    	WebMarkupContainer teamPanel2 = new WebMarkupContainer("teamPanel2");
 	    	add(teamPanel2);
-//	    	WebMarkupContainer teamPanel3 = new WebMarkupContainer("teamPanel3");
-//	    	add(teamPanel3);
+	    	WebMarkupContainer teamPanel3 = new WebMarkupContainer("teamPanel3");
+	    	add(teamPanel3);
 //	    	WebMarkupContainer teamPanel4 = new WebMarkupContainer("teamPanel4");
 //	    	add(teamPanel4);
   	  	}else{
@@ -107,25 +107,29 @@ public class EntityDetailPage extends Index {
          if(entityName.equalsIgnoreCase("account")){
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-//             add(new EmptyPanel("teamPanel3"));
+             add(new EmptyPanel("teamPanel3"));
 //             add(new EmptyPanel("teamPanel4"));
          }
          else if(entityName.equalsIgnoreCase("contact")){
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-//             add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
+             add(new EmptyPanel("teamPanel3"));
 //             add(new TeamManPanel("teamPanel4",entityName,String.valueOf(lid),3));
          }
-    else if(entityName.equalsIgnoreCase("opportunity")){
+         else if(entityName.equalsIgnoreCase("opportunity")){
 	    	add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	        add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-//           add(new EmptyPanel("teamPanel3"));
+           add(new EmptyPanel("teamPanel3"));
 //           add(new EmptyPanel("teamPanel4"));
-       }
-       else{
+       }else if(entityName.equalsIgnoreCase("user")){
+	    	add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+	        add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
+           add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
+    	   
+       }else{
             add(new EmptyPanel("teamPanel"));
             add(new EmptyPanel("teamPanel2"));
-//            add(new EmptyPanel("teamPanel3"));
+            add(new EmptyPanel("teamPanel3"));
 //            add(new EmptyPanel("teamPanel4"));
         }
 

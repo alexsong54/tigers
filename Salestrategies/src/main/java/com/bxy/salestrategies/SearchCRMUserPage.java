@@ -89,13 +89,22 @@ public class SearchCRMUserPage extends WebPage {
                 	 if(type==0){
                 		 maplist = DAOImpl.searchUser(search_target);
                 	 }else if(type==1){
-                		 maplist = DAOImpl.searchOpportunity(search_target,entityId);}
+                		 maplist = DAOImpl.searchOpportunity(search_target,entityId);
+                	 }
                 }else if(entityname.equals("opportunity") ){
                     if (type == 0) {
                         maplist = DAOImpl.searchCRMAccount(search_target);
                     }else if (type == 1) {
                       maplist = DAOImpl.searchCRMContact(search_target);
                     }
+                }else if(entityname.equals("user") ){
+                    if (type == 0) {
+                        maplist = DAOImpl.searchCRMAccount(search_target);
+                    }else if (type == 1) {
+                      maplist = DAOImpl.searchCRMContact(search_target);
+                    }else if(type==2){
+               		 maplist = DAOImpl.searchOpportunity(search_target,entityId);
+               	 }
                 }else {
                     if (type == 0||type==4) {
                         maplist = DAOImpl.searchCRMAccount(search_target);
