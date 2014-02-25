@@ -111,8 +111,8 @@ input[type="reset"].btn-white:active {
 	box-shadow: inset 0px 2px 3px rgba(0,0,0,0.3), 0px 1px 0 #fff;
 }
 
-.form-search { position: relative; }
-.form-search input[type="text"] { height: 18px; padding: 4px 24px 4px 4px; font-size: 12px; vertical-align: bottom; width: 128px; color: #999; font-style: italic; }
+.form-search { position: relative; } /* width:158px; */
+.form-search input[type="text"] { padding: 4px 24px 4px 4px; font-size: 12px; vertical-align: bottom; width: 128px; color: #999; font-style: italic; }
 .form-search input[type="text"]:focus { color: #333; }
 .form-search input[type="submit"] { position:absolute; right: 5px; top: 5px; padding: 8px; width: 18px; height: 18px; text-indent:-999px; overflow: hidden; background: #3396CE url(images/search-white.png) no-repeat center; }
 .form-search input[type="submit"]:hover { background-color: #007CC2; }
