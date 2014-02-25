@@ -365,6 +365,8 @@ ul.tab-horizontal li.active a { color: #999; }
      .nav li.screen { display: none; } 
      .post-social { float: none; }    
  }
+ 
+ 
  @media screen and (max-width: 480px)
  {
      .master-width { width: 98%; }
