@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,10 @@ import com.bxy.salestrategies.ActivityPage;
 import com.bxy.salestrategies.ContactPage;
 import com.bxy.salestrategies.DnaPanel;
 import com.bxy.salestrategies.Index;
+import com.bxy.salestrategies.OpportunityPage;
 import com.bxy.salestrategies.SignInSession;
+import com.bxy.salestrategies.TargetPanel;
+import com.bxy.salestrategies.TargetPanel;
 import com.bxy.salestrategies.UserPage;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Activity;
@@ -102,9 +106,14 @@ public class EntityDetailPage extends Index {
         add(div);
         long lid = Long.parseLong(id);
         Map map = DAOImpl.queryEntityById(entity.getSql_ent(), String.valueOf(lid));
-        System.out.println("dfadfafgafdgfd" +map);
-        add(new Label("name",String.valueOf(map.get("name"))));
+
         add(new Label("entityName",String.valueOf(map.get("name"))));
+        String fieldName =  String.valueOf(map.get("name"));
+        if("null".equals(fieldName)){
+        	add(new Label("name",""));
+        }else{
+        	add(new Label("name",fieldName));
+        }
         add(new EntityDetailPanel("detailed",entity,map,id,3,entityName));
         
 
@@ -176,13 +185,22 @@ public class EntityDetailPage extends Index {
                     DAOImpl.deleteRecord(id, entityName);
                     setResponsePage(new ContactPage());
                 }else if(entityName.equals("activity")) {
-                		DAOImpl.deleteRecord(id, entityName);
-                        setResponsePage(new ActivityPage());
+                	DAOImpl.deleteRecord(id, entityName);
+                    setResponsePage(new ActivityPage());
               }else if(entityName.equalsIgnoreCase("user")){
                     if(DAOImpl.deleteRecord(id, entityName)>0){
                        DAOImpl.updateCrmUserReport(id, "-1");
                     }
                     setResponsePage(new UserPage());
+              }else if(entityName.equals("opportunity")){
+            	  DAOImpl.deleteRecord(id, entityName);
+            	  setResponsePage(new OpportunityPage());
+              }else if(entityName.equals("target_acquisition")){
+            	  //根据id获取对象从而获取业务机会ID
+            	  String opportunityId = DAOImpl.queryEntityById("select * from target_acquisition where id = ?", id).get("opportunity_id").toString(); 
+            	  DAOImpl.deleteRecord(id, entityName);
+            	  //跳转界面
+            	  setResponsePage(new EntityDetailPage("opportunity",opportunityId));
               }
             }
 
@@ -259,8 +277,15 @@ public class EntityDetailPage extends Index {
          };
          if(entity.getName().equals("opportunity")){
   	  	     add(new DnaPanel("dnaPanel",id));
+  	  	     final Entity target_entity = entities.get("target_acquisition");
+  	  	     String sql = "select * from target_acquisition where opportunity_id ="+id;
+  	  	     List target_data = DAOImpl.queryEntityRelationList(sql);
+  	  	     Map<String,Object> params = new HashMap();
+  	  	     params.put("opportunityId",id);
+  	  	     add(new PageableTablePanel("targetPanel", target_entity, target_data, params));
          }else{
         	 add(new Label("dnaPanel",""));
+        	 add(new Label("targetPanel",""));
          }
 	  	   add(new CRUDPanel("operationBar",entity.getName(),id, CRMUtility.getPermissionForEntity(entity.getName()),actionListener));
     }

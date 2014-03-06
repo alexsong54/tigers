@@ -82,8 +82,13 @@ public class EditDataFormPanel extends Panel {
 	 */ 
 	public EditDataFormPanel(String id, final Entity schema,  final Map data,final String entityId ,final Class previousPageClass,final PageParameters prePageParams) {
 		super(id);
-      	add(new Label("name",String.valueOf(data.get("name"))));
-		//final Map<String, IModel> models = Maps.newHashMap();
+		String entityName = String.valueOf(data.get("name"));
+		if("null".equals(entityName)){
+			add(new Label("name",""));
+		}else{
+			add(new Label("name",entityName));
+		}
+      	//final Map<String, IModel> models = Maps.newHashMap();
 		final Map<String, IModel> fieldNameToModel = Maps.newLinkedHashMap();
 		final Map<String, IModel> modifyNameToModel = Maps.newLinkedHashMap();
 	    final String userName = ((SignInSession) getSession()).getUser();
@@ -118,12 +123,19 @@ public class EditDataFormPanel extends Panel {
 				fieldGroupMap.put(f.getFieldGroup(), fs);
 			}
 		}
-		List<String> groupNames = Configuration.getSortedFieldGroupNames();// 得到分组信息
+		List<String> groupNames = new ArrayList<String>();
+        if(schema.getName().equals("target_acquisition")){
+        	groupNames.add("关键信息");
+        	groupNames.add("Why – Will this decision be made?");
+        	groupNames.add("How- Will a decision be made?");
+        	groupNames.add("Who – Will really make the decision?");
+        }else{
+        	groupNames = Configuration.getSortedFieldGroupNames();//得到分组信息
+        }
 		RepeatingView fieldGroupRepeater = new RepeatingView("fieldGroupRepeater");
 		add(fieldGroupRepeater);
 		for (String gn : groupNames) {
 			logger.info("gn = "+gn+ "groupNames = "+groupNames);
-
 			List<Field> groupfields = fieldGroupMap.get(gn);
 			
 			if (groupfields == null ||  gn.equalsIgnoreCase("附加信息")) continue;
@@ -348,17 +360,10 @@ public class EditDataFormPanel extends Panel {
                                 columnitem.add(textInput);
                                 
                             }else {
-                                  IModel<String> textModel = new Model<String>("");
-//                                if(schema.getName().equals("contact")&&currentField.getName().equals("name")&&roleId!=1){
-//                                	IModel<String> textValue = new Model<String>(value);
-//                                	fieldNameToModel.put(currentField.getName(), textValue);
-//                                	TextFragment text = new TextFragment("editdata", "textFragment", this,value);
-//                                	text.add(new AttributeAppender("class",new Model("folatLeft")," "));
-//                                	columnitem.add(text);
-//                                }else{
-                                	fieldNameToModel.put(currentField.getName(), textModel);
-                                	TextInputFragment  textInput = new TextInputFragment("editdata", "textInputFragment", this, textModel, value, currentField);
-                                	columnitem.add(textInput);
+                                IModel<String> textModel = new Model<String>("");
+                            	fieldNameToModel.put(currentField.getName(), textModel);
+                            	TextInputFragment  textInput = new TextInputFragment("editdata", "textInputFragment", this, textModel, value, currentField);
+                            	columnitem.add(textInput);
 //                                }
                             }
                         }

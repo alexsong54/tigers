@@ -69,9 +69,16 @@
       container: "body"
     })
 
-    $('.tooltip-test').tooltip()
-    $('.popover-test').popover()
-
+    //$('.tooltip-test').tooltip()
+   // $('.popover-test').popover()
+    
+     $(".tooltip-test")
+      .popover({
+    	  html:true,
+    	  placement:'top',
+    	  trigger:'hover focus'
+      });
+    
     $('.bs-docs-navbar').tooltip({
       selector: "a[data-toggle=tooltip]",
       container: ".bs-docs-navbar .nav"

@@ -155,8 +155,8 @@ public class PageableTablePanel extends Panel{
 	        ICRUDActionListener actionListener = new DefaultCRUDActionListener(){
 	            @Override
 	            public void create() { 
-	            	if(entity.getName().equals("coaching")){
-//	            		setResponsePage(new ActivitySelectPage());     
+	            	if(entity.getName().equals("target_acquisition")){
+	            		setResponsePage(new CreateDataPage(entity.getName(),params));         
 	            	}else{
 	            		setResponsePage(new CreateDataPage(entity.getName(),params));     
 	            	}

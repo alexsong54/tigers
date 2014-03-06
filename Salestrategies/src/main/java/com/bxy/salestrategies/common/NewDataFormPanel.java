@@ -2,24 +2,19 @@ package com.bxy.salestrategies.common;
 
 
 import com.bxy.salestrategies.SignInSession;
-import com.bxy.salestrategies.PageFactory;
 import com.bxy.salestrategies.SelectEntryPage;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Choice;
-import com.bxy.salestrategies.model.User;
 import com.bxy.salestrategies.util.CRMUtility;
 import com.bxy.salestrategies.util.Configuration;
-import com.google.common.base.Joiner;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
@@ -36,7 +31,6 @@ import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.AbstractItem;
@@ -47,12 +41,10 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.file.File;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.io.Files;
 
 public class NewDataFormPanel extends Panel
 {
@@ -114,7 +106,15 @@ public class NewDataFormPanel extends Panel
         group.add(new AttributeAppender("style", new Model("display:none"), ";"));
         div.add(group);
         add(div);
-        List<String> groupNames = Configuration.getSortedFieldGroupNames();
+        List<String> groupNames = new ArrayList<String>();
+        if(entity.getName().equals("target_acquisition")){
+        	groupNames.add("关键信息");
+        	groupNames.add("Why – Will this decision be made?");
+        	groupNames.add("How- Will a decision be made?");
+        	groupNames.add("Who – Will really make the decision?");
+        }else{
+        	groupNames = Configuration.getSortedFieldGroupNames();//得到分组信息
+        }
         RepeatingView fieldGroupRepeater = new RepeatingView("fieldGroupRepeater");
         add(fieldGroupRepeater);
         paramsForProduct=params;
@@ -170,15 +170,17 @@ public class NewDataFormPanel extends Panel
                         {
                             TextFragment textField = new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":");
                             textField.add(new AttributeAppender("style", new Model("font-weight:bold;"), ";"));
+                            if (currentField.getFieldGroup().equals("Why – Will this decision be made?")||currentField.getFieldGroup().equals("How- Will a decision be made?")||currentField.getFieldGroup().equals("Who – Will really make the decision?"))
+                            {
+                                String message = CRMUtility.getToolTipById(String.valueOf(currentField.getTooltip()));
+                                textField.add(new AttributeModifier("data-content", message));
+                                textField.add(new AttributeAppender("class", new Model<String>("icon-question-sign"), " "));
+                                textField.add(new AttributeModifier("title", currentField.getDisplay()));
+                                textField.add(new AttributeAppender("class", new Model<String>("tooltip-test"), " "));
+                            }
                             columnitem.add(textField);
-//                            if (currentField.isRequired())
-//                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
-//                            }
-//                            else
-//                            {
-//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-//                            }
+                            columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
+                            
                         }
                         else
                         {
@@ -370,18 +372,10 @@ public class NewDataFormPanel extends Panel
                         if (j % 2 == 0)
                         {
                             columnitem.add(new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold;"), ";")));
-//                            if (currentField.isRequired())
-//                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
-//                            }
-//                            else
-//                            {
-//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-//                            }
+                            columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
                         }
                         else
                         {
-                            //set default value
                             String defaultValue = "";
 
                             if (currentField.getDefault_value_type() != null && currentField.getDefault_value_type().equalsIgnoreCase("var"))
@@ -399,7 +393,6 @@ public class NewDataFormPanel extends Panel
 
                                 defaultValue = currentField.getDefault_value();
                             }
-                            //set the default Model
                             IModel<String> defaultModel = new Model<String>(defaultValue);
                             if (currentField.getDataType().equalsIgnoreCase("textarea"))
                             {
@@ -433,7 +426,6 @@ public class NewDataFormPanel extends Panel
                 }
             }
         }
-
         Form form = new Form("form");
         form.add(new Button("save")
         {
@@ -441,7 +433,8 @@ public class NewDataFormPanel extends Panel
             public void onSubmit()
             {
                 logger.debug(models);
-                Long entityId = saveEntity(models, entity, userId, userName);
+                String opportunityId = params.get("opportunityId").toString();
+                Long entityId = saveEntity(models, entity, userId, userName,opportunityId);
                 if (entityId<0)
                 {
                     div.add(new AttributeAppender("style", new Model("display:block"), ";"));
@@ -467,7 +460,13 @@ public class NewDataFormPanel extends Panel
                 else
                 {
                         String entityName=entity.getName().toString();
-                        setResponsePage(new EntityDetailPage(entityName,String.valueOf(entityId)));
+                        if(entityName.equals("target_acquisition")){
+                        	String oppID = DAOImpl.queryEntityById("select * from target_acquisition where id = ?", String.valueOf(entityId)).get("opportunity_id").toString();
+                      	  	//跳转界面
+                      	  	setResponsePage(new EntityDetailPage("opportunity",oppID));
+                        }else{
+                        	setResponsePage(new EntityDetailPage(entityName,String.valueOf(entityId)));
+                        }
                 }
             }
         });
@@ -477,7 +476,8 @@ public class NewDataFormPanel extends Panel
             @Override
             public void onSubmit()
             {
-            	Long entityId = saveEntity(models, entity, userId, userName);
+            	String opportunityId = params.get("opportunityId").toString();
+            	Long entityId = saveEntity(models, entity, userId, userName,opportunityId);
                 if (entityId<0)
                 {
                     div.add(new AttributeAppender("style", new Model("display:block"), ";"));
@@ -515,7 +515,7 @@ public class NewDataFormPanel extends Panel
         add(form);
     }
 
-    public static long saveEntity(Map<String, IModel> models, Entity entity, String userId, String userName)
+    public static long saveEntity(Map<String, IModel> models, Entity entity, String userId, String userName,String opportunityId)
     {
         logger.debug("the form was submitted!");
         logger.debug(models);
@@ -572,6 +572,10 @@ public class NewDataFormPanel extends Panel
             fieldNames.add(f.getName());
 
         }
+        if("target_acquisition".equals(entity.getName())){
+        	values.add(opportunityId);
+        	fieldNames.add("opportunity_id");
+        }
         if ("user".equals(entity.getName()))
         {
             long crmuserkey = -1;
@@ -595,7 +599,6 @@ public class NewDataFormPanel extends Panel
                 	NewRecordId = DAOImpl.getCreateRecordByEntity(entity.getName());
                     DAOImpl.insert2UserRelationTable(entity.getName(), userId,
                     String.valueOf(generatedId));
-
             }
             return generatedId;
         }

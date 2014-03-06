@@ -44,7 +44,6 @@ public final class Login extends WebPage
         @SuppressWarnings("unused")
 		public final void onSubmit()
         {
-        	//get session info
         	SignInSession session = getMysession();
         	//clear session user
         	session.setUser(null);

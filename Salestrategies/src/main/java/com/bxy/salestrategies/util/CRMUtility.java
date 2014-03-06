@@ -147,7 +147,7 @@ public class CRMUtility {
 	                permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.EDIT);
 	        }else if(entityName.equalsIgnoreCase("contact") ){
 	        		 permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.EDIT);
-	        }else if(entityName.equalsIgnoreCase("opportunity")||entityName.equalsIgnoreCase("competitor")){
+	        }else if(entityName.equalsIgnoreCase("opportunity")||entityName.equalsIgnoreCase("competitor")||entityName.equalsIgnoreCase("target_acquisition")){
 	        		 permission = EnumSet.of(CRUDPanel.Permissions.EDIT,CRUDPanel.Permissions.DEL);
 	        }else if(entityName.equalsIgnoreCase("activity")){
 		            permission = EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.DONE,CRUDPanel.Permissions.noExecute,CRUDPanel.Permissions.EDIT);
@@ -169,6 +169,8 @@ public class CRMUtility {
         		permission = EnumSet.of(CRUDPanel.Permissions.ADD);
         }else if(entityName.equalsIgnoreCase("user")||entityName.equalsIgnoreCase("competitor")){
                 permission = EnumSet.of(CRUDPanel.Permissions.ADD);
+        }else if(entityName.equalsIgnoreCase("target_acquisition")){
+        		permission = EnumSet.of(CRUDPanel.Permissions.ADD );
         }
         return permission;
     }

@@ -25,6 +25,7 @@ import com.bxy.salestrategies.model.Account;
 import com.bxy.salestrategies.model.AccountUserTeam;
 import com.bxy.salestrategies.model.Activity;
 import com.bxy.salestrategies.model.Choice;
+import com.bxy.salestrategies.model.Competitor;
 import com.bxy.salestrategies.model.Contact;
 import com.bxy.salestrategies.model.ContactUserTeam;
 import com.bxy.salestrategies.model.Dna;
@@ -1070,4 +1071,62 @@ public class DAOImpl {
 	    	}
 	    	return false;
 	    }
+	    public static List<Competitor> getAllCompetitor(){
+	        List<Competitor> competitors = Lists.newArrayList();
+	        Connection conn = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<List<Competitor>> h = new BeanListHandler<Competitor>(Competitor.class);
+
+	            competitors = run.query(conn, "SELECT * FROM competitor", h);
+
+	        } catch (SQLException e) {
+	            logger.error("failed to get all competitor", e);
+	        } finally {
+	            try {
+	                DbUtils.close(conn);
+	            } catch (SQLException e) {
+	                // TODO Auto-generated catch block
+	                logger.error("failed to close connection", e);
+	            }
+	        }
+
+	        return competitors;
+	    }
+		     //获取target_acquisition 数据条数
+     public static int getTargetAcquisitions(){
+    	 int size = 0;
+         Connection conn = null;
+         String sql = "select count(id) as targetId from " +
+         		"strategies.target_acquisition";
+         try {
+             QueryRunner run = new QueryRunner();
+             conn = DBConnector.getConnection();
+             Map<String, Object> map = run.query(conn, sql, new MapHandler());
+             size = Integer.valueOf(map.get("targetId").toString());
+         } catch (Exception e) {
+             logger.error("failed to get size of account", e);
+         } finally {
+             DBHelper.closeConnection(conn);
+         }
+
+         return size;
+     }
+     //向target_acquisition添加数据
+     public static void insertIntoTarget(int id,String opportunity_id){
+    	 String sql = "insert into target_acquisition (id ,opportunity_id) values ("+id+","+opportunity_id+")";
+	    	Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+     }
 }

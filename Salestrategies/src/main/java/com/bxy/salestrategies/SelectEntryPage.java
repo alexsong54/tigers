@@ -52,14 +52,16 @@ public class SelectEntryPage extends WebPage {
         String tragetEntity = getRequest().getRequestParameters().getParameterValue("excludeName").toString();
         final String excludeId = getRequest().getRequestParameters().getParameterValue("eid").toString();
         String target = getRequest().getRequestParameters().getParameterValue("target").toString();
-        initPage(null,relationTableName,tragetEntity,excludeId,target);
+        //区分是哪一个数据
+        String key = getRequest().getRequestParameters().getParameterValue("key").toString();
+        initPage(null,relationTableName,tragetEntity,excludeId,target,key);
     }
 
-    public SelectEntryPage(List<Map> maplist,String relationTableName,String tragetEntity,String excludeId,String target) {
-        initPage(maplist,relationTableName,tragetEntity,excludeId,target);
+    public SelectEntryPage(List<Map> maplist,String relationTableName,String tragetEntity,String excludeId,String target,String key) {
+        initPage(maplist,relationTableName,tragetEntity,excludeId,target,key);
     }
 
-    public void initPage(List<Map> list,final String relationTableName,final String tragetEntity,final String excludeId,final String target) {
+    public void initPage(List<Map> list,final String relationTableName,final String tragetEntity,final String excludeId,final String target,final String key) {
         final String userId = ((SignInSession)getSession()).getUserId();
         final Map<String, Entity> entities = Configuration.getEntityTable();
         final Entity entity = entities.get(relationTableName);
@@ -131,11 +133,8 @@ public class SelectEntryPage extends WebPage {
                     dummy.put("id", -1);
                     dummy.put("name", "无");
                     maplist.add(dummy);
-
-                }
-                //this.setResponsePage(cls, parameters)
-                
-                setResponsePage(new SelectEntryPage(maplist,relationTableName,tragetEntity,excludeId,target));
+                }                
+                setResponsePage(new SelectEntryPage(maplist,relationTableName,tragetEntity,excludeId,target,key));
 
             }
         };
@@ -156,9 +155,9 @@ public class SelectEntryPage extends WebPage {
           final Map<String, Map> tableData = Maps.newHashMap();
           List<String> ids = Lists.newArrayList();
             for (Map map : (List<Map>) list) {
-               String key = String.valueOf(map.get("id"));
-               ids.add(key);
-               tableData.put(key, map);
+               String key1 = String.valueOf(map.get("id"));
+               ids.add(key1);
+               tableData.put(key1, map);
             }
             
          
@@ -168,16 +167,15 @@ public class SelectEntryPage extends WebPage {
             
             @Override          
             protected void populateItem(ListItem<String> item) {
-                String key = item.getDefaultModelObjectAsString();
-                Map map = tableData.get(key);
+                String key1 = item.getDefaultModelObjectAsString();
+                Map map = tableData.get(key1);
                 int uid = ((Number) map.get("id")).intValue();
                 String name = (String) map.get("name");
            
                 item.add(new AttributeAppender("data-id",new Model(uid)));
                 item.add(new AttributeAppender("data-name",new Model(name)));
                 item.add(new AttributeAppender("data-ename",relationTableName));
-                
-                //item.add(new AttributeAppender("data-cname", new Model(cname)));
+                item.add(new AttributeAppender("data-key", new Model(key)));
                 Label cap = new Label("name_span", new Model(name));
                 item.add(cap);
                 
@@ -189,7 +187,6 @@ public class SelectEntryPage extends WebPage {
                     if(!f.getName().equalsIgnoreCase("name") && obj != null){
                         AbstractItem column_item = new AbstractItem(column_repeater.newChildId());
                         column_repeater.add(column_item); 
-                     
                         String celldata =String.valueOf(obj);
                         column_item.add(new Label("celldata","<strong>"+f.getDisplay()+": </strong>"+celldata).setEscapeModelStrings(false));
                     }
@@ -207,8 +204,7 @@ public class SelectEntryPage extends WebPage {
             }
         };
   
-         add(listview);
-        //PagingNavigator nav = new PagingNavigator("navigator", listview);
+        add(listview);
         AjaxPagingNavigator nav =new AjaxPagingNavigator("navigator", listview);
         nav.setOutputMarkupId(true); 
 

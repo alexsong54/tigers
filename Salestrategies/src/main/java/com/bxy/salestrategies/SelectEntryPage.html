@@ -15,14 +15,20 @@
                     e.preventDefault();
                     var id =  $(this).parent().parent().data("id");
                     var name = $(this).parent().parent().data("name");
+                    var key = $(this).parent().parent().data("key");
                     var table_name = $(this).parent().parent().data("ename");
-                    console.log( "name is:"+ name + " :"+id+ " :"+ table_name);
+                    if(table_name=="competitor"){
+                    	window.opener.$("#"+table_name+"_id"+key+"").val(id);
+                        window.opener.$("#"+table_name+"_name"+key+"").val(name);
+                    }else{
+                    	
+                    }
                     window.opener.$("#select_user").val(name);
                     window.opener.$("#hidden_select_user").val(id);
                     window.opener.$("#"+table_name+"_id").val(id);
                     window.opener.$("#"+table_name+"_name").val(name);
                     hasClosed = true;
-                    window.opener.reloadpage();
+                    //window.opener.reloadpage();
                 	window.opener=null;
                     window.close();
                    

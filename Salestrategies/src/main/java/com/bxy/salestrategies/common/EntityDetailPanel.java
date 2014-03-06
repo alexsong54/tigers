@@ -60,11 +60,18 @@ public class EntityDetailPanel extends Panel {
                 fieldGroupMap.put(f.getFieldGroup(), fs);
             }
         }
-        List<String> groupNames = Configuration.getSortedFieldGroupNames();//得到分组信息
+        List<String> groupNames = new ArrayList<String>();
+        if(schema.getName().equals("target_acquisition")){
+        	groupNames.add("关键信息");
+        	groupNames.add("Why – Will this decision be made?");
+        	groupNames.add("How- Will a decision be made?");
+        	groupNames.add("Who – Will really make the decision?");
+        }else{
+        	groupNames = Configuration.getSortedFieldGroupNames();//得到分组信息
+        }
         RepeatingView fieldGroupRepeater = new RepeatingView("fieldGroupRepeater");
         add(fieldGroupRepeater);
         int gNum = 0;
-        System.out.println("sdsdsdsds"+groupNames);
         for (String gn : groupNames) {
             List<Field> groupfields = fieldGroupMap.get(gn);
             if (groupfields == null) {

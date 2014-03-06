@@ -1,0 +1,73 @@
+<wicket:panel>
+    <script>
+        $(document).ready(function() {
+        });
+    </script>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <strong>
+                <span wicket:id="table_title">我的</span>
+            </strong>
+           <!--  <div class="center-block operation-bar pull-right">
+                <div class="btn-group-right" wicket:id="addCon"></div>
+            </div> -->
+        </div>
+        <div wicket:id="data">
+        <table   style="width: 100%;"  class="table table-bordered ">
+            <thead>
+                <tr class="active">
+                    <th class="table-hide " wicket:id="columnNameRepeater"><span  wicket:id="columnName"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <form wicket:id="form" class="form-horizontal"  >
+                	<div wicket:id="fieldGroupRepeater">
+		                <tr  wicket:id="dataRowRepeater">
+		                     <td  style="width:7.3%"  wicket:id="columnRepeater">
+		                         <div wicket:id="editdata" ></div>
+		                     </td>
+		                 </tr>
+	                 </div>
+                 </form>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <wicket:fragment wicket:id="detailFragment">
+        <a href="#" wicket:id="detailclick"><wicket:container wicket:id="caption" /></a>
+    </wicket:fragment>
+
+     <wicket:fragment wicket:id="downloadlinkFragment">
+       <a  wicket:id="downloadlink"><wicket:container wicket:id="fn" /></a >
+       </wicket:fragment>
+       <wicket:fragment wicket:id="dropDownFragment">
+		<select wicket:id="dropDownInput" class="form-control input-sm" ></select>
+	</wicket:fragment>
+    <wicket:fragment wicket:id="textInputFragment">
+		<input wicket:id="input" class="form-control input-sm" />
+	</wicket:fragment>
+	<wicket:fragment wicket:id="textFragment">
+		<span wicket:id="celldata"></span>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="buttonFragment">
+		<input type="submit" wicket:id="save"  class="btn btn-primary" value="保存"/>
+	</wicket:fragment>
+	
+	<!-- <wicket:fragment wicket:id="ajaxEditableChoiceLabelFragment">
+		<span wicket:id="site"></span>
+	</wicket:fragment> -->
+	
+	<wicket:fragment wicket:id="addFragment">
+		<a href="#" class="btn  btn-sm  btn-mini btn-primary" wicket:id="create_new_data_btn"><i class="icon-plus"></i>新建</a>
+	</wicket:fragment>
+	<wicket:fragment wicket:id="relationTableSearchFragment">
+       <div class="input-group">
+		<input type="text" required="required" readonly wicket:id="selected_value_input" class="form-control input-sm"/>
+		<span class="input-group-addon input-sm"> 
+		   <a href="#" class="" wicket:id="search_btn" id="search_click" >查找</a>
+        </span>
+        <input type="hidden" class="form-control  input-sm" style="width:0px;height:0px;" wicket:id="selected_id_hidden" />&nbsp;&nbsp;
+        </div>
+	</wicket:fragment>
+	
+</wicket:panel>

@@ -80,7 +80,6 @@ public class Index extends WebPage
    }
     public Index()
     {
-		//add(new Label("title", new PropertyModel<String>(this, "pageTitle")));
 		User user = DAOImpl.getUserInfoById(Integer.parseInt(((SignInSession) getSession()).getUserId()));
 		//TODO get function work with real id
 		List<String> menulist = new ArrayList();
@@ -92,7 +91,6 @@ public class Index extends WebPage
 		menulist.add("user");
 		menulist.add("activity");
 		
-		//populate menu items. TODO componentize it. pass arg: menuList
 		ArrayList<MenuItem> menu = Lists.newArrayList();
 	    for(String key:menulist){
 	        menu.add(pageMenuMap.get(key));
