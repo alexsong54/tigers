@@ -1627,23 +1627,12 @@
 			</field>
 		</fields>
 	</entity>
-<<<<<<< HEAD
 	<entity>
 		<name>target_acquisition</name>
-		<display>客户</display>
+		<display>详细元素分析</display>
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM target_acquisition</sql>
 		<sql-ent>SELECT * FROM target_acquisition where id = ?</sql-ent>
-=======
-	
-	<entity>
-	<name>tactics</name>
-		<display>战术策略</display>
-		<globalsearch>true</globalsearch>
-		<sql>SELECT * FROM tactics </sql>
-		<sql-ent>SELECT * FROM tactics where id = ?</sql-ent>
-		<filterField>name</filterField>
->>>>>>> add some function
 		<fields>
 			<field>
 				<name>id</name>
@@ -1660,7 +1649,6 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-<<<<<<< HEAD
 				<name>competitor_id</name>
 				<display>竞标公司</display>
 				<isRequired>false</isRequired>
@@ -1696,49 +1684,10 @@
 				<display>需求</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<name>name</name>
-				<display>策略名称</display>
-				<data-type>text</data-type>
-				<pattern>color:red</pattern>
-				<isRequired>false</isRequired>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>true</isDetailLink>
-				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>target_date</name>
-				<display>目标日期</display>
-				<data-type>date</data-type>
-				<isRequired>false</isRequired>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>opportunity_id</name>
-				<display>商机</display>
-				<data-type>text</data-type>
->>>>>>> add some function
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -1751,25 +1700,10 @@
 				<display>时间</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<relationTable>opportunity</relationTable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>owner</name>
-				<display>负责人</display>
-				<data-type>text</data-type>
->>>>>>> add some function
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -1782,25 +1716,10 @@
 				<display>金钱</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<relationTable>user</relationTable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>individual_met</name>
-				<display>拜访人</display>
-				<data-type>text</data-type>
->>>>>>> add some function
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -1813,25 +1732,10 @@
 				<display>价值</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<relationTable>contact</relationTable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>target_quisition</name>
-				<display>战略目标</display>
-				<data-type>text</data-type>
->>>>>>> add some function
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -1844,25 +1748,10 @@
 				<display>标准</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<isSearchable>false</isSearchable>
-				<picklist>opportunity_stage_pl</picklist>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>propose</name>
-				<display>目的</display>
-				<data-type>bjgtextarea</data-type>
->>>>>>> add some function
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -1875,24 +1764,10 @@
 				<display>资源</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>resulting_action</name>
-				<display>战略意义</display>
-				<data-type>bjgtextarea</data-type>
->>>>>>> add some function
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -1905,24 +1780,10 @@
 				<display>流程</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>actual_outcome</name>
-				<display>实际成果</display>
-				<data-type>bjgtextarea</data-type>
->>>>>>> add some function
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -1951,64 +1812,10 @@
 				<display>评估</display>
 				<data-type>text</data-type>
 				<isRequired>false</isRequired>
-=======
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<isShow>true</isShow>
-				<priority>1</priority>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-		</fields>
-	</entity>
-	<entity>
-		<name>opportunityuserteam</name>
-		<display>用户团队</display>
-		<sql>select * from (select user.id as user_id \,opportunityuserteam.id\,user.job_title\,opportunity.id as opportunity_id \,user.office_tel\,
-					user.telephone\,opportunityuserteam.team_role  from opportunityuserteam 
-		left join user on user.id = opportunityuserteam.user_id left join opportunity on opportunity.id = opportunityuserteam.opportunity_id) as a
-		 </sql>
-		<fields>
-			<field>
-				<name>id</name>
-				<display>id</display>
-				<isPrimaryKey>true</isPrimaryKey>
-				<data-type>number</data-type>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>false</isVisible>
-				<isEditable>false</isEditable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>0</priority>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>opportunity_id</name>
-				<display>商机</display>
-				<data-type>text</data-type>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>false</isVisible>
-				<isEditable>false</isEditable>
-				<relationTable>opportunity</relationTable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-				<name>user_id</name>
-				<display>用户</display>
-				<data-type>text</data-type>
->>>>>>> add some function
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-<<<<<<< HEAD
 				<field-type>picklist</field-type>
 				<picklist>target_acquisition_value_pl</picklist>
 				<priority>1</priority>
@@ -2063,77 +1870,7 @@
 				<isShow>true</isShow>
 				<tooltip>12</tooltip>
 				<fieldGroup>Who – Will really make the decision?</fieldGroup>
-=======
-				<relationTable>user</relationTable>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
 			</field>
-			<field>
-				<name>team_role</name>
-				<display>团队角色</display>
-				<data-type>text</data-type>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>true</isVisible>
-				<isInLineEdit>true</isInLineEdit>
-				<isEditable>true</isEditable>
-				<picklist>team_role_pl</picklist>
-				<isSearchable>false</isSearchable>
-				<field-type>String</field-type>
-				<isParam>true</isParam>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
-			<name>job_title</name>
-			<display>职位</display>
-			<isRequired>false</isRequired>
-			<data-type>text</data-type>
-			<isPrimaryKey>false</isPrimaryKey>
-			<isDetailLink>false</isDetailLink>
-			<pattern>text</pattern>
-			<isVisible>true</isVisible>
-			<isEditable>false</isEditable>
-			<field-type>String</field-type>
-			<picklist>job_title_pl</picklist>
-			<priority>1</priority><isShow>true</isShow>
-			<fieldGroup>关键信息</fieldGroup>
-		</field>
-		<field>
-			<name>office_tel</name>
-			<display>固定电话</display>
-			<isRequired>false</isRequired>
-			<data-type>tel</data-type>
-			<isPrimaryKey>false</isPrimaryKey>
-			<isDetailLink>false</isDetailLink>
-			<isVisible>true</isVisible>
-			<isEditable>false</isEditable>
-			<field-type>String</field-type>
-			<priority>1</priority>
-			<isShow>true</isShow>
-			<isParam>true</isParam>
-			<fieldGroup>关键信息</fieldGroup>
-		</field>
-		<field>
-			<name>telephone</name>
-			<display>移动电话</display>
-			<isRequired>false</isRequired>
-			<data-type>tel</data-type>
-			<isPrimaryKey>false</isPrimaryKey>
-			<isDetailLink>false</isDetailLink>
-			<isVisible>true</isVisible>
-			<isEditable>false</isEditable>
-			<field-type>String</field-type>
-			<priority>1</priority>
-			<isShow>true</isShow>
-			<isParam>true</isParam>
-			<fieldGroup>关键信息</fieldGroup>
-		</field>
 		</fields>
 	</entity>
 	<entity>
@@ -2224,7 +1961,6 @@
 				<priority>1</priority>
 				<data-type>text</data-type>
 				<fieldGroup>关键信息</fieldGroup>
->>>>>>> add some function
 			</field>
 		</fields>
 	</entity>

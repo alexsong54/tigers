@@ -169,15 +169,11 @@ public class CRMUtility {
         		permission = EnumSet.of(CRUDPanel.Permissions.ADD);
         }else if(entityName.equalsIgnoreCase("user")||entityName.equalsIgnoreCase("competitor")){
                 permission = EnumSet.of(CRUDPanel.Permissions.ADD);
-<<<<<<< HEAD
         }else if(entityName.equalsIgnoreCase("target_acquisition")){
         		permission = EnumSet.of(CRUDPanel.Permissions.ADD );
-        }
-=======
         }else if(entityName.equalsIgnoreCase("tactics")){
             permission = EnumSet.of(CRUDPanel.Permissions.ADD);
     }
->>>>>>> add some function
         return permission;
     }
 	    public static String MD5Base64(String src) {
