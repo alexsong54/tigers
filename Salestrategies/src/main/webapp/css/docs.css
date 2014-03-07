@@ -434,6 +434,7 @@ body {
   display: block;
   color: #716b7a;
   padding: 5px 20px;
+  display: block;
 }
 .bs-sidebar .nav > li > a:hover,
 .bs-sidebar .nav > li > a:focus {
@@ -441,12 +442,13 @@ body {
   background-color: #e5e3e9;
   border-right: 1px solid #dbd8e0;
 }
+
 .bs-sidebar .nav > .active > a,
 .bs-sidebar .nav > .active:hover > a,
 .bs-sidebar .nav > .active:focus > a {
   font-weight: bold;
   color: #563d7c;
-  background-color: transparent;
+  background-color:#3396CE;
   border-right: 1px solid #563d7c;
 }
 

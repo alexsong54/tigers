@@ -34,13 +34,13 @@ public class Index extends WebPage
      static{
         ImmutableMap.Builder<String, MenuItem> builder = new ImmutableMap.Builder<String,MenuItem>();
         MenuItem item = new MenuItem();
-        item.setCaption("<i class=\"icon-home icon-large\"></i>主页");
+        item.setCaption("<i class=\"icon-home icon-large\"></i> 主页");
         item.setDestination(HomePage.class);
         item.setId("navitem-homepage");
         builder.put("home", item);
         
         item = new MenuItem();
-        item.setCaption("<i class=\"icon-hospital icon-large\"></i>Account");
+        item.setCaption("<i class=\"icon-sitemap icon-large\"></i> Account");
         item.setDestination(AccountPage.class);
         item.setId("navitem-account");
         builder.put("account", item);
@@ -52,26 +52,26 @@ public class Index extends WebPage
         builder.put("contact", item);
         
         item = new MenuItem();
-        item.setCaption("<i class=\"icon-calendar icon-large\"></i>Opportunity");
+        item.setCaption("<i class=\"icon-zoom-in icon-large\"></i>Opportunity");
         item.setDestination(OpportunityPage.class);
         item.setId("navitem-opportunity");
         builder.put("opportunity", item);
 
         
         item = new MenuItem();
-        item.setCaption("<i class=\"icon-comment icon-large\"></i>Competitor");
+        item.setCaption("<i class=\"icon-group icon-large\"></i>Competitor");
         item.setDestination(CompetitorPage.class);
         item.setId("navitem-competitor");
         builder.put("competitor", item);
         
         item = new MenuItem();
-        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>User");
+        item.setCaption("<i class=\"icon-user icon-large\"></i>User");
         item.setDestination(UserPage.class);
         item.setId("navitem-user");
         builder.put("user", item);
    
         item = new MenuItem();
-        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Activity");
+        item.setCaption("<i class=\"icon-font icon-large\"></i>Activity");
         item.setDestination(ActivityPage.class);
         item.setId("navitem-activity");
         builder.put("activity", item);
