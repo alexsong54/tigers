@@ -5,6 +5,7 @@ package com.bxy.salestrategies.common;
 */
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,7 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableChoiceLabel;
 
 import com.bxy.salestrategies.SignInSession;
 import com.bxy.salestrategies.SearchCRMUserPage;
@@ -55,6 +57,7 @@ public class TeamManPanel extends Panel {
     private String etId;
     private String currentEntityName;
     List<String> selectedRowIds = Lists.newArrayList();
+    private static final List<String> SITES = Arrays.asList("项目经理", "销售顾问","总经理");
     public List<Field> fieldsd;
     public TeamManPanel(String id,final String en,final String entityId,final int type) {
         super(id);
@@ -82,12 +85,12 @@ public class TeamManPanel extends Panel {
         		teamSql = "select * from (select account.*,account.id as rid  from account left join accountuserteam on account.id = accountuserteam.account_id left join user on accountuserteam.user_id = user.id where user.id = ? ) as atable";
         	}else if(type == 1){
         		teamSql = "select * from (select contact.* ,contact.id as rid from contact left join contactuserteam on contact.id = contactuserteam.contact_id left join user on contactuserteam.user_id = user.id where user.id = ?) as atable ";
-        	}else if(type == 2){
-        		teamSql = "select * from (select opportrunity.* ,opportunity.id as rid from opportunity left join opportrunityuserteam on opportunity.id = opportunityuserteam.opportunity_id left join user on opportunityuserteam.user_id = user.id where user.id = ?) as atable ";
+        	}else if(type == 2){                                                                                 
+        		teamSql = "select * from (select opportunity.* ,opportunity.id as rid from opportunity left join opportunityuserteam on opportunity.id = opportunityuserteam.opportunity_id left join user on opportunityuserteam.user_id = user.id where user.id = ?) as atable ";
         	}
         }else if(en.equalsIgnoreCase("opportunity")){
         	if(type==0){
-        		teamSql = "select * from (select user.*,user.id as rid from opportunityuserteam left join user on user.id = opportunityuserteam.user_id where opportunity_id = ?) as atable";
+        		teamSql = "select * from (select user.id as user_id ,user.id as rid,opportunityuserteam.id,user.job_title,opportunity.id as opportunity_id ,user.office_tel,user.telephone,opportunityuserteam.team_role  from opportunityuserteam left join user on user.id = opportunityuserteam.user_id left join opportunity on opportunity.id = opportunityuserteam.opportunity_id where opportunity.id =?) as a";
         	}else if(type==1){
         		teamSql = "select * from (select contact.*,contact.id as rid from contact left join opportunitycontactteam on opportunitycontactteam.contact_id = contact.id where opportunity_id = ?) as atable";
         	}
@@ -118,7 +121,7 @@ public class TeamManPanel extends Panel {
                   add(new Label("title","商机"));}
         }else if(en.equalsIgnoreCase("opportunity")){
         	if(type == 0){
-        		entity = Configuration.getEntityByName("user");
+        		entity = Configuration.getEntityByName("opportunityuserteam");
                 add(new Label("title","团队"));
               }else if(type == 1){
                   entity = Configuration.getEntityByName("contact");
@@ -233,7 +236,15 @@ public class TeamManPanel extends Panel {
 
                 @Override
                 public void onClick() {
-                  this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
+                 if(!currentEntityName.equalsIgnoreCase("opportunity")){
+                	 this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
+                 }else{
+                	 if(type==0){
+                		 this.setResponsePage(new NewTeamManPage("opportunityuserteam",entityId,null)); 
+                	 }else{
+                		 this.setResponsePage(new NewTeamManPage("opportunitycontactteam",entityId,null));
+                	 }
+                 }
                 }
                 
             });
@@ -279,12 +290,6 @@ public class TeamManPanel extends Panel {
             columnNameRepeater.add(item);
             item.add(new Label("columnName", f.getDisplay())); 
         }
-        
-                
-
-        
-        
-        
          final Map<String, Map> tableData = Maps.newHashMap();
         List<String> ids = Lists.newArrayList();
         for (Map map : (List<Map>) mapList) {
@@ -329,11 +334,11 @@ public class TeamManPanel extends Panel {
                 } else {
                     if (f.getPicklist() != null) {
                         // get option from picklist
-                        String value = CRMUtility.formatValue(f.getFormatter(), DAOImpl.queryPickListByIdCached(f.getPicklist(), String.valueOf(map.get(f.getName()))));
-                        if(value.equals("null")||value.equals("")||value.equals("dummy")){
-                          value = "无";
-                        }
-                        columnitem.add(new Label("celldata", value));
+                        	String value = CRMUtility.formatValue(f.getFormatter(), DAOImpl.queryPickListByIdCached(f.getPicklist(), String.valueOf(map.get(f.getName()))));
+                            if(value.equals("null")||value.equals("")||value.equals("dummy")){
+                              value = "无";
+                            }
+                            columnitem.add(new Label("celldata", value));
                     } else if(f.getRelationTable() != null){
                     	System.out.println("hrere");
                         String value = CRMUtility.formatValue(f.getFormatter(), DAOImpl.queryCachedRelationDataById(f.getRelationTable(), String.valueOf(map.get(f.getName()))));
@@ -400,8 +405,6 @@ public class TeamManPanel extends Panel {
         
         group.setVersioned(false);
         
-        
-        
         add(new NewDataFormPanel("formPanel",entity,null));
     }
 
@@ -446,5 +449,4 @@ public class TeamManPanel extends Panel {
       }
       
     }
-   
 }

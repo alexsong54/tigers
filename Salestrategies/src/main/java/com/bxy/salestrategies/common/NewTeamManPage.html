@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<style>
+        ::-webkit-validation-bubble-message {color:white;background:blue;}
+        #address {
+            width:100%;
+        }
+    </style>
+<body>
+		<script>
+			$(document).ready(function() {
+
+			});
+			function reloadpage(){
+            }
+		</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        });
+        function validateFields(){
+            var isValidated = true;
+            $( '.required-field').each(function( index ) {
+                console.log( index + ": " + $( this ).text() );
+                if(jQuery.isEmptyObject($(this).val())){
+                    isValidated = false;
+                }
+              });
+            var checkflag = true;
+            $( '.required-pickList').each(function( index ) {
+                if(jQuery.isEmptyObject($(this).val())){
+                	checkflag = false;
+                }
+              });
+            if(isValidated&&checkflag){
+            	if($("#contact_name").length > 0 && jQuery.isEmptyObject($("#contact_name").val())){
+              	  	alert("请查询添入联系人！");
+                    return false;
+                }else if($("#opportunity_name").length > 0 && jQuery.isEmptyObject($("#opportunity_name").val())){
+                		alert("请查询添入商机！");
+                        return false;
+                }else  if($("#account_name").length > 0 && jQuery.isEmptyObject($("#account_name").val())) {
+                    alert("请查询填入客户！");
+                    return false;
+                }else{
+                    return true;
+                }
+            }else{
+            		alert("红色标记字段为必填字段");
+                    return false;
+            }
+        }
+    </script>
+    <div class="">
+			<div class="">
+    <div>
+        <form wicket:id="form" class="form-horizontal" >
+            <fieldset>
+                <div  wicket:id="fieldGroupRepeater">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                                <span wicket:id="groupname"></span>
+                        </div>
+                        <div class="table-content panel-body">
+                            <div class="table-cell form-group" wicket:id="dataRowRepeater">
+                                <div class="table-column " wicket:id="columnRepeater"><div wicket:id="celldatafield" class="form_datetime"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" onClick="return validateFields();" wicket:id="save"  class="btn btn-primary" value="保存" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <wicket:fragment wicket:id="textFragment">
+        <span wicket:id="celldata" ></span>
+    </wicket:fragment>
+    <wicket:fragment wicket:id="layoutFragment">
+        <span wicket:id="add" ></span>
+    </wicket:fragment>
+    <wicket:fragment wicket:id="textAreaFragment">
+        <textarea  wicket:id="address" cols="30" rows="2" class="form-control input-sm" ></textarea >
+    </wicket:fragment>
+    <wicket:fragment wicket:id="textInputFragment">
+        <input wicket:id="input" class="form-control  input-sm"/>
+    </wicket:fragment>
+    <wicket:fragment wicket:id="fileUplodeFragment"> 
+        <input type="file" class="form-control input-sm" wicket:id="fileUplode"/> 
+    </wicket:fragment>
+    <wicket:fragment wicket:id="dropDownFragment">
+        <select class="form-control input-sm" wicket:id="dropDownInput"></select>
+    </wicket:fragment>
+    <wicket:fragment wicket:id="bjgtextAreaFragment">
+        <textarea  wicket:id="description"  class="from-control"></textarea >
+    </wicket:fragment>
+    <wicket:fragment wicket:id="relationTableSearchFragment">
+  <div class="input-group">
+   <input type="text" required="required" wicket:id="selected_value_input" disabled="disabled" class="form-control input-sm" />
+         
+         <span class="input-group-addon input-sm"> 
+             <a wicket:id="search_btn" id="search_click" target="_blank">
+                <!--  <i class="icon-search"></i> -->查找
+            </a>
+        </span>
+        <input type="hidden" class="form-control  input-sm" style="width:0px;height:0px;" wicket:id="selected_id_hidden" />&nbsp;&nbsp; 
+  </div>
+ </wicket:fragment>
+			</div>
+		</div>
+</body>
+</html>

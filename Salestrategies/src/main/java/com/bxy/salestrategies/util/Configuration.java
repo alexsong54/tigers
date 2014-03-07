@@ -131,7 +131,8 @@ public class Configuration {
                 field.setPrimaryKey(Boolean.parseBoolean(sub2.getString("isPrimaryKey")));
                 field.setDetailLink(Boolean.parseBoolean(sub2.getString("isDetailLink"))); 
                 field.setVisible(Boolean.parseBoolean(sub2.getString("isVisible")));
-                field.setEditable(Boolean.parseBoolean(sub2.getString("isEditable"))); 
+                field.setEditable(Boolean.parseBoolean(sub2.getString("isEditable")));
+                field.setInLineEdit(Boolean.parseBoolean(sub2.getString("isInLineEdit")));
                 field.setRequired(Boolean.parseBoolean(sub2.getString("isRequired"))); 
                 field.setBaseInfo(Boolean.parseBoolean(sub2.getString("isBaseInfo")));
                 field.setSearchable(Boolean.parseBoolean(sub2.getString("isSearchable")));

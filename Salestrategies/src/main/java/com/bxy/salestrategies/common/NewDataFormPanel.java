@@ -5,9 +5,13 @@ import com.bxy.salestrategies.SignInSession;
 import com.bxy.salestrategies.SelectEntryPage;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Choice;
+<<<<<<< HEAD
 import com.bxy.salestrategies.util.CRMUtility;
 import com.bxy.salestrategies.util.Configuration;
 
+=======
+import com.bxy.salestrategies.util.Configuration;
+>>>>>>> add some function
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;

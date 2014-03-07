@@ -26,6 +26,8 @@ public class Field implements Serializable
   @Expose
   private String picklist = null;
   @Expose
+  private boolean isInLineEdit;
+  @Expose
   private boolean isEditable;
   @Expose
   private boolean isParam;
@@ -171,7 +173,15 @@ public boolean isRequired()
     return picklist;
   }
 
-  public void setPicklist(String picklist)
+  public boolean isInLineEdit() {
+	return isInLineEdit;
+}
+
+public void setInLineEdit(boolean isInLineEdit) {
+	this.isInLineEdit = isInLineEdit;
+}
+
+public void setPicklist(String picklist)
   {
     this.picklist = picklist;
   }

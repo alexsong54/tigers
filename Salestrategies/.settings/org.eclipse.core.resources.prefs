@@ -14,6 +14,11 @@ encoding//src/main/java/com/bxy/salestrategies/common/EditPageableTablePanel.htm
 encoding//src/main/java/com/bxy/salestrategies/common/EntityDetailPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/FilterPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/NewDataFormPanel.html=UTF-8
+encoding//src/main/java/com/bxy/salestrategies/common/NewTeamManPage.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/PageableTablePanel.html=UTF-8
+<<<<<<< HEAD
 encoding//src/main/resource/tooltipMessage.properties=UTF-8
+=======
+encoding//src/main/java/com/bxy/salestrategies/common/TeamManPanel.html=UTF-8
+>>>>>>> add some function
 encoding/<project>=UTF-8

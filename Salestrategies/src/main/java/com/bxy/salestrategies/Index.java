@@ -4,7 +4,9 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 
+import com.bxy.salestrategies.common.EntityDetailPage;
 import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.model.Account;
 import com.bxy.salestrategies.model.User;
 import com.bxy.salestrategies.userlog.LogInOut;
 import com.bxy.salestrategies.util.Utility;
@@ -13,20 +15,24 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
 /**
  * @author Sam Sun
  */
 public class Index extends WebPage
 {
-  
+	String search_target;
     private static final long serialVersionUID = 1L;
     protected static ImmutableMap<String,MenuItem>  pageMenuMap;
     
@@ -71,7 +77,17 @@ public class Index extends WebPage
         builder.put("user", item);
    
         item = new MenuItem();
+<<<<<<< HEAD
         item.setCaption("<i class=\"icon-font icon-large\"></i>Activity");
+=======
+        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Tactics");
+        item.setDestination(TacticsPage.class);
+        item.setId("navitem-Tactics");
+        builder.put("tactics", item);
+        
+        item = new MenuItem();
+        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Activity");
+>>>>>>> add some function
         item.setDestination(ActivityPage.class);
         item.setId("navitem-activity");
         builder.put("activity", item);
@@ -89,6 +105,7 @@ public class Index extends WebPage
 		menulist.add("opportunity");
 		menulist.add("competitor");
 		menulist.add("user");
+		menulist.add("tactics");
 		menulist.add("activity");
 		
 		ArrayList<MenuItem> menu = Lists.newArrayList();
@@ -128,7 +145,20 @@ public class Index extends WebPage
         add(user_settings_link);
         user_settings_link.add(new Label("loginName",user.getName()));
         
+        
+        Form form = new Form("searchform"){
+       	 protected void onSubmit(){
+   			 List<Map> maplist = null;
+                	String sql = "select * from account ";
+                	 maplist = DAOImpl.queryEntityRelationList(sql);
+                	 setResponsePage(new AccountPage());
+       	 }
+       };
+       
+       form.add(new TextField<String>("search_input", new PropertyModel<String>(this, "search_target")));  
+       add(form);
     }
+    
     
     
     

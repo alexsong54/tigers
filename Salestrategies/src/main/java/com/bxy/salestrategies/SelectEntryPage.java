@@ -115,7 +115,20 @@ public class SelectEntryPage extends WebPage {
                         dummy.put("id", -1);
                         dummy.put("name", "无");
                         maplist.add(dummy);
-
+                    } else if (tragetEntity.equalsIgnoreCase("tactics")) {
+                    	String sql = assembleSearchingSQL( entity);
+                        maplist  = DAOImpl.queryEntityRelationList(sql);
+                        Map dummy = Maps.newHashMap();
+                        dummy.put("id", -1);
+                        dummy.put("name", "无");
+                        maplist.add(dummy);
+                    }else if (tragetEntity.equalsIgnoreCase("opportunitycontactteam")) {
+                    	String sql = assembleSearchingSQL( entity);
+                        maplist  = DAOImpl.queryEntityRelationList(sql);
+                        Map dummy = Maps.newHashMap();
+                        dummy.put("id", -1);
+                        dummy.put("name", "无");
+                        maplist.add(dummy);
                     }
                 }else if (relationTableName.equalsIgnoreCase("user")) {
                     String sql = assembleSearchingSQL( entity);

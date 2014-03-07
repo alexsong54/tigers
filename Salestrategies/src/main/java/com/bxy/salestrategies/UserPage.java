@@ -29,6 +29,8 @@ public class UserPage extends Index{
 	   final Entity entity = entities.get("user");
 	   String sql = entity.getSql();
 	   tdata = DAOImpl.queryEntityRelationList(sql);
+	   
 	   add(new PageableTablePanel("datalist", entity, tdata, null));
+	   System.out.println(tdata+"tdatatdatatdatatdatatdatatdata");
    }
 }

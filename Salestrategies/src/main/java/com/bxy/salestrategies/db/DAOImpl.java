@@ -296,7 +296,11 @@ public class DAOImpl {
 	        if(tableName.equals("province")){
 	             query = "select id, val from " + tableName + " where id=? ";
 	        }else{
-	             query = "select id, name from " + tableName + " where id=? ";
+	        	 if(tableName.equals("tactics")){
+	        		 query = "select id, target_date from " + tableName + " where id=? ";
+	        	 }else{
+	        		 query = "select id, name from " + tableName + " where id=? ";
+	        	 }
 	        }
 	        String result = "";
 	        Connection conn = null;
@@ -310,7 +314,11 @@ public class DAOImpl {
 	                if(tableName.equals("province")){
 	                     value = map.get("val");
 	                }else{
-	                     value = map.get("name");
+	                     if(tableName.equals("tactics")){
+	                    	 value = map.get("target_date");
+	                     }else{
+	                    	 value = map.get("name");
+	                     }
 	                }
 	                if (value != null) {
 	                    result = (String) value;
@@ -700,6 +708,41 @@ public class DAOImpl {
 	        return key;
 
 	    }
+	     
+	     public static long createOpportunityTeam(String entityName, List<String> fieldNames, List<String> values,String userId,String opportunityId){   
+	         String fieldssql = Joiner.on(",").join(fieldNames);
+	         String valuesql = Joiner.on(",").join(values);
+	         String sql = "INSERT INTO "+entityName+" ("+fieldssql+ ", opportunity_id ) VALUES ("+valuesql +","+opportunityId+")";
+	        System.out.println(sql);
+	        Connection conn = null;
+	        ResultSet generatedKeys = null;
+	        PreparedStatement statement = null;
+	        long key = -1;
+	        try {
+	            conn = DBConnector.getConnection();
+	            statement  = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+	            int affectedRows = statement.executeUpdate();
+	            if (affectedRows == 0) {
+	                logger.error("Failed to insert data");
+	                return -1;
+	            }
+	            generatedKeys = statement.getGeneratedKeys();
+	            if (generatedKeys.next()) {
+	                 key = generatedKeys.getLong(1);
+	            } else {
+	                return -1;
+	            }
+	        } catch (Exception e) {
+	            logger.error("failed to add new calendar event", e);
+	        } finally {
+	            if (generatedKeys != null) try { generatedKeys.close(); } catch (SQLException logOrIgnore) {}
+	            if (statement != null) try { statement.close(); } catch (SQLException logOrIgnore) {}
+	            if (conn != null) try { conn.close(); } catch (SQLException logOrIgnore) {}
+	        }
+	        return key;
+	    }
+	     
+	     
 	     //
 	     public static String getCreateRecordByEntity(String entityName){
 	            String result;
