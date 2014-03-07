@@ -77,9 +77,6 @@ public class Index extends WebPage
         builder.put("user", item);
    
         item = new MenuItem();
-<<<<<<< HEAD
-        item.setCaption("<i class=\"icon-font icon-large\"></i>Activity");
-=======
         item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Tactics");
         item.setDestination(TacticsPage.class);
         item.setId("navitem-Tactics");
@@ -87,7 +84,6 @@ public class Index extends WebPage
         
         item = new MenuItem();
         item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Activity");
->>>>>>> add some function
         item.setDestination(ActivityPage.class);
         item.setId("navitem-activity");
         builder.put("activity", item);
