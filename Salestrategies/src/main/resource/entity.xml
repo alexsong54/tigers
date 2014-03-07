@@ -1876,7 +1876,9 @@
 	<entity>
 		<name>opportunitycontactteam</name>
 		<display>联系人团队</display>
-		<sql>select * From opportunitycontactteam</sql>
+		<sql>select * from (select contact.*\,
+		from contact left join opportunitycontactteam on opportunitycontactteam.contact_id = contact.id 
+		) as atable</sql>
 		<sql-ent>select * From opportunitycontactteam where id = ?</sql-ent>
 		<fields>
 			<field>
@@ -1896,7 +1898,7 @@
 				<name>contact_id</name>
 				<display>姓名</display>
 				<field-type>String</field-type>
-				<isDetailLink>true</isDetailLink>
+				<isDetailLink>false</isDetailLink>
 				<isEditable>true</isEditable>
 				<isShow>true</isShow>
 				<isVisible>true</isVisible>
@@ -1910,7 +1912,7 @@
 				<name>opportunity_id</name>
 				<display>商机</display>
 				<field-type>String</field-type>
-				<isDetailLink>true</isDetailLink>
+				<isDetailLink>false</isDetailLink>
 				<isEditable>false</isEditable>
 				<isShow>true</isShow>
 				<isVisible>false</isVisible>
@@ -1924,7 +1926,7 @@
 				<name>buying_style</name>
 				<display>购买类型</display>
 				<field-type>String</field-type>
-				<isDetailLink>true</isDetailLink>
+				<isDetailLink>false</isDetailLink>
 				<isEditable>true</isEditable>
 				<isShow>true</isShow>
 				<isVisible>true</isVisible>
@@ -1938,7 +1940,7 @@
 				<name>decision_role</name>
 				<display>权利角色</display>
 				<field-type>String</field-type>
-				<isDetailLink>true</isDetailLink>
+				<isDetailLink>false</isDetailLink>
 				<isEditable>true</isEditable>
 				<isShow>true</isShow>
 				<isVisible>true</isVisible>
@@ -1952,7 +1954,7 @@
 				<name>influence_to</name>
 				<display>内在联系</display>
 				<field-type>String</field-type>
-				<isDetailLink>true</isDetailLink>
+				<isDetailLink>false</isDetailLink>
 				<isEditable>true</isEditable>
 				<isShow>true</isShow>
 				<isVisible>true</isVisible>
@@ -1961,6 +1963,159 @@
 				<priority>1</priority>
 				<data-type>text</data-type>
 				<fieldGroup>关键信息</fieldGroup>
+			</field>
+		</fields>
+	</entity>
+	<entity>
+		<name>opportunityuserteam</name>
+		<display>团队</display>
+		<sql>select * from (select user.id as user_id \,opportunityuserteam.id\,user.job_title\,opportunity.id as opportunity_id \,
+		user.office_tel\,user.telephone\,opportunityuserteam.team_role 
+		 from opportunityuserteam left join user on user.id = opportunityuserteam.user_id 
+		left join opportunity on opportunity.id = opportunityuserteam.opportunity_id ) as a</sql>
+		<sql-ent>select * from opportunityuserteam where id = ?</sql-ent>
+		<fields>
+			<field>
+				<name>id</name>
+				<display>编号</display>
+				<isDetailLink>false</isDetailLink>
+				<isEditable>false</isEditable>
+				<isPrimaryKey>true</isPrimaryKey>
+				<isRequired>false</isRequired>
+				<isVisible>false</isVisible>
+				<data-type>text</data-type>
+				<field-type>String</field-type>
+				<priority>0</priority>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>user_id</name>
+				<display>姓名</display>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isEditable>true</isEditable>
+				<isShow>true</isShow>
+				<isVisible>true</isVisible>
+				<isPrimaryKey>false</isPrimaryKey>
+				<relationTable>user</relationTable>
+				<data-type>text</data-type>
+				<priority>1</priority>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>team_role</name>
+				<display>团队角色</display>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isEditable>true</isEditable>
+				<isShow>true</isShow>
+				<isVisible>true</isVisible>
+				<isPrimaryKey>false</isPrimaryKey>
+				<picklist>team_role_pl</picklist>
+				<data-type>text</data-type>
+				<priority>1</priority>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+			<name>job_title</name>
+			<display>职位</display>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<pattern>text</pattern>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<field-type>String</field-type>
+			<picklist>job_title_pl</picklist>
+			<priority>1</priority><isShow>true</isShow>
+			<fieldGroup>关键信息</fieldGroup>
+		</field>
+		<field>
+			<name>office_tel</name>
+			<display>固定电话</display>
+			<isRequired>false</isRequired>
+			<data-type>tel</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<field-type>String</field-type>
+			<priority>1</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>关键信息</fieldGroup>
+		</field>
+		<field>
+			<name>telephone</name>
+			<display>移动电话</display>
+			<isRequired>false</isRequired>
+			<data-type>tel</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<field-type>String</field-type>
+			<priority>1</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>关键信息</fieldGroup>
+		</field>
+			<field>
+				<name>created_by</name>
+				<display>创建人</display>
+				<data-type>text</data-type>
+				<isRequired>false</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>create_date</name>
+				<display>创建时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_by</name>
+				<display>修改人</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modifier_date</name>
+				<display>修改时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
 			</field>
 		</fields>
 	</entity>
