@@ -1212,7 +1212,8 @@
 	<name>activity</name>
 		<display>活动</display>
 		<globalsearch>true</globalsearch>
-		<sql>SELECT * from activity  </sql>
+		<sql>select * from (SELECT activity.*\,account.id as account_name from activity 
+		left join contact on contact.id = activity.contact_id left join account on account.id = contact.account_id ) as a </sql>
 		<sql-ent>SELECT * FROM activity where id = ?</sql-ent>
 		<fields>
 			<field>
@@ -1261,7 +1262,7 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>account_id</name>
+				<name>account_name</name>
 				<display>客户名称</display>
 				<pattern>color:red</pattern>
 				<isRequired>false</isRequired>
@@ -1269,7 +1270,7 @@
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
+				<isEditable>false</isEditable>
 				<field-type>String</field-type>
 				<relationTable>account</relationTable>
 				<priority>1</priority>
@@ -2025,7 +2026,7 @@
 			<isDetailLink>false</isDetailLink>
 			<pattern>text</pattern>
 			<isVisible>true</isVisible>
-			<isEditable>true</isEditable>
+			<isEditable>false</isEditable>
 			<field-type>String</field-type>
 			<picklist>job_title_pl</picklist>
 			<priority>1</priority><isShow>true</isShow>
@@ -2039,7 +2040,7 @@
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
 			<isVisible>true</isVisible>
-			<isEditable>true</isEditable>
+			<isEditable>false</isEditable>
 			<field-type>String</field-type>
 			<priority>1</priority>
 			<isShow>true</isShow>
@@ -2054,7 +2055,7 @@
 			<isPrimaryKey>false</isPrimaryKey>
 			<isDetailLink>false</isDetailLink>
 			<isVisible>true</isVisible>
-			<isEditable>true</isEditable>
+			<isEditable>false</isEditable>
 			<field-type>String</field-type>
 			<priority>1</priority>
 			<isShow>true</isShow>
