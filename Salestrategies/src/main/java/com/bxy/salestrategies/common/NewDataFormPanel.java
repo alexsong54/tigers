@@ -442,7 +442,8 @@ public class NewDataFormPanel extends Panel
                 {
                     div.add(new AttributeAppender("style", new Model("display:block"), ";"));
                     group.add(new AttributeAppender("style", new Model("display:block"), ";"));
-                    if(entity.getName().equals("account")){
+                    if(entity.getName().equals("account")){ 
+                    	
                     	  promptLabel.add(new AttributeAppender("style", new Model("display:none"), ";"));
                           promptLabelForAccount.add(new AttributeAppender("style", new Model("display:block"), ";"));
                           promptLabelForDateOfEstablish.add(new AttributeAppender("style", new Model("display:block"), ";"));
@@ -465,7 +466,6 @@ public class NewDataFormPanel extends Panel
                         String entityName=entity.getName().toString();
                         if(entityName.equals("target_acquisition")){
                         	String oppID = DAOImpl.queryEntityById("select * from target_acquisition where id = ?", String.valueOf(entityId)).get("opportunity_id").toString();
-                      	  	//跳转界面
                       	  	setResponsePage(new EntityDetailPage("opportunity",oppID));
                         }else{
                         	setResponsePage(new EntityDetailPage(entityName,String.valueOf(entityId)));
@@ -479,7 +479,10 @@ public class NewDataFormPanel extends Panel
             @Override
             public void onSubmit()
             {
-            	String opportunityId = params.get("opportunityId").toString();
+            	String opportunityId = "";
+            	if(entity.getName().equals("target_acquisition")){
+                	opportunityId = params.get("opportunityId").toString();
+                }
             	Long entityId = saveEntity(models, entity, userId, userName,opportunityId);
                 if (entityId<0)
                 {
