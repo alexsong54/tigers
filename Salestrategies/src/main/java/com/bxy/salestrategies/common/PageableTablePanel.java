@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.behavior.AttributeAppender;
@@ -75,7 +76,18 @@ public class PageableTablePanel extends Panel{
 	                count++;
 	            }
 	            columnNameRepeater.add(item);
-	            item.add(new Label("columnName", f.getDisplay()));
+	            Label label = new Label("columnName",f.getDisplay());
+	            Label iconLabel = new Label("iconName","");
+	            if (f.getFieldGroup().equals("Why – Will this decision be made?")||f.getFieldGroup().equals("How- Will a decision be made?")||f.getFieldGroup().equals("Who – Will really make the decision?"))
+                {
+                    String message = CRMUtility.getToolTipById(String.valueOf(f.getTooltip()));
+                    label.add(new AttributeModifier("data-content", message));
+                    label.add(new AttributeModifier("title", f.getDisplay()));
+                    iconLabel.add(new AttributeAppender("class", new Model<String>("icon-question-sign"), " "));
+                    label.add(new AttributeAppender("class", new Model<String>("tooltip-test"), " "));
+                }
+	            item.add(iconLabel);
+	            item.add(label);
 	        }
 	        // end of set column name
 	        final PageableListView<String> listview = new PageableListView<String>("dataRowRepeater", ids, 15) {
@@ -116,7 +128,15 @@ public class PageableTablePanel extends Panel{
 	                            if(value.equals("null")||value.isEmpty()){
 	                              value = "无";
 	                            }
-	                            columnitem.add(new Label("celldata", value));
+	                            Label label = new Label("celldata", value);
+	                            if(value.equals("＋")){
+	                            	label.add(new AttributeAppender("class",new Model("addStyle")," "));
+	                            }else if(value.equals("－")){
+	                            	label.add(new AttributeAppender("class",new Model("cutStyle")," "));
+	                            }else if(value.equals("？")){
+	                            	label.add(new AttributeAppender("class",new Model("doubtStyle")," "));
+	                            }
+	                            columnitem.add(label);
 	                        } else if(f.getRelationTable() != null){
 	                            String value = Utility.formatValue(f.getFormatter(), DAOImpl.queryCachedRelationDataById(f.getRelationTable(), String.valueOf(map.get(f.getName()))));
 	                            if(value.equals("null")||value.isEmpty()){
@@ -126,8 +146,7 @@ public class PageableTablePanel extends Panel{
 	                        }else {
 	                           
 	                             String value = Utility.formatValue(f.getFormatter(), String.valueOf(map.get(f.getName())));
-	                            final String filepath =Utility.formatValue(f.getFormatter(), String.valueOf(map.get(f.getName())));
-	                            
+	                             final String filepath = Utility.formatValue(f.getFormatter(), String.valueOf(map.get(f.getName())));
 	                            if(f.getDataType().equalsIgnoreCase("downloadlink")){
 	                                columnitem.add(new DownloadLinkFragment("celldata", "downloadlinkFragment", this.getParent().getParent(), value));
 	                                

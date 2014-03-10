@@ -174,7 +174,7 @@ public class NewDataFormPanel extends Panel
                             {
                                 String message = CRMUtility.getToolTipById(String.valueOf(currentField.getTooltip()));
                                 textField.add(new AttributeModifier("data-content", message));
-                                textField.add(new AttributeAppender("class", new Model<String>("icon-question-sign"), " "));
+                               //textField.add(new AttributeAppender("class", new Model<String>("icon-question-sign"), " "));
                                 textField.add(new AttributeModifier("title", currentField.getDisplay()));
                                 textField.add(new AttributeAppender("class", new Model<String>("tooltip-test"), " "));
                             }
@@ -433,7 +433,10 @@ public class NewDataFormPanel extends Panel
             public void onSubmit()
             {
                 logger.debug(models);
-                String opportunityId = params.get("opportunityId").toString();
+                String opportunityId = "";
+                if(entity.getName().equals("target_acquisition")){
+                	opportunityId = params.get("opportunityId").toString();
+                }
                 Long entityId = saveEntity(models, entity, userId, userName,opportunityId);
                 if (entityId<0)
                 {

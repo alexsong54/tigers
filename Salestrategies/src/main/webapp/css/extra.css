@@ -10,6 +10,15 @@
 	color:#ffffff; 
 	text-align: center;
 }
+.addStyle{
+	color:green;
+}
+.cutStyle{
+	color:red;
+}
+.doubtStyle{
+	color:blue
+}
 .folatLeft{
 	text-align:left;
 }

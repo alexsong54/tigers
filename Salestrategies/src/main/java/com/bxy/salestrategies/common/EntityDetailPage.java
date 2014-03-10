@@ -107,12 +107,14 @@ public class EntityDetailPage extends Index {
         long lid = Long.parseLong(id);
         Map map = DAOImpl.queryEntityById(entity.getSql_ent(), String.valueOf(lid));
 
-        add(new Label("entityName",String.valueOf(map.get("name"))));
         String fieldName =  String.valueOf(map.get("name"));
         if("null".equals(fieldName)){
         	add(new Label("name",""));
+        	add(new Label("entityName",""));
         }else{
         	add(new Label("name",fieldName));
+        	add(new Label("entityName",fieldName));
+        	
         }
         add(new EntityDetailPanel("detailed",entity,map,id,3,entityName));
         

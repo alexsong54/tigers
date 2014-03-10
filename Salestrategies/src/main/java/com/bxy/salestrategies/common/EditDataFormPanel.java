@@ -180,10 +180,9 @@ public class EditDataFormPanel extends Panel {
                         if (j % 2 == 0) {
                         	TextFragment textField = new TextFragment("editdata", "textFragment", this, currentField.getDisplay() + ":");
                             textField.add(new AttributeAppender("style", new Model("font-weight:bold;"), ";"));
-                            if(currentField.getPriority()==5){
+                            if(currentField.getFieldGroup().equals("Why – Will this decision be made?")||currentField.getFieldGroup().equals("How- Will a decision be made?")||currentField.getFieldGroup().equals("Who – Will really make the decision?")){
                               String message = CRMUtility.getToolTipById(String.valueOf(currentField.getTooltip()));
                               textField.add(new AttributeModifier("data-content",message));
-                              textField.add(new AttributeAppender("class",new Model<String>("icon-question-sign")," "));
                         	  textField.add(new AttributeModifier("title",currentField.getDisplay()));
                           	  textField.add(new AttributeAppender("class",new Model("tooltip-test")," "));
                             }

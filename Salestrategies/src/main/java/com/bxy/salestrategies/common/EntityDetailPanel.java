@@ -42,13 +42,7 @@ public class EntityDetailPanel extends Panel {
     
     public EntityDetailPanel(String id, final Entity schema, final Map data, String entityId, int number_of_column, final String pageName) {
         super(id);
-//        this.number_of_column = number_of_column;
-        // TODO Get permission info of user from database.
-        // add(new
-        // CRUDPanel("operationBar",EnumSet.of(CRUDPanel.Permissions.DEL,CRUDPanel.Permissions.EDIT)));
 
-
-        // TODO Get the table definition from database or configuration
         String primaryKeyName = schema.getPrimaryKeyName();
         List<Field> fields = schema.getFields();//得到所有fields
         for (Field f : fields) {
