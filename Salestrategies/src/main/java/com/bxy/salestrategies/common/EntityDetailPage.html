@@ -35,20 +35,23 @@
                 <div class="row">
                 <div class="col-md-3">
                         <div class="bs-sidebar hidden-print" role="complementary">
-                            <ul class="nav bs-sidenav">
+                            <ul class="nav bs-sidenav nav-list">
 
-                                <li>
-                                    <a href="#entityname" wicket:id = entityName>entityname</a>
+                                <li class="active">
+                                    <a href="#entityname"><i  wicket:id="HomeIcon"></i>&nbsp;&nbsp;<span wicket:id="entityName"></span></a>
+<!--                                    <a href="#entityname" wicket:id ="entityName">entityname</a>-->
                                 </li>
                                 <li>
-                                    <a href="#teamPanel" wicket:id = mao1>teampanel</a>
+                                    <a href="#teamPanel"><i  wicket:id="icon1"></i>&nbsp;&nbsp;<span wicket:id="relationName1"></span></a>
                                 </li>
                                 <li>
-                                    <a href="#relation2" wicket:id = mao2>team</a>
-                                </li><li>
-                                    <a href="#relation3" wicket:id = mao3 >panle</a>
+                                    <a href="#relation2"><i  wicket:id="icon2"></i>&nbsp;&nbsp;<span wicket:id="relationName2"></span></a>
                                 </li>
-
+                                <li>
+                                    <a href="#relation3"><i  wicket:id="icon3"></i>&nbsp;&nbsp;<span wicket:id="relationName3"></span></a>
+                                </li>
+                                
+                                <!--<li class="active"><a href="#glyphicons"><i class="icon-home"></i> Glyphicons图标</a></li>-->
 
 
                             </ul>
@@ -78,11 +81,11 @@
                             <div  class="relationBlock"> 
                               <span wicket:id="teamPanel" id="teamPanel"></span> 
                             </div>
-                             <div id=relation> 
-                                <div class="relationBlock" wicket:id="teamPanel2"  id=relation2></div> 
+                             <div id="relation"> 
+                                <div class="relationBlock" wicket:id="teamPanel2"  id="relation2"></div> 
                             </div>
-                            <div id=relation2> 
-                                <div class="relationBlock" wicket:id="teamPanel3"  id=relation3></div> 
+                            <div id="relation2"> 
+                                <div class="relationBlock" wicket:id="teamPanel3"  id="relation3"></div> 
                             </div> 
 <!-- <!--                             <div id=relation3> --> 
 <!-- <!--                                 <div class="relationBlock" wicket:id="teamPanel4"  id=relation4></div> --> 
@@ -90,10 +93,10 @@
                         </div>
 
                     </div>
-                    <div class="col-md-12 box">
+                    <div>
                          <span wicket:id="dnaPanel">data table</span>
                      </div>
-                     <div class="col-md-12 box">
+                     <div>
                          <span wicket:id="targetPanel">data table</span>
                      </div>
                     <!-- end of right container -->

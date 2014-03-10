@@ -106,60 +106,114 @@ public class EntityDetailPage extends Index {
         add(div);
         long lid = Long.parseLong(id);
         Map map = DAOImpl.queryEntityById(entity.getSql_ent(), String.valueOf(lid));
-
+        
+        Label HomeIcon=new Label("HomeIcon"," ");
+        HomeIcon.add(new AttributeAppender("class", new Model<String>("icon-home"), " "));
+        add(HomeIcon);
+        
+        
         String fieldName =  String.valueOf(map.get("name"));
         if("null".equals(fieldName)){
         	add(new Label("name",""));
-        	add(new Label("entityName",""));
+        	add(new Label("entityName",String.valueOf(map.get("name"))));
         }else{
         	add(new Label("name",fieldName));
-        	add(new Label("entityName",fieldName));
+        	add(new Label("entityName",String.valueOf(map.get("name"))));
         	
         }
         add(new EntityDetailPanel("detailed",entity,map,id,3,entityName));
         
 
          if(entityName.equalsIgnoreCase("account")){
-        	 add(new Label("mao1","用户"));
-             add(new Label("mao2","联系人"));
-             add(new Label("mao3",""));
-        	 add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+        	 Label icon1=new Label("icon1"," ");
+             icon1.add(new AttributeAppender("class", new Model<String>("icon-user"), " "));
+             add(icon1);
+             add(new Label("relationName1","用户"));
+             
+             Label icon2=new Label("icon2"," ");
+             icon2.add(new AttributeAppender("class", new Model<String>("icon-user-md"), " "));
+             add(icon2);
+             add(new Label("relationName2","商机"));
+             
+             add(new Label("icon3",""));
+             add(new Label("relationName3",""));
+             
+             
+             
+             add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
              add(new EmptyPanel("teamPanel3"));
              //             add(new EmptyPanel("teamPanel4"));
          }
          else if(entityName.equalsIgnoreCase("contact")){
-        	 add(new Label("mao1","用户"));
-             add(new Label("mao2","商机"));
-             add(new Label("mao3",""));
-        	 add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+        	 Label icon1=new Label("icon1"," ");
+             icon1.add(new AttributeAppender("class", new Model<String>("icon-user"), " "));
+             add(icon1);
+             add(new Label("relationName1","用户"));
+             
+             Label icon2=new Label("icon2"," ");
+             icon2.add(new AttributeAppender("class", new Model<String>("icon-zoom-in"), " "));
+             add(icon2);
+             add(new Label("relationName2","商机"));
+             
+             add(new Label("icon3",""));
+             add(new Label("relationName3",""));
+             
+             add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
              add(new EmptyPanel("teamPanel3"));
 //             add(new TeamManPanel("teamPanel4",entityName,String.valueOf(lid),3));
          }
          else if(entityName.equalsIgnoreCase("opportunity")){
-        	 add(new Label("mao1","团队"));
-             add(new Label("mao2","联系人"));
-             add(new Label("mao3","DNA"));
-	    	add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
-	        add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-           add(new EmptyPanel("teamPanel3"));
-//           add(new EmptyPanel("teamPanel4"));
+        	 Label icon1=new Label("icon1"," ");
+             icon1.add(new AttributeAppender("class", new Model<String>("icon-group"), " "));
+             add(icon1);
+             add(new Label("relationName1","团队"));
+             
+             Label icon2=new Label("icon2"," ");
+             icon2.add(new AttributeAppender("class", new Model<String>(" icon-user-md"), " "));
+             add(icon2);
+             add(new Label("relationName2","联系人"));
+             
+             Label icon3=new Label("icon3"," ");
+             icon3.add(new AttributeAppender("class", new Model<String>(" icon-resize-full"), ""));
+             add(icon3);
+             add(new Label("relationName3","DNA"));
+             
+	     add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+	     add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
+                add(new EmptyPanel("teamPanel3"));
        }else if(entityName.equalsIgnoreCase("user")){
-    	   add(new Label("mao1","客户"));
-           add(new Label("mao2","联系人"));
-           add(new Label("mao3","商机"));
-	    	add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
-	        add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-           add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
-    	   
-       }else{
-    	   add(new Label("mao1",""));
-           add(new Label("mao2",""));
-           add(new Label("mao3",""));
-            add(new EmptyPanel("teamPanel"));
-            add(new EmptyPanel("teamPanel2"));
-            add(new EmptyPanel("teamPanel3"));
+           
+         Label icon1=new Label("icon1"," ");
+         icon1.add(new AttributeAppender("class", new Model<String>("icon-road"), " "));
+         add(icon1);
+         add(new Label("relationName1","客户"));
+           
+         Label icon2=new Label("icon2"," ");
+         icon2.add(new AttributeAppender("class", new Model<String>(" icon-user-md"), " "));
+         add(icon2);
+         add(new Label("relationName2","联系人"));
+
+         Label icon3=new Label("icon3"," ");
+         icon3.add(new AttributeAppender("class", new Model<String>("icon-zoom-in"), " "));
+         add(icon3);
+         add(new Label("relationName3","商机"));
+          
+	   add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+	   add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
+         add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
+  	   
+     }else{
+           add(new Label("icon1",""));
+           add(new Label("relationName1",""));
+           add(new Label("icon2",""));
+           add(new Label("relationName2",""));
+    	   add(new Label("icon3",""));
+           add(new Label("relationName3",""));
+           add(new EmptyPanel("teamPanel"));
+           add(new EmptyPanel("teamPanel2"));
+           add(new EmptyPanel("teamPanel3"));
 //            add(new EmptyPanel("teamPanel4"));
         }
 

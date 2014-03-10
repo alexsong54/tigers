@@ -3,22 +3,16 @@
         $(document).ready(function() {
         });// end onDomReady function
     </script>
-    <div class="row">
-    	<div class="data-table">
-            <div class="col-md-11 box">
-         	<div class="panel panel-default">
-				  <div class="panel-body table-responsive">
- 				   <h3 wicket:id="title" class="footer"></h3>
+    <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span wicket:id="title">联系人</span>
+                      </div>
  				   <form wicket:id="form">
  				    	 <table class="table table-bordered " id="dna">
-					    	<tr>
-						    	<td colspan="5" style="text-align: right">
-		 				    	<input type="submit"  class="btn btn-primary" value="保存" />
-		 				    	</td>
-	 				    	</tr>
 	 				    	<tr>
 	 				    		<td colspan="5"  class="tableThStyle" >
 	 				    		Description of the current situation, issues, facts, or profile points as we understand them
+	 				    		<input type="submit"  class="btn-small" value="保存" />
 	 				    		</td>
 	 				    	</tr>
 	 				    	<tr  class="active">
@@ -39,14 +33,10 @@
  				   </form>
    				   <form wicket:id="dnaImplementForm">
  				    	 <table class="table table-bordered " id="dna">
-					    	<tr>
-						    	<td colspan="5" style="text-align: right">
-		 				    	<input type="submit"  class="btn btn-primary" value="保存" />
-		 				    	</td>
-	 				    	</tr>
 	 				    	<tr>
 	 				    		<td colspan="5"  class="tableThStyle">
 	 				    		Outline of the Critical Success factors and/or Key tactics Going Forward for each of the Five DNA Components
+	 				    		<input type="submit"  class="btn-small" value="保存" />
 	 				    		</td>
 	 				    	</tr>
 	 				    	<tr  class="active">
@@ -66,8 +56,5 @@
 				    	</table>
  				   </form>
 				  </div>
-			</div>
-		</div>
-     </div>
-    </div>
+
 </wicket:panel>

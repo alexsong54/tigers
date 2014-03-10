@@ -38,56 +38,56 @@ public class Index extends WebPage
     
     
      static{
-        ImmutableMap.Builder<String, MenuItem> builder = new ImmutableMap.Builder<String,MenuItem>();
-        MenuItem item = new MenuItem();
-        item.setCaption("<i class=\"icon-home icon-large\"></i> 主页");
-        item.setDestination(HomePage.class);
-        item.setId("navitem-homepage");
-        builder.put("home", item);
-        
-        item = new MenuItem();
-        item.setCaption("<i class=\"icon-sitemap icon-large\"></i> Account");
-        item.setDestination(AccountPage.class);
-        item.setId("navitem-account");
-        builder.put("account", item);
-        
-        item = new MenuItem();
-        item.setCaption("<i class=\"icon-user-md icon-large\"></i>Contact");
-        item.setDestination(ContactPage.class);
-        item.setId("navitem-contact");
-        builder.put("contact", item);
-        
-        item = new MenuItem();
-        item.setCaption("<i class=\"icon-zoom-in icon-large\"></i>Opportunity");
-        item.setDestination(OpportunityPage.class);
-        item.setId("navitem-opportunity");
-        builder.put("opportunity", item);
+    	 ImmutableMap.Builder<String, MenuItem> builder = new ImmutableMap.Builder<String,MenuItem>();
+         MenuItem item = new MenuItem();
+         item.setCaption("主页");
+         item.setDestination(HomePage.class);
+         item.setId("navitem-homepage");
+         builder.put("home", item);
+         
+         item = new MenuItem();
+         item.setCaption(" Account");
+         item.setDestination(AccountPage.class);
+         item.setId("navitem-account");
+         builder.put("account", item);
+         
+         item = new MenuItem();
+         item.setCaption("Contact");
+         item.setDestination(ContactPage.class);
+         item.setId("navitem-contact");
+         builder.put("contact", item);
+         
+         item = new MenuItem();
+         item.setCaption("Opportunity");
+         item.setDestination(OpportunityPage.class);
+         item.setId("navitem-opportunity");
+         builder.put("opportunity", item);
 
-        
-        item = new MenuItem();
-        item.setCaption("<i class=\"icon-group icon-large\"></i>Competitor");
-        item.setDestination(CompetitorPage.class);
-        item.setId("navitem-competitor");
-        builder.put("competitor", item);
-        
-        item = new MenuItem();
-        item.setCaption("<i class=\"icon-user icon-large\"></i>User");
-        item.setDestination(UserPage.class);
-        item.setId("navitem-user");
-        builder.put("user", item);
-   
-        item = new MenuItem();
-        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Tactics");
-        item.setDestination(TacticsPage.class);
-        item.setId("navitem-Tactics");
-        builder.put("tactics", item);
-        
-        item = new MenuItem();
-        item.setCaption("<i class=\"icon-comments-alt icon-large\"></i>Activity");
-        item.setDestination(ActivityPage.class);
-        item.setId("navitem-activity");
-        builder.put("activity", item);
-        pageMenuMap = builder.build();
+         
+         item = new MenuItem();
+         item.setCaption("Competitor");
+         item.setDestination(CompetitorPage.class);
+         item.setId("navitem-competitor");
+         builder.put("competitor", item);
+         
+         item = new MenuItem();
+         item.setCaption("User");
+         item.setDestination(UserPage.class);
+         item.setId("navitem-user");
+         builder.put("user", item);
+         
+         item = new MenuItem();
+         item.setCaption("Tactics");
+         item.setDestination(TacticsPage.class);
+         item.setId("navitem-Tactics");
+         builder.put("tactics", item);
+         
+         item = new MenuItem();
+         item.setCaption("Activity");
+         item.setDestination(ActivityPage.class);
+         item.setId("navitem-activity");
+         builder.put("activity", item);
+         pageMenuMap = builder.build();
        
    }
     public Index()
