@@ -92,7 +92,7 @@ public class TeamManPanel extends Panel {
         	if(type==0){
         		teamSql = "select * from (select user.id as user_id ,user.id as rid,opportunityuserteam.id,user.job_title,opportunity.id as opportunity_id ,user.office_tel,user.telephone,opportunityuserteam.team_role  from opportunityuserteam left join user on user.id = opportunityuserteam.user_id left join opportunity on opportunity.id = opportunityuserteam.opportunity_id where opportunity.id =?) as a";
         	}else if(type==1){
-        		teamSql = "select * from (select contact.*,contact.id as rid,opportunityuserteam.id from contact left join opportunitycontactteam on opportunitycontactteam.contact_id = contact.id where opportunity_id = ?) as atable";
+        		teamSql = "select * from (select opportunitycontactteam.*,contact.id as rid from contact left join opportunitycontactteam on opportunitycontactteam.contact_id = contact.id where opportunitycontactteam.opportunity_id = ?) as atable";
         	}
         }
         List mapList = new ArrayList();

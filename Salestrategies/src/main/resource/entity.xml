@@ -1877,7 +1877,7 @@
 	<entity>
 		<name>opportunitycontactteam</name>
 		<display>联系人团队</display>
-		<sql>select * from (select contact.*\,
+		<sql>select * from (select opportunitycontactteam.*
 		from contact left join opportunitycontactteam on opportunitycontactteam.contact_id = contact.id 
 		) as atable</sql>
 		<sql-ent>select * From opportunitycontactteam where id = ?</sql-ent>
