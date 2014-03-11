@@ -184,7 +184,7 @@
 				<name>date_of_establish</name>
 				<pattern>color:red</pattern>
 				<display>成立时间</display>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -1249,7 +1249,7 @@
 				<name>opportunity_id</name>
 				<display>商机名称</display>
 				<pattern>color:red</pattern>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -1265,7 +1265,7 @@
 				<name>account_name</name>
 				<display>客户名称</display>
 				<pattern>color:red</pattern>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -1282,7 +1282,7 @@
 				<name>contact_id</name>
 				<display>联系人名称</display>
 				<pattern>color:red</pattern>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -1652,8 +1652,9 @@
 			<field>
 				<name>competitor_id</name>
 				<display>竞标公司</display>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
 				<data-type>text</data-type>
+				<pattern>color:red</pattern>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
@@ -1668,6 +1669,7 @@
 				<display>开始时间</display>
 				<isRequired>true</isRequired>
 				<data-type>Date</data-type>
+				<pattern>color:red</pattern>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>true</isDetailLink>
 				<isVisible>true</isVisible>
@@ -1871,6 +1873,48 @@
 				<isShow>true</isShow>
 				<tooltip>12</tooltip>
 				<fieldGroup>Who – Will really make the decision?</fieldGroup>
+			</field>
+			<field>
+				<name>created_by</name>
+				<display>创建人</display>
+				<data-type>text</data-type>
+				<isRequired>false</isRequired>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority>
+				<isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_by</name>
+				<display>修改人</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<relationTable>user</relationTable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
+			</field>
+			<field>
+				<name>modified_date</name>
+				<display>修改时间</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<field-type>auto</field-type>
+				<isVisible>true</isVisible>
+				<isEditable>false</isEditable>
+				<priority>4</priority><isShow>true</isShow>
+				<fieldGroup>附加信息</fieldGroup>
 			</field>
 		</fields>
 	</entity>
@@ -2147,7 +2191,7 @@
  				<display>策略名称</display>
  				<data-type>text</data-type>
  				<pattern>color:red</pattern>
- 				<isRequired>false</isRequired>
+ 				<isRequired>true</isRequired>
 				<isPrimaryKey>false</isPrimaryKey>
  				<isDetailLink>true</isDetailLink>
  				<isVisible>true</isVisible>

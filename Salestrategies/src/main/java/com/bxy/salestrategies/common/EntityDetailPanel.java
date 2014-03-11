@@ -60,6 +60,7 @@ public class EntityDetailPanel extends Panel {
         	groupNames.add("Why – Will this decision be made?");
         	groupNames.add("How- Will a decision be made?");
         	groupNames.add("Who – Will really make the decision?");
+        	groupNames.add("附加信息");
         }else{
         	groupNames = Configuration.getSortedFieldGroupNames();//得到分组信息
         }
@@ -196,7 +197,6 @@ public class EntityDetailPanel extends Panel {
 
         public DetailLinkFragment(String id, String markupId, MarkupContainer markupProvider, String name,final String entityName ,final String eid) {
             super(id, markupId, markupProvider);
-//            final String str = DAOImpl.queryEntityByName(caption);
             add(new Link("detailclick") {
                 @Override
                 public void onClick() {

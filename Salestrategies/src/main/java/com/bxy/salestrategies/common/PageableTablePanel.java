@@ -81,10 +81,10 @@ public class PageableTablePanel extends Panel{
 	            if (f.getFieldGroup().equals("Why – Will this decision be made?")||f.getFieldGroup().equals("How- Will a decision be made?")||f.getFieldGroup().equals("Who – Will really make the decision?"))
                 {
                     String message = CRMUtility.getToolTipById(String.valueOf(f.getTooltip()));
-                    label.add(new AttributeModifier("data-content", message));
-                    label.add(new AttributeModifier("title", f.getDisplay()));
+                    iconLabel.add(new AttributeModifier("data-content", message));
+                    iconLabel.add(new AttributeModifier("title", f.getDisplay()));
                     iconLabel.add(new AttributeAppender("class", new Model<String>("icon-question-sign"), " "));
-                    label.add(new AttributeAppender("class", new Model<String>("tooltip-test"), " "));
+                    iconLabel.add(new AttributeAppender("class", new Model<String>("tooltip-test"), " "));
                 }
 	            item.add(iconLabel);
 	            item.add(label);

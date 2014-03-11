@@ -180,7 +180,6 @@ public class NewDataFormPanel extends Panel
                             }
                             columnitem.add(textField);
                             columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
-                            
                         }
                         else
                         {
@@ -293,14 +292,8 @@ public class NewDataFormPanel extends Panel
                         if (j % 2 == 0)
                         {
                             columnitem.add(new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold"), ";")));
-//                            if (currentField.isRequired())
-//                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
-//                            }
-//                            else
-//                            {
-//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-//                            }
+
+                            columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
                         }
                         else
                         {
@@ -325,14 +318,7 @@ public class NewDataFormPanel extends Panel
                         if (j % 2 == 0)
                         {
                             columnitem.add(new TextFragment("celldatafield", "textFragment", this, currentField.getDisplay() + ":").add(new AttributeAppender("style", new Model("font-weight:bold"), ";")));
-//                            if (currentField.isRequired())
-//                            {
-                                columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
-//                            }
-//                            else
-//                            {
-//                                columnitem.add(new AttributeAppender("class", new Model("tag"), " "));
-//                            }
+                            columnitem.add(new AttributeAppender("class", new Model("tag"), " ")).add(new AttributeAppender("style", new Model(currentField.getPattern()), ";"));
                         }
                         else
                         {
@@ -565,7 +551,7 @@ public class NewDataFormPanel extends Panel
         List<Field> autoFields = entity.getAutoFields();
         for (Field f : autoFields)
         {
-            if (f.getName().equalsIgnoreCase("modifier_date") || f.getName().equalsIgnoreCase("create_date"))
+            if (f.getName().equalsIgnoreCase("modifier_date") || f.getName().equalsIgnoreCase("create_date")||f.getName().equalsIgnoreCase("modified_date"))
             {
                 values.add("'" + dateformat.format(new Date()) + "'");
             }

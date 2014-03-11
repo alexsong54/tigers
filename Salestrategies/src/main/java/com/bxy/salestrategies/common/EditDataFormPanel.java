@@ -530,7 +530,7 @@ public class EditDataFormPanel extends Panel {
 		 List<Field> autoFields = schema.getAutoFields();
          for(Field f:autoFields){
             
-           if(f.getName().equalsIgnoreCase("modifier_date")){
+           if(f.getName().equalsIgnoreCase("modifier_date")||f.getName().equalsIgnoreCase("modified_date")){
                names.add(f.getName());
                
              values.add("'"+dateformat.format(new Date())+"'");
