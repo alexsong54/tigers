@@ -1,13 +1,13 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=add some function
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/DnaPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/Login.html=UTF-8
-<<<<<<< HEAD
 encoding//src/main/java/com/bxy/salestrategies/SearchCRMUserPage.html=UTF-8
-=======
 encoding//src/main/java/com/bxy/salestrategies/SelectEntryPage.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/TargetPanel.html=UTF-8
->>>>>>> add target_acquisition
 encoding//src/main/java/com/bxy/salestrategies/common/CRUDPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/EditDataFormPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/EditPageableTablePanel.html=UTF-8
@@ -16,9 +16,5 @@ encoding//src/main/java/com/bxy/salestrategies/common/FilterPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/NewDataFormPanel.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/NewTeamManPage.html=UTF-8
 encoding//src/main/java/com/bxy/salestrategies/common/PageableTablePanel.html=UTF-8
-<<<<<<< HEAD
-encoding//src/main/resource/tooltipMessage.properties=UTF-8
-=======
 encoding//src/main/java/com/bxy/salestrategies/common/TeamManPanel.html=UTF-8
->>>>>>> add some function
 encoding/<project>=UTF-8
