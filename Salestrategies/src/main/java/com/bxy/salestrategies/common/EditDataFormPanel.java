@@ -82,7 +82,10 @@ public class EditDataFormPanel extends Panel {
 	 */ 
 	public EditDataFormPanel(String id, final Entity schema,  final Map data,final String entityId ,final Class previousPageClass,final PageParameters prePageParams) {
 		super(id);
-		String entityName = String.valueOf(data.get("name"));
+		String entityName =null;
+		if(!schema.getName().equalsIgnoreCase("opportunityuserteam")){
+			 entityName = String.valueOf(data.get("name"));
+		}
 		if("null".equals(entityName)){
 			add(new Label("name",""));
 		}else{
@@ -544,7 +547,7 @@ public class EditDataFormPanel extends Panel {
 		
         String table_name  = schema.getName();
 		if(!table_name.equalsIgnoreCase("user")){
-			System.out.println("names:"+names.toString()+values.toString());
+			System.out.println("names:"+names.toString()+values.toString()+entityId);
                 if(DAOImpl.updateRecord(entityId,table_name,names,values)){
 					recordValueChanges(data, schema, entityId, userId, values, names,table_name);
 					return true;

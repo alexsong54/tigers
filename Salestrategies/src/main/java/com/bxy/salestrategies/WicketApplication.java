@@ -15,6 +15,7 @@ import org.apache.wicket.request.resource.SharedResourceReference;
 import org.apache.wicket.util.file.File;
 
 import com.bxy.salestrategies.common.EntityDetailPage;
+import com.bxy.salestrategies.common.TeamManPanel;
 import com.bxy.salestrategies.util.Utility;
 
 public final class WicketApplication extends WebApplication {
@@ -57,6 +58,7 @@ public final class WicketApplication extends WebApplication {
         mountPage("/mount/AccountPage",AccountPage.class);
         mountPage("/mount/EntityDetailPage",EntityDetailPage.class);
         mountPage("/mount/searchCRMUser", SearchCRMUserPage.class);
+//        mountPage("/mount/TeamManPanel", TeamManPanel.class);
         // Register the authorization strategy
         getSecuritySettings().setAuthorizationStrategy(new IAuthorizationStrategy()
         {
