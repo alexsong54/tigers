@@ -141,7 +141,7 @@ public class UserDeatialInfo extends UserInfoSettingPage {
                     }else {
                         fieldName = user.getEmail();
                     }
-                    if (currentField.getName().equals("sex")) {
+                    if (currentField.getName().equals("gender")) {
                         List<Choice> pickList = DAOImpl.queryPickList(currentField.getPicklist());
                         Map<Long, String> list = Maps.newHashMap();
                         List<Long> ids = Lists.newArrayList();
@@ -182,13 +182,13 @@ public class UserDeatialInfo extends UserInfoSettingPage {
                     String value = fieldNameToModel.get(k).getObject() == null ? null : String.valueOf(fieldNameToModel.get(k).getObject());
                     if (k.equals("name")) {
                         userName = value;
-                    } else if (k.equals("cellPhone")) {
+                    } else if (k.equals("telephone")) {
                         cellPhone = value;
                     } else if (k.equals("photo")) {
                         photo = value;
-                    } else if (k.equals("sex")) {
+                    } else if (k.equals("gender")) {
                         sex = Integer.parseInt(value);
-                    } else if (k.equals("loginName")) {
+                    } else if (k.equals("login_name")) {
                         loginName = value;
                     } else if(k.equals("email")){
                         email = value;
@@ -197,7 +197,7 @@ public class UserDeatialInfo extends UserInfoSettingPage {
                     }
                 }
                 int userId = Integer.parseInt(((SignInSession) getSession()).getUserId());
-                User userinfo = DAOImpl.getUserInfoById(userId);
+               // User userinfo = DAOImpl.getUserInfoById(userId);
                 List<String> loginNames =DAOImpl.getLoginNames(String.valueOf(userId));
                 if(loginNames.contains(loginName)){
                 	errordiv.add(new AttributeAppender("style",new Model("display:block"),";"));

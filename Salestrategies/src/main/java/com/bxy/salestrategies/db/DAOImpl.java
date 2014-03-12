@@ -1196,13 +1196,13 @@ public class DAOImpl {
      
      // update crmuser baseInfo
      public static boolean updateStatusOfInternalMeeting(int userId,String userName,String cellphone,String email,String photo,int sex,String loginName,String office_tel) {
-     	String sql = "UPDATE user SET name=?,cellphone=?,email=?,photo=?,sex=?,loginName=?,office_tel =? where id=?";
+     	String sql = "UPDATE user SET name=?,telephone=?,email=?,gender=?,login_name=?,office_tel =? where id=?";
          Connection conn = null;
          int inserts = 0;
          try {
              conn = DBConnector.getConnection();
              QueryRunner run = new QueryRunner();
-             inserts += run.update(conn, sql, userName, cellphone,email,photo,sex,loginName,office_tel,userId);
+             inserts += run.update(conn, sql, userName, cellphone,email,sex,loginName,office_tel,userId);
              System.out.println("updateCrmUser:" + inserts);
          } catch (Exception e) {
              logger.error("failed to updateStatusOfInternalMeeting", e);

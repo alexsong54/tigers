@@ -68,17 +68,27 @@ public class UpdateSignPassword extends UserInfoSettingPage {
                     logger.debug("true");
                     //修改密码
                     if (DAOImpl.updateCrmUserPassword(userId, newPassword)) {
+                    	errordiv.add(new AttributeAppender("style",new Model("display:none"),";"));
+                        errorgroup.add(new AttributeAppender("style",new Model("display:none"),";"));
+                        errorpromptLabel.add(new AttributeAppender("style",new Model("display:none"),";"));
+                        errorpromptButton.add(new AttributeAppender("style",new Model("display:none"),";"));
                     	div.add(new AttributeAppender("style",new Model("display:block"),";"));
                     	group.add(new AttributeAppender("style",new Model("display:block"),";"));
                 		promptLabel.add(new AttributeAppender("style",new Model("display:block"),";"));
                 		promptButton.add(new AttributeAppender("style",new Model("display:block"),";"));
+                		
                     }
                 } else {
                     logger.debug("false");
+                    div.add(new AttributeAppender("style",new Model("display:none"),";"));
+                	group.add(new AttributeAppender("style",new Model("display:none"),";"));
+            		promptLabel.add(new AttributeAppender("style",new Model("display:none"),";"));
+            		promptButton.add(new AttributeAppender("style",new Model("display:none"),";"));
                     errordiv.add(new AttributeAppender("style",new Model("display:block"),";"));
                     errorgroup.add(new AttributeAppender("style",new Model("display:block"),";"));
                     errorpromptLabel.add(new AttributeAppender("style",new Model("display:block"),";"));
                     errorpromptButton.add(new AttributeAppender("style",new Model("display:block"),";"));
+                    
                 }
             }
         };
