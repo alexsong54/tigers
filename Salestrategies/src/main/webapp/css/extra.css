@@ -190,7 +190,7 @@ a:hover, a:focus {
 .table-hide {
     visibility: visible;
     text-align: left;
-    line-height: 21px !important;
+    line-height: 30px !important;
 }
 .title > span{
     padding-left: 4px;

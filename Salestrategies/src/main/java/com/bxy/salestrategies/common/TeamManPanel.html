@@ -34,18 +34,22 @@
                                         <th class="table-hide " wicket:id="columnNameRepeater">
                                             <span wicket:id="columnName"></span></th>
                                         <th class="table-check">
-                                            <input type="checkbox"  wicket:id="checkboxs"/>
+                                            <input type="checkbox"  wicket:id="checkboxs"  style="float: right"/>
                                             <label wicket:id="checkboxs_label" class="chk-header"><span></span></label>
                                         </th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr wicket:id="dataRowRepeater">
                                         <td class="table-hide " wicket:id="columnRepeater"><span wicket:id="celldata"></span></td>
-                                        <td>
-                                            <input  type="checkbox" wicket:id="checkbox"/>
-                                            <input wicket:id="editbtn" type ="submit" value="edit" />
+                                        <td >
+                                            <input  type="checkbox" wicket:id="checkbox" style="float: right" />
+                                            
                                             <label wicket:id="checkbox_label"><span></span></label>
+                                        </td>
+                                        <td width="20px">
+                                            <input  wicket:id="editbtn" type ="submit" value="编辑"  />
                                         </td>
                                     </tr>
                                 </tbody>
