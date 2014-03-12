@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org">
+    <body>
+        <wicket:extend>
+        	<script>
+              $(document).ready(function() {	
+            	  console.info("active");
+            	  $("#navitem-userdetailInfo").addClass("active"); 
+              });
+              function validateFields(){
+                  
+                  var isValidated = true;
+                  $( '.required-field').each(function( index ) {
+                      console.log( index + ": " + $( this ).text() );
+                      if(jQuery.isEmptyObject($(this).val())){
+                          isValidated = false;
+                      }
+                    });
+                  if(isValidated){
+                  	return true;
+                  }else{
+                      alert("红色标记字段为必填字段");
+                      return false;
+                  }
+               }
+              
+             </script>
+                <div  class="row-fluid center">
+                    <div wicket:id="promptDiv" class="alert  alert-success" >
+	 					<span wicket:id="promptButton" class="close" data-dismiss="alert"></span>
+						<span wicket:id="prompt" ><strong></strong></span>
+					</div>
+					<div wicket:id="alertDiv" class="alert  alert-warning" >
+	 					<span wicket:id="alertButton" class="close" data-dismiss="alert"></span>
+						<span wicket:id="alert" ><strong></strong></span>
+					</div>
+                    <form wicket:id="form" class="form-horizontal">
+                        <div wicket:id="fieldGroupRepeater">
+                                <div wicket:id="dataRowRepeater" class="form-group">
+                                    <div class="table-column " wicket:id="columnRepeater"><div wicket:id="editdata" class="form_datetime"></div></div>
+                                </div>
+                        </div>
+                        <div class="btn-group user-btn action-btn">
+                            <input type="submit"  onClick="return validateFields();"  class="btn btn-info button" value="保存" />
+                        </div>
+                        <div class="btn-group action-btn">
+                            <input type="reset" class="btn btn-info button" value="重置" />
+                        </div>
+                    </form>
+                </div>
+            <wicket:fragment wicket:id="textInputFragment">
+                <input wicket:id="input" type="text" class="form-control input-sm" />
+            </wicket:fragment>
+            <wicket:fragment wicket:id="textFragment">
+                <span wicket:id="celldata" ></span>
+            </wicket:fragment>
+            <wicket:fragment wicket:id="dropDownFragment">
+                <select wicket:id="dropDownInput" class="form-control input-sm" ></select>
+            </wicket:fragment>
+        </wicket:extend>
+    </body>
+</html>

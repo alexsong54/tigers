@@ -959,6 +959,7 @@
 			<field-type>String</field-type>
 			<priority>1</priority><isShow>true</isShow>
 			<isParam>true</isParam>
+			<isBaseInfo>true</isBaseInfo>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
 		<field>
@@ -991,6 +992,7 @@
 			<priority>2</priority>
 			<isShow>true</isShow>
 			<isParam>true</isParam>
+			<isBaseInfo>true</isBaseInfo>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
 		<field>
@@ -1021,6 +1023,7 @@
 			<priority>1</priority>
 			<isShow>true</isShow>
 			<isParam>true</isParam>
+			<isBaseInfo>true</isBaseInfo>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
 		<field>
@@ -1033,6 +1036,7 @@
 			<isVisible>true</isVisible>
 			<isEditable>true</isEditable>
 			<field-type>String</field-type>
+			<isBaseInfo>true</isBaseInfo>
 			<priority>1</priority>
 			<isShow>true</isShow>
 			<isParam>true</isParam>

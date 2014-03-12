@@ -1172,4 +1172,46 @@ public class DAOImpl {
 	            DBHelper.closeConnection(conn);
 	        }
      }
+     //update user Password
+     public static boolean updateCrmUserPassword(int userId,String password){
+     	String  sql=" UPDATE user SET password=? where id =?";
+     	Connection conn = null;
+     	String newPassword = DigestUtils.md5Hex(password);
+     	int updates = 0;
+     	try{
+     		conn = DBConnector.getConnection();
+     		QueryRunner run = new QueryRunner();
+     		updates += run.update(conn, sql, newPassword,userId);
+     		logger.debug("update password success!");
+     	} catch (Exception e){
+     		logger.error("failed to updatecrmUser Password",e);
+     	}finally{
+     		DBHelper.closeConnection(conn);
+     	}
+     	if(updates>0){
+     		return true;
+     	}
+     	return false;
+     }
+     
+     // update crmuser baseInfo
+     public static boolean updateStatusOfInternalMeeting(int userId,String userName,String cellphone,String email,String photo,int sex,String loginName,String office_tel) {
+     	String sql = "UPDATE user SET name=?,cellphone=?,email=?,photo=?,sex=?,loginName=?,office_tel =? where id=?";
+         Connection conn = null;
+         int inserts = 0;
+         try {
+             conn = DBConnector.getConnection();
+             QueryRunner run = new QueryRunner();
+             inserts += run.update(conn, sql, userName, cellphone,email,photo,sex,loginName,office_tel,userId);
+             System.out.println("updateCrmUser:" + inserts);
+         } catch (Exception e) {
+             logger.error("failed to updateStatusOfInternalMeeting", e);
+         } finally {
+             DBHelper.closeConnection(conn);
+         }
+         if(inserts>0){
+     		return true;
+     	}
+     	return false;
+     }
 }
