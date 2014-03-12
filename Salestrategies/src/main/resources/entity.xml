@@ -2022,7 +2022,10 @@
 		user.office_tel\,user.telephone\,opportunityuserteam.team_role 
 		 from opportunityuserteam left join user on user.id = opportunityuserteam.user_id 
 		left join opportunity on opportunity.id = opportunityuserteam.opportunity_id ) as a</sql>
-		<sql-ent>select * from opportunityuserteam where id = ?</sql-ent>
+		<sql-ent>select * from (select user.id as user_id \,opportunityuserteam.id\,user.job_title\,opportunity.id as opportunity_id \,
+		user.office_tel\,user.telephone\,opportunityuserteam.team_role 
+		 from opportunityuserteam left join user on user.id = opportunityuserteam.user_id 
+		left join opportunity on opportunity.id = opportunityuserteam.opportunity_id where opportunityuserteam.id = ?  ) as a</sql-ent>
 		<fields>
 			<field>
 				<name>id</name>

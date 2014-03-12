@@ -14,10 +14,12 @@ import javax.mail.Session;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.MarkupContainer;
+import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Check;
 import org.apache.wicket.markup.html.form.CheckGroup;
 import org.apache.wicket.markup.html.form.CheckGroupSelector;
@@ -373,10 +375,21 @@ public class TeamManPanel extends Panel {
 //            }
             
 //            if(roleId == 1){
+                final PageableListView<String> this_page =this;
                 if(type!=4){
                 	Check chk = new Check("checkbox", new Model(String.valueOf(rowId)));
                     container_label.add(new AttributeAppender("for", new Model(chk.getMarkupId()), " "));        
                     item.add(chk);
+                    Button button1 = new Button("editbtn") {
+                    	public void onSubmit() {
+                    		PageParameters pp = new PageParameters();
+                            pp.add("id", rowId );
+                            pp.add("realId", realId);
+                            pp.add("entityName", "opportunity");
+                            setResponsePage(new EditDataPage(entityName,realId,EntityDetailPage.class,pp));
+                    			}
+                    		};
+                   item.add(button1);
                 }else{
                     WebMarkupContainer container = new WebMarkupContainer("checkbox");
                     container.setVisible(false);

@@ -210,7 +210,7 @@ public class DAOImpl {
 	            conn = DBConnector.getConnection();
 	            QueryRunner run = new QueryRunner();
 	            map = (Map) run.query(conn, query, new MapHandler());
-
+	            System.out.println(query);
 	        } catch (SQLException e) {
 	            logger.error("failed to get user", e);
 	        } finally {
