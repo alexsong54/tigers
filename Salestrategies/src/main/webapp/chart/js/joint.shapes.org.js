@@ -26,7 +26,7 @@ joint.shapes.org.Member = joint.dia.Element.extend({
                                                    defaults: joint.util.deepSupplement({
 
                                                                                        type: 'org.Member',
-                                                                                       size: { width: 228, height: 90 },
+                                                                                       size: { width: 150, height: 70 },
                                                                                        attrs: {
 
                                                                                        rect: { width: 218, height: 80 },
@@ -135,24 +135,24 @@ joint.shapes.org.MemberView = joint.dia.ElementView.extend({
                                                            console.log('click! x='+ (x-bbox.x) + ' y=' + (y-bbox.y));
                                                            this.$box.find('select').css({"display":"none"});
                                                            this.$box.find('div').css({"display":"block"});
-                                                           if((x-bbox.x)>178 && (x-bbox.x)<218 && (y-bbox.y)>58 && (y-bbox.y)<88){
+                                                           if((x-bbox.x)>115 && (x-bbox.x)<145 && (y-bbox.y)>55 && (y-bbox.y)<68){
 
                                                            this.$box.find('div.sp1').css({"display":"none"});
                                                            this.$box.find('select.sel1').css({"display":"block"});
                                                            }else
-                                                           if((x-bbox.x)>136 && (x-bbox.x)<177 && (y-bbox.y)>58 && (y-bbox.y)<88){
+                                                           if((x-bbox.x)>93 && (x-bbox.x)<115 && (y-bbox.y)>56 && (y-bbox.y)<68){
                                                            this.$box.find('div.sp2').css({"display":"none"});
                                                            this.$box.find('select.sel2').css({"display":"block"});
                                                            }else
-                                                           if((x-bbox.x)>98 && (x-bbox.x)<135 && (y-bbox.y)>58 && (y-bbox.y)<88){
+                                                           if((x-bbox.x)>68 && (x-bbox.x)<85 && (y-bbox.y)>55 && (y-bbox.y)<68){
                                                            this.$box.find('div.sp3').css({"display":"none"});
                                                            this.$box.find('select.sel3').css({"display":"block"});
                                                            }else
-                                                           if((x-bbox.x)>50 && (x-bbox.x)<97 && (y-bbox.y)>58 && (y-bbox.y)<88){
+                                                           if((x-bbox.x)>40 && (x-bbox.x)<61 && (y-bbox.y)>58 && (y-bbox.y)<68){
                                                            this.$box.find('div.sp4').css({"display":"none"});
                                                            this.$box.find('select.sel4').css({"display":"block"});
                                                            }else
-                                                           if((x-bbox.x)>7 && (x-bbox.x)<49 && (y-bbox.y)>58 && (y-bbox.y)<88){
+                                                           if((x-bbox.x)>7 && (x-bbox.x)<32 && (y-bbox.y)>55 && (y-bbox.y)<65){
                                                            this.$box.find('div.sp5').css({"display":"none"});
                                                            this.$box.find('select.sel5').css({"display":"block"});
                                                            }

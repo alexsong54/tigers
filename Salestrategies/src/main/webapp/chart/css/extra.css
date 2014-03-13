@@ -29,31 +29,31 @@
 }
 .sel1 {
    position: absolute;
-   right: 0px;
+   right: 10px;
    bottom: 1px;
    z-index: 100;
 }
 .sel2 {
    position: absolute;
-   right: 40px;
+   right: 35px;
    bottom: 1px;
    z-index: 100;
 }
 .sel3 {
    position: absolute;
-   right: 80px;
+   right: 65px;
    bottom: 1px;
    z-index: 100;
 }
 .sel4 {
    position: absolute;
-   right: 120px;
+   right: 92px;
    bottom: 1px;
    z-index: 100;
 }
 .sel5 {
    position: absolute;
-   right: 160px;
+   right: 120px;
    bottom: 1px;
    z-index: 100;
 }
@@ -65,25 +65,25 @@
 }
 .sp2 {
    position: absolute;
-   right: 50px;
+   right: 35px;
    bottom: 2px;
    z-index: 5;
 }
 .sp3 {
    position: absolute;
-   right: 94px;
+   right: 65px;
    bottom: 2px;
    z-index: 5;
 }
 .sp4 {
    position: absolute;
-   right: 136px;
+   right: 92px;
    bottom: 2px;
    z-index: 5;
 }
 .sp5 {
    position: absolute;
-   right: 180px;
+   right: 120px;
    bottom: 2px;
    z-index: 5;
 }

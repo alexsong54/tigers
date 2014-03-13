@@ -16,22 +16,22 @@ var member = function(x, y, rank, name, image, id, border) {
     if(rank=='CEO'){
         y = 70;
         x=x1;
-        x1+=300;
+        x1+=180;
         background = '#F1C40F';
     }else if(rank.slice(0,2)=='VP'){
         y = 200;
         x=x2;
-        x2+=300;
+        x2+=210;
         background = '#2ECC71';
     }else if(rank.slice(0,2)=='Ma'){
-        y = 350;
+        y = 330;
         x=x3;
-        x3+=300;
+        x3+=210;
         background = '#3498DB';
     }else{
-        y = 500;
+        y = 460;
         x=x4;
-        x4+=300;
+        x4+=210;
         background = '#3EF3A2';
     }
     var cell = new joint.shapes.org.Member({
