@@ -197,7 +197,6 @@ public class UserDeatialInfo extends UserInfoSettingPage {
                     }
                 }
                 int userId = Integer.parseInt(((SignInSession) getSession()).getUserId());
-               // User userinfo = DAOImpl.getUserInfoById(userId);
                 List<String> loginNames =DAOImpl.getLoginNames(String.valueOf(userId));
                 if(loginNames.contains(loginName)){
                 	errordiv.add(new AttributeAppender("style",new Model("display:block"),";"));
@@ -231,7 +230,6 @@ public class UserDeatialInfo extends UserInfoSettingPage {
                 text.add(new AttributeAppender("disabled", new Model("disabled"), ";"));
             }
             if (currentField.isRequired()) {
-              //text.add(new AttributeModifier("required", new Model("required")));
             	text.add(new AttributeAppender("class",new Model("required-field")," "));
             }
             if (currentField.getDataType().equals("tel") || currentField.getDataType().equals("fax")) {

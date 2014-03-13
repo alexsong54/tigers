@@ -1,0 +1,112 @@
+.html-element select,
+.html-element input,
+.html-element button {
+   /* Enable interacting with inputs only. */
+   pointer-events: auto;   
+}
+
+#paper svg .link {
+   z-index: 2;
+}
+.html-element {
+   position: absolute;
+   /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
+   pointer-events: none;
+   -webkit-user-select: none;
+   padding: 5px;
+   box-sizing: border-box;
+   z-index: 2;
+}
+.html-element select,
+.html-element input,
+.html-element button {
+   /* Enable interacting with inputs only. */
+   pointer-events: auto;   
+}
+.html-element select {
+   width:50px;
+   display: none;
+}
+.sel1 {
+   position: absolute;
+   right: 0px;
+   bottom: 1px;
+   z-index: 100;
+}
+.sel2 {
+   position: absolute;
+   right: 40px;
+   bottom: 1px;
+   z-index: 100;
+}
+.sel3 {
+   position: absolute;
+   right: 80px;
+   bottom: 1px;
+   z-index: 100;
+}
+.sel4 {
+   position: absolute;
+   right: 120px;
+   bottom: 1px;
+   z-index: 100;
+}
+.sel5 {
+   position: absolute;
+   right: 160px;
+   bottom: 1px;
+   z-index: 100;
+}
+.sp1 {
+   position: absolute;
+   right: 10px;
+   bottom: 2px;
+   z-index: 5;
+}
+.sp2 {
+   position: absolute;
+   right: 50px;
+   bottom: 2px;
+   z-index: 5;
+}
+.sp3 {
+   position: absolute;
+   right: 94px;
+   bottom: 2px;
+   z-index: 5;
+}
+.sp4 {
+   position: absolute;
+   right: 136px;
+   bottom: 2px;
+   z-index: 5;
+}
+.sp5 {
+   position: absolute;
+   right: 180px;
+   bottom: 2px;
+   z-index: 5;
+}
+.html-element input {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   border: none;
+   color: #333;
+   padding: 5px;
+   height: 16px;
+}
+.html-element label {
+   color: #333;
+   text-shadow: 1px 0 0 lightgray;
+   font-weight: bold;
+   display: none;
+}
+.html-element span {
+   position: absolute;
+   top: 2px;
+   right: 9px;
+   color: white;
+   font-size: 10px;
+}

@@ -31,6 +31,7 @@ import com.bxy.salestrategies.ContactPage;
 import com.bxy.salestrategies.DnaPanel;
 import com.bxy.salestrategies.Index;
 import com.bxy.salestrategies.OpportunityPage;
+import com.bxy.salestrategies.PoliticalPanel;
 import com.bxy.salestrategies.SignInSession;
 import com.bxy.salestrategies.TargetPanel;
 import com.bxy.salestrategies.TargetPanel;
@@ -339,9 +340,11 @@ public class EntityDetailPage extends Index {
   	  	     Map<String,Object> params = new HashMap();
   	  	     params.put("opportunityId",id);
   	  	     add(new PageableTablePanel("targetPanel", target_entity, target_data, params));
+  	  	     add(new PoliticalPanel("Panel","name"));
          }else{
         	 add(new Label("dnaPanel",""));
         	 add(new Label("targetPanel",""));
+        	 add(new Label("Panel",""));
          }
 	  	   add(new CRUDPanel("operationBar",entity.getName(),id, CRMUtility.getPermissionForEntity(entity.getName()),actionListener));
     }
