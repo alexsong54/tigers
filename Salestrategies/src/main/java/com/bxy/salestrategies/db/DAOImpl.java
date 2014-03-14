@@ -30,6 +30,7 @@ import com.bxy.salestrategies.model.Contact;
 import com.bxy.salestrategies.model.ContactUserTeam;
 import com.bxy.salestrategies.model.Dna;
 import com.bxy.salestrategies.model.DnaImplement;
+import com.bxy.salestrategies.model.Opportunitycontactteam;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
 import com.google.common.cache.Cache;
@@ -1214,4 +1215,53 @@ public class DAOImpl {
      	}
      	return false;
      }
+     //根据ID获取opportunitycontactteam 对象
+     public static Contact getContactById(int id){
+    	 	Connection conn = null;
+    	 	Contact contact = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Contact> h = new BeanHandler<Contact>(Contact.class);
+	            contact = run.query(conn, "SELECT contact.id,contact.job_title ,contact.gender,contact.name FROM contact where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return contact;
+     }
+     //根据ID获取Choice对象
+     public static Choice getChoiceById(String entityName,int id){
+ 	 	Connection conn = null;
+ 	 	Choice choice = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Choice> h = new BeanHandler<Choice>(Choice.class);
+	            choice = run.query(conn, "SELECT * FROM "+entityName+" where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return choice;
+  }
+     public static List<Opportunitycontactteam> queryOppContactTeams(String sql) {
+	          List<Opportunitycontactteam> choices = Lists.newArrayList();
+	          Connection conn = null;
+	          try {
+	              conn = DBConnector.getConnection();
+	              QueryRunner run = new QueryRunner();
+	              ResultSetHandler<List<Opportunitycontactteam>> h = new BeanListHandler<Opportunitycontactteam>(Opportunitycontactteam.class);
+	              choices = run.query(conn, sql, h);
+	          } catch (SQLException e) {
+	              logger.error("failed to get queryPickListById", e);
+	          } finally {
+	              DBHelper.closeConnection(conn);
+	          }
+
+	          return choices;
+
+	      }
 }

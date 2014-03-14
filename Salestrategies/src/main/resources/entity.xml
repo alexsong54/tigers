@@ -392,6 +392,22 @@
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
 		<field>
+			<name>report_to</name>
+			<display>汇报上级</display>
+			<pattern></pattern>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<pattern>text</pattern>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<relationTable>contact</relationTable>
+			<field-type>String</field-type>
+			<priority>1</priority><isShow>true</isShow>
+			<fieldGroup>关键信息</fieldGroup>
+		</field>
+		<field>
 			<name>office_tel</name>
 			<display>电话</display>
 			<isRequired>false</isRequired>
@@ -1925,9 +1941,10 @@
 	<entity>
 		<name>opportunitycontactteam</name>
 		<display>联系人团队</display>
-		<sql>select * from (select opportunitycontactteam.*
+		<!-- <sql>select * from (select opportunitycontactteam.*
 		from contact left join opportunitycontactteam on opportunitycontactteam.contact_id = contact.id 
-		) as atable</sql>
+		) as atable</sql> -->
+		<sql>select * from opportunitycontactteam</sql>
 		<sql-ent>select * From opportunitycontactteam where id = ?</sql-ent>
 		<fields>
 			<field>
@@ -2013,6 +2030,50 @@
 				<data-type>text</data-type>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
+			<field>
+				<name>relat_status</name>
+				<display>关系状态</display>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isEditable>true</isEditable>
+				<isShow>true</isShow>
+				<isVisible>true</isVisible>
+				<isPrimaryKey>false</isPrimaryKey>
+				<picklist>relation_status</picklist>
+				<data-type>text</data-type>
+				<priority>1</priority>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>time_spent</name>
+				<display>访问时长</display>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isEditable>true</isEditable>
+				<isShow>true</isShow>
+				<isVisible>true</isVisible>
+				<isPrimaryKey>false</isPrimaryKey>
+				<picklist>time_spent_pl</picklist>
+				<data-type>text</data-type>
+				<priority>1</priority>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>report_to</name>
+				<display>汇报上级</display>
+				<pattern></pattern>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<pattern>text</pattern>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<relationTable>contact</relationTable>
+				<field-type>String</field-type>
+				<priority>1</priority><isShow>true</isShow>
+				<fieldGroup>关键信息</fieldGroup>
+		</field>
 		</fields>
 	</entity>
 	<entity>

@@ -340,11 +340,11 @@ public class EntityDetailPage extends Index {
   	  	     Map<String,Object> params = new HashMap();
   	  	     params.put("opportunityId",id);
   	  	     add(new PageableTablePanel("targetPanel", target_entity, target_data, params));
-  	  	     add(new PoliticalPanel("Panel","name"));
+  	  	     add(new PoliticalPanel("politicalPanel","name"));
          }else{
         	 add(new Label("dnaPanel",""));
         	 add(new Label("targetPanel",""));
-        	 add(new Label("Panel",""));
+        	 add(new Label("politicalPanel",""));
          }
 	  	   add(new CRUDPanel("operationBar",entity.getName(),id, CRMUtility.getPermissionForEntity(entity.getName()),actionListener));
     }

@@ -17,7 +17,7 @@
                     var name = $(this).parent().parent().data("name");
                     var key = $(this).parent().parent().data("key");
                     var table_name = $(this).parent().parent().data("ename");
-                    if(table_name=="competitor"){
+                    if(key=="influence_to"||key=="report_to"||key=="contact_id"){
                     	window.opener.$("#"+table_name+"_id"+key+"").val(id);
                         window.opener.$("#"+table_name+"_name"+key+"").val(name);
                     }else{

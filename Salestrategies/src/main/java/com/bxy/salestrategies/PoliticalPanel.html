@@ -10,9 +10,18 @@
         <script src="chart/js/jquery-1.9.1.js"></script>
         <script src="chart/js/jquery_sort.js"></script>
     </head>
+    <script type="text/javascript">
+	    $(document).ready(function() {
+	        var tdataString = $("#data").attr("value");
+	        //将String转化为数组
+	        //alert(eval(tdataString));
+	        console.info(eval(tdataString));
+	    });
+    </script>
     <body>
-        <div id="paper" style=" overflow:scroll; position: absolute; ">
+        <div id="paper" style="overflow:scroll; position: absolute;">
         </div>
+        <input  id="data" wicket:id="tdata" style="display:none;" />
         <script src="chart/js/chart.js"></script>
     </body>
 </wicket:panel>

@@ -132,7 +132,7 @@ function sortMember(listofmember) {
             {
                 key=listofmember[i];
                 t=i-1;
-                while (t>=0 && checkId(listofmember[t].reportto,key.reportto,listofmember))
+                while (t>=0 && checkId(listofmember[t].report_to,key.report_to,listofmember))
                 {
                     listofmember[t+1]=listofmember[t];
                     listofmember[t]=key;
@@ -162,94 +162,98 @@ function sortMember(listofmember) {
 //                  });
 //             });
 //       });
-
-var lom=new Array();
-lom[0]=new Object();
+var tdataString = $("#data").attr("value");
+var lom = eval(tdataString);
+/*lom[0]=new Object();
 lom[0].name='Bart Simpson';
 lom[0].rank='CEO';
 lom[0].ranklevel=0;
-lom[0].reportto=0;
+lom[0].report_to=0;
 lom[0].id=10;
 
 lom[1]=new Object();
 lom[1].name='Mark Simpson';
 lom[1].rank='Manager';
 lom[1].ranklevel=2;
-lom[1].reportto=16;
+lom[1].report_to=16;
 lom[1].id=11;
 
 lom[2]=new Object();
 lom[2].name='Elli Simpson';
 lom[2].rank='VP Marketing';
 lom[2].ranklevel=1;
-lom[2].reportto=10;
+lom[2].report_to=10;
 lom[2].id=12;
 
 lom[3]=new Object();
 lom[3].name='Azoi Keop';
 lom[3].rank='Manager';
 lom[3].ranklevel=2;
-lom[3].reportto=20;
+lom[3].report_to=20;
 lom[3].id=13;
 
 lom[4]=new Object();
 lom[4].name='Xyman Daras';
 lom[4].rank='Sales';
 lom[4].ranklevel=3;
-lom[4].reportto=11;
+lom[4].report_to=11;
 lom[4].id=14;
 
 lom[5]=new Object();
 lom[5].name='Keto Lazerd';
 lom[5].rank='Manager';
 lom[5].ranklevel=2;
-lom[5].reportto=16;
+lom[5].report_to=16;
 lom[5].id=15;
 
 lom[6]=new Object();
 lom[6].name='Momento Mori';
 lom[6].rank='VP Sales';
 lom[6].ranklevel=1;
-lom[6].reportto=10;
+lom[6].report_to=10;
 lom[6].id=16;
 
 lom[7]=new Object();
 lom[7].name='Trans Am';
 lom[7].rank='Sales';
 lom[7].ranklevel=3;
-lom[7].reportto=15;
+lom[7].report_to=15;
 lom[7].id=17;
 
 lom[8]=new Object();
 lom[8].name='Exia Dole';
 lom[8].rank='Sales';
 lom[8].ranklevel=3;
-lom[8].reportto=11;
+lom[8].report_to=11;
 lom[8].id=18;
 
 lom[9]=new Object();
 lom[9].name='Gunda Plae';
 lom[9].rank='Manager';
 lom[9].ranklevel=2;
-lom[9].reportto=12;
+lom[9].report_to=12;
 lom[9].id=19;
 
 lom[10]=new Object();
 lom[10].name='Amuro Rei';
 lom[10].rank='VP Production';
 lom[10].ranklevel=1;
-lom[10].reportto=10;
+lom[10].report_to=10;
 lom[10].id=20;
 
 lom[11]=new Object();
 lom[11].name='Char Azunaburu';
 lom[11].rank='Sales';
 lom[11].ranklevel=3;
-lom[11].reportto=15;
+
+lom[11].report_to=15;
 lom[11].id=21;
+//红边
 lom[11].core=21;
-lom[11].inf=10;
-lom[11].gender='F';
+//红线
+lom[11].influence_to=10;
+
+lom[11].gender='F';*/
 
 //TODO: ajax here to load objects
 sortMember(lom);
@@ -262,13 +266,13 @@ var lnk2=new Array();
 var lnk2bk=new Array();
 
 for(i3=0;i3<lom.length;i3++){
-    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != 'F'?'member1.png':'member2.png', lom[i3].id, lom[i3].core != null?'red':'gray');
+    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].id, lom[i3].core != null?'red':'gray');
 }
 
 for(i3=0;i3<lom.length;i3++){
-    if(lom[i3].reportto!=0){
+    if(lom[i3].report_to!=0){
         for(i4=0;i4<lom.length;i4++){
-            if(lom[i4].id==lom[i3].reportto){
+            if(lom[i4].id==lom[i3].report_to){
                 lnk[i3]=link(rendered[i3],rendered[i4]);
                 lnk[i3].on('change:target', function() {
                            if(this.get('target').id!=null){
@@ -299,9 +303,9 @@ for(i3=0;i3<lom.length;i3++){
 }
 
 for(i3=0;i3<lom.length;i3++){
-    if(typeof(lom[i3].inf) !== 'undefined' && lom[i3].inf !== null && lom[i3].inf!=0){
+    if(typeof(lom[i3].influence_toluence_to) !== 'undefined' && lom[i3].influence_to !== null && lom[i3].influence_to!=0){
         for(i4=0;i4<lom.length;i4++){
-            if(lom[i4].id==lom[i3].inf){
+            if(lom[i4].id==lom[i3].influence_to){
                 lnk2[i3]=link2(rendered[i3],rendered[i4]);
                 lnk2[i3].on('change:target', function() {
                            if(this.get('target').id!=null){

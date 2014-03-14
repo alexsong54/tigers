@@ -54,6 +54,7 @@ public class SelectEntryPage extends WebPage {
         String target = getRequest().getRequestParameters().getParameterValue("target").toString();
         //区分是哪一个数据
         String key = getRequest().getRequestParameters().getParameterValue("key").toString();
+        System.out.println("key:"+key);
         initPage(null,relationTableName,tragetEntity,excludeId,target,key);
     }
 

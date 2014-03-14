@@ -23,7 +23,9 @@
                 }
               });
             if(isValidated&&checkflag){
-            	if($("#contact_name").length > 0 && jQuery.isEmptyObject($("#contact_name").val())){
+            	var entityName = $("#entityName").html();
+            	console.info("name:"+entityName);
+            	if($("#contact_name").length > 0 && jQuery.isEmptyObject($("#contact_name").val())&&entityName!="contact"){
               	  	alert("请查询添入联系人！");
                     return false;
                 }else if($("#opportunity_name").length > 0 && jQuery.isEmptyObject($("#opportunity_name").val())){
@@ -49,6 +51,7 @@
 			<span wicket:id="promptForDateOfEstablish" ><strong></strong></span>
 			<span wicket:id="promptFordate" ><strong></strong></span>
 		</div>
+		<span wicket:id="entityName" style="display:none;" id="entityName"></span>
         <form wicket:id="form" class="form-horizontal" >
             <fieldset>
                 <div  wicket:id="fieldGroupRepeater">

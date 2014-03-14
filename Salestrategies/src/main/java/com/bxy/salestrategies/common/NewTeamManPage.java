@@ -342,7 +342,7 @@ public class NewTeamManPage extends WebPage {
     	                                fn = currentField.getName();
     	                            }
     	                            models.put(fn, choiceModel);
-    	                            columnitem.add(new RelationTableSearchFragment("celldatafield", "relationTableSearchFragment", this, currentField.getRelationTable(), entity.getName(), defaultValue, choiceModel));
+    	                            columnitem.add(new RelationTableSearchFragment("celldatafield", "relationTableSearchFragment", this, currentField, entity.getName(), defaultValue, choiceModel));
     	                        }
     	                    }
     	                    else
@@ -677,19 +677,20 @@ public class NewTeamManPage extends WebPage {
     	    {
 
     	        public RelationTableSearchFragment(String id, String markupId,
-    	          MarkupContainer markupProvider, final String relationEntity, String entityName, final String defaultValue, final IModel defaultModel)
+    	          MarkupContainer markupProvider, Field field, String entityName, final String defaultValue, final IModel defaultModel)
     	        {
     	            super(id, markupId, markupProvider);
     	            PageParameters params = new PageParameters();
-    	            params.set("en", relationEntity);
+    	            params.set("en", field.getRelationTable());
     	            params.set("excludeName", entityName);
     	            params.set("target", (Long) defaultModel.getObject());
+    	            params.set("key",field.getName());
     	            add(new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params));
     	            HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", defaultModel);
-    	            hidden.add(new AttributeModifier("id", relationEntity + "_id"));
+    	            hidden.add(new AttributeModifier("id", field.getRelationTable() + "_id"+field.getName()));
     	            add(hidden);
     	            TextField<String> text = new TextField<String>("selected_value_input", new Model(defaultValue));
-    	            text.add(new AttributeModifier("id", relationEntity + "_name"));
+    	            text.add(new AttributeModifier("id", field.getRelationTable()  + "_name"+field.getName()));
     	            add(text);
     	        }
     	    }

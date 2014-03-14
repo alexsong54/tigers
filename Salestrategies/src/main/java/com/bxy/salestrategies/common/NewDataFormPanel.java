@@ -89,6 +89,8 @@ public class NewDataFormPanel extends Panel
             }
 
         }
+        //表示实体名称
+        add(new Label("entityName",entity.getName()));
         //add prompt 
         final RepeatingView div = new RepeatingView("promptDiv");
         final AbstractItem group = new AbstractItem(div.newChildId());
