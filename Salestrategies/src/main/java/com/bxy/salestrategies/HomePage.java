@@ -101,6 +101,12 @@ public class HomePage extends Index implements AuthenticatedWebPage
                     		datalist = DAOImpl.queryEntityRelationList(sql);
                     	}else if(en.getName().equalsIgnoreCase("opportunity")){
                     		datalist = DAOImpl.queryEntityRelationList(sql);
+                    	}else if(en.getName().equalsIgnoreCase("competitor")){
+                    		datalist = DAOImpl.queryEntityRelationList(sql);
+                    	}else if(en.getName().equalsIgnoreCase("user")){
+                    		datalist = DAOImpl.queryEntityRelationList(sql);
+                    	}else if(en.getName().equalsIgnoreCase("tactics")){
+                    		datalist = DAOImpl.queryEntityRelationList(sql);
                     	}
                 
                 if(entityName.equals("account")){
@@ -111,6 +117,12 @@ public class HomePage extends Index implements AuthenticatedWebPage
                 	setResponsePage(new ActivityPage(datalist));
                 }else if(entityName.equals("opportunity")){
                 	setResponsePage(new OpportunityPage(datalist));
+                }else if(entityName.equals("competitor")){
+                	setResponsePage(new CompetitorPage(datalist));
+                }else if(entityName.equals("user")){
+                	setResponsePage(new UserPage(datalist));
+                }else if(entityName.equals("tactics")){
+                	setResponsePage(new TacticsPage(datalist));
                 }
                 
             }

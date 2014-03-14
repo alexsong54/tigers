@@ -79,7 +79,7 @@ public class Index extends WebPage
          item = new MenuItem();
          item.setCaption("Tactics");
          item.setDestination(TacticsPage.class);
-         item.setId("navitem-Tactics");
+         item.setId("navitem-tactics");
          builder.put("tactics", item);
          
          item = new MenuItem();

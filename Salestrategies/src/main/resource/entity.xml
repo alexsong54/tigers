@@ -1447,7 +1447,6 @@
 	<entity>
 	<name>dna</name>
 		<display>DNA</display>
-		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM dna where opportunity_id = ?</sql>
 		<sql-ent>SELECT * FROM dna where id = ?</sql-ent>
 		<filterField>name</filterField>
@@ -1541,7 +1540,6 @@
 	<entity>
 	<name>dna_implement</name>
 		<display>dna_implement</display>
-		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM dna_implement where opportunity_id = ?</sql>
 		<sql-ent>SELECT * FROM dna_implement where id = ?</sql-ent>
 		<filterField>name</filterField>
@@ -1635,7 +1633,6 @@
 	<entity>
 		<name>target_acquisition</name>
 		<display>详细元素分析</display>
-		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM target_acquisition</sql>
 		<sql-ent>SELECT * FROM target_acquisition where id = ?</sql-ent>
 		<fields>
@@ -2174,6 +2171,7 @@
 	<entity>
 		<name>tactics</name>
  		<display>战术策略</display>
+ 		<globalsearch>true</globalsearch>
  		<sql>SELECT * FROM tactics </sql>
  		<sql-ent>SELECT * FROM tactics where id = ?</sql-ent>
    		<fields>
