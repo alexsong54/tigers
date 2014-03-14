@@ -140,19 +140,7 @@ public class Index extends WebPage
         BookmarkablePageLink user_settings_link = new BookmarkablePageLink("user_settings_link",UserDeatialInfo.class);
         add(user_settings_link);
         user_settings_link.add(new Label("loginName",user.getName()));
-        
-        
-        Form form = new Form("searchform"){
-       	 protected void onSubmit(){
-   			 List<Map> maplist = null;
-                	String sql = "select * from account ";
-                	 maplist = DAOImpl.queryEntityRelationList(sql);
-                	 setResponsePage(new AccountPage());
-       	 }
-       };
-       
-       form.add(new TextField<String>("search_input", new PropertyModel<String>(this, "search_target")));  
-       add(form);
+      
     }
     
     

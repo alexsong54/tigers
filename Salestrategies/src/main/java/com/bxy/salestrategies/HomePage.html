@@ -7,25 +7,26 @@
                     $("#navitem-homepage").addClass("active");
                 });// end onDomReady function
             </script>
+            <form wicket:id="form">
                 <div class="row">
-                    <div class="col-md-3">
-                   		
-                    </div>
-                    <div class="col-md-6">
-                        
-                   <H1 ><STRONG>Search</STRONG></H1>
-                   		 <div class="panel panel-success">
-                          <div class="panel-heading"><strong>全局搜索</strong></div>
-                            <form wicket:id="form" class="form-search">
-                            <select class="form-control"  wicket:id="search_select"  ></select>
-                            <input type="text" class="form-control"  wicket:id="search_input"  /> 
-                                    <button type="submit" class="btn btn-primary btn-block">查找</button>
-                                    
-                            </form>
-                         </div>
-                    </div>
-                    </div>
-<!--                 </div> -->
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <br><br><br><br>
+                        <div class="col-lg-30">
+                            <H1 ><STRONG><center style="color: #5bc0de">SALESTRATEGIES</center></STRONG></H1>
+                            <br><br><br><br>
+                            <div class="input-group input-group-lg">
+                               <div class="input-group-btn"><select class="form-control btn btn-info" style="width: 90px"  wicket:id="search_select" ></select></div>
+                               <input type="text" class="form-control" wicket:id="search_input"  >
+                               <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-info" >Go</button> 
+                               </span>
+                            </div><!-- /.input-group -->
+                         </div><!-- /.col-lg-6 -->
+
+                     </div>
+                 </div>
+             </form>
         </wicket:extend>
-    </body>
+   </body>
 </html>
