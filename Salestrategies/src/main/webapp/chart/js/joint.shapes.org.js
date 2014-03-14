@@ -67,7 +67,6 @@ joint.shapes.org.MemberView = joint.dia.ElementView.extend({
                                                                       '<div class="sp2">123</div><select class="sel2"><option>--</option><option>one</option><option>two</option></select>',
                                                                       '<div class="sp3">123</div><select class="sel3"><option>--</option><option>one</option><option>two</option></select>',
                                                                       '<div class="sp4">123</div><select class="sel4"><option>--</option><option>one</option><option>two</option></select>',
-                                                                      '<div class="sp5">123</div><select class="sel5"><option>--</option><option>one</option><option>two</option></select>',
                                                                       '</div>'
                                                                       ].join(''),
 
@@ -96,6 +95,14 @@ joint.shapes.org.MemberView = joint.dia.ElementView.extend({
                                                            this.initBox();
                                                            //init id
                                                            this.$box.find('label').attr('id',this.$box.find('label').text());
+                                                           this.$box.find('.sp1').text(this.model.get('sp1'));
+                                                           this.$box.find('.sel1').val(this.model.get('sp1'));
+                                                           this.$box.find('.sp2').text(this.model.get('sp2'));
+                                                           this.$box.find('.sel2').val(this.model.get('sp2'));
+                                                           this.$box.find('.sp3').text(this.model.get('sp3'));
+                                                           this.$box.find('.sel3').val(this.model.get('sp3'));
+                                                           this.$box.find('.sp4').text(this.model.get('sp4'));
+                                                           this.$box.find('.sel4').val(this.model.get('sp4'));
                                                            },
                                                            render: function() {
                                                            joint.dia.ElementView.prototype.render.apply(this, arguments);
@@ -151,10 +158,6 @@ joint.shapes.org.MemberView = joint.dia.ElementView.extend({
                                                            if((x-bbox.x)>40 && (x-bbox.x)<61 && (y-bbox.y)>58 && (y-bbox.y)<68){
                                                            this.$box.find('div.sp4').css({"display":"none"});
                                                            this.$box.find('select.sel4').css({"display":"block"});
-                                                           }else
-                                                           if((x-bbox.x)>7 && (x-bbox.x)<32 && (y-bbox.y)>55 && (y-bbox.y)<65){
-                                                           this.$box.find('div.sp5').css({"display":"none"});
-                                                           this.$box.find('select.sel5').css({"display":"block"});
                                                            }
                                                            } else {
                                                            joint.dia.ElementView.prototype.pointerup.apply(this, arguments);

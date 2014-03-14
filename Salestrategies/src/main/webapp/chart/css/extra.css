@@ -51,12 +51,7 @@
    bottom: 1px;
    z-index: 100;
 }
-.sel5 {
-   position: absolute;
-   right: 120px;
-   bottom: 1px;
-   z-index: 100;
-}
+
 .sp1 {
    position: absolute;
    right: 10px;
@@ -81,12 +76,7 @@
    bottom: 2px;
    z-index: 5;
 }
-.sp5 {
-   position: absolute;
-   right: 120px;
-   bottom: 2px;
-   z-index: 5;
-}
+
 .html-element input {
    position: absolute;
    bottom: 0;

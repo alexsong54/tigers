@@ -10,7 +10,7 @@ var paper = new joint.dia.Paper({
                                 elementView: joint.shapes.org.MemberView
                                 });
 
-var member = function(x, y, rank, name, image, id, border) {
+var member = function(x, y, rank, name, image, id, border, decision_role,buying_style,relat_status,time_spent) {
 
     var background;
     if(rank=='CEO'){
@@ -40,7 +40,7 @@ var member = function(x, y, rank, name, image, id, border) {
                                            '.card': { fill: background, stroke: border},
                                            image: { 'xlink:href': '../chart/images/'+ image },
                                            '.rank': { text: rank }, '.name': { text: name }
-                                           }, label: id
+                                           }, label: id, sp1:decision_role,sp2:buying_style,sp3:relat_status,sp4:time_spent
                                            });
     graph.addCell(cell);
     return cell;
@@ -266,7 +266,7 @@ var lnk2=new Array();
 var lnk2bk=new Array();
 
 for(i3=0;i3<lom.length;i3++){
-    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].id, lom[i3].core != null?'red':'gray');
+    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].id, lom[i3].core != null?'red':'gray',lom[i3].buying_style,lom[i3].decision_role,lom[i3].relat_status,lom[i3].time_spent);
 }
 
 for(i3=0;i3<lom.length;i3++){
