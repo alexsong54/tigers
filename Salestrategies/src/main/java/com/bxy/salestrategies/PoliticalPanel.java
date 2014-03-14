@@ -2,14 +2,6 @@ package com.bxy.salestrategies;
 
 import java.util.List;
 import java.util.Map;
-
-
-
-
-
-
-
-
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableMultiLineLabel;
 import org.apache.wicket.markup.html.basic.Label;
@@ -41,7 +33,7 @@ public class PoliticalPanel extends Panel{
 		//读取数据
 		 Map<String, Entity> entities = Configuration.getEntityTable();
 		 final Entity entity = entities.get("opportunitycontactteam");
-		 String sql = entity.getSql();
+		 String sql = "select * from opportunitycontactteam where opportunity_id = "+opportunityID;
 		 List<Opportunitycontactteam> tdata = DAOImpl.queryOppContactTeams(sql);
 		 for(Opportunitycontactteam team :tdata ){
 			 //读取数据根据ID获取Account的相关信息传值到界面
@@ -58,10 +50,17 @@ public class PoliticalPanel extends Panel{
 			 team.setName(contact.getName());
 			 team.setRank(DAOImpl.getChoiceById("job_title_pl",job).getVal());
 			 team.setGender(contact.getGender());
-			 team.setBuyingStyleName(DAOImpl.getChoiceById("buying_style",team.getBuying_style()).getName());
-			 team.setDecisionName(DAOImpl.getChoiceById("descision",team.getDecision_role()).getName());
-			 team.setRelationStatusName(DAOImpl.getChoiceById("relation_status",team.getRelat_status()).getName());
-			 team.setTiemSpentName(DAOImpl.getChoiceById("time_spent_pl",team.getTime_spent()).getName());
+			 if(0==team.getBuying_style()||0==team.getDecision_role()||0==team.getRelat_status()||0==team.getTime_spent()){
+				 team.setBuyingStyleName("");
+				 team.setDecisionName("");
+				 team.setRelationStatusName("");
+				 team.setTiemSpentName("");
+			 }else{
+				 team.setBuyingStyleName(DAOImpl.getChoiceById("buying_style",team.getBuying_style()).getName());
+				 team.setDecisionName(DAOImpl.getChoiceById("descision",team.getDecision_role()).getName());
+				 team.setRelationStatusName(DAOImpl.getChoiceById("relation_status",team.getRelat_status()).getName());
+				 team.setTiemSpentName(DAOImpl.getChoiceById("time_spent_pl",team.getTime_spent()).getName());
+			 }
 		 }
 		 TextField<String> text = new TextField<String>("tdata");
 		 Gson gson = new Gson();

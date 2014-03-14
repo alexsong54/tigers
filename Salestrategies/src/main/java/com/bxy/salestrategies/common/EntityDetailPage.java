@@ -340,7 +340,7 @@ public class EntityDetailPage extends Index {
   	  	     Map<String,Object> params = new HashMap();
   	  	     params.put("opportunityId",id);
   	  	     add(new PageableTablePanel("targetPanel", target_entity, target_data, params));
-  	  	     add(new PoliticalPanel("politicalPanel","name"));
+  	  	     add(new PoliticalPanel("politicalPanel",id));
          }else{
         	 add(new Label("dnaPanel",""));
         	 add(new Label("targetPanel",""));

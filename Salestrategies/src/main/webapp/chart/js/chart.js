@@ -303,7 +303,7 @@ for(i3=0;i3<lom.length;i3++){
 }
 
 for(i3=0;i3<lom.length;i3++){
-    if(typeof(lom[i3].influence_toluence_to) !== 'undefined' && lom[i3].influence_to !== null && lom[i3].influence_to!=0){
+    if(typeof(lom[i3].influence_to) !== 'undefined' && lom[i3].influence_to !== null && lom[i3].influence_to!=0){
         for(i4=0;i4<lom.length;i4++){
             if(lom[i4].id==lom[i3].influence_to){
                 lnk2[i3]=link2(rendered[i3],rendered[i4]);
