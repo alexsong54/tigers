@@ -40,7 +40,7 @@ public class Index extends WebPage
      static{
     	 ImmutableMap.Builder<String, MenuItem> builder = new ImmutableMap.Builder<String,MenuItem>();
          MenuItem item = new MenuItem();
-         item.setCaption("主页");
+         item.setCaption("Home");
          item.setDestination(HomePage.class);
          item.setId("navitem-homepage");
          builder.put("home", item);
