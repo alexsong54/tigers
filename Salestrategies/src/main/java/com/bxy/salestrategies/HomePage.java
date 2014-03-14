@@ -35,7 +35,6 @@ public class HomePage extends Index implements AuthenticatedWebPage
     	
     	
     	 Map<String, Entity> entities = Configuration.getEntityTable();
-         final Entity entity = entities.get("alert");
         List<Entity> entitys = Configuration.getEntities();
         IModel<Choice> selected_model =  new Model(new Choice(0l,"account"));
     	 List<Choice> entityChoice = new ArrayList<Choice>();
@@ -85,7 +84,7 @@ public class HomePage extends Index implements AuthenticatedWebPage
                 {
                     likequery = likequery + " OR " + sf.getName() + joint;
                 }
-                if(en.getName().equalsIgnoreCase("coaching")||en.getName().equalsIgnoreCase("activity")||en.getName().equalsIgnoreCase("willcoaching")){
+                if(en.getName().equalsIgnoreCase("activity")){
                 	sql = sql + " where title like '%" + search_target + "%' " + likequery;
                 } else{
                 	sql = sql + " where name like '%" + search_target + "%' " + likequery;
@@ -98,7 +97,9 @@ public class HomePage extends Index implements AuthenticatedWebPage
                     		datalist = DAOImpl.queryEntityRelationList(sql);	
                     	}else if(en.getName().equalsIgnoreCase("contact")){
                     		datalist = DAOImpl.queryEntityRelationList(sql);
-                    	}else if(en.getName().equalsIgnoreCase("coaching")||en.getName().equalsIgnoreCase("activity")||en.getName().equalsIgnoreCase("willcoaching")){
+                    	}else if(en.getName().equalsIgnoreCase("activity")){
+                    		datalist = DAOImpl.queryEntityRelationList(sql);
+                    	}else if(en.getName().equalsIgnoreCase("opportunity")){
                     		datalist = DAOImpl.queryEntityRelationList(sql);
                     	}
                 
@@ -108,6 +109,8 @@ public class HomePage extends Index implements AuthenticatedWebPage
                 	setResponsePage(new ContactPage(datalist));
                 }else if(entityName.equals("activity")){
                 	setResponsePage(new ActivityPage(datalist));
+                }else if(entityName.equals("opportunity")){
+                	setResponsePage(new OpportunityPage(datalist));
                 }
                 
             }
