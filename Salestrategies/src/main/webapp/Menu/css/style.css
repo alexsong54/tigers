@@ -1,14 +1,4 @@
 
-@font-face { font-family: Cambria; src: url('fonts/CAMBRIA.ttc'); }
-@font-face { font-family: Cambria; src: url('fonts/CAMBRIAI.ttf'); font-style: italic; }
-@font-face { font-family: Cambria; src: url('fonts/CAMBRIAB.ttf'); font-weight: bold; }
-
-@font-face { font-family: SegeoUI; src: url('fonts/segoeui.ttf'); }
-@font-face { font-family: SegeoUI; src: url('fonts/segoeuii.ttf'); font-style: italic; }
-@font-face { font-family: SegeoUI; src: url('fonts/segoeuib.ttf'); font-weight: bold; }
-
-/* global styles */
-
 img { border: none; outline: none; }
 p { line-height: 150%; margin-bottom: 24px; }
 
@@ -17,9 +7,11 @@ p { line-height: 150%; margin-bottom: 24px; }
 .hidden { display: none; }
 
 /* layout */
+
 .body { background: #FFF; font: 14px Cambria, Georgia, serif; color: #4D4D4D; min-width: 960px; }
 .master-width { margin: 0 auto; }
 .header-wrap { width: 100%; background: #4D4D4D; position: fixed; z-index: 999; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+
 .header { margin: 0 auto; padding: 8px;  font: 14px Cambria, Georgia, serif;}
 .content-wrap { width: 100%; background: #F2F2F2 url(images/master-bg.jpg); padding: 32px 0 16px; box-shadow: 0 0 6px rgba(0, 0, 0, .3); }
 .content { padding: 48px 0 16px; }
