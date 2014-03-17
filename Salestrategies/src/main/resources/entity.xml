@@ -643,7 +643,7 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>success_probability</name>
+				<name>probability</name>
 				<display>成功几率</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
@@ -651,7 +651,7 @@
 				<isDetailLink>false</isDetailLink>
 				<pattern>text</pattern>
 				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
+				<isEditable>false</isEditable>
 				<picklist>opportunity_probability_pl</picklist>
 				<field-type>String</field-type>
 				<priority>1</priority><isShow>true</isShow>
