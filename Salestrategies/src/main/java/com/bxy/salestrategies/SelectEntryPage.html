@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
     <head>
-        <script src='jquery/js/jquery-1.9.1.js'></script>
-        <script src='jquery/js/jquery-ui-1.10.2.custom.js'></script>
-        <script src="js/common.js"></script>
-        <script src="bootstrap3/js/bootstrap.js"></script>
-        <link href="bootstrap3/css/bootstrap.css" rel="stylesheet" media="screen" />
-        <link href="jquery/css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
-        <link href="css/search_ex.css" rel="stylesheet" />
+        <script src="bootstrap/js/bootstrap.js"></script>
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
+        <link rel="shortcut icon" href="http://ui-cloud.com/favicon.ico">
         <meta name="viewport" content="width=device-width" />
         <script>
             $(document).ready(function() {	
@@ -39,19 +35,23 @@
     </head>
     <body>
     <div class="container">
-        <div class="row">
+        <br>
+        <div class="container">
             <form wicket:id="form" class="form-search">
-                <div class="input-group" style="padding-top:10px;">
-                    <input wicket:id="search_input" type="text"  class="form-control" placeholder="按名称查找" />
-                    <span class="input-group-btn">
-                     <button class="btn btn-primary" type="submit">查找</button>
-                    </span>
+                <div class="row">
+                <div class="col-lg-12">
+          <div class="input-group ">
+            <input type="text" class="form-control" wicket:id="search_input" placeholder="按名称查找"/>
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
                 </div>
-<!--                 <div class="pull-right btn-box">
-                    <input type="submit" class="btn btn-primary" value="查找" />
-                </div> -->
             </form>
         </div>
+        <br>
+        <div class="container" style="margin-left: 10px;" >
         <div class="row">
         <div class="table-responsive col-md-10">
             <div id="dt" class="table table-condensed list-container">
@@ -65,6 +65,7 @@
                 </ul>
                 <div  wicket:id="navigator"></div>
             </div>
+        </div>
         </div>
         </div>
       </div>

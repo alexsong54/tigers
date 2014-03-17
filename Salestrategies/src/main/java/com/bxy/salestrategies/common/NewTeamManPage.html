@@ -6,6 +6,19 @@
             width:100%;
         }
     </style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="msvalidate.01" content="798EC2BB0B4FD0B032D78CBD4D4ED1A9" />
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>       
+ <!-- extra.css is For Table================================================== -->        
+        <link href="css/extra.css" rel="stylesheet" type="text/css" media="all"/> 
+ <!-- doc.css is For DetailPage=============================================== -->
+        <link href="css/docs.css" rel="stylesheet" type="text/css">
+ <!-- common.css is For Button================================================ -->
+        <link href="css/common.css" rel="stylesheet" type="text/css">
+        
+    </head>
 <body>
 		<script>
 			$(document).ready(function() {
@@ -60,15 +73,15 @@
                         <div class="panel-heading">
                                 <span wicket:id="groupname"></span>
                         </div>
-                        <div class="table-content panel-body">
+                        <div class="table-content panel-body" >
                             <div class="table-cell form-group" wicket:id="dataRowRepeater">
                                 <div class="table-column " wicket:id="columnRepeater"><div wicket:id="celldatafield" class="form_datetime"></div></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="control-group">
-                    <div class="controls">
+                <div class="control-group" style="margin-left: 10px;">
+                    <div class="controls" >
                         <input type="submit" onClick="return validateFields();" wicket:id="save"  class="btn btn-primary" value="保存" />
                     </div>
                 </div>
