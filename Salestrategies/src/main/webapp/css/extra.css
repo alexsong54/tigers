@@ -6,9 +6,10 @@
 	width:90%;
 }
 .tableThStyle{
-	background-color:#000000;
+	background-color:#999999;
 	color:#ffffff; 
 	text-align: center;
+        font: 14px Cambria, Georgia, serif; color: #4D4D4D;
 }
 .addStyle{
 	color:green;
