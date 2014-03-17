@@ -31,6 +31,8 @@ import com.bxy.salestrategies.model.ContactUserTeam;
 import com.bxy.salestrategies.model.Dna;
 import com.bxy.salestrategies.model.DnaImplement;
 import com.bxy.salestrategies.model.Opportunitycontactteam;
+import com.bxy.salestrategies.model.Summary;
+import com.bxy.salestrategies.model.Swot;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
 import com.google.common.cache.Cache;
@@ -1246,7 +1248,7 @@ public class DAOImpl {
 	            DBHelper.closeConnection(conn);
 	        }
 	        return choice;
-  }
+     }
      public static List<Opportunitycontactteam> queryOppContactTeams(String sql) {
 	          List<Opportunitycontactteam> choices = Lists.newArrayList();
 	          Connection conn = null;
@@ -1263,5 +1265,129 @@ public class DAOImpl {
 
 	          return choices;
 
+      }
+	    public static List<Contact> queryContactByAccountID(String contactID) {
+	        String query = "select * from contact where account_id = ?";
+	          List<Contact> choices = Lists.newArrayList();
+	          Connection conn = null;
+	          try {
+	              conn = DBConnector.getConnection();
+	              QueryRunner run = new QueryRunner();
+	              ResultSetHandler<List<Contact>> h = new BeanListHandler<Contact>(Contact.class);
+	              choices = run.query(conn, query, h,contactID);
+
+	          } catch (SQLException e) {
+	              logger.error("failed to get queryPickListById", e);
+	          } finally {
+	              DBHelper.closeConnection(conn);
+	          }
+
+	          return choices;
+
 	      }
+	    public static Swot getSwotByOpportunityId(String opprunityId) {
+	        Connection conn = null;
+	        Swot swot = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Swot> h = new BeanHandler<Swot>(Swot.class);
+	            swot = run.query(conn, "SELECT * FROM swot where opportunity_id=?", h, opprunityId);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return swot;
+	    }
+	    public static boolean addSwot(String opportunityID,String strengths,String weaknesses,String opportunities,String threats){
+	    	String sql = "insert into swot (opportunity_id,strengths,weaknesses ,opportunities,threats) values ("+opportunityID+",'"+strengths+"','"+weaknesses+"','"+opportunities+"','"+threats+"')";
+	    	Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    public static boolean updateSwotById(String entityId,String strengths,String weaknesses,String opportunities,String threats){
+	    	String sql = "UPDATE swot SET strengths = ?,weaknesses = ?,opportunities = ?,threats = ? where id=?";
+	        Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql,strengths,weaknesses,opportunities,threats,entityId);
+	        } catch (Exception e) {
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    
+	    public static Summary getSummaryByOpportunityId(String opprunityId) {
+	        Connection conn = null;
+	        Summary summary = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Summary> h = new BeanHandler<Summary>(Summary.class);
+	            summary = run.query(conn, "SELECT * FROM summary where opportunity_id=?", h, opprunityId);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return summary;
+	    }
+	    public static boolean addSummary(String opportunityID,String vertial_market,String compelling_mechanism,String our_solution,String our_quantified){
+	    	String sql = "insert into summary (opportunity_id,vertial_market,compelling_mechanism ,our_solution,our_quantified) values ("+opportunityID+",'"+vertial_market+"','"+compelling_mechanism+"','"+our_solution+"','"+our_quantified+"')";
+	    	Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    public static boolean updateSummaryById(String entityId,String vertial_market,String compelling_mechanism,String our_solution,String our_quantified){
+	    	String sql = "UPDATE summary SET vertial_market = ?,compelling_mechanism = ?,our_solution = ?,our_quantified = ? where id=?";
+	        Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql,vertial_market,compelling_mechanism,our_solution,our_quantified,entityId);
+	        } catch (Exception e) {
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
 }

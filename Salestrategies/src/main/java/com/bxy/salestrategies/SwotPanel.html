@@ -1,0 +1,71 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+    <script>
+        $(document).ready(function() {
+        });// end onDomReady function
+    </script>
+    <div class="panel panel-info">
+ 				   <form wicket:id="form">
+ 				   		<div class="summaryStyle">
+   				   			<span wicket:id="title"></span><input type="submit"  class="btn-small" value="保存" />
+   				   		</div>
+ 				    	 <table class="table table-bordered " id="dna">
+	 				    	<tr class="active">
+	 				    		<th  class=" table-hide" >
+	 				    			优势（Strengths）
+	 				    		</th>
+	 				    		<th   class=" table-hide" >
+	 				    			劣势（Weaknesses）
+	 				    		</th>
+	 				    	</tr>
+	 				    	<tr>
+						    	<td class="table-hide "><span wicket:id="strengths" class="input-sm tableTdStyle" ></span></td>
+								<td class="table-hide "><span wicket:id="weaknesses" class="input-sm tableTdStyle" ></span></td>
+				    		</tr>
+				    		<tr class="active">
+	 				    		<th  class=" table-hide" >
+	 				    			机会（Opportunities）
+	 				    		</th>
+	 				    		<th   class=" table-hide" >
+	 				    			风险（Threats）
+	 				    		</th>
+	 				    	</tr>
+	 				    	<tr>
+						    	<td class="table-hide"><span wicket:id="opportunities" class="input-sm tableTdStyle" ></span></td>
+								<td class="table-hide"><span wicket:id="threats" class="input-sm tableTdStyle" ></span></td>
+				    		</tr>
+				    	</table>
+ 				   </form>
+   				   <form wicket:id="summaryForm">
+   				   		<div class="summaryStyle">
+   				   			<span wicket:id="summaryName"></span><input type="submit"  class="btn-small" value="保存" />
+   				   		</div>
+ 				    	 <table class="table table-bordered " id="dna">
+	 				    	<tr class="active">
+	 				    		<th   class=" table-hide" >
+	 				    			我们的策略
+	 				    		</th>
+	 				    		<th  class=" table-hide" >
+	 				    			垂直市场/行业/简单/业务描述
+	 				    		</th>
+	 				    	</tr>
+	 				    	<tr>
+	 				    		<td class="table-hide"><span wicket:id="our_quantified" class="input-sm tableTdStyle" ></span></td>
+						    	<td class="table-hide "><span wicket:id="vertial_market" class="input-sm tableTdStyle" ></span></td>
+				    		</tr>
+				    		<tr class="active">
+				    			<th   class=" table-hide" >
+	 				    			引人注目的机制
+	 				    		</th>
+	 				    		<th  class=" table-hide" >
+	 				    			我们的解决方案/配置(详细)
+	 				    		</th>
+	 				    	</tr>
+	 				    	<tr>
+	 				    		<td class="table-hide "><span wicket:id="compelling_mechanism" class="input-sm tableTdStyle" ></span></td>
+						    	<td class="table-hide"><span wicket:id="our_solution" class="input-sm tableTdStyle" ></span></td>
+				    		</tr>
+				    	</table>
+ 				   </form>
+				  </div>
+
+</wicket:panel>

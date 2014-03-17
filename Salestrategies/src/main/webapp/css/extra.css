@@ -1,3 +1,12 @@
+.summaryStyle{
+	padding: 10px 15px;
+	border-bottom: 1px solid transparent;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
 .tableBorderStyle{
 	border:1px solid #000000;
 }

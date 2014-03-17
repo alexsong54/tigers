@@ -33,6 +33,7 @@ import com.bxy.salestrategies.Index;
 import com.bxy.salestrategies.OpportunityPage;
 import com.bxy.salestrategies.PoliticalPanel;
 import com.bxy.salestrategies.SignInSession;
+import com.bxy.salestrategies.SwotPanel;
 import com.bxy.salestrategies.TargetPanel;
 import com.bxy.salestrategies.TargetPanel;
 import com.bxy.salestrategies.UserPage;
@@ -351,10 +352,12 @@ public class EntityDetailPage extends Index {
   	  	     params.put("opportunityId",id);
   	  	     add(new PageableTablePanel("targetPanel", target_entity, target_data, params));
   	  	     add(new PoliticalPanel("politicalPanel",id));
+  	  	     add(new SwotPanel("swotPanel",id));
          }else{
         	 add(new Label("dnaPanel",""));
         	 add(new Label("targetPanel",""));
         	 add(new Label("politicalPanel",""));
+        	 add(new SwotPanel("swotPanel",""));
          }
 	  	   add(new CRUDPanel("operationBar",entity.getName(),id, CRMUtility.getPermissionForEntity(entity.getName()),actionListener));
     }

@@ -54,15 +54,16 @@ public class SelectEntryPage extends WebPage {
         String target = getRequest().getRequestParameters().getParameterValue("target").toString();
         //区分是哪一个数据
         String key = getRequest().getRequestParameters().getParameterValue("key").toString();
-        System.out.println("key:"+key);
-        initPage(null,relationTableName,tragetEntity,excludeId,target,key);
+        String accountID = getRequest().getRequestParameters().getParameterValue("accountID").toString();
+        System.out.println("accountID:"+accountID);
+        initPage(null,relationTableName,tragetEntity,excludeId,target,key,accountID);
     }
 
-    public SelectEntryPage(List<Map> maplist,String relationTableName,String tragetEntity,String excludeId,String target,String key) {
-        initPage(maplist,relationTableName,tragetEntity,excludeId,target,key);
+    public SelectEntryPage(List<Map> maplist,String relationTableName,String tragetEntity,String excludeId,String target,String key,String accountID) {
+        initPage(maplist,relationTableName,tragetEntity,excludeId,target,key,accountID);
     }
 
-    public void initPage(List<Map> list,final String relationTableName,final String tragetEntity,final String excludeId,final String target,final String key) {
+    public void initPage(List<Map> list,final String relationTableName,final String tragetEntity,final String excludeId,final String target,final String key,final String accountID) {
         final String userId = ((SignInSession)getSession()).getUserId();
         final Map<String, Entity> entities = Configuration.getEntityTable();
         final Entity entity = entities.get(relationTableName);
@@ -131,7 +132,8 @@ public class SelectEntryPage extends WebPage {
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     }else{
-                    	String sql = assembleSearchingSQL( entity);
+                    	String sql = assembleSearchingSQL( entity)+" and account_id = "+accountID;
+                    	System.out.println("sql:"+sql);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", -1);
@@ -155,7 +157,7 @@ public class SelectEntryPage extends WebPage {
                     dummy.put("name", "无");
                     maplist.add(dummy);
                 }                
-                setResponsePage(new SelectEntryPage(maplist,relationTableName,tragetEntity,excludeId,target,key));
+                setResponsePage(new SelectEntryPage(maplist,relationTableName,tragetEntity,excludeId,target,key,accountID));
 
             }
         };
