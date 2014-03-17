@@ -59,7 +59,6 @@ public class TeamManPanel extends Panel {
     private String etId;
     private String currentEntityName;
     List<String> selectedRowIds = Lists.newArrayList();
-    private static final List<String> SITES = Arrays.asList("项目经理", "销售顾问","总经理");
     public List<Field> fieldsd;
     public TeamManPanel(String id,final String en,final String entityId,final int type) {
         super(id);
@@ -252,7 +251,11 @@ public class TeamManPanel extends Panel {
                 @Override
                 public void onClick() {
                  if(!currentEntityName.equalsIgnoreCase("opportunity")){
-                	 this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
+                	 if(currentEntityName.equalsIgnoreCase("account")&&(type==1)){
+                		 this.setResponsePage(new CreateDataPage("contact",null));
+                	 }else{
+                		 this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
+                	 }
                  }else{
                 	 if(type==0){
                 		 this.setResponsePage(new NewTeamManPage("opportunityuserteam",entityId,null)); 
@@ -267,29 +270,11 @@ public class TeamManPanel extends Panel {
 //        }
         CheckGroup group = new CheckGroup("group",new PropertyModel(this,"selectedRowIds"));
         form.add(group); 
-//        if(roleId == 1){
-            if(type!=6){
             	CheckGroupSelector chks = new CheckGroupSelector("checkboxs");
                 group.add(chks);
                 WebMarkupContainer container_label = new WebMarkupContainer("checkboxs_label");
                 group.add(container_label);
                 container_label.add(new AttributeAppender("for", new Model(chks.getMarkupId()), " ")); 
-            }else{
-                WebMarkupContainer container = new WebMarkupContainer("checkboxs");
-                container.setVisible(false);
-                WebMarkupContainer container_label = new WebMarkupContainer("checkboxs_label");
-                container_label.setVisible(false);
-                group.add(container);
-                group.add(container_label);
-            }
-//        }else{
-//            WebMarkupContainer container = new WebMarkupContainer("checkboxs");
-//            container.setVisible(false);
-//            WebMarkupContainer container_label = new WebMarkupContainer("checkboxs_label");
-//            container_label.setVisible(false);
-//            group.add(container);
-//            group.add(container_label);
-//        }
         //set column name
         RepeatingView columnNameRepeater = new RepeatingView("columnNameRepeater");
         group.add(columnNameRepeater);
@@ -381,40 +366,33 @@ public class TeamManPanel extends Panel {
                 columnRepeater.add(columnitem);
               }
             WebMarkupContainer container_label = new WebMarkupContainer("checkbox_label");
-//            if(type!=4){
                 item.add(container_label);
-//            }else{
-//            	container_label.setVisible(false);
-//                item.add(container_label);
-//            }
-            
-//            if(roleId == 1){
                 final PageableListView<String> this_page =this;
-                if(type!=6){
-                	Check chk = new Check("checkbox", new Model(String.valueOf(rowId)));
-                    container_label.add(new AttributeAppender("for", new Model(chk.getMarkupId()), " "));        
-                    item.add(chk);
-                    Button button1 = new Button("editbtn") {
-                    	public void onSubmit() {
-                    		PageParameters pp = new PageParameters();
-                            pp.add("id", rowId );
-                            pp.add("realId", realId);
-                            pp.add("entityName", "opportunity");
-                            setResponsePage(new EditDataPage(entityName,realId,EntityDetailPage.class,pp));
-                    			}
-                    		};
-                   item.add(button1);
+                Check chk = new Check("checkbox", new Model(String.valueOf(rowId)));
+                container_label.add(new AttributeAppender("for", new Model(chk.getMarkupId()), " "));        
+                item.add(chk);
+                if(en.equals("opportunity")){
+                    if(entityName.equals("opportunityuserteam")||entityName.equals("opportunitycontactteam")){
+                    	Button button1  = new Button("editbtn") {
+                          	public void onSubmit() {
+                          		PageParameters pp = new PageParameters();
+                                  pp.add("id", rowId );
+                                  pp.add("realId", realId);
+                                  pp.add("entityName", "opportunity");
+                                  setResponsePage(new EditDataPage(entityName,realId,EntityDetailPage.class,pp));
+                          			}
+                          		};
+                         item.add(button1);
+                    }else{
+                        WebMarkupContainer editbtn = new WebMarkupContainer("editbtn");
+                        editbtn.setVisible(false);
+                        item.add(editbtn);
+                    }
                 }else{
-                    WebMarkupContainer container = new WebMarkupContainer("checkbox");
-                    container.setVisible(false);
-                    item.add(container);
+                    WebMarkupContainer editbtn = new WebMarkupContainer("editbtn");
+                    editbtn.setVisible(false);
+                    item.add(editbtn);
                 }
-//            }else{
-//                WebMarkupContainer container = new WebMarkupContainer("checkbox");
-//                container.setVisible(false);
-//                item.add(container);
-//            }
-         
             
         }
             
