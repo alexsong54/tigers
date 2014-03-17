@@ -24,3 +24,16 @@ ADD COLUMN `opportunity_id` INT(11) NULL AFTER `our_quantified`;
 
 ALTER TABLE `strategies`.`summary` 
 ADD COLUMN `strategy` INT(11) NULL AFTER `opportunity_id`;
+
+CREATE TABLE `strategies`.`strategy_pl` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `val` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+INSERT INTO `strategies`.`strategy_pl` (`id`, `val`) VALUES ('1', '正面进攻');
+INSERT INTO `strategies`.`strategy_pl` (`id`, `val`) VALUES ('2', '侧面进攻');
+INSERT INTO `strategies`.`strategy_pl` (`id`, `val`) VALUES ('3', '分化进攻');
+INSERT INTO `strategies`.`strategy_pl` (`id`, `val`) VALUES ('4', '主动防御');
+INSERT INTO `strategies`.`strategy_pl` (`id`, `val`) VALUES ('5', '战前布局');
+  
+  
+  

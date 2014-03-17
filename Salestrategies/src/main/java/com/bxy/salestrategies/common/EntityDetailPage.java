@@ -357,7 +357,7 @@ public class EntityDetailPage extends Index {
         	 add(new Label("dnaPanel",""));
         	 add(new Label("targetPanel",""));
         	 add(new Label("politicalPanel",""));
-        	 add(new SwotPanel("swotPanel",""));
+        	 add(new Label("swotPanel",""));
          }
 	  	   add(new CRUDPanel("operationBar",entity.getName(),id, CRMUtility.getPermissionForEntity(entity.getName()),actionListener));
     }

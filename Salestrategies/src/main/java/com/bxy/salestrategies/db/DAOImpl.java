@@ -1353,8 +1353,8 @@ public class DAOImpl {
 	        }
 	        return summary;
 	    }
-	    public static boolean addSummary(String opportunityID,String vertial_market,String compelling_mechanism,String our_solution,String our_quantified){
-	    	String sql = "insert into summary (opportunity_id,vertial_market,compelling_mechanism ,our_solution,our_quantified) values ("+opportunityID+",'"+vertial_market+"','"+compelling_mechanism+"','"+our_solution+"','"+our_quantified+"')";
+	    public static boolean addSummary(String opportunityID,String vertial_market,String compelling_mechanism,String our_solution,String our_quantified,String strategy){
+	    	String sql = "insert into summary (opportunity_id,vertial_market,compelling_mechanism ,our_solution,our_quantified,strategy) values ("+opportunityID+",'"+vertial_market+"','"+compelling_mechanism+"','"+our_solution+"','"+our_quantified+"',"+strategy+")";
 	    	Connection conn = null;
 	        int inserts = 0;
 	        try {
@@ -1372,14 +1372,14 @@ public class DAOImpl {
 	    	}
 	    	return false;
 	    }
-	    public static boolean updateSummaryById(String entityId,String vertial_market,String compelling_mechanism,String our_solution,String our_quantified){
-	    	String sql = "UPDATE summary SET vertial_market = ?,compelling_mechanism = ?,our_solution = ?,our_quantified = ? where id=?";
+	    public static boolean updateSummaryById(String entityId,String vertial_market,String compelling_mechanism,String our_solution,String our_quantified,String strategy){
+	    	String sql = "UPDATE summary SET vertial_market = ?,compelling_mechanism = ?,our_solution = ?,our_quantified = ? , strategy = ? where id=?";
 	        Connection conn = null;
 	        int inserts = 0;
 	        try {
 	            conn = DBConnector.getConnection();
 	            QueryRunner run = new QueryRunner();
-	            inserts += run.update(conn, sql,vertial_market,compelling_mechanism,our_solution,our_quantified,entityId);
+	            inserts += run.update(conn, sql,vertial_market,compelling_mechanism,our_solution,our_quantified,strategy,entityId);
 	        } catch (Exception e) {
 	            logger.error("failed to activity", e);
 	        } finally {

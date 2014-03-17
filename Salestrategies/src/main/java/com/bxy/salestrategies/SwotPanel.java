@@ -1,20 +1,30 @@
 package com.bxy.salestrategies;
 
+import java.util.List;
 import java.util.Map;
 
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableMultiLineLabel;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.bxy.salestrategies.common.Entity;
+import com.bxy.salestrategies.common.Field;
 import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.model.Choice;
 import com.bxy.salestrategies.model.Dna;
 import com.bxy.salestrategies.model.DnaImplement;
 import com.bxy.salestrategies.model.Summary;
 import com.bxy.salestrategies.model.Swot;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class SwotPanel extends Panel{
@@ -79,6 +89,7 @@ public class SwotPanel extends Panel{
 		form.add(dna_cco);
 		add(form);
 		form.add(new Label("title","策略分析"));
+        
 		Summary summary = DAOImpl.getSummaryByOpportunityId(opportunityID);
 		IModel<String> textModel_dnaimplement_tta = null;
 		IModel<String> textModel_dnaimplement_pop = null;
@@ -102,13 +113,14 @@ public class SwotPanel extends Panel{
 	            	 String dna_pop = models.get("compelling_mechanism").getObject() == null ? null : String.valueOf(models.get("compelling_mechanism").getObject());
 	            	 String dna_qbu = models.get("our_solution").getObject() == null ? null : String.valueOf(models.get("our_solution").getObject());
 	            	 String dna_cco = models.get("our_quantified").getObject() == null ? null : String.valueOf(models.get("our_quantified").getObject());
+	            	 String strategy = String.valueOf(models.get("strategy").getObject());
 	            	 try {
 	            		 Summary summary = DAOImpl.getSummaryByOpportunityId(opportunityID);
 							if(null == summary){
 								 //新增信息
-								 DAOImpl.addSummary(opportunityID, dna_tta, dna_pop, dna_qbu, dna_cco);
+								 DAOImpl.addSummary(opportunityID, dna_tta, dna_pop, dna_qbu, dna_cco,strategy);
 							 }else{
-								 DAOImpl.updateSummaryById(String.valueOf(summary.getId()), dna_tta, dna_pop, dna_qbu, dna_cco);
+								 DAOImpl.updateSummaryById(String.valueOf(summary.getId()), dna_tta, dna_pop, dna_qbu, dna_cco,strategy);
 							 }
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -133,8 +145,48 @@ public class SwotPanel extends Panel{
 		
 		add(dnaImplementForm);
 		dnaImplementForm.add(new Label("summaryName","总结分析"));
+		long default_key = 1L;
+		List<Choice> pickList = DAOImpl.queryPickList("strategy_pl");
+        Map<Long, String> list = Maps.newHashMap();
+        List<Long> ids = Lists.newArrayList();
+        for (Choice p : pickList)
+        {
+                list.put(p.getId(), p.getVal());
+                ids.add(p.getId());
+        }
+        IModel choiceModel = new Model(default_key);
+        models.put("strategy", choiceModel);
+        dnaImplementForm.add(new DropDownChoiceFragment("celldatafield", "dropDownFragment", this, ids, list, choiceModel));
     }
     public SwotPanel(String id, IModel<?> model) {
         super(id, model);
+    }
+    private class DropDownChoiceFragment extends Fragment
+    {
+
+        public DropDownChoiceFragment(String id, String markupId,
+          MarkupContainer markupProvider, final List<Long> ids,
+          final Map<Long, String> list, IModel model)
+        {
+            super(id, markupId, markupProvider);
+            DropDownChoice dropDownChoice = (new DropDownChoice<Long>("dropDownInput", model, ids,
+              new IChoiceRenderer<Long>()
+              {
+                  @Override
+                  public Object getDisplayValue(Long id)
+                  {
+                      // TODO Auto-generated method stub
+                      return list.get(id);
+                  }
+
+                  @Override
+                  public String getIdValue(Long id, int index)
+                  {
+                      return String.valueOf(id);
+                  }
+              }));
+            dropDownChoice.setNullValid(true);
+            add(dropDownChoice);
+        }
     }
 }

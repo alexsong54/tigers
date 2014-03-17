@@ -44,28 +44,31 @@
 	 				    		<th   class=" table-hide" >
 	 				    			我们的策略
 	 				    		</th>
-	 				    		<th  class=" table-hide" >
+	 				    		<th><span wicket:id="celldatafield"></span></th>
+	 				    		<th colspan="2" class=" table-hide" >
 	 				    			垂直市场/行业/简单/业务描述
 	 				    		</th>
 	 				    	</tr>
 	 				    	<tr>
-	 				    		<td class="table-hide"><span wicket:id="our_quantified" class="input-sm tableTdStyle" ></span></td>
-						    	<td class="table-hide "><span wicket:id="vertial_market" class="input-sm tableTdStyle" ></span></td>
+	 				    		<td  colspan="2"  class="table-hide"><span wicket:id="our_quantified" class="input-sm tableTdStyle" ></span></td>
+						    	<td  colspan="2"  class="table-hide "><span wicket:id="vertial_market" class="input-sm tableTdStyle" ></span></td>
 				    		</tr>
 				    		<tr class="active">
-				    			<th   class=" table-hide" >
+				    			<th  colspan="2"  class=" table-hide" >
 	 				    			引人注目的机制
 	 				    		</th>
-	 				    		<th  class=" table-hide" >
+	 				    		<th colspan="2" class=" table-hide" >
 	 				    			我们的解决方案/配置(详细)
 	 				    		</th>
 	 				    	</tr>
 	 				    	<tr>
-	 				    		<td class="table-hide "><span wicket:id="compelling_mechanism" class="input-sm tableTdStyle" ></span></td>
-						    	<td class="table-hide"><span wicket:id="our_solution" class="input-sm tableTdStyle" ></span></td>
+	 				    		<td  colspan="2" class="table-hide "><span wicket:id="compelling_mechanism" class="input-sm tableTdStyle" ></span></td>
+						    	<td  colspan="2" class="table-hide"><span wicket:id="our_solution" class="input-sm tableTdStyle" ></span></td>
 				    		</tr>
 				    	</table>
  				   </form>
 				  </div>
-
+	<wicket:fragment wicket:id="dropDownFragment">
+        <select class="form-control input-sm" wicket:id="dropDownInput"></select>
+    </wicket:fragment>
 </wicket:panel>
