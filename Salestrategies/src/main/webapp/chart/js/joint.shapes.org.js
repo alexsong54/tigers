@@ -63,10 +63,10 @@ joint.shapes.org.MemberView = joint.dia.ElementView.extend({
                                                            template: [
                                                                       '<div class="html-element">',
                                                                       '<label></label>',
-                                                                      '<div class="sp1">123</div><select class="sel1"><option>--</option><option>one</option><option>two</option></select>',
-                                                                      '<div class="sp2">123</div><select class="sel2"><option>--</option><option>one</option><option>two</option></select>',
-                                                                      '<div class="sp3">123</div><select class="sel3"><option>--</option><option>one</option><option>two</option></select>',
-                                                                      '<div class="sp4">123</div><select class="sel4"><option>--</option><option>one</option><option>two</option></select>',
+                                                                      '<div class="sp1"></div><select class="sel1"><option>--</option><option>one</option><option>two</option></select>',
+                                                                      '<div class="sp2"></div><select class="sel2"><option>--</option><option>one</option><option>two</option></select>',
+                                                                      '<div class="sp3"></div><select class="sel3"><option>--</option><option>one</option><option>two</option></select>',
+                                                                      '<div class="sp4"></div><select class="sel4"><option>--</option><option>one</option><option>two</option></select>',
                                                                       '</div>'
                                                                       ].join(''),
 

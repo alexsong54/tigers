@@ -95,15 +95,19 @@ public class TeamManPanel extends Panel {
         		teamSql = "select * from (select user.id as user_id ,user.id as rid,opportunityuserteam.id,user.job_title,opportunity.id as opportunity_id ,user.office_tel,user.telephone,opportunityuserteam.team_role  from opportunityuserteam left join user on user.id = opportunityuserteam.user_id left join opportunity on opportunity.id = opportunityuserteam.opportunity_id where opportunity.id =?) as a";
         	}else if(type==1){
         		teamSql = "select * from (select opportunitycontactteam.*,contact.id as rid from contact left join opportunitycontactteam on opportunitycontactteam.contact_id = contact.id where opportunitycontactteam.opportunity_id = ?) as atable";
+        	}else if(type==4){
+        		teamSql = "select * from (select tactics.*,tactics.id as rid from tactics left join opportunity on opportunity.id = tactics.opportunity_id where tactics.opportunity_id = ?) as atable";
+        	}else if(type==5){
+        		teamSql = "select * from (select activity.*,activity.id as rid from activity left join opportunity on opportunity.id = activity.opportuntiy_id where activity.opportunity_id = ?) as atable";
         	}
         }
         List mapList = new ArrayList();
-       if(type ==4){
-    	    mapList = DAOImpl.queryEntityRelationList(teamSql);
-       } else {
+//       if(type ==4){
+//    	    mapList = DAOImpl.queryEntityRelationList(teamSql);
+//       } else {
     	    mapList = DAOImpl.queryEntityRelationList(teamSql, entityId); 
     	    System.out.println(entityId);
-       }
+//       }
         Entity entity=null ;
         if(en.equalsIgnoreCase("account")){
         	if(type == 0){
@@ -128,6 +132,12 @@ public class TeamManPanel extends Panel {
               }else if(type == 1){
                   entity = Configuration.getEntityByName("opportunitycontactteam");
                   add(new Label("title","联系人"));
+              }else if(type == 4){
+                  entity = Configuration.getEntityByName("tactics");
+                  add(new Label("title","战略计划"));
+              }else if(type == 5){
+                  entity = Configuration.getEntityByName("activity");
+                  add(new Label("title","活动"));
               }
         }else if(en.equalsIgnoreCase("user")){
         	if(type == 0){
@@ -197,6 +207,10 @@ public class TeamManPanel extends Panel {
                    teamtable = "opportunityuserteam";
                }else if(type == 1){
                    teamtable = "opportunitycontactteam";
+               }else if(type == 4){
+                   teamtable = "tactics";
+               }else if(type == 5){
+                   teamtable = "activity";
                }
            }
             
@@ -254,7 +268,7 @@ public class TeamManPanel extends Panel {
         CheckGroup group = new CheckGroup("group",new PropertyModel(this,"selectedRowIds"));
         form.add(group); 
 //        if(roleId == 1){
-            if(type!=4){
+            if(type!=6){
             	CheckGroupSelector chks = new CheckGroupSelector("checkboxs");
                 group.add(chks);
                 WebMarkupContainer container_label = new WebMarkupContainer("checkboxs_label");
@@ -376,7 +390,7 @@ public class TeamManPanel extends Panel {
             
 //            if(roleId == 1){
                 final PageableListView<String> this_page =this;
-                if(type!=4){
+                if(type!=6){
                 	Check chk = new Check("checkbox", new Model(String.valueOf(rowId)));
                     container_label.add(new AttributeAppender("for", new Model(chk.getMarkupId()), " "));        
                     item.add(chk);

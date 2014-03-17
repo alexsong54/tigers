@@ -568,7 +568,7 @@
 			</field>
 			<field>
 				<name>amount</name>
-				<display>项目预算</display>
+				<display>金额</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -612,22 +612,6 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>type</name>
-				<display>项目类型</display>
-				<isRequired>false</isRequired>
-				<data-type>text</data-type>
-				<isPrimaryKey>false</isPrimaryKey>
-				<isDetailLink>false</isDetailLink>
-				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
-				<picklist>opportunity_type_pl</picklist>
-				<field-type>number</field-type>
-				<priority>1</priority>
-				<isShow>true</isShow>
-				<isParam>true</isParam>
-				<fieldGroup>关键信息</fieldGroup>
-			</field>
-			<field>
 				<name>stage_name</name>
 				<display>项目阶段</display>
 				<isRequired>false</isRequired>
@@ -643,18 +627,19 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
-				<name>success_probability</name>
-				<display>成功几率</display>
+				<name>type</name>
+				<display>项目类型</display>
 				<isRequired>false</isRequired>
 				<data-type>text</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
-				<pattern>text</pattern>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<picklist>opportunity_probability_pl</picklist>
-				<field-type>String</field-type>
-				<priority>1</priority><isShow>true</isShow>
+				<picklist>opportunity_type_pl</picklist>
+				<field-type>number</field-type>
+				<priority>1</priority>
+				<isShow>true</isShow>
+				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -2293,8 +2278,6 @@
   				<isRequired>false</isRequired>
 				<isSearchable>false</isSearchable>
  				<field-type>String</field-type>
- 				<isEditable>true</isEditable>
- 				<isVisible>true</isVisible>
   				<isParam>true</isParam>
   				<priority>1</priority>
   				<isShow>true</isShow>
@@ -2335,8 +2318,6 @@
  				<relationTable>contact</relationTable>
      			<isSearchable>false</isSearchable>
   				<field-type>String</field-type>
-  				<isEditable>true</isEditable>
- 				<isVisible>true</isVisible>
   				<isParam>true</isParam>
   				<priority>1</priority>
   				<isShow>true</isShow>
@@ -2350,8 +2331,6 @@
   				<picklist>opportunity_stage_pl</picklist>
   				<field-type>String</field-type>
   				<isParam>true</isParam>
-  				<isEditable>true</isEditable>
- 				<isVisible>true</isVisible>
   				<priority>1</priority>
      			<isShow>true</isShow>
  				<fieldGroup>关键信息</fieldGroup>
@@ -2362,8 +2341,6 @@
   				<data-type>bjgtextarea</data-type>
 				<isSearchable>false</isSearchable>
  				<field-type>String</field-type>
- 				<isEditable>true</isEditable>
- 				<isVisible>true</isVisible>
  				<isParam>true</isParam>
  				<priority>1</priority>
   				<isShow>true</isShow>
@@ -2375,8 +2352,6 @@
   				<data-type>bjgtextarea</data-type>
  				<isSearchable>false</isSearchable>
   				<field-type>String</field-type>
-  				<isEditable>true</isEditable>
- 				<isVisible>true</isVisible>
   				<isParam>true</isParam>
   				<priority>1</priority>
   				<isShow>true</isShow>
@@ -2388,8 +2363,6 @@
 				<data-type>bjgtextarea</data-type>
  				<isSearchable>false</isSearchable>
 				<field-type>String</field-type>
-				<isEditable>true</isEditable>
- 				<isVisible>true</isVisible>
 				<isParam>true</isParam>
 				<isShow>true</isShow>
 				<priority>1</priority>

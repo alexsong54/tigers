@@ -144,6 +144,8 @@ public class EntityDetailPage extends Index {
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
              add(new EmptyPanel("teamPanel3"));
+             add(new EmptyPanel("teamPanel4"));
+             add(new EmptyPanel("teamPanel5"));
              //             add(new EmptyPanel("teamPanel4"));
          }
          else if(entityName.equalsIgnoreCase("contact")){
@@ -163,6 +165,8 @@ public class EntityDetailPage extends Index {
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
              add(new EmptyPanel("teamPanel3"));
+             add(new EmptyPanel("teamPanel4"));
+             add(new EmptyPanel("teamPanel5"));
 //             add(new TeamManPanel("teamPanel4",entityName,String.valueOf(lid),3));
          }
          else if(entityName.equalsIgnoreCase("opportunity")){
@@ -183,7 +187,9 @@ public class EntityDetailPage extends Index {
              
 	     add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	     add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-                add(new EmptyPanel("teamPanel3"));
+	     add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),4));
+	     add(new TeamManPanel("teamPanel4",entityName,String.valueOf(lid),5));
+         add(new EmptyPanel("teamPanel5"));
        }else if(entityName.equalsIgnoreCase("user")){
            
          Label icon1=new Label("icon1"," ");
@@ -203,7 +209,9 @@ public class EntityDetailPage extends Index {
           
 	   add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	   add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-         add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
+       add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
+       add(new EmptyPanel("teamPanel4"));
+       add(new EmptyPanel("teamPanel5"));
   	   
      }else{
            add(new Label("icon1",""));
@@ -215,6 +223,8 @@ public class EntityDetailPage extends Index {
            add(new EmptyPanel("teamPanel"));
            add(new EmptyPanel("teamPanel2"));
            add(new EmptyPanel("teamPanel3"));
+           add(new EmptyPanel("teamPanel4"));
+           add(new EmptyPanel("teamPanel5"));
 //            add(new EmptyPanel("teamPanel4"));
         }
 
