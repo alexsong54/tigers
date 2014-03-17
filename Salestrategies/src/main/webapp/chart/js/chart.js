@@ -10,7 +10,7 @@ var paper = new joint.dia.Paper({
                                 elementView: joint.shapes.org.MemberView
                                 });
 
-var member = function(x, y, rank, name, image, id, border, decision_role,buying_style,relat_status,time_spent) {
+var member = function(x, y, rank, name, image, id, border, decisionRoleName,buyingStyleName,relatStatusName,timeSpentName) {
 
     var background;
     if(rank=='CEO'){
@@ -40,7 +40,7 @@ var member = function(x, y, rank, name, image, id, border, decision_role,buying_
                                            '.card': { fill: background, stroke: border},
                                            image: { 'xlink:href': '../chart/images/'+ image },
                                            '.rank': { text: rank }, '.name': { text: name }
-                                           }, label: id, sp1:decision_role,sp2:buying_style,sp3:relat_status,sp4:time_spent
+                                           }, label: id, sp1:decisionRoleName,sp2:buyingStyleName,sp3:relatStatusName,sp4:timeSpentName
                                            });
     graph.addCell(cell);
     return cell;

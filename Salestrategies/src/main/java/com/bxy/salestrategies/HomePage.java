@@ -42,7 +42,7 @@ public class HomePage extends Index implements AuthenticatedWebPage
     	    for(Entity entityName :entitys){
     	    	if(entityName.isGlobalsearch()){
     	    		Choice choice =new Choice();
-    	        	choice.setVal(entityName.getDisplay());
+    	        	choice.setVal(entityName.getName());
     	        	choice.setName(entityName.getName());
     	        	entityChoice.add(choice);
     	            entityList.put(String.valueOf(entityName.getName()), entityName); 
