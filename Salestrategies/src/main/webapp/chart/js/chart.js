@@ -10,25 +10,25 @@ var paper = new joint.dia.Paper({
                                 elementView: joint.shapes.org.MemberView
                                 });
 
-var member = function(x, y, rank, name, image, id, border, decisionName,buyingStyleName,relatStatusName,timeSpentName) {
+var member = function(x, y, rank, name, image, id, border, decisionName,buyingStyleName,relatStatusName,timeSpentName,ranklevel) {
 
     var background;
-    if(rnklv[rank]==0){
+    if(rnklv[ranklevel]==0){
         y = 70;
         x=x1;
         x1+=180;
         background = '#F1C40F';
-    }else if(rnklv[rank]==1){
+    }else if(rnklv[ranklevel]==1){
         y = 200;
         x=x2;
         x2+=210;
         background = '#2ECC71';
-    }else if(rnklv[rank]==2){
+    }else if(rnklv[ranklevel]==2){
         y = 330;
         x=x3;
         x3+=210;
         background = '#3498DB';
-    }else if(rnklv[rank]==3){
+    }else if(rnklv[ranklevel]==3){
         y = 460;
         x=x4;
         x4+=210;
@@ -282,7 +282,7 @@ for(i3=1;i3<lom.length;i3++){
 }
 
 for(i3=0;i3<lom.length;i3++){
-    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].contact_id, lom[i3].core != 0?'red':'gray',lom[i3].buyingStyleName,lom[i3].decisionName,lom[i3].relationStatusName,lom[i3].tiemSpentName);
+    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].contact_id, lom[i3].core != 0?'red':'gray',lom[i3].buyingStyleName,lom[i3].decisionName,lom[i3].relationStatusName,lom[i3].tiemSpentName,lom[i3].ranklevel);
 }
 
 for(i3=0;i3<lom.length;i3++){
