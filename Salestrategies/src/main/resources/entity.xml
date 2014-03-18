@@ -227,9 +227,9 @@
 				<isShow>true</isShow>
 				<priority>1</priority>
 				<isShow>true</isShow>
-				<relationTable>user</relationTable>
 				<default-value-type>var</default-value-type>
-				<default-value>user.id\,user.name</default-value>
+			<default-value>user.id\,user.name</default-value>
+				<relationTable>user</relationTable>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -388,6 +388,8 @@
 			<isEditable>true</isEditable>
 			<relationTable>account</relationTable>
 			<field-type>String</field-type>
+			<default-value-type>var</default-value-type>
+			<default-value>account.id\,account.name</default-value>
 			<priority>1</priority><isShow>true</isShow>
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
@@ -435,7 +437,117 @@
 			<priority>1</priority>
 			<isShow>true</isShow>
 			<isParam>true</isParam>
-			<fieldGroup>关键信息</fieldGroup>
+			<fieldGroup>基本信息</fieldGroup>
+		</field>
+		<field>
+			<name>age</name>
+			<display>年龄</display>
+			<isRequired>false</isRequired>
+			<data-type>number</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<field-type>String</field-type>
+			<priority>2</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>基本信息</fieldGroup>
+		</field>
+		<field>
+			<name>gender</name>
+			<display>性别</display>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<picklist>gender_pl</picklist>
+			<field-type>String</field-type>
+			<priority>1</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>基本信息</fieldGroup>
+		</field>
+		<field>
+			<name>hometown</name>
+			<display>籍贯</display>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<picklist>hometown_pl</picklist>
+			<field-type>String</field-type>
+			<priority>2</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>基本信息</fieldGroup>
+		</field>
+		<field>
+			<name>nation</name>
+			<display>民族</display>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<picklist>nation</picklist>
+			<field-type>String</field-type>
+			<priority>2</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>基本信息</fieldGroup>
+		</field>
+		<field>
+			<name>education</name>
+			<display>学历</display>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<picklist>education_pl</picklist>
+			<field-type>String</field-type>
+			<priority>2</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>基本信息</fieldGroup>
+		</field>
+		<field>
+			<name>school</name>
+			<display>毕业院校</display>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<field-type>String</field-type>
+			<priority>2</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>基本信息</fieldGroup>
+		</field>
+		<field>
+			<name>language</name>
+			<display>语言</display>
+			<isRequired>false</isRequired>
+			<data-type>text</data-type>
+			<isPrimaryKey>false</isPrimaryKey>
+			<isDetailLink>false</isDetailLink>
+			<isVisible>true</isVisible>
+			<isEditable>true</isEditable>
+			<picklist>language_pl</picklist>
+			<field-type>String</field-type>
+			<priority>2</priority>
+			<isShow>true</isShow>
+			<isParam>true</isParam>
+			<fieldGroup>基本信息</fieldGroup>
 		</field>
 		<field>
 				<name>owner</name>
@@ -451,9 +563,9 @@
 				<isShow>true</isShow>
 				<priority>1</priority>
 				<isShow>true</isShow>
-				<relationTable>user</relationTable>
 				<default-value-type>var</default-value-type>
-				<default-value>user.id\,user.name</default-value>
+			<default-value>user.id\,user.name</default-value>
+				<relationTable>user</relationTable>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -720,9 +832,9 @@
 				<isShow>true</isShow>
 				<priority>1</priority>
 				<isShow>true</isShow>
-				<relationTable>user</relationTable>
 				<default-value-type>var</default-value-type>
-				<default-value>user.id\,user.name</default-value>
+			<default-value>user.id\,user.name</default-value>
+				<relationTable>user</relationTable>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -877,9 +989,9 @@
 				<isShow>true</isShow>
 				<priority>1</priority>
 				<isShow>true</isShow>
-				<relationTable>user</relationTable>
 				<default-value-type>var</default-value-type>
-				<default-value>user.id\,user.name</default-value>
+			<default-value>user.id\,user.name</default-value>
+				<relationTable>user</relationTable>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -1398,6 +1510,8 @@
 				<isEditable>true</isEditable>
 				<field-type>String</field-type>
 				<relationTable>user</relationTable>
+				<default-value-type>var</default-value-type>
+			<default-value>user.id\,user.name</default-value>
 				<priority>1</priority><isShow>true</isShow>
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
@@ -2326,6 +2440,9 @@
   				<isParam>true</isParam>
   				<priority>1</priority>
   				<isShow>true</isShow>
+  				<default-value-type>var</default-value-type>
+			<default-value>user.id\,user.name</default-value>
+  				<relationTable>user</relationTable>
   				<fieldGroup>关键信息</fieldGroup>
   			</field>
    			<field>

@@ -237,6 +237,22 @@ public class DAOImpl {
 	        }
 	        return user;
 	    }
+	    
+	    public static Account getAccountById(String id) {
+	        Connection conn = null;
+	        Account account = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Account> h = new BeanHandler<Account>(Account.class);
+	            account = run.query(conn, "SELECT * FROM account where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return account;
+	    }
 	    public static String queryPickListByIdCached(final String picklist, final String id){
 	        String value = "";
 	        try{

@@ -61,6 +61,10 @@ public class PoliticalPanel extends Panel{
 				 team.setRelationStatusName(DAOImpl.getChoiceById("relation_status",team.getRelat_status()).getName());
 				 team.setTiemSpentName(DAOImpl.getChoiceById("time_spent_pl",team.getTime_spent()).getName());
 			 }
+			 
+			 if(0!=team.getInfluence_to()){
+				 team.setCore(team.getId());
+			 }
 		 }
 		 TextField<String> text = new TextField<String>("tdata");
 		 Gson gson = new Gson();

@@ -114,21 +114,21 @@ public class SelectEntryPage extends WebPage {
                     	String sql = assembleSearchingSQL( entity);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
-                        dummy.put("id", -1);
+                        dummy.put("id", 0);
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     } else if (tragetEntity.equalsIgnoreCase("tactics")) {
                     	String sql = assembleSearchingSQL( entity);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
-                        dummy.put("id", -1);
+                        dummy.put("id", 0);
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     }else if (tragetEntity.equalsIgnoreCase("opportunitycontactteam")) {
                     	String sql = assembleSearchingSQL( entity);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
-                        dummy.put("id", -1);
+                        dummy.put("id", 0);
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     }else{
@@ -136,7 +136,7 @@ public class SelectEntryPage extends WebPage {
                     	System.out.println("sql:"+sql);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
-                        dummy.put("id", -1);
+                        dummy.put("id", 0);
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     }
@@ -153,7 +153,7 @@ public class SelectEntryPage extends WebPage {
                     String sql = assembleSearchingSQL(entity);
                     maplist  = DAOImpl.queryEntityRelationList(sql);
                     Map dummy = Maps.newHashMap();
-                    dummy.put("id", -1);
+                    dummy.put("id", 0);
                     dummy.put("name", "无");
                     maplist.add(dummy);
                 }                

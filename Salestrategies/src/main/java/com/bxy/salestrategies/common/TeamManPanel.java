@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.mail.Session;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -43,6 +44,7 @@ import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableChoiceLabel;
 import com.bxy.salestrategies.SignInSession;
 import com.bxy.salestrategies.SearchCRMUserPage;
 import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.model.Account;
 import com.bxy.salestrategies.model.AccountUserTeam;
 import com.bxy.salestrategies.model.ContactUserTeam;
 import com.bxy.salestrategies.model.User;
@@ -246,13 +248,17 @@ public class TeamManPanel extends Panel {
 //             add(con);
 //             con.setVisible(false);
 //        }else{
+           long lid = Long.parseLong(etId);
+           final Account ac = DAOImpl.getAccountById(String.valueOf(lid));
         	add(new Link<Void>("add_users_link"){
-
                 @Override
                 public void onClick() {
                  if(!currentEntityName.equalsIgnoreCase("opportunity")){
                 	 if(currentEntityName.equalsIgnoreCase("account")&&(type==1)){
-                		 this.setResponsePage(new CreateDataPage("contact",null));
+                         final Map<String,Object> params = Maps.newHashMap();
+                             params.put("account.id", ac.getId());
+                             params.put("account.name", ac.getName());
+                		 this.setResponsePage(new CreateDataPage("contact",params));
                 	 }else{
                 		 this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
                 	 }

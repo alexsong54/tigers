@@ -266,33 +266,33 @@ var lnk2=new Array();
 var lnk2bk=new Array();
 
 for(i3=0;i3<lom.length;i3++){
-    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].id, lom[i3].core != null?'red':'gray',lom[i3].buying_style,lom[i3].decision_role,lom[i3].relat_status,lom[i3].time_spent);
+    rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].contact_id, lom[i3].core != 0?'red':'gray',lom[i3].buyingStyleName,lom[i3].decisionName,lom[i3].relationStatusName,lom[i3].tiemSpentName);
 }
 
 for(i3=0;i3<lom.length;i3++){
     if(lom[i3].report_to!=0){
         for(i4=0;i4<lom.length;i4++){
-            if(lom[i4].id==lom[i3].report_to){
+            if(lom[i4].contact_id==lom[i3].report_to){
                 lnk[i3]=link(rendered[i3],rendered[i4]);
                 lnk[i3].on('change:target', function() {
                            if(this.get('target').id!=null){
-                           console.log('ID:'+this.get('target').id);
+                           console.log('ID:'+this.get('target').contact_id);
                            for(i5=0;i5<lom.length;i5++){
-                           if(rendered[i5].id==this.get('target').id)
-                           console.log(lom[i5].id);
+                           if(rendered[i5].id==this.get('target').contact_id)
+                           console.log(lom[i5].contact_id);
                            //TODO: ajax here to update this object
                            break;
                            }
                            }
                            });
                 lnkbk[i3]=new Object();
-                lnkbk[i3].id=lnk[i3].id;
-                lnkbk[i3].source=lnk[i3].get('source').id;
+                lnkbk[i3].contact_id=lnk[i3].contact_id;
+                lnkbk[i3].source=lnk[i3].get('source').contact_id;
                 lnk[i3].on('change:source', function() {
                            for(i5=0;i5<lom.length;i5++){
-                           if(lnkbk[i5]!=null && this.id==lnkbk[i5].id){
-                           this.set('source', { id: lnkbk[i5].source });
-                           console.log(lom[i5].id);
+                           if(lnkbk[i5]!=null && this.contact_id==lnkbk[i5].contact_id){
+                           this.set('source', { contact_id: lnkbk[i5].source });
+                           console.log(lom[i5].contact_id);
                            break;
                            }
                            }
@@ -305,27 +305,27 @@ for(i3=0;i3<lom.length;i3++){
 for(i3=0;i3<lom.length;i3++){
     if(typeof(lom[i3].influence_to) !== 'undefined' && lom[i3].influence_to !== null && lom[i3].influence_to!=0){
         for(i4=0;i4<lom.length;i4++){
-            if(lom[i4].id==lom[i3].influence_to){
+            if(lom[i4].contact_id==lom[i3].influence_to){
                 lnk2[i3]=link2(rendered[i3],rendered[i4]);
                 lnk2[i3].on('change:target', function() {
-                           if(this.get('target').id!=null){
-                           console.log('ID:'+this.get('target').id);
+                           if(this.get('target').contact_id!=null){
+                           console.log('ID:'+this.get('target').contact_id);
                            for(i5=0;i5<lom.length;i5++){
-                           if(rendered[i5].id==this.get('target').id)
-                           console.log(lom[i5].id);
+                           if(rendered[i5].contact_id==this.get('target').contact_id)
+                           console.log(lom[i5].contact_id);
                            //TODO: ajax here to update this object
                            break;
                            }
                            }
                            });
                 lnk2bk[i3]=new Object();
-                lnk2bk[i3].id=lnk2[i3].id;
-                lnk2bk[i3].source=lnk2[i3].get('source').id;
+                lnk2bk[i3].contact_id=lnk2[i3].contact_id;
+                lnk2bk[i3].source=lnk2[i3].get('source').contact_id;
                 lnk2[i3].on('change:source', function() {
                            for(i5=0;i5<lom.length;i5++){
-                           if(lnk2bk[i5]!=null && this.id==lnk2bk[i5].id){
-                           this.set('source', { id: lnk2bk[i5].source });
-                           console.log(lom[i5].id);
+                           if(lnk2bk[i5]!=null && this.contact_id==lnk2bk[i5].contact_id){
+                           this.set('source', { contact_id: lnk2bk[i5].source });
+                           console.log(lom[i5].contact_id);
                            break;
                            }
                            }
