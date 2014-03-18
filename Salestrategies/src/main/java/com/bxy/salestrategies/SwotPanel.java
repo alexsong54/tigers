@@ -154,6 +154,11 @@ public class SwotPanel extends Panel{
                 list.put(p.getId(), p.getVal());
                 ids.add(p.getId());
         }
+        String value = "1";
+        if(null!=summary&&summary.getStrategy()!=0){
+           value = String.valueOf(summary.getStrategy());
+        }
+        default_key = Long.parseLong(value);
         IModel choiceModel = new Model(default_key);
         models.put("strategy", choiceModel);
         dnaImplementForm.add(new DropDownChoiceFragment("celldatafield", "dropDownFragment", this, ids, list, choiceModel));

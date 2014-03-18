@@ -264,7 +264,6 @@ public class EditDataFormPanel extends Panel {
                                 if(data.get(currentField.getName())!=null){
                                    value = data.get(currentField.getName()).toString();
                                 }
-                                System.out.println("value");
                                 IModel choiceModel = new Model(Long.parseLong(value));
                                 modifyNameToModel.put(currentField.getDisplay(), choiceModel);
                                 fieldNameToModel.put(currentField.getName(), choiceModel);

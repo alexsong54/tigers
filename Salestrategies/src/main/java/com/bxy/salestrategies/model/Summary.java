@@ -7,6 +7,7 @@ public class Summary {
 	private String compelling_mechanism;
 	private String our_solution;
 	private String our_quantified;
+	private int strategy;
 	public int getId() {
 		return id;
 	}
@@ -42,6 +43,12 @@ public class Summary {
 	}
 	public void setOur_quantified(String our_quantified) {
 		this.our_quantified = our_quantified;
+	}
+	public int getStrategy() {
+		return strategy;
+	}
+	public void setStrategy(int strategy) {
+		this.strategy = strategy;
 	}
 	
 }
