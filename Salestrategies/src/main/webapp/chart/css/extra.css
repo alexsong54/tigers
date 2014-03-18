@@ -8,6 +8,9 @@
 #paper svg .link {
    z-index: 2;
 }
+#view{
+	padding: -100px;
+}
 .html-element {
    position: absolute;
    /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
