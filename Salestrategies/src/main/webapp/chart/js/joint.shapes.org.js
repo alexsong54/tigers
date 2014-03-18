@@ -63,10 +63,10 @@ joint.shapes.org.MemberView = joint.dia.ElementView.extend({
                                                            template: [
                                                                       '<div class="html-element">',
                                                                       '<label></label>',
-                                                                      '<div class="sp1"></div><select class="sel1"><option>--</option><option>one</option><option>two</option></select>',
-                                                                      '<div class="sp2"></div><select class="sel2"><option>--</option><option>one</option><option>two</option></select>',
-                                                                      '<div class="sp3"></div><select class="sel3"><option>--</option><option>one</option><option>two</option></select>',
-                                                                      '<div class="sp4"></div><select class="sel4"><option>--</option><option>one</option><option>two</option></select>',
+                                                                      '<div class="sp1"></div><select class="sel1"><option>V</option><option>R</option><option>F</option><option>P</option><option>T</option></select>',
+                                                                      '<div class="sp2"></div><select class="sel2"><option>A</option><option>C</option><option>D</option><option>E</option><option>U</option></select>',
+                                                                      '<div class="sp3"></div><select class="sel3"><option>★</option><option>+</option><option>=</option><option>-</option><option>X</option></select>',
+                                                                      '<div class="sp4"></div><select class="sel4"><option>0</option><option>1</option><option>2</option><option>3</option></select>',
                                                                       '</div>'
                                                                       ].join(''),
 
