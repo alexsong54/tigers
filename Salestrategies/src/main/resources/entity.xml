@@ -2188,6 +2188,20 @@
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
+				<name>ranklevel</name>
+				<display>团队等级</display>
+				<field-type>String</field-type>
+				<isDetailLink>false</isDetailLink>
+				<isEditable>true</isEditable>
+				<isShow>true</isShow>
+				<isVisible>true</isVisible>
+				<isPrimaryKey>false</isPrimaryKey>
+				<picklist>ranklevel_pl</picklist>
+				<data-type>text</data-type>
+				<priority>1</priority>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
 				<name>report_to</name>
 				<display>汇报上级</display>
 				<pattern></pattern>

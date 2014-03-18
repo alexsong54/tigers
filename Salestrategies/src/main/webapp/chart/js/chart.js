@@ -13,23 +13,28 @@ var paper = new joint.dia.Paper({
 var member = function(x, y, rank, name, image, id, border, decisionName,buyingStyleName,relatStatusName,timeSpentName) {
 
     var background;
-    if(rank=='CEO'){
+    if(rnklv[rank]==0){
         y = 70;
         x=x1;
         x1+=180;
         background = '#F1C40F';
-    }else if(rank.slice(0,2)=='VP'){
+    }else if(rnklv[rank]==1){
         y = 200;
         x=x2;
         x2+=210;
         background = '#2ECC71';
-    }else if(rank.slice(0,2)=='Ma'){
+    }else if(rnklv[rank]==2){
         y = 330;
         x=x3;
         x3+=210;
         background = '#3498DB';
-    }else{
+    }else if(rnklv[rank]==3){
         y = 460;
+        x=x4;
+        x4+=210;
+        background = '#C1E70A';
+    }else{
+        y = 590;
         x=x4;
         x4+=210;
         background = '#3EF3A2';
@@ -90,7 +95,7 @@ var x1=300;
 var x2=10;
 var x3=10;
 var x4=10;
-
+var x5=10;
 function checkId(id1,id2,listofmember){
     var index1,index2;
     for(i2=0;i2<listofmember.length;i2++){
@@ -264,6 +269,17 @@ var lnk=new Array();
 var lnkbk=new Array();
 var lnk2=new Array();
 var lnk2bk=new Array();
+var rnklv=new Array();
+rnklv[0]=0;
+lvcount=0;
+for(i3=1;i3<lom.length;i3++){
+	if(lom[i3].ranklevel!=lom[i3-1].ranklevel){
+		lvcount++;
+		rnklv[lom[i3].ranklevel]=lvcount;
+	}else{
+		rnklv[lom[i3].ranklevel]=lvcount;
+	}
+}
 
 for(i3=0;i3<lom.length;i3++){
     rendered[i3]=member(1,1,lom[i3].rank,lom[i3].name,lom[i3].gender != '2'?'member1.png':'member2.png', lom[i3].contact_id, lom[i3].core != 0?'red':'gray',lom[i3].buyingStyleName,lom[i3].decisionName,lom[i3].relationStatusName,lom[i3].tiemSpentName);

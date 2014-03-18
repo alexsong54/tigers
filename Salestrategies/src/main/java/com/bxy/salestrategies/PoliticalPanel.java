@@ -40,13 +40,6 @@ public class PoliticalPanel extends Panel{
 			 //职位ID 
 			 Contact contact = DAOImpl.getContactById(team.getContact_id());
 			 int job = contact.getJob_title();
-			 if(job==1){
-				 team.setRanklevel(1);
-			 }else if(job==2||job==3){
-				 team.setRanklevel(2);
-			 }else{
-				 team.setRanklevel(3);
-			 }
 			 team.setName(contact.getName());
 			 team.setRank(DAOImpl.getChoiceById("job_title_pl",job).getVal());
 			 team.setGender(contact.getGender());
@@ -61,7 +54,6 @@ public class PoliticalPanel extends Panel{
 				 team.setRelationStatusName(DAOImpl.getChoiceById("relation_status",team.getRelat_status()).getName());
 				 team.setTiemSpentName(DAOImpl.getChoiceById("time_spent_pl",team.getTime_spent()).getName());
 			 }
-			 
 			 if(0!=team.getInfluence_to()){
 				 team.setCore(team.getId());
 			 }

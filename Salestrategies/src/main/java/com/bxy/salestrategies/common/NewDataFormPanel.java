@@ -466,6 +466,10 @@ public class NewDataFormPanel extends Panel
             }
         });
         form.add(fieldGroupRepeater);
+        Model defaultModel = new Model<String>("");
+        TextField<String> text = new TextField<String>("accountID",defaultModel);
+        models.put("accountID", defaultModel);
+        form.add(text);
         Button btn = new Button("saveAndNew")
         {
             @Override
@@ -529,6 +533,7 @@ public class NewDataFormPanel extends Panel
         Long daypart = 0l;
         StringBuffer title = new StringBuffer();
         String loginName = "";
+        System.out.println("accounttttt:"+models.get("accountID").getObject().toString());
         if (entity.getName().equals("user"))
         {
             loginName = models.get("login_name").getObject().toString();
@@ -788,6 +793,16 @@ public class NewDataFormPanel extends Panel
             TextField<String> text = new TextField<String>("selected_value_input", new Model(defaultValue));
             text.add(new AttributeModifier("id", relationEntity + "_name"));
             add(text);
+            //如何获取id值
+/*            text.add(new AjaxFormComponentUpdatingBehavior("onchange")
+            {
+
+                @Override
+                protected void onUpdate(AjaxRequestTarget target)
+                {
+                	System.out.println("hiddenId:"+defaultModel);
+                }
+            });*/
         }
     }
 

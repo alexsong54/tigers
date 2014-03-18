@@ -55,7 +55,7 @@ public class SelectEntryPage extends WebPage {
         //区分是哪一个数据
         String key = getRequest().getRequestParameters().getParameterValue("key").toString();
         String accountID = getRequest().getRequestParameters().getParameterValue("accountID").toString();
-        System.out.println("accountID:"+accountID);
+        System.out.println("target:"+target);
         initPage(null,relationTableName,tragetEntity,excludeId,target,key,accountID);
     }
 
@@ -132,7 +132,7 @@ public class SelectEntryPage extends WebPage {
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     }else{
-                    	String sql = assembleSearchingSQL( entity)+" and account_id = "+accountID;
+                    	String sql = assembleSearchingSQL( entity);
                     	System.out.println("sql:"+sql);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();

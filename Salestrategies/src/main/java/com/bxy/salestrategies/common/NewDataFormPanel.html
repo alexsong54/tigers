@@ -41,7 +41,8 @@
             		alert("红色标记字段为必填字段");
                     return false;
             }
-        }
+        };
+        
     </script>
     <div>
     	<div wicket:id="promptDiv" class="alert  alert-warning" >
@@ -53,6 +54,7 @@
 		</div>
 		<span wicket:id="entityName" style="display:none;" id="entityName"></span>
         <form wicket:id="form" class="form-horizontal" >
+        	 <input wicket:id="accountID" class="form-control  input-sm" style="display:none;" id="accountId"/>
             <fieldset>
                 <div  wicket:id="fieldGroupRepeater">
                     <div class="panel panel-info">

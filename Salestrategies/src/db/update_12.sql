@@ -157,3 +157,6 @@ INSERT INTO `strategies`.`language_pl` (`val`) VALUES ('葡萄牙语');
 INSERT INTO `strategies`.`language_pl` (`val`) VALUES ('西班牙语');
 INSERT INTO `strategies`.`language_pl` (`val`) VALUES ('德语');
 INSERT INTO `strategies`.`language_pl` (`val`) VALUES ('阿拉伯语');
+
+ALTER TABLE `strategies`.`opportunityuserteam` 
+CHANGE COLUMN `created_date` `create_date` DATETIME NULL DEFAULT NULL ;

@@ -13,16 +13,15 @@
                     var name = $(this).parent().parent().data("name");
                     var key = $(this).parent().parent().data("key");
                     var table_name = $(this).parent().parent().data("ename");
-                    if(key=="influence_to"||key=="report_to"||key=="contact_id"){
+                    if(key=="influence_to"||key=="report_to"||key=="contact_id"||key=="user_id"){
                     	window.opener.$("#"+table_name+"_id"+key+"").val(id);
                         window.opener.$("#"+table_name+"_name"+key+"").val(name);
                     }else{
-                    	
+                    	window.opener.$("#"+table_name+"_id").val(id);
+                        window.opener.$("#"+table_name+"_name").val(name);
                     }
                     window.opener.$("#select_user").val(name);
                     window.opener.$("#hidden_select_user").val(id);
-                    window.opener.$("#"+table_name+"_id").val(id);
-                    window.opener.$("#"+table_name+"_name").val(name);
                     hasClosed = true;
                     //window.opener.reloadpage();
                 	window.opener=null;

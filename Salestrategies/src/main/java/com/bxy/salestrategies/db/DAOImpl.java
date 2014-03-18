@@ -1406,4 +1406,23 @@ public class DAOImpl {
 	    	}
 	    	return false;
 	    }
+	    public static List<Contact> queryContacts() {
+	        String query = "select * from contact ";
+	          List<Contact> choices = Lists.newArrayList();
+	          Connection conn = null;
+	          try {
+	              conn = DBConnector.getConnection();
+	              QueryRunner run = new QueryRunner();
+	              ResultSetHandler<List<Contact>> h = new BeanListHandler<Contact>(Contact.class);
+	              choices = run.query(conn, query, h);
+
+	          } catch (SQLException e) {
+	              logger.error("failed to get queryPickListById", e);
+	          } finally {
+	              DBHelper.closeConnection(conn);
+	          }
+
+	          return choices;
+
+	      }
 }
