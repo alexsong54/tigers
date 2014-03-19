@@ -140,7 +140,11 @@ public class EntityDetailPage extends Index {
              add(new Label("icon3",""));
              add(new Label("relationName3",""));
              
+             add(new Label("icon4",""));
+             add(new Label("relationName4",""));
              
+             add(new Label("icon5",""));
+             add(new Label("relationName5",""));
              
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
@@ -162,6 +166,12 @@ public class EntityDetailPage extends Index {
              
              add(new Label("icon3",""));
              add(new Label("relationName3",""));
+             
+             add(new Label("icon4",""));
+             add(new Label("relationName4",""));
+             
+             add(new Label("icon5",""));
+             add(new Label("relationName5",""));
              
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
@@ -186,6 +196,16 @@ public class EntityDetailPage extends Index {
              add(icon3);
              add(new Label("relationName3","DNA"));
              
+             Label icon4=new Label("icon4"," ");
+             icon4.add(new AttributeAppender("class", new Model<String>(" icon-resize-full"), ""));
+             add(icon4);
+             add(new Label("relationName4","战术策略"));
+             
+             Label icon5=new Label("icon5"," ");
+             icon5.add(new AttributeAppender("class", new Model<String>(" icon-resize-full"), ""));
+             add(icon5);
+             add(new Label("relationName5","活动"));
+             
 	     add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	     add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
 	     add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),4));
@@ -207,6 +227,12 @@ public class EntityDetailPage extends Index {
          icon3.add(new AttributeAppender("class", new Model<String>("icon-zoom-in"), " "));
          add(icon3);
          add(new Label("relationName3","商机"));
+         
+         add(new Label("icon4",""));
+         add(new Label("relationName4",""));
+         
+         add(new Label("icon5",""));
+         add(new Label("relationName5",""));
           
 	   add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	   add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
@@ -221,6 +247,10 @@ public class EntityDetailPage extends Index {
            add(new Label("relationName2",""));
     	   add(new Label("icon3",""));
            add(new Label("relationName3",""));
+           add(new Label("icon4",""));
+           add(new Label("relationName4",""));
+           add(new Label("icon5",""));
+           add(new Label("relationName5",""));
            add(new EmptyPanel("teamPanel"));
            add(new EmptyPanel("teamPanel2"));
            add(new EmptyPanel("teamPanel3"));

@@ -2,64 +2,86 @@
     <head>
         <meta name="viewport" content="width=device-width">
         <meta charset="utf-8">
-            <title>Test</title>
-            <link rel="stylesheet" href="chart/css/joint.css">
-            <link rel="stylesheet" href="chart/css/extra.css">
+        <title>Test</title>
+        <link rel="stylesheet" href="chart/css/joint.css">
+        <link rel="stylesheet" href="chart/css/extra.css">
         <script src="chart/js/joint.js"></script>
         <script src="chart/js/joint.shapes.org.js"></script>
         <script src="chart/js/jquery-1.9.1.js"></script>
         <script src="chart/js/jquery_sort.js"></script>
+        <!--
+                <link rel="stylesheet" href="bootstrap/css/bootstrap.css">-->
+
+
     </head>
     <script type="text/javascript">
-	    $(document).ready(function() {
-	        var tdataString = $("#data").attr("value");
-	        //将String转化为数组
-	        //alert(eval(tdataString));
-	        console.info(eval(tdataString));
-	    });
+        $(document).ready(function() {
+            var tdataString = $("#data").attr("value");
+            //将String转化为数组
+            //alert(eval(tdataString));
+            console.info(eval(tdataString));
+        });
     </script>
     <body>
-    <div id="view">
-    	<table>
-	    	<thead>
-	    		<tr>
-		    		<th>Decision Role</th>
-		    		<th>Buying Style</th>
-		    		<th>Relat status</th>
-		    		<th>Time Spent</th>
-	    		</tr>
-	    	</thead>
-    		<tr>
-    			<td><strong>A</strong>  Approver</td>
-    			<td><strong>V</strong>  Value</td>
-    			<td><strong>★</strong>  Mentor</td>
-    			<td><strong>0</strong>  Have Not Met </td>
-    		</tr>
-    		<tr>
-    			<td><strong>C</strong>  Consultant</td>
-    			<td><strong>R</strong>  Relationship</td>
-    			<td><strong>+</strong>  Supporter</td>
-    			<td><strong>1</strong>  Introduction </td>
-    		</tr>
-    		<tr>
-    			<td><strong>D</strong>  Decision Maker</td>
-    			<td><strong>F</strong>  Financial</td>
-    			<td><strong>=</strong>  Neutral</td>
-    			<td><strong>2</strong>  One-On-One </td>
-    		</tr>
-    		<tr>
-    			<td><strong>E</strong>  Evaluator</td>
-    			<td><strong>P</strong>  Process </td>
-    			<td><strong>-</strong>  Non-Supporter </td>
-    			<td><strong>3</strong>  Quality Time </td>
-    		</tr>
-    		<tr>
-    			<td><strong>U</strong>  User</td>
-    			<td><strong>T</strong>  Technical </td>
-    			<td><strong>X</strong>  Enemy </td>
-    		</tr>
-    	</table>
-    </div>
+
+
+        <div class="col-md-3"  >
+            <div class="popovers">
+                <div class="arrow"></div>
+                <h3 class="popover-title">Decision Role</h3>
+                <div class="popover-content">
+                    <p><strong>A</strong>  Approver</p>
+                    <p><strong>R</strong>  Relationship</P>
+                    <P><strong>D</strong> Decision Maker</p>
+                    <p><strong>D</strong> Evaluator</p>
+                    <p><strong>U</strong> User</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"  >
+            <div class="popovers">
+                <div class="arrow"></div>
+                <h3 class="popover-title">Buying Style</h3>
+                <div class="popover-content">
+                    <p><strong>V</strong>  Value</p>
+                    <p><strong>C</strong>  Consultant</P>
+                    <P><strong>F</strong> Financial</p>
+                    <p><strong>P</strong> Process</p>
+                    <p><strong>T</strong> Technical</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"  >
+            <div class="popovers">
+                <div class="arrow"></div>
+                <h3 class="popover-title">Relat status</h3>
+
+                <div class="popover-content">
+                    <p><strong>★</strong>  Mentor</p>
+                    <p><strong>+</strong>  Supporter</P>
+                    <P><strong>=</strong> Neutral</p>
+                    <p><strong>-</strong> Non-Supporter</p>
+                    <p><strong>X</strong> Enemy</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"  >
+            <div class="popovers">
+                <div class="arrow"></div>
+                <h3 class="popover-title">Time Spent</h3>
+                <div class="popover-content">
+                    <p><strong>0</strong>  Have Not Met</p>
+                    <p><strong>1</strong>  Introduction</P>
+                    <P><strong>2</strong> One-On-One</p>
+                    <p><strong>3</strong> Quality Time</p>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
         <div id="paper" style="overflow:scroll; position: absolute;">
         </div>
         <input  id="data" wicket:id="tdata" style="display:none;" />

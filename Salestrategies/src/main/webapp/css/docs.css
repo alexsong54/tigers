@@ -862,8 +862,8 @@ h1[id] {
   position: relative;
   display: block;
   float: left;
-  width: 260px;
-  margin: 20px;
+/*  width: 260px;
+  margin: 20px;*/
 }
 
 /* Scrollspy demo on fixed height div */
@@ -1154,4 +1154,16 @@ h1[id] {
 .bs-docs-dl-options h4 {
   margin-top: 15px;
   margin-bottom: 5px;
+}
+
+.popovers{
+    position: relative;
+    display: block;
+    padding: 1px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    white-space: normal;
+    
 }
