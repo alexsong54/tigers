@@ -133,7 +133,7 @@ public class EntityDetailPage extends Index {
              divLabel1.setEscapeModelStrings(false);
              add(divLabel1);
              
-             String dynamicHtml2 = " <a href=\"#relation2\"><i class=\"icon-briefcase\"> </i><span style=\"margin: 25px\">商机</span></a>";
+             String dynamicHtml2 = " <a href=\"#relation2\"><i class=\"icon-briefcase\"></i><span style=\"margin: 25px\">商机</span></a>";
              Label divLabel2 = new Label("divLabel2",dynamicHtml2);
              divLabel2.setEscapeModelStrings(false);
              add(divLabel2);
@@ -224,7 +224,7 @@ public class EntityDetailPage extends Index {
          }
          else if(entityName.equalsIgnoreCase("opportunity")){
         
-             String dynamicHtml1 = " <a href=\"#teamPanel\"><i class=\"icon-group\"> </i><span style=\"margin: 25px\">团队</span></a>";
+             String dynamicHtml1 = " <a href=\"#teamPanel\"><i class=\"icon-group\"></i><span style=\"margin: 25px\">团队</span></a>";
              Label divLabel1 = new Label("divLabel1",dynamicHtml1 );
              divLabel1.setEscapeModelStrings(false);
              add(divLabel1);
@@ -239,12 +239,12 @@ public class EntityDetailPage extends Index {
              divLabel3.setEscapeModelStrings(false);
              add(divLabel3);
              
-             String dynamicHtml4 = " <a href=\"#relation4\"><i class=\"icon-key\"> </i><span style=\"margin: 25px\">战术策略</span></a>";
+             String dynamicHtml4 = " <a href=\"#relation4\"><i class=\"icon-key\"></i><span style=\"margin: 25px\">战术策略</span></a>";
              Label divLabel4 = new Label("divLabel4",dynamicHtml4);
              divLabel4.setEscapeModelStrings(false);
              add(divLabel4);
              
-             String dynamicHtml5 = " <a href=\"#relation5\"><i class=\"icon-font\"> </i><span style=\"margin: 25px\">活动</span></a>";
+             String dynamicHtml5 = " <a href=\"#relation5\"><i class=\"icon-font\"></i><span style=\"margin: 25px\">活动</span></a>";
              Label divLabel5 = new Label("divLabel5",dynamicHtml5);
              divLabel5.setEscapeModelStrings(false);
              add(divLabel5);
