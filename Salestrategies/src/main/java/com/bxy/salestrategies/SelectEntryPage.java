@@ -21,6 +21,7 @@ import org.apache.wicket.util.string.StringValue;
 import com.bxy.salestrategies.common.Entity;
 import com.bxy.salestrategies.common.Field;
 import com.bxy.salestrategies.db.DAOImpl;
+import com.bxy.salestrategies.model.Opportunity;
 import com.bxy.salestrategies.util.Configuration;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -54,16 +55,17 @@ public class SelectEntryPage extends WebPage {
         String target = getRequest().getRequestParameters().getParameterValue("target").toString();
         //区分是哪一个数据
         String key = getRequest().getRequestParameters().getParameterValue("key").toString();
-        String accountID = getRequest().getRequestParameters().getParameterValue("accountID").toString();
-        System.out.println("target:"+target);
-        initPage(null,relationTableName,tragetEntity,excludeId,target,key,accountID);
+        String relationEntityID = getRequest().getRequestParameters().getParameterValue("relationEntityID").toString();
+        System.out.println("relationEntityID:"+relationEntityID);
+        System.out.println("key:"+key);
+        initPage(null,relationTableName,tragetEntity,excludeId,target,key,relationEntityID);
     }
 
-    public SelectEntryPage(List<Map> maplist,String relationTableName,String tragetEntity,String excludeId,String target,String key,String accountID) {
-        initPage(maplist,relationTableName,tragetEntity,excludeId,target,key,accountID);
+    public SelectEntryPage(List<Map> maplist,String relationTableName,String tragetEntity,String excludeId,String target,String key,String relationEntityID) {
+        initPage(maplist,relationTableName,tragetEntity,excludeId,target,key,relationEntityID);
     }
 
-    public void initPage(List<Map> list,final String relationTableName,final String tragetEntity,final String excludeId,final String target,final String key,final String accountID) {
+    public void initPage(List<Map> list,final String relationTableName,final String tragetEntity,final String excludeId,final String target,final String key,final String relationEntityID) {
         final String userId = ((SignInSession)getSession()).getUserId();
         final Map<String, Entity> entities = Configuration.getEntityTable();
         final Entity entity = entities.get(relationTableName);
@@ -126,14 +128,18 @@ public class SelectEntryPage extends WebPage {
                         maplist.add(dummy);
                     }else if (tragetEntity.equalsIgnoreCase("opportunitycontactteam")) {
                     	String sql = assembleSearchingSQL( entity);
+                    	Opportunity opportunity  =  DAOImpl.getOpportunityByID(relationEntityID);
+                    	sql+=" and account_id = "+opportunity.getAccount_id();
+                    	System.out.println("sql:"+sql);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", 0);
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     }else{
-                    	String sql = assembleSearchingSQL( entity);
-                    	System.out.println("sql:"+sql);
+                    	//if(key){}
+                    	//判断key值，Key值中是属性name,根据relationEntityID 获取accountID,加入添加问题
+                    	String sql = assembleSearchingSQL(entity);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", 0);
@@ -157,7 +163,7 @@ public class SelectEntryPage extends WebPage {
                     dummy.put("name", "无");
                     maplist.add(dummy);
                 }                
-                setResponsePage(new SelectEntryPage(maplist,relationTableName,tragetEntity,excludeId,target,key,accountID));
+                setResponsePage(new SelectEntryPage(maplist,relationTableName,tragetEntity,excludeId,target,key,relationEntityID));
 
             }
         };

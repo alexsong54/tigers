@@ -107,7 +107,6 @@ public class TeamManPanel extends Panel {
 //    	    mapList = DAOImpl.queryEntityRelationList(teamSql);
 //       } else {
     	    mapList = DAOImpl.queryEntityRelationList(teamSql, entityId); 
-    	    System.out.println(entityId);
 //       }
         Entity entity=null ;
         if(en.equalsIgnoreCase("account")){

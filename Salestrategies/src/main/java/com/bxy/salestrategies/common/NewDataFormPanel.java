@@ -533,7 +533,6 @@ public class NewDataFormPanel extends Panel
         Long daypart = 0l;
         StringBuffer title = new StringBuffer();
         String loginName = "";
-        System.out.println("accounttttt:"+models.get("accountID").getObject().toString());
         if (entity.getName().equals("user"))
         {
             loginName = models.get("login_name").getObject().toString();

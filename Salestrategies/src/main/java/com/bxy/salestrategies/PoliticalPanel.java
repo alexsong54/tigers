@@ -32,11 +32,9 @@ public class PoliticalPanel extends Panel{
 		super(id);
 		//读取数据
 		 Map<String, Entity> entities = Configuration.getEntityTable();
-		 final Entity entity = entities.get("opportunitycontactteam");
 		 String sql = "select * from opportunitycontactteam where opportunity_id = "+opportunityID;
 		 List<Opportunitycontactteam> tdata = DAOImpl.queryOppContactTeams(sql);
 		 for(Opportunitycontactteam team :tdata ){
-			 //读取数据根据ID获取Account的相关信息传值到界面
 			 //职位ID 
 			 Contact contact = DAOImpl.getContactById(team.getContact_id());
 			 int job = contact.getJob_title();

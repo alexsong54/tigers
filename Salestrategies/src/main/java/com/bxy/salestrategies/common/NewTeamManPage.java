@@ -342,7 +342,7 @@ public class NewTeamManPage extends WebPage {
     	                                fn = currentField.getName();
     	                            }
     	                            models.put(fn, choiceModel);
-    	                            columnitem.add(new RelationTableSearchFragment("celldatafield", "relationTableSearchFragment", this, currentField, entity.getName(), defaultValue, choiceModel));
+    	                            columnitem.add(new RelationTableSearchFragment("celldatafield", "relationTableSearchFragment", this, currentField, entity.getName(), defaultValue, choiceModel,entityId));
     	                        }
     	                    }
     	                    else
@@ -677,7 +677,7 @@ public class NewTeamManPage extends WebPage {
     	    {
 
     	        public RelationTableSearchFragment(String id, String markupId,
-    	          MarkupContainer markupProvider, Field field, String entityName, final String defaultValue, final IModel defaultModel)
+    	          MarkupContainer markupProvider, Field field, String entityName, final String defaultValue, final IModel defaultModel,final String entityId)
     	        {
     	            super(id, markupId, markupProvider);
     	            PageParameters params = new PageParameters();
@@ -685,6 +685,7 @@ public class NewTeamManPage extends WebPage {
     	            params.set("excludeName", entityName);
     	            params.set("target", (Long) defaultModel.getObject());
     	            params.set("key",field.getName());
+    	            params.set("relationEntityID", entityId);
     	            add(new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params));
     	            HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", defaultModel);
     	            hidden.add(new AttributeModifier("id", field.getRelationTable() + "_id"+field.getName()));
