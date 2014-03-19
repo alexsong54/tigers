@@ -42,6 +42,9 @@ import com.bxy.salestrategies.model.Activity;
 import com.bxy.salestrategies.util.CRMUtility;
 import com.bxy.salestrategies.util.Configuration;
 import com.google.common.collect.Maps;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 
 public class EntityDetailPage extends Index {
     private static final Logger logger = Logger.getLogger(EntityDetailPage.class);
@@ -67,9 +70,6 @@ public class EntityDetailPage extends Index {
 	        add(div);
 	        add(new Label("name","null"));
 	        add(new Label("entityName","null"));
-	        add(new Label("mao1","null"));
-	        add(new Label("mao2","null"));
-	        add(new Label("mao3","null"));
 	        WebMarkupContainer operationBar = new WebMarkupContainer("operationBar");
 	    	add(operationBar);
 	        WebMarkupContainer detailed = new WebMarkupContainer("detailed");
@@ -127,24 +127,47 @@ public class EntityDetailPage extends Index {
         
 
          if(entityName.equalsIgnoreCase("account")){
-        	 Label icon1=new Label("icon1"," ");
-             icon1.add(new AttributeAppender("class", new Model<String>("icon-user"), " "));
-             add(icon1);
-             add(new Label("relationName1","用户"));
+
+             String dynamicHtml1 = " <a href=\"#teamPanel\"><i class=\"icon-user\"> </i><span style=\"margin: 25px\">用户</span></a>";
+             Label divLabel1 = new Label("divLabel1",dynamicHtml1 );
+             divLabel1.setEscapeModelStrings(false);
+             add(divLabel1);
              
-             Label icon2=new Label("icon2"," ");
-             icon2.add(new AttributeAppender("class", new Model<String>("icon-user-md"), " "));
-             add(icon2);
-             add(new Label("relationName2","商机"));
+             String dynamicHtml2 = " <a href=\"#relation2\"><i class=\"icon-briefcase\"> </i><span style=\"margin: 25px\">商机</span></a>";
+             Label divLabel2 = new Label("divLabel2",dynamicHtml2);
+             divLabel2.setEscapeModelStrings(false);
+             add(divLabel2);
              
-             add(new Label("icon3",""));
-             add(new Label("relationName3",""));
              
-             add(new Label("icon4",""));
-             add(new Label("relationName4",""));
              
-             add(new Label("icon5",""));
-             add(new Label("relationName5",""));
+             Label empty1 = new Label("divLabel3", "");
+             IModel<String> Model1 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+             empty1.add(new AttributeModifier("style", true, Model1));
+             add(empty1);
+             
+             Label empty2 = new Label("divLabel4", "");
+             IModel<String> Model2 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+             empty2.add(new AttributeModifier("style", true, Model2));
+             add(empty2);
+             
+             Label empty3 = new Label("divLabel5", "");
+             IModel<String> Model3= new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+             empty3.add(new AttributeModifier("style", true, Model3));
+             add(empty3);
+             
+             
              
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
@@ -154,24 +177,43 @@ public class EntityDetailPage extends Index {
              //             add(new EmptyPanel("teamPanel4"));
          }
          else if(entityName.equalsIgnoreCase("contact")){
-        	 Label icon1=new Label("icon1"," ");
-             icon1.add(new AttributeAppender("class", new Model<String>("icon-user"), " "));
-             add(icon1);
-             add(new Label("relationName1","用户"));
              
-             Label icon2=new Label("icon2"," ");
-             icon2.add(new AttributeAppender("class", new Model<String>("icon-zoom-in"), " "));
-             add(icon2);
-             add(new Label("relationName2","商机"));
+             String dynamicHtml1 = " <a href=\"#teamPanel\"><i class=\"icon-user\"> </i><span style=\"margin: 25px\">用户</span></a>";
+             Label divLabel1 = new Label("divLabel1",dynamicHtml1 );
+             divLabel1.setEscapeModelStrings(false);
+             add(divLabel1);
              
-             add(new Label("icon3",""));
-             add(new Label("relationName3",""));
+             String dynamicHtml2 = " <a href=\"#relation2\"><i class=\"icon-briefcase\"></i><span style=\"margin: 25px\">商机</span></a>";
+             Label divLabel2 = new Label("divLabel2",dynamicHtml2);
+             divLabel2.setEscapeModelStrings(false);
+             add(divLabel2);
              
-             add(new Label("icon4",""));
-             add(new Label("relationName4",""));
+             Label empty1 = new Label("divLabel3", "");
+             IModel<String> Model1 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+             empty1.add(new AttributeModifier("style", true, Model1));
+             add(empty1);
              
-             add(new Label("icon5",""));
-             add(new Label("relationName5",""));
+             Label empty2 = new Label("divLabel4", "");
+             IModel<String> Model2 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+             empty2.add(new AttributeModifier("style", true, Model2));
+             add(empty2);
+             
+             Label empty3 = new Label("divLabel5", "");
+             IModel<String> Model3= new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+             empty3.add(new AttributeModifier("style", true, Model3));
+             add(empty3);
              
              add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
              add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
@@ -181,30 +223,31 @@ public class EntityDetailPage extends Index {
 //             add(new TeamManPanel("teamPanel4",entityName,String.valueOf(lid),3));
          }
          else if(entityName.equalsIgnoreCase("opportunity")){
-        	 Label icon1=new Label("icon1"," ");
-             icon1.add(new AttributeAppender("class", new Model<String>("icon-group"), " "));
-             add(icon1);
-             add(new Label("relationName1","团队"));
+        
+             String dynamicHtml1 = " <a href=\"#teamPanel\"><i class=\"icon-group\"> </i><span style=\"margin: 25px\">团队</span></a>";
+             Label divLabel1 = new Label("divLabel1",dynamicHtml1 );
+             divLabel1.setEscapeModelStrings(false);
+             add(divLabel1);
              
-             Label icon2=new Label("icon2"," ");
-             icon2.add(new AttributeAppender("class", new Model<String>(" icon-user-md"), " "));
-             add(icon2);
-             add(new Label("relationName2","联系人"));
+             String dynamicHtml2 = " <a href=\"#relation2\"><i class=\"icon-user-md\"> </i><span style=\"margin: 25px\">联系人</span></a>";
+             Label divLabel2 = new Label("divLabel2",dynamicHtml2);
+             divLabel2.setEscapeModelStrings(false);
+             add(divLabel2);
              
-             Label icon3=new Label("icon3"," ");
-             icon3.add(new AttributeAppender("class", new Model<String>(" icon-resize-full"), ""));
-             add(icon3);
-             add(new Label("relationName3","DNA"));
+             String dynamicHtml3 = " <a href=\"#relation3\"><i class=\"icon-resize-horizontal\"></i><span style=\"margin: 25px\">DNA</span></a>";
+             Label divLabel3 = new Label("divLabel3",dynamicHtml3);
+             divLabel3.setEscapeModelStrings(false);
+             add(divLabel3);
              
-             Label icon4=new Label("icon4"," ");
-             icon4.add(new AttributeAppender("class", new Model<String>(" icon-resize-full"), ""));
-             add(icon4);
-             add(new Label("relationName4","战术策略"));
+             String dynamicHtml4 = " <a href=\"#relation4\"><i class=\"icon-key\"> </i><span style=\"margin: 25px\">战术策略</span></a>";
+             Label divLabel4 = new Label("divLabel4",dynamicHtml4);
+             divLabel4.setEscapeModelStrings(false);
+             add(divLabel4);
              
-             Label icon5=new Label("icon5"," ");
-             icon5.add(new AttributeAppender("class", new Model<String>(" icon-resize-full"), ""));
-             add(icon5);
-             add(new Label("relationName5","活动"));
+             String dynamicHtml5 = " <a href=\"#relation5\"><i class=\"icon-font\"> </i><span style=\"margin: 25px\">活动</span></a>";
+             Label divLabel5 = new Label("divLabel5",dynamicHtml5);
+             divLabel5.setEscapeModelStrings(false);
+             add(divLabel5);
              
 	     add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
 	     add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
@@ -212,45 +255,98 @@ public class EntityDetailPage extends Index {
 	     add(new TeamManPanel("teamPanel4",entityName,String.valueOf(lid),5));
          add(new EmptyPanel("teamPanel5"));
        }else if(entityName.equalsIgnoreCase("user")){
-           
-         Label icon1=new Label("icon1"," ");
-         icon1.add(new AttributeAppender("class", new Model<String>("icon-road"), " "));
-         add(icon1);
-         add(new Label("relationName1","客户"));
-           
-         Label icon2=new Label("icon2"," ");
-         icon2.add(new AttributeAppender("class", new Model<String>(" icon-user-md"), " "));
-         add(icon2);
-         add(new Label("relationName2","联系人"));
-
-         Label icon3=new Label("icon3"," ");
-         icon3.add(new AttributeAppender("class", new Model<String>("icon-zoom-in"), " "));
-         add(icon3);
-         add(new Label("relationName3","商机"));
-         
-         add(new Label("icon4",""));
-         add(new Label("relationName4",""));
-         
-         add(new Label("icon5",""));
-         add(new Label("relationName5",""));
           
-	   add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
-	   add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
+           
+           
+         String dynamicHtml1 = " <a href=\"#teamPanel\"><i class=\"icon-road\"> </i><span style=\"margin: 25px\">客户</span></a>";
+         Label divLabel1 = new Label("divLabel1",dynamicHtml1 );
+         divLabel1.setEscapeModelStrings(false);
+         add(divLabel1);
+             
+         String dynamicHtml2 = " <a href=\"#relation2\"><i class=\"icon-user-md\"> </i><span style=\"margin: 25px\">联系人</span></a>";
+         Label divLabel2 = new Label("divLabel2",dynamicHtml2);
+         divLabel2.setEscapeModelStrings(false);
+         add(divLabel2);
+
+         Label empty1 = new Label("divLabel3", "");
+         IModel<String> Model1 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty1.add(new AttributeModifier("style", true, Model1));
+         add(empty1);
+             
+         Label empty2 = new Label("divLabel4", "");
+         IModel<String> Model2 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty2.add(new AttributeModifier("style", true, Model2));
+         add(empty2);
+             
+         Label empty3 = new Label("divLabel5", "");
+         IModel<String> Model3= new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty3.add(new AttributeModifier("style", true, Model3));
+         add(empty3);
+          
+       add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
+       add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
        add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
        add(new EmptyPanel("teamPanel4"));
        add(new EmptyPanel("teamPanel5"));
   	   
      }else{
-           add(new Label("icon1",""));
-           add(new Label("relationName1",""));
-           add(new Label("icon2",""));
-           add(new Label("relationName2",""));
-    	   add(new Label("icon3",""));
-           add(new Label("relationName3",""));
-           add(new Label("icon4",""));
-           add(new Label("relationName4",""));
-           add(new Label("icon5",""));
-           add(new Label("relationName5",""));
+         
+         Label empty1 = new Label("divLabel1", "");
+         IModel<String> Model1 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty1.add(new AttributeModifier("style", true, Model1));
+         add(empty1);
+             
+         Label empty2 = new Label("divLabel2", "");
+         IModel<String> Model2= new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty2.add(new AttributeModifier("style", true, Model2));
+         add(empty2);
+         
+         Label empty3 = new Label("divLabel3", "");
+         IModel<String> Model3 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty3.add(new AttributeModifier("style", true, Model3));
+         add(empty3);
+             
+         Label empty4 = new Label("divLabel4", "");
+         IModel<String> Model4 = new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty4.add(new AttributeModifier("style", true, Model4));
+         add(empty4);
+             
+         Label empty5 = new Label("divLabel5", "");
+         IModel<String> Model5= new AbstractReadOnlyModel<String>() {
+                  public String getObject() {
+                       return "dispaly: none;"; 
+                   }
+              }; 
+         empty5.add(new AttributeModifier("style", true, Model5));
+         add(empty5);
            add(new EmptyPanel("teamPanel"));
            add(new EmptyPanel("teamPanel2"));
            add(new EmptyPanel("teamPanel3"));
