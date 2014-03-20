@@ -240,10 +240,6 @@ public class EntityDetailPage extends Index {
              Label divLabel4 = new Label("divLabel4",dynamicHtml4);
              divLabel4.setEscapeModelStrings(false);
              add(divLabel4);
-             Label icon4=new Label("icon4"," ");
-             icon4.add(new AttributeAppender("class", new Model<String>("  icon-screenshot"), ""));
-             add(icon4);
-             add(new Label("relationName4","战术策略"));
              
              String dynamicHtml5 = " <a href=\"#relation5\"><i class=\"icon-font\"></i><span style=\"margin: 25px\">活动</span></a>";
              Label divLabel5 = new Label("divLabel5",dynamicHtml5);
