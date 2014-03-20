@@ -254,6 +254,22 @@ public class DAOImpl {
 	        }
 	        return account;
 	    }
+	    
+	    public static Opportunity getOpportunityById(String id) {
+	        Connection conn = null;
+	        Opportunity opportunity = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Opportunity> h = new BeanHandler<Opportunity>(Opportunity.class);
+	            opportunity = run.query(conn, "SELECT * FROM opportunity where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return opportunity;
+	    }
 	    public static String queryPickListByIdCached(final String picklist, final String id){
 	        String value = "";
 	        try{

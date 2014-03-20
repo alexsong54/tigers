@@ -3,6 +3,14 @@ package com.bxy.salestrategies.model;
 public class Opportunity {
 	private int id;
 	private int account_id;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}

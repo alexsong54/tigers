@@ -309,12 +309,12 @@ public class EntityDetailPage extends Index {
              empty3.add(new AttributeModifier("style", true, Model3));
              add(empty3);
              
-             String dynamicHtml4 = " <a href=\"#relation4\"><i class=\"icon-key\"></i><span style=\"margin: 25px\">活动</span></a>";
+             String dynamicHtml4 = " <a href=\"#relation3\"><i class=\"icon-key\"></i><span style=\"margin: 25px\">战略计划</span></a>";
              Label divLabel4 = new Label("divLabel4",dynamicHtml4);
              divLabel4.setEscapeModelStrings(false);
              add(divLabel4);
              
-             String dynamicHtml5 = " <a href=\"#relation3\"><i class=\"icon-font\"></i><span style=\"margin: 25px\">战略计划</span></a>";
+             String dynamicHtml5 = " <a href=\"#relation4\"><i class=\"icon-font\"></i><span style=\"margin: 25px\">活动</span></a>";
              Label divLabel5 = new Label("divLabel5",dynamicHtml5);
              divLabel5.setEscapeModelStrings(false);
              add(divLabel5);

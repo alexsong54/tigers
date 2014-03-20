@@ -1404,6 +1404,8 @@
 				<isEditable>true</isEditable>
 				<field-type>String</field-type>
 				<relationTable>opportunity</relationTable>
+				<default-value-type>var</default-value-type>
+				<default-value>opportunity.id\,opportunity.name</default-value>
 				<priority>1</priority><isShow>true</isShow>
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
@@ -2442,6 +2444,8 @@
  				<isParam>true</isParam>
   				<priority>1</priority>
   				<isShow>true</isShow>
+  				<default-value-type>var</default-value-type>
+				<default-value>opportunity.id\,opportunity.name</default-value>
    				<fieldGroup>关键信息</fieldGroup>
   			</field>
   			<field>

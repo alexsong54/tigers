@@ -47,6 +47,7 @@ import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Account;
 import com.bxy.salestrategies.model.AccountUserTeam;
 import com.bxy.salestrategies.model.ContactUserTeam;
+import com.bxy.salestrategies.model.Opportunity;
 import com.bxy.salestrategies.model.User;
 import com.bxy.salestrategies.util.CRMUtility;
 import com.bxy.salestrategies.util.Configuration;
@@ -249,6 +250,7 @@ public class TeamManPanel extends Panel {
 //        }else{
            long lid = Long.parseLong(etId);
            final Account ac = DAOImpl.getAccountById(String.valueOf(lid));
+           final Opportunity ot = DAOImpl.getOpportunityById(String.valueOf(lid));
         	add(new Link<Void>("add_users_link"){
                 @Override
                 public void onClick() {
@@ -265,7 +267,17 @@ public class TeamManPanel extends Panel {
                 	 if(type==0){
                 		 this.setResponsePage(new NewTeamManPage("opportunityuserteam",entityId,null)); 
                 	 }else{
-                		 this.setResponsePage(new NewTeamManPage("opportunitycontactteam",entityId,null));
+                		 final Map<String,Object> params = Maps.newHashMap();
+                         params.put("opportunity.id", ot.getId());
+                         params.put("opportunity.name",ot.getName());
+                		 if(type==4){
+                			 this.setResponsePage(new CreateDataPage("tactics",params));
+                			 System.out.println(params);
+                		 }else if(type == 5){
+                			 this.setResponsePage(new CreateDataPage("activity",params));
+                		 }else{
+                			 this.setResponsePage(new NewTeamManPage("opportunitycontactteam",entityId,null));
+                			 }
                 	 }
                  }
                 }
