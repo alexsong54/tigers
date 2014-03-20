@@ -2430,7 +2430,7 @@
  			</field>
   			<field>
   				<name>opportunity_id</name>
-  				<display>商机</display>
+  				<display>商机名称</display>
  				<data-type>text</data-type>
  				<isPrimaryKey>false</isPrimaryKey>
    				<isDetailLink>false</isDetailLink>
