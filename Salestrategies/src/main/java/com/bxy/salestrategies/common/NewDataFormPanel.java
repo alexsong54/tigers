@@ -464,9 +464,6 @@ public class NewDataFormPanel extends Panel
         });
         form.add(fieldGroupRepeater);
         Model defaultModel = new Model<String>("");
-        TextField<String> text = new TextField<String>("accountID",defaultModel);
-        models.put("accountID", defaultModel);
-        form.add(text);
         Button btn = new Button("saveAndNew")
         {
             @Override
