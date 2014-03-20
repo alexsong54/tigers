@@ -42,7 +42,15 @@
                     return false;
             }
         };
-        
+        function getAccountId(fieldName,entityName){
+        	var relationID;
+        	if(entityName=="contact"){
+        		relationID = $("#account_id").attr("value");
+        	}else if(entityName=="tactics"||entityName=="activity"){
+        		relationID = $("#opportunity_id").attr("value");
+        	}
+        	var test = $("#"+fieldName+"_id").attr("href","./bookmarkable/com.bxy.salestrategies.SelectEntryPage?en=contact&excludeName=contact&target=-1&relationEntityID="+relationID+"&key="+entityName);
+        }
     </script>
     <div>
     	<div wicket:id="promptDiv" class="alert  alert-warning" >
@@ -103,7 +111,7 @@
    <input type="text" required="required" wicket:id="selected_value_input" disabled="disabled" class="form-control input-sm" />
          
          <span class="input-group-addon input-sm"> 
-             <a wicket:id="search_btn" id="search_click" target="_blank">
+             <a wicket:id="search_btn"  target="_blank">
                 <!--  <i class="icon-search"></i> -->查找
             </a>
         </span>

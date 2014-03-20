@@ -113,7 +113,6 @@ public class EntityDetailPage extends Index {
         HomeIcon.add(new AttributeAppender("class", new Model<String>("icon-home"), " "));
         add(HomeIcon);
         
-        
         String fieldName =  String.valueOf(map.get("name"));
         if("null".equals(fieldName)){
         	add(new Label("name",""));
@@ -121,10 +120,9 @@ public class EntityDetailPage extends Index {
         }else{
         	add(new Label("name",fieldName));
         	add(new Label("entityName",String.valueOf(map.get("name"))));
-        	
         }
+       
         add(new EntityDetailPanel("detailed",entity,map,id,3,entityName));
-        
 
          if(entityName.equalsIgnoreCase("account")){
 
@@ -174,7 +172,6 @@ public class EntityDetailPage extends Index {
              add(new EmptyPanel("teamPanel3"));
              add(new EmptyPanel("teamPanel4"));
              add(new EmptyPanel("teamPanel5"));
-             //             add(new EmptyPanel("teamPanel4"));
          }
          else if(entityName.equalsIgnoreCase("contact")){
              

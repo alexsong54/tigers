@@ -356,7 +356,7 @@ public class NewDataFormPanel extends Panel
                                 fn = currentField.getName();
                             }
                             models.put(fn, choiceModel);
-                            columnitem.add(new RelationTableSearchFragment("celldatafield", "relationTableSearchFragment", this, currentField.getRelationTable(), entity.getName(), defaultValue, choiceModel));
+                            columnitem.add(new RelationTableSearchFragment("celldatafield", "relationTableSearchFragment", this, currentField, entity ,defaultValue, choiceModel));
                         }
                     }
                     else
@@ -778,19 +778,27 @@ public class NewDataFormPanel extends Panel
     {
 
         public RelationTableSearchFragment(String id, String markupId,
-          MarkupContainer markupProvider, final String relationEntity, String entityName, final String defaultValue, final IModel defaultModel)
+          MarkupContainer markupProvider, final Field currentField, final Entity entity, final String defaultValue, final IModel defaultModel)
         {
             super(id, markupId, markupProvider);
             PageParameters params = new PageParameters();
-            params.set("en", relationEntity);
-            params.set("excludeName", entityName);
+            params.set("en", currentField.getRelationTable());
+            params.set("excludeName", entity.getName());
             params.set("target", (Long) defaultModel.getObject());
-            add(new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params));
+            BookmarkablePageLink bookLink = new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params);
+            bookLink.add(new AttributeModifier("id",currentField.getName()+"_id"));
+            if(entity.getName().equals("contact")||entity.getName().equals("tactics")||entity.getName().equals("activity"))
+    		{
+            	if(currentField.getName().equals("contact_id")||currentField.getName().equals("individual_met")||currentField.getName().equals("report_to")){
+            		bookLink.add(new AttributeModifier("onclick","getAccountId('"+currentField.getName()+"','"+entity.getName()+"')"));
+            	}
+            }
+            add(bookLink);
             HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", defaultModel);
-            hidden.add(new AttributeModifier("id", relationEntity + "_id"));
+            hidden.add(new AttributeModifier("id", currentField.getRelationTable() + "_id"));
             add(hidden);
             TextField<String> text = new TextField<String>("selected_value_input", new Model(defaultValue));
-            text.add(new AttributeModifier("id", relationEntity + "_name"));
+            text.add(new AttributeModifier("id", currentField.getRelationTable() + "_name"));
             add(text);
             //如何获取id值
 /*            text.add(new AjaxFormComponentUpdatingBehavior("onchange")

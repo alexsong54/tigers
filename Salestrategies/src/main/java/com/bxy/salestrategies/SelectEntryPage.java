@@ -56,8 +56,6 @@ public class SelectEntryPage extends WebPage {
         //区分是哪一个数据
         String key = getRequest().getRequestParameters().getParameterValue("key").toString();
         String relationEntityID = getRequest().getRequestParameters().getParameterValue("relationEntityID").toString();
-        System.out.println("relationEntityID:"+relationEntityID);
-        System.out.println("key:"+key);
         initPage(null,relationTableName,tragetEntity,excludeId,target,key,relationEntityID);
     }
 
@@ -78,11 +76,8 @@ public class SelectEntryPage extends WebPage {
                 	String sql = entity.getSql();
                 	 maplist = DAOImpl.queryEntityRelationList(sql);
                 }else if(relationTableName.equalsIgnoreCase("contact")){
-                    
                     if (tragetEntity.equalsIgnoreCase("activity")) {
-
                     	String sql = entity.getSql();
-
                         maplist = DAOImpl.queryEntityRelationList(sql);
                                  Entity activityEnt = entities.get("activity");
                                  String actSQL = activityEnt.getSql();
@@ -137,9 +132,17 @@ public class SelectEntryPage extends WebPage {
                         dummy.put("name", "无");
                         maplist.add(dummy);
                     }else{
-                    	//if(key){}
                     	//判断key值，Key值中是属性name,根据relationEntityID 获取accountID,加入添加问题
                     	String sql = assembleSearchingSQL(entity);
+                    	int accountId = 0;
+                    	if(("tactics").equals(key)||("activity").equals(key)){
+                    		//获取opportunityID获取业务机会然后获取accountID
+                    		Opportunity opportunity = DAOImpl.getOpportunityByID(relationEntityID);
+                    		accountId = opportunity.getAccount_id();
+                    		sql +=" and account_id = "+accountId;
+                    	}else if(("contact").equals(key)){
+                    		sql += "and account_id="+relationEntityID;
+                    	}
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", 0);

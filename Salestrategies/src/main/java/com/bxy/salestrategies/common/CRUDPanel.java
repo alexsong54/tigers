@@ -133,16 +133,10 @@ public class CRUDPanel extends Panel {
 	                    }
 	                };
 	                addfrag.add(link);
-//	                根据entityId获取对象，获取开始时间，然后判断时间是否未来时则隐藏
 					if(entityName.equals("activity")){
 						Activity activity = DAOImpl.getActivityById(Integer.parseInt(entityId));
 		                Date newDate = new Date();
 		                Date startTime = activity.getStarttime();
-//		                if(startTime.compareTo(newDate)>=0){
-//		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-//		                }else if(activity.getStatus()==3){
-//		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-//		                }
 	                }
 	                add(addfrag);
             	}else{
@@ -228,5 +222,4 @@ public class CRUDPanel extends Panel {
             	
         }
     }
-
 }
