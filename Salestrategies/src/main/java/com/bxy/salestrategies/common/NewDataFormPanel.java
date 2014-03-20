@@ -335,13 +335,10 @@ public class NewDataFormPanel extends Panel
                                     Iterator<String> it = splits.iterator();;
                                     String choiceId = it.next();
                                     String choiceValue = it.next();
-                                    System.out.println(params+ "212121");
-                                    System.out.println(choiceId +"44444444444"+params.get(choiceId.trim())+"55555555"+params.get(choiceValue.trim()));
                                     if (choiceId != null && params.get(choiceId.trim()) != null && params.get(choiceValue.trim()) != null)
                                     {
                                         foreignKey = Long.parseLong(String.valueOf(params.get(choiceId.trim())));
                                         defaultValue = String.valueOf(params.get(choiceValue.trim()));
-                                        System.out.println(defaultValue+"33333333333");
                                     }
                                 }
                             }
