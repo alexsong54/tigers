@@ -100,7 +100,7 @@ public class TeamManPanel extends Panel {
         	}else if(type==4){
         		teamSql = "select * from (select tactics.*,tactics.id as rid from tactics left join opportunity on opportunity.id = tactics.opportunity_id where tactics.opportunity_id = ?) as atable";
         	}else if(type==5){
-        		teamSql = "select * from (select activity.*,activity.id as rid from activity left join opportunity on opportunity.id = activity.opportuntiy_id where activity.opportunity_id = ?) as atable";
+        		teamSql = "select * from (select activity.*,activity.id as rid from activity left join opportunity on opportunity.id = activity.opportunity_id where activity.opportunity_id = ?) as atable";
         	}
         }
         List mapList = new ArrayList();

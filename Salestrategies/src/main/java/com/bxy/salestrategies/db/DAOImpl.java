@@ -886,7 +886,7 @@ public class DAOImpl {
 	         if(search_target == null|| search_target.equalsIgnoreCase("*")){
 	           search_target = "";
 	       }
-	           String sql = "select * from (select opportunity.* from opportunity left join opportunitycontactteam on opportunity.id = opportunitycontactteam.opportunity_id  left join contact on opportunitycontactteam.contact_id = contact.id where (contact.id != "+contactId+" ) AND  (opportunity.name like '%"+search_target+"%' )) as a";
+	           String sql = "select * from (select * from opportunity  where  (opportunity.name like '%"+search_target+"%' )) as a";
 	           logger.debug(sql );
 	           Connection conn = null;
 	           List lMap = Lists.newArrayList();
@@ -894,6 +894,7 @@ public class DAOImpl {
 	               conn = DBConnector.getConnection();
 	               QueryRunner run = new QueryRunner();
 	               lMap = (List) run.query(conn, sql, new MapListHandler());
+	               System.out.println(sql);
 	           } catch (SQLException e) {
 	               logger.error("failed to get user", e);
 	           } finally {
