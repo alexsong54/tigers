@@ -302,7 +302,7 @@ public class EditDataFormPanel extends Panel {
                             }
                             modifyNameToModel.put(currentField.getDisplay(), choiceModel);
                             fieldNameToModel.put(fn, choiceModel);
-                            columnitem.add(new RelationTableSearchFragment("editdata", "relationTableSearchFragment", this, currentField.getRelationTable(), schema.getName(), value, choiceModel, entityId));
+                            columnitem.add(new RelationTableSearchFragment("editdata", "relationTableSearchFragment", this, currentField, schema, value, choiceModel, entityId));
                         }
                     } else if (currentField.getDataType().equals("radio")){
                 		if (j % 2 == 0) {
@@ -659,22 +659,31 @@ public static  void recordValueChanges(final Map data, Entity schema,
     }
 
     private class RelationTableSearchFragment extends Fragment {
-        public RelationTableSearchFragment(String id, String markupId, MarkupContainer markupProvider, final String entityName, String excludeEntityName ,final String value, IModel model, final String eid) {
+        public RelationTableSearchFragment(String id, String markupId, MarkupContainer markupProvider, final Field field, final Entity entity ,final String value, IModel model, final String eid) {
             super(id, markupId, markupProvider);
 
             PageParameters params = new PageParameters();
-            params.set("en", entityName);
-            params.set("excludeName", excludeEntityName);
+            params.set("en",field.getRelationTable());
+            params.set("excludeName", entity.getName());
             params.set("target", model.getObject());
             params.set("eid", eid);
-
+           // PopupSettings popupSettings = new PopupSettings("查找");
+           // add(new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params).setPopupSettings(popupSettings));
+            BookmarkablePageLink bookLink = new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params);
+            bookLink.add(new AttributeModifier("id",field.getName()+"_id"));
+            if(entity.getName().equals("contact")||entity.getName().equals("tactics")||entity.getName().equals("activity"))
+    		{
+            	if(field.getName().equals("contact_id")||field.getName().equals("individual_met")||field.getName().equals("report_to")){
+            		bookLink.add(new AttributeModifier("onclick","getAccountId('"+field.getName()+"','"+entity.getName()+"')"));
+            	}
+            }
             PopupSettings popupSettings = new PopupSettings("查找");
-            add(new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params).setPopupSettings(popupSettings));
+            add(bookLink.setPopupSettings(popupSettings));
             HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", model);
-            hidden.add(new AttributeAppender("id", entityName + "_id"));
+            hidden.add(new AttributeAppender("id",field.getRelationTable() + "_id"));
             add(hidden);
             TextField<String> text = new TextField<String>("selected_value_input", new Model(value));
-            text.add(new AttributeAppender("id", entityName + "_name"));
+            text.add(new AttributeAppender("id", field.getRelationTable() + "_name"));
             add(text);
         }
     }

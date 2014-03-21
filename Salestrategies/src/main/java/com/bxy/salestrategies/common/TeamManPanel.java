@@ -259,7 +259,7 @@ public class TeamManPanel extends Panel {
                          final Map<String,Object> params = Maps.newHashMap();
                              params.put("account.id", ac.getId());
                              params.put("account.name", ac.getName());
-                		 this.setResponsePage(new CreateDataPage("contact",params));
+                		     this.setResponsePage(new CreateDataPage("contact",params));
                 	 }else{
                 		 this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
                 	 }
@@ -384,7 +384,7 @@ public class TeamManPanel extends Panel {
             WebMarkupContainer container_label = new WebMarkupContainer("checkbox_label");
                 item.add(container_label);
                 final PageableListView<String> this_page =this;
-                Check chk = new Check("checkbox", new Model(String.valueOf(rowId)));
+                Check chk = new Check("checkbox", new Model(String.valueOf(realId)));
                 container_label.add(new AttributeAppender("for", new Model(chk.getMarkupId()), " "));        
                 item.add(chk);
                 if(en.equals("opportunity")){

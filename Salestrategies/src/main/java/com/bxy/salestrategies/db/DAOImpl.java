@@ -1017,13 +1017,16 @@ public class DAOImpl {
 	       //删除记录
 	       public static void removeEntityFromTeam(String teamtable, String id) {
 	           String sql = "delete from "+teamtable+" where id="+id;
+	           if(teamtable.equalsIgnoreCase("crmuser")){
+	           	sql = "update  "+teamtable+" set reportto = 0 where id="+id;
+	           }
 	           Connection conn = null;
 	           try {
 	               conn = DBConnector.getConnection();
 	               QueryRunner run = new QueryRunner();
 	               int inserts = 0;
 	               inserts += run.update(conn, sql);
-
+	               System.out.println(sql);
 	               System.out.println("removed:" + inserts);
 	           } catch (Exception e) {
 	               logger.error("removeContactFromTeam", e);

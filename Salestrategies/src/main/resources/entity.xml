@@ -990,7 +990,7 @@
 				<priority>1</priority>
 				<isShow>true</isShow>
 				<default-value-type>var</default-value-type>
-			<default-value>user.id\,user.name</default-value>
+				<default-value>user.id\,user.name</default-value>
 				<relationTable>user</relationTable>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
