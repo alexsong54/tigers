@@ -214,7 +214,6 @@ public class TeamManPanel extends Panel {
                    teamtable = "activity";
                }
            }
-            
            for(String rid:selectedRowIds){
              try{
             	 int positionId = 0;
@@ -236,6 +235,7 @@ public class TeamManPanel extends Panel {
                  
              }
          }
+           		
         	   if(selectedRowIds.size()>0){
         		   setResponsePage(new EntityDetailPage(currentEntityName,etId));
         	   }
@@ -272,7 +272,6 @@ public class TeamManPanel extends Panel {
                          params.put("opportunity.name",ot.getName());
                 		 if(type==4){
                 			 this.setResponsePage(new CreateDataPage("tactics",params));
-                			 System.out.println(params);
                 		 }else if(type == 5){
                 			 this.setResponsePage(new CreateDataPage("activity",params));
                 		 }else{
@@ -288,7 +287,7 @@ public class TeamManPanel extends Panel {
         CheckGroup group = new CheckGroup("group",new PropertyModel(this,"selectedRowIds"));
         form.add(group); 
             	CheckGroupSelector chks = new CheckGroupSelector("checkboxs");
-                group.add(chks);
+                group.add(chks); 
                 WebMarkupContainer container_label = new WebMarkupContainer("checkboxs_label");
                 group.add(container_label);
                 container_label.add(new AttributeAppender("for", new Model(chks.getMarkupId()), " ")); 
@@ -392,9 +391,10 @@ public class TeamManPanel extends Panel {
                     if(entityName.equals("opportunityuserteam")||entityName.equals("opportunitycontactteam")){
                     	Button button1  = new Button("editbtn") {
                           	public void onSubmit() {
+                          		 Opportunity  op =  DAOImpl.getOpportunityByEntityId(entityName,realId);
                           		PageParameters pp = new PageParameters();
-                                  pp.add("id", rowId );
-                                  pp.add("realId", realId);
+                                  pp.add("id", String.valueOf(op.getId()) );
+                                  pp.add("realId",realId);
                                   pp.add("entityName", "opportunity");
                                   setResponsePage(new EditDataPage(entityName,realId,EntityDetailPage.class,pp));
                           			}

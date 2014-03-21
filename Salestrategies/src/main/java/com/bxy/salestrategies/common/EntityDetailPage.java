@@ -108,11 +108,9 @@ public class EntityDetailPage extends Index {
         add(div);
         long lid = Long.parseLong(id);
         Map map = DAOImpl.queryEntityById(entity.getSql_ent(), String.valueOf(lid));
-        
         Label HomeIcon=new Label("HomeIcon"," ");
         HomeIcon.add(new AttributeAppender("class", new Model<String>("icon-home"), " "));
         add(HomeIcon);
-        
         String fieldName =  String.valueOf(map.get("name"));
         if("null".equals(fieldName)){
         	add(new Label("name",""));

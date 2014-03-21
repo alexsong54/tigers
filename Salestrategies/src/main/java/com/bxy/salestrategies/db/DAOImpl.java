@@ -270,6 +270,23 @@ public class DAOImpl {
 	        }
 	        return opportunity;
 	    }
+	    
+	    public static Opportunity getOpportunityByEntityId(String entityName,String id) {
+	        Connection conn = null;
+	        Opportunity opportunity = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            String sql = "SELECT opportunity.* FROM opportunity left join  "+entityName+"  on  "+entityName+".opportunity_id = opportunity.id where "+ entityName+".id=? ";
+	            ResultSetHandler<Opportunity> h = new BeanHandler<Opportunity>(Opportunity.class);
+	            opportunity = run.query(conn,sql, h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return opportunity;
+	    }
 	    public static String queryPickListByIdCached(final String picklist, final String id){
 	        String value = "";
 	        try{
@@ -1000,10 +1017,6 @@ public class DAOImpl {
 	       //删除记录
 	       public static void removeEntityFromTeam(String teamtable, String id) {
 	           String sql = "delete from "+teamtable+" where id="+id;
-	           if(teamtable.equalsIgnoreCase("crmuser")){
-	           	sql = "update  "+teamtable+" set reportto = 0 where id="+id;
-	           }
-	           logger.debug("sserserserser"+ sql);
 	           Connection conn = null;
 	           try {
 	               conn = DBConnector.getConnection();
