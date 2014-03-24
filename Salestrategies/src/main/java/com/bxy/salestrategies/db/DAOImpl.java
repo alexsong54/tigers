@@ -846,6 +846,7 @@ public class DAOImpl {
 	             String sql = "select * from (  select * from user where  (user.id !=-1) AND (name like '%"+search_target+"%' OR employee_number like '%"+search_target+"%' OR report_to like '%"+search_target+"%')) as a";
 	             logger.debug(sql );
 	             Connection conn = null;
+	             
 	             List lMap = Lists.newArrayList();
 	             try {
 	                 conn = DBConnector.getConnection();

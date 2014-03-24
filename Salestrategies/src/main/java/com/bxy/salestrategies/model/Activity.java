@@ -12,8 +12,8 @@ public class Activity implements java.io.Serializable {
 
 	private Integer id;
 	private int crmuserId;
-	private Date endtime;
-	private Date starttime;
+	private Date end_time;
+	private Date start_time;
 	private String title;
     private int event_type;
     private int status;
@@ -23,13 +23,13 @@ public class Activity implements java.io.Serializable {
 
 	public Activity(int crmuserId, Date starttime) {
 		this.crmuserId = crmuserId;
-		this.starttime = starttime;
+		this.start_time = starttime;
 	}
 
 	public Activity(int crmuserId, Date endtime, Date starttime, String title) {
 		this.crmuserId = crmuserId;
-		this.endtime = endtime;
-		this.starttime = starttime;
+		this.end_time = endtime;
+		this.start_time = starttime;
 		this.title = title;
 	}
 
@@ -50,20 +50,22 @@ public class Activity implements java.io.Serializable {
 	}
 
 	
-	public Date getEndtime() {
-		return endtime;
+	
+
+	public Date getEnd_time() {
+		return end_time;
 	}
 
-	public void setEndtime(Date endtime) {
-		this.endtime = endtime;
+	public void setEnd_time(Date end_time) {
+		this.end_time = end_time;
 	}
 
-	public Date getStarttime() {
-		return starttime;
+	public Date getStart_time() {
+		return start_time;
 	}
 
-	public void setStarttime(Date starttime) {
-		this.starttime = starttime;
+	public void setStart_time(Date start_time) {
+		this.start_time = start_time;
 	}
 
 	public String getTitle() {

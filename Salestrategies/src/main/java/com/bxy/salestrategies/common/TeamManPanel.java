@@ -177,7 +177,6 @@ public class TeamManPanel extends Panel {
         final String entityName = entity.getName();
         Form form = new Form("form");
         add(form);
-        
            add(new SubmitLink("remove_team_member_click",form){
            @Override      
            public void onSubmit(){

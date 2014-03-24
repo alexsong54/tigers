@@ -85,20 +85,20 @@ public class CRUDPanel extends Panel {
                 };
             	editfrag.addOrReplace(link);
             	//根据entityId获取对象，获取开始时间，然后判断时间是否未来时则隐藏
-//				if(entityName.equals("activity")){
-//					Activity activity = DAOImpl.getActivityById(Integer.parseInt(entityId));
-//	                Date newDate = new Date();
-//	                Calendar cal = Calendar.getInstance();
-//	                cal.setTime(newDate);
-//	                cal.set(Calendar.DATE,cal.get(Calendar.DATE)-7);
-//	                newDate = cal.getTime();
-//	                Date startTime =activity.getStarttime();
-//	                if(startTime.compareTo(newDate)<0){
-//	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-//	                }else if(activity.getStatus()==3||activity.getStatus()==2){
-//	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
-//	                }
-//                }
+				if(entityName.equals("activity")){
+					Activity activity = DAOImpl.getActivityById(Integer.parseInt(entityId));
+	                Date newDate = new Date();
+	                Calendar cal = Calendar.getInstance();
+	                cal.setTime(newDate);
+	                cal.set(Calendar.DATE,cal.get(Calendar.DATE)-7);
+	                newDate = cal.getTime();
+	                Date startTime =activity.getStart_time();
+	                if(startTime.compareTo(newDate)<0){
+	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+	                }else if(activity.getStatus()==3||activity.getStatus()==2){
+	                	editfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+	                }
+                }
             	addOrReplace(editfrag);
             }else{
                 addOrReplace(new Fragment("editCon","emptyFragment",this));
@@ -136,7 +136,13 @@ public class CRUDPanel extends Panel {
 					if(entityName.equals("activity")){
 						Activity activity = DAOImpl.getActivityById(Integer.parseInt(entityId));
 		                Date newDate = new Date();
-		                Date startTime = activity.getStarttime();
+		                Date startTime = activity.getStart_time();
+		                System.out.println("startTime:"+activity.getStart_time());
+		                if(startTime.compareTo(newDate)>=0){
+		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+		                }else if(activity.getStatus()==3){
+		                	addfrag.add(new AttributeAppender("class",new Model("hiddenStyle")," "));
+		                }
 	                }
 	                add(addfrag);
             	}else{
