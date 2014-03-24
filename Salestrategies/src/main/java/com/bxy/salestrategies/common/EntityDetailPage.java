@@ -319,15 +319,15 @@ public class EntityDetailPage extends Index {
              divLabel6.setEscapeModelStrings(false);
              add(divLabel6);
              
-             String dynamicHtml7 = " <a href=\"#relation7\"><i class=\"icon-font\"></i><span style=\"margin: 25px\">详细元素分析</span></a>";
+             String dynamicHtml7 = " <a href=\"#relation7\"><i class=\"icon-bar-chart\"></i><span style=\"margin: 25px\">详细元素分析</span></a>";
              Label divLabel7 = new Label("divLabel7",dynamicHtml7);
              divLabel7.setEscapeModelStrings(false);
              add(divLabel7);
-             String dynamicHtml8 = " <a href=\"#relation8\"><i class=\"icon-font\"></i><span style=\"margin: 25px\">策略分析</span></a>";
+             String dynamicHtml8 = " <a href=\"#relation8\"><i class=\" icon-th-large\"></i><span style=\"margin: 25px\">策略分析</span></a>";
              Label divLabel8 = new Label("divLabel8",dynamicHtml8);
              divLabel8.setEscapeModelStrings(false);
              add(divLabel8);
-             String dynamicHtml9 = " <a href=\"#relation9\"><i class=\"icon-font\"></i><span style=\"margin: 25px\">MAP</span></a>";
+             String dynamicHtml9 = " <a href=\"#relation9\"><i class=\"icon-sitemap\"></i><span style=\"margin: 25px\">MAP</span></a>";
              Label divLabel9 = new Label("divLabel9",dynamicHtml9);
              divLabel9.setEscapeModelStrings(false);
              add(divLabel9);
