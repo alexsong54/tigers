@@ -34,6 +34,7 @@ import com.bxy.salestrategies.model.Opportunity;
 import com.bxy.salestrategies.model.Opportunitycontactteam;
 import com.bxy.salestrategies.model.Summary;
 import com.bxy.salestrategies.model.Swot;
+import com.bxy.salestrategies.model.Tactics;
 import com.bxy.salestrategies.model.User;
 import com.google.common.base.Joiner;
 import com.google.common.cache.Cache;
@@ -271,6 +272,21 @@ public class DAOImpl {
 	        return opportunity;
 	    }
 	    
+	    public static Tactics getTacticsById(String id) {
+	        Connection conn = null;
+	        Tactics tactics = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Tactics> h = new BeanHandler<Tactics>(Tactics.class);
+	            tactics = run.query(conn, "SELECT * FROM Tactics where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return tactics;
+	    }
 	    public static Opportunity getOpportunityByEntityId(String entityName,String id) {
 	        Connection conn = null;
 	        Opportunity opportunity = null;

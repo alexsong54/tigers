@@ -330,7 +330,6 @@ public class NewDataFormPanel extends Panel
                             {
                                 if (params != null)
                                 {
-                                	System.out.println(currentField.getDefault_value()+"1111");
                                     Iterable<String> splits = Splitter.on(",").split(currentField.getDefault_value());
                                     Iterator<String> it = splits.iterator();;
                                     String choiceId = it.next();
@@ -560,7 +559,7 @@ public class NewDataFormPanel extends Panel
                 values.add("'" + dateformat.format(new Date()) + "'");
             }
 
-            if (f.getName().equalsIgnoreCase("modified_by") || f.getName().equalsIgnoreCase("created_by"))
+            if (f.getName().equalsIgnoreCase("modified_by") || f.getName().equalsIgnoreCase("created_by") || f.getName().equalsIgnoreCase("owner"))
             {
                 values.add("'" + userId + "'");
             }

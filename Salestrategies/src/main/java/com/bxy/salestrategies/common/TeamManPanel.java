@@ -46,8 +46,10 @@ import com.bxy.salestrategies.SearchCRMUserPage;
 import com.bxy.salestrategies.db.DAOImpl;
 import com.bxy.salestrategies.model.Account;
 import com.bxy.salestrategies.model.AccountUserTeam;
+import com.bxy.salestrategies.model.Activity;
 import com.bxy.salestrategies.model.ContactUserTeam;
 import com.bxy.salestrategies.model.Opportunity;
+import com.bxy.salestrategies.model.Tactics;
 import com.bxy.salestrategies.model.User;
 import com.bxy.salestrategies.util.CRMUtility;
 import com.bxy.salestrategies.util.Configuration;
@@ -76,6 +78,8 @@ public class TeamManPanel extends Panel {
         		teamSql = "select * from (select user.*,accountuserteam.id as rid from accountuserteam left join user on user.id = accountuserteam.user_id where account_id = ?) as atable";
         	}else if(type==1){
         		teamSql = "select * from (select contact.*,contact.id as rid from contact  where account_id = ?) as atable";
+        	}else if(type==2){
+        		teamSql = "select * from (select opportunity.*,opportunity.id as rid from opportunity left join account on account.id=opportunity.account_id where account.id = ?) as atable";
         	}
         	
         }else if(en.equalsIgnoreCase("contact")){
@@ -102,13 +106,13 @@ public class TeamManPanel extends Panel {
         	}else if(type==5){
         		teamSql = "select * from (select activity.*,activity.id as rid from activity left join opportunity on opportunity.id = activity.opportunity_id where activity.opportunity_id = ?) as atable";
         	}
+        }else if(en.equalsIgnoreCase("tactics")){
+        	if(type==0){
+        		teamSql = "select * from (select activity.* ,activity.id as rid from activity left join tactics on activity.tactics_id = activity.id  where tactics.id =?) as a";
+        	}
         }
         List mapList = new ArrayList();
-//       if(type ==4){
-//    	    mapList = DAOImpl.queryEntityRelationList(teamSql);
-//       } else {
     	    mapList = DAOImpl.queryEntityRelationList(teamSql, entityId); 
-//       }
         Entity entity=null ;
         if(en.equalsIgnoreCase("account")){
         	if(type == 0){
@@ -117,7 +121,10 @@ public class TeamManPanel extends Panel {
               }else if(type == 1){
                   entity = Configuration.getEntityByName("contact");
                   add(new Label("title","联系人"));
-              }  
+              } else if(type == 2){
+                  entity = Configuration.getEntityByName("opportunity");
+                  add(new Label("title","商机"));
+              } 
         	
         }else if(en.equalsIgnoreCase("contact")){
                  if(type==0){
@@ -151,27 +158,10 @@ public class TeamManPanel extends Panel {
                   entity = Configuration.getEntityByName("opportunity");
                   add(new Label("title","商机"));
               }
+        }else if(en.equalsIgnoreCase("tactics")){
+        	entity = Configuration.getEntityByName("activity");
+            add(new Label("title","活动"));
         }
-//        else{
-//            if(type == 0){
-//        	  entity = Configuration.getEntityByName("account");
-//        	  add(new Label("title","客户"));
-//            }else if(type == 1){
-//                entity = Configuration.getEntityByName("contact");
-//                add(new Label("title","联系人"));
-//            }
-//            else if (type == 2){
-//              entity = Configuration.getEntityByName("user");
-//              add(new Label("title","用户"));
-//            }
-//            else if (type == 3){
-//              entity = Configuration.getEntityByName("crmuser");
-//              add(new Label("title","下属岗位"));
-//            }else if (type == 4){
-//                entity = Configuration.getEntityByName("regionManage");
-//                add(new Label("title","区域管理"));
-//              }
-//        }
         
         List<Field> fields = entity.getFields();
         final String entityName = entity.getName();
@@ -186,6 +176,8 @@ public class TeamManPanel extends Panel {
             	   teamtable = "accountuserteam";
                }else if(type == 1){
             	   teamtable = "contact";
+               }else if(type == 2){
+            	   teamtable = "opportunity";
                }
            }else if(currentEntityName.equalsIgnoreCase("contact")){
         	   if(type == 0){
@@ -212,6 +204,8 @@ public class TeamManPanel extends Panel {
                }else if(type == 5){
                    teamtable = "activity";
                }
+           }else if(currentEntityName.equalsIgnoreCase("tactics")){
+        	   teamtable = "activity";
            }
            for(String rid:selectedRowIds){
              try{
@@ -250,15 +244,22 @@ public class TeamManPanel extends Panel {
            long lid = Long.parseLong(etId);
            final Account ac = DAOImpl.getAccountById(String.valueOf(lid));
            final Opportunity ot = DAOImpl.getOpportunityById(String.valueOf(lid));
+           final Tactics at = DAOImpl.getTacticsById(String.valueOf(lid));
         	add(new Link<Void>("add_users_link"){
                 @Override
                 public void onClick() {
                  if(!currentEntityName.equalsIgnoreCase("opportunity")){
+                	 final Map<String,Object> params = Maps.newHashMap();
                 	 if(currentEntityName.equalsIgnoreCase("account")&&(type==1)){
-                         final Map<String,Object> params = Maps.newHashMap();
                              params.put("account.id", ac.getId());
                              params.put("account.name", ac.getName());
                 		     this.setResponsePage(new CreateDataPage("contact",params));
+                	 }else if(currentEntityName.equalsIgnoreCase("tactics")){
+                		     params.put("tactics.id", at.getId());
+                             params.put("tactics.name", at.getName());
+                             params.put("opportunity.id", ot.getId());
+                             params.put("opportunity.name", ot.getName());
+            		     this.setResponsePage(new CreateDataPage("activity",params));
                 	 }else{
                 		 this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
                 	 }
@@ -355,7 +356,6 @@ public class TeamManPanel extends Panel {
                             }
                             columnitem.add(new Label("celldata", value));
                     } else if(f.getRelationTable() != null){
-                    	System.out.println("hrere");
                         String value = CRMUtility.formatValue(f.getFormatter(), DAOImpl.queryCachedRelationDataById(f.getRelationTable(), String.valueOf(map.get(f.getName()))));
                         if(value.equals("null")||value.equals("")||value.equals("dummy")){
                           value = "无";

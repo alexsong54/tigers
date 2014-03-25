@@ -222,7 +222,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<field-type>String</field-type>
+				<field-type>auto</field-type>
 				<priority>1</priority>
 				<isShow>true</isShow>
 				<priority>1</priority>
@@ -558,7 +558,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<field-type>String</field-type>
+				<field-type>auto</field-type>
 				<priority>1</priority>
 				<isShow>true</isShow>
 				<priority>1</priority>
@@ -827,7 +827,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<field-type>String</field-type>
+				<field-type>auto</field-type>
 				<priority>1</priority>
 				<isShow>true</isShow>
 				<priority>1</priority>
@@ -984,7 +984,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<field-type>String</field-type>
+				<field-type>auto</field-type>
 				<priority>1</priority>
 				<isShow>true</isShow>
 				<priority>1</priority>
@@ -1443,21 +1443,23 @@
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
-<!-- 			<field> -->
-<!-- 				<name>user_id</name> -->
-<!-- 				<display>用户名称</display> -->
-<!-- 				<isRequired>false</isRequired> -->
-<!-- 				<data-type>text</data-type> -->
-<!-- 				<isPrimaryKey>false</isPrimaryKey> -->
-<!-- 				<isDetailLink>false</isDetailLink> -->
-<!-- 				<isVisible>true</isVisible> -->
-<!-- 				<isEditable>true</isEditable> -->
-<!-- 				<field-type>auto</field-type> -->
-<!-- 				<relationTable>user</relationTable> -->
-<!-- 				<priority>1</priority><isShow>true</isShow> -->
-<!-- 				<isParam>true</isParam> -->
-<!-- 				<fieldGroup>关键信息</fieldGroup> -->
-<!-- 			</field> -->
+			<field>
+				<name>tactics_id</name>
+				<display>策略名称</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<field-type>String</field-type>
+				<relationTable>tactics</relationTable>
+				<priority>1</priority><isShow>true</isShow>
+				<default-value-type>var</default-value-type>
+				<default-value>tactics.id\,tactics.name</default-value>
+				<isParam>true</isParam>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
 			<field>
 				<name>start_time</name>
 				<display>开始时间</display>
@@ -1510,7 +1512,7 @@
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
 				<isEditable>true</isEditable>
-				<field-type>String</field-type>
+				<field-type>auto</field-type>
 				<relationTable>user</relationTable>
 				<default-value-type>var</default-value-type>
 			<default-value>user.id\,user.name</default-value>
@@ -2454,7 +2456,7 @@
   				<data-type>text</data-type>
  				<relationTable>user</relationTable>
  				<isSearchable>false</isSearchable>
-  				<field-type>String</field-type>
+  				<field-type>auto</field-type>
   				<isParam>true</isParam>
   				<priority>1</priority>
   				<isShow>true</isShow>

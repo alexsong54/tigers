@@ -177,8 +177,6 @@ public class EditDataFormPanel extends Panel {
                         continue;
                     }
                     final Field currentField = visibleFields.get(i * NUM_OF_COLUMN + j / 2);
-                    System.out.println("num   "+i * NUM_OF_COLUMN + j / 2);
-                    System.out.println("currentFieldcurrentField   "+currentField.getName());
                     if (currentField.getPicklist() != null) {
                         if (j % 2 == 0) {
                         	TextFragment textField = new TextFragment("editdata", "textFragment", this, currentField.getDisplay() + ":");
@@ -400,10 +398,8 @@ public class EditDataFormPanel extends Panel {
 						promptButton.add(new AttributeAppender("style",new Model("display:block"),";"));
 					 }else{
 					    if(!prePageParams.isEmpty()){
-                                                    System.out.println("prePageParams:"+prePageParams);
 						    setResponsePage(previousPageClass,prePageParams);
 						}else{
-                                                    System.out.println("prePageParamsisEmpty");
 							setResponsePage(new EntityDetailPage(schema.getName(),entityId));
 						}
 					 }
@@ -538,7 +534,7 @@ public class EditDataFormPanel extends Panel {
              values.add("'"+dateformat.format(new Date())+"'");
            }
            
-           if(f.getName().equalsIgnoreCase("modified_by")){
+           if(f.getName().equalsIgnoreCase("modified_by")||f.getName().equalsIgnoreCase("owner")){
                names.add(f.getName());
 			values.add("'"+userId+"'");
            }

@@ -125,7 +125,6 @@ public class SelectEntryPage extends WebPage {
                     	String sql = assembleSearchingSQL( entity);
                     	Opportunity opportunity  =  DAOImpl.getOpportunityByID(relationEntityID);
                     	sql+=" and account_id = "+opportunity.getAccount_id();
-                    	System.out.println("sql:"+sql);
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", 0);
@@ -165,6 +164,13 @@ public class SelectEntryPage extends WebPage {
                     dummy.put("id", 0);
                     dummy.put("name", "无");
                     maplist.add(dummy);
+                }if(relationTableName.equalsIgnoreCase("tactics")){
+                    
+                	String sql = entity.getSql();
+                	 maplist = DAOImpl.queryEntityRelationList(sql);
+                	 Map dummy = Maps.newHashMap();
+                	 dummy.put("id", 0);
+                     dummy.put("name", "无");
                 }                
                 setResponsePage(new SelectEntryPage(maplist,relationTableName,tragetEntity,excludeId,target,key,relationEntityID));
 
