@@ -663,16 +663,21 @@ public static  void recordValueChanges(final Map data, Entity schema,
             params.set("excludeName", entity.getName());
             params.set("target", model.getObject());
             params.set("eid", eid);
-           // PopupSettings popupSettings = new PopupSettings("查找");
-           // add(new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params).setPopupSettings(popupSettings));
+            //根据eid获取opportunityID
+            if(entity.getName().equals("opportunitycontactteam")){
+            	int relationEntityID =  DAOImpl.getOppContactTeamById(eid).getOpportunity_id();
+                params.set("relationEntityID",relationEntityID);
+                params.set("key", entity.getName());
+            }
             BookmarkablePageLink bookLink = new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params);
             bookLink.add(new AttributeModifier("id",field.getName()+"_id"));
-            if(entity.getName().equals("contact")||entity.getName().equals("tactics")||entity.getName().equals("activity"))
+            //添加onclick事件
+            /*if(entity.getName().equals("contact")||entity.getName().equals("tactics")||entity.getName().equals("activity"))
     		{
             	if(field.getName().equals("contact_id")||field.getName().equals("individual_met")||field.getName().equals("report_to")){
             		bookLink.add(new AttributeModifier("onclick","getAccountId('"+field.getName()+"','"+entity.getName()+"')"));
             	}
-            }
+            }*/
             PopupSettings popupSettings = new PopupSettings("查找");
             add(bookLink.setPopupSettings(popupSettings));
             HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", model);

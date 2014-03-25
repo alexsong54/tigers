@@ -123,8 +123,10 @@ public class SelectEntryPage extends WebPage {
                         maplist.add(dummy);
                     }else if (tragetEntity.equalsIgnoreCase("opportunitycontactteam")) {
                     	String sql = assembleSearchingSQL( entity);
-                    	Opportunity opportunity  =  DAOImpl.getOpportunityByID(relationEntityID);
-                    	sql+=" and account_id = "+opportunity.getAccount_id();
+                    	if(!"".equals(relationEntityID)){
+                    		Opportunity opportunity  =  DAOImpl.getOpportunityByID(relationEntityID);
+                        	sql+=" and account_id = "+opportunity.getAccount_id();
+                    	}
                         maplist  = DAOImpl.queryEntityRelationList(sql);
                         Map dummy = Maps.newHashMap();
                         dummy.put("id", 0);

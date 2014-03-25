@@ -1492,4 +1492,19 @@ public class DAOImpl {
 	        }
 	        return opportunity;
 	    }
+	    public static Opportunitycontactteam getOppContactTeamById(String id){
+	    	Connection conn = null;
+	    	Opportunitycontactteam opportunity = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Opportunitycontactteam> h = new BeanHandler<Opportunitycontactteam>(Opportunitycontactteam.class);
+	            opportunity = run.query(conn, "SELECT * FROM opportunitycontactteam where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return opportunity;
+	    } 
 }

@@ -2,6 +2,7 @@ package com.bxy.salestrategies.model;
 
 public class Opportunitycontactteam {
 	private int id;
+	private int opportunity_id;
 	private String name;
 	private String rank;
 	private int ranklevel;
@@ -125,6 +126,12 @@ public class Opportunitycontactteam {
 	}
 	public void setRelat_status(int relat_status) {
 		this.relat_status = relat_status;
+	}
+	public int getOpportunity_id() {
+		return opportunity_id;
+	}
+	public void setOpportunity_id(int opportunity_id) {
+		this.opportunity_id = opportunity_id;
 	}
 	
 };
