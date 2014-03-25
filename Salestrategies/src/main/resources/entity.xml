@@ -1361,7 +1361,9 @@
 		<globalsearch>true</globalsearch>
 		<sql>select * from (SELECT activity.*\,account.id as account_name from activity 
 		left join contact on contact.id = activity.contact_id left join account on account.id = contact.account_id ) as a </sql>
-		<sql-ent>SELECT * FROM activity where id = ?</sql-ent>
+		<sql-ent>select * from (SELECT activity.*\,account.id as account_name from activity
+		left join contact on contact.id = activity.contact_id left join account on account.id = contact.account_id  where activity.id = ? ) as a
+		</sql-ent>
 		<fields>
 			<field>
 				<name>id</name>

@@ -150,11 +150,7 @@ public class EntityDetailPanel extends Panel {
 //                            if (roleId==1) {
 //                            	columnitem.add(new DetailLinkFragment("celldata", "detailFragment", this,value,currentField.getRelationTable(),String.valueOf(data.get(currentField.getName()))));
 //                            }else{
-                            	if(!currentField.getRelationTable().equalsIgnoreCase("crmuser")){
                             		columnitem.add(new DetailLinkFragment("celldata", "detailFragment", this,value,currentField.getRelationTable(),String.valueOf(data.get(currentField.getName()))));
-                            	}else{
-                            		columnitem.add(new Label("celldata", value).setEscapeModelStrings(false));
-                            	}
 //                            }
                              
                         }

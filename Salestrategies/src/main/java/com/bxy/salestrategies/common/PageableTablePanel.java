@@ -283,7 +283,6 @@ public class PageableTablePanel extends Panel{
 	                @Override
 	                public void onClick() {
 	                    Param p = (Param) getParent().getParent().getDefaultModelObject();
-	                    System.out.println(p + " id:" + p.getId() + " name:" + p.getEntityName());
 	                    String entityName = p.getEntityName();
 	                    setResponsePage(new EntityDetailPage(entityName, p.getId()));
 	                }

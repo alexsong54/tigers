@@ -108,7 +108,7 @@ public class TeamManPanel extends Panel {
         	}
         }else if(en.equalsIgnoreCase("tactics")){
         	if(type==0){
-        		teamSql = "select * from (select activity.* ,activity.id as rid from activity left join tactics on activity.tactics_id = activity.id  where tactics.id =?) as a";
+        		teamSql = "select * from (select activity.*,account.id as account_name ,activity.id as rid from activity left join tactics on activity.tactics_id = tactics.id left join contact on contact.id = activity.contact_id left join account on account.id = contact.account_id where tactics.id =?) as a";
         	}
         }
         List mapList = new ArrayList();
@@ -354,20 +354,20 @@ public class TeamManPanel extends Panel {
                             if(value.equals("null")||value.equals("")||value.equals("dummy")){
                               value = "无";
                             }
-                            columnitem.add(new Label("celldata", value));
+                            columnitem.add(new Label("celldata", value ));
                     } else if(f.getRelationTable() != null){
                         String value = CRMUtility.formatValue(f.getFormatter(), DAOImpl.queryCachedRelationDataById(f.getRelationTable(), String.valueOf(map.get(f.getName()))));
                         if(value.equals("null")||value.equals("")||value.equals("dummy")){
                           value = "无";
                         }
-//                        if (roleId==1) {
+                        if (!value.equals("无")) {
                         	columnitem.add(new DetailLinkFragment("celldata", "detailFragment", this.getParent().getParent().getParent(),value,f.getRelationTable(),String.valueOf(map.get(f.getName()))));
-//                        }else{
+                        }else{
 //                        	if(!f.getRelationTable().equalsIgnoreCase("crmuser")){
 //                        		columnitem.add(new DetailLinkFragment("celldata", "detailFragment", this.getParent().getParent().getParent(),value,f.getRelationTable(),String.valueOf(map.get(f.getName()))));
 //                        	}else{
-//                        		columnitem.add(new Label("celldata", value)).setEscapeModelStrings(false);
-//                        	}
+                        		columnitem.add(new Label("celldata", value)).setEscapeModelStrings(false);
+                        	}
 //                        }
                         
                     }else {

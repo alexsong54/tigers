@@ -364,12 +364,13 @@ public class DAOImpl {
 	        String query="";
 	        if(tableName.equals("province")){
 	             query = "select id, val from " + tableName + " where id=? ";
-	        }else{
-	        	 if(tableName.equals("tactics")){
-	        		 query = "select id, target_date from " + tableName + " where id=? ";
-	        	 }else{
+	        }
+	        else{
+//	        	 if(tableName.equals("tactics")){
+//	        		 query = "select id, target_date from " + tableName + " where id=? ";
+//	        	 }else{
 	        		 query = "select id, name from " + tableName + " where id=? ";
-	        	 }
+//	        	 }
 	        }
 	        String result = "";
 	        Connection conn = null;
@@ -383,11 +384,11 @@ public class DAOImpl {
 	                if(tableName.equals("province")){
 	                     value = map.get("val");
 	                }else{
-	                     if(tableName.equals("tactics")){
-	                    	 value = map.get("target_date");
-	                     }else{
+//	                     if(tableName.equals("tactics")){
+//	                    	 value = map.get("target_date");
+//	                     }else{
 	                    	 value = map.get("name");
-	                     }
+//	                     }
 	                }
 	                if (value != null) {
 	                    result = (String) value;
