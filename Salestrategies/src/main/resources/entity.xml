@@ -917,7 +917,7 @@
 	</entity>
 	<entity>
 		<name>competitor</name>
-		<display>竞争对手</display>
+		<display>竞标公司</display>
 		<globalsearch>true</globalsearch>
 		<sql>SELECT * FROM competitor</sql>
 		<sql-ent>SELECT * FROM competitor where id =?</sql-ent>
@@ -949,6 +949,21 @@
 				<field-type>String</field-type>
 				<priority>1</priority><isShow>true</isShow>
 				<isParam>true</isParam>
+				<fieldGroup>关键信息</fieldGroup>
+			</field>
+			<field>
+				<name>isMycompany</name>
+				<display>是否为自身公司</display>
+				<isRequired>false</isRequired>
+				<data-type>text</data-type>
+				<isPrimaryKey>false</isPrimaryKey>
+				<isDetailLink>false</isDetailLink>
+				<pattern>text</pattern>
+				<isVisible>true</isVisible>
+				<isEditable>true</isEditable>
+				<picklist>isMycompany_pl</picklist>
+				<field-type>String</field-type>
+				<priority>1</priority><isShow>true</isShow>
 				<fieldGroup>关键信息</fieldGroup>
 			</field>
 			<field>
@@ -1820,7 +1835,7 @@
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
 				<isVisible>true</isVisible>
-				<isEditable>true</isEditable>
+				<isEditable>s</isEditable>
 				<relationTable>competitor</relationTable>
 				<field-type>String</field-type>
 				<priority>1</priority><isShow>true</isShow>

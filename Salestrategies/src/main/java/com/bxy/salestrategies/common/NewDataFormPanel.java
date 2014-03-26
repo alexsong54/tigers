@@ -594,6 +594,12 @@ public class NewDataFormPanel extends Panel
                 	NewRecordId = DAOImpl.getCreateRecordByEntity(entity.getName());
                     DAOImpl.insert2UserRelationTable(entity.getName(), userId,
                     String.valueOf(generatedId));
+                    if("opportunity".equals(entity.getName())){
+                    	//添加本公司的target_acquisition
+                    	//查询本公司
+                    	String competiorID = DAOImpl.getCompetitor().getId();
+                    	DAOImpl.addTarget_acquisition(String.valueOf(generatedId), competiorID, String.valueOf(userId));
+                    }
             }
             return generatedId;
         }

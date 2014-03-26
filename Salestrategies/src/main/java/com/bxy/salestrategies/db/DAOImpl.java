@@ -1523,4 +1523,39 @@ public class DAOImpl {
 	        }
 	        return opportunity;
 	    } 
+	    //查询竞标公司中是本公司的公司
+	    public static Competitor getCompetitor(){
+	    	Connection conn = null;
+	    	Competitor competitor = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Competitor> h = new BeanHandler<Competitor>(Competitor.class);
+	            competitor = run.query(conn, "SELECT * FROM competitor where isMycompany = 1", h);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return competitor;
+	    } 
+	    public static boolean addTarget_acquisition(String opportunityID,String competitorId,String userId){
+	    	String sql = "insert into target_acquisition (opportunity_id,competitor_id,user_id) values ("+opportunityID+","+competitorId+","+userId+")";
+	    	Connection conn = null;
+	        int inserts = 0;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            inserts += run.update(conn, sql);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            logger.error("failed to activity", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        if(inserts>0){
+	    		return true;
+	    	}
+	    	return false;
+	    }
 }
