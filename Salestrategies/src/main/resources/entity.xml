@@ -185,6 +185,7 @@
 				<pattern>color:red</pattern>
 				<display>成立时间</display>
 				<isRequired>true</isRequired>
+				<pattern>color:red</pattern>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -425,7 +426,7 @@
 			<fieldGroup>关键信息</fieldGroup>
 		</field>
 		<field>
-			<name>telephone</name>
+			<name>address</name>
 			<display>地址</display>
 			<isRequired>false</isRequired>
 			<data-type>text</data-type>
@@ -719,6 +720,8 @@
 				<relationTable>account</relationTable>
 				<field-type>number</field-type>
 				<priority>1</priority>
+				<default-value-type>var</default-value-type>
+				<default-value>account.id\,account.name</default-value>
 				<isShow>true</isShow>
 				<isParam>true</isParam>
 				<fieldGroup>关键信息</fieldGroup>
@@ -773,6 +776,7 @@
 				<name>start_date</name>
 				<display>开始时间</display>
 				<isRequired>true</isRequired>
+				<pattern>color:red</pattern>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -790,6 +794,7 @@
 				<name>end_date</name>
 				<display>结束时间</display>
 				<isRequired>true</isRequired>
+				<pattern>color:red</pattern>
 				<data-type>Date</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -1465,7 +1470,8 @@
 			<field>
 				<name>start_time</name>
 				<display>开始时间</display>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
+				<pattern>color:red</pattern>
 				<data-type>datetime-local</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -1479,7 +1485,8 @@
 			<field>
 				<name>end_time</name>
 				<display>结束时间</display>
-				<isRequired>false</isRequired>
+				<isRequired>true</isRequired>
+				<pattern>color:red</pattern>
 				<data-type>datetime-local</data-type>
 				<isPrimaryKey>false</isPrimaryKey>
 				<isDetailLink>false</isDetailLink>
@@ -1823,6 +1830,7 @@
 				<name>created_date</name>
 				<display>开始时间</display>
 				<isRequired>true</isRequired>
+				<pattern>color:red</pattern>
 				<data-type>Date</data-type>
 				<pattern>color:red</pattern>
 				<isPrimaryKey>false</isPrimaryKey>
@@ -2424,7 +2432,8 @@
    				<name>target_date</name>
   				<display>目标日期</display>
   				<data-type>date</data-type>
-  				<isRequired>false</isRequired>
+  				<isRequired>true</isRequired>
+  				<pattern>color:red</pattern>
 				<isSearchable>false</isSearchable>
  				<field-type>String</field-type>
  				<isEditable>true</isEditable>
@@ -2467,20 +2476,20 @@
   				<relationTable>user</relationTable>
   				<fieldGroup>关键信息</fieldGroup>
   			</field>
-   			<field>
-  				<name>individual_met</name>
-  				<display>拜访人</display>
-  				<data-type>text</data-type>
- 				<relationTable>contact</relationTable>
-     			<isSearchable>false</isSearchable>
-  				<field-type>String</field-type>
-  				<isEditable>true</isEditable>
- 				<isVisible>true</isVisible>
-  				<isParam>true</isParam>
-  				<priority>1</priority>
-  				<isShow>true</isShow>
-  				<fieldGroup>关键信息</fieldGroup>
-  			</field>
+<!--    			<field> -->
+<!--   				<name>individual_met</name> -->
+<!--   				<display>拜访人</display> -->
+<!--   				<data-type>text</data-type> -->
+<!--  				<relationTable>contact</relationTable> -->
+<!--      			<isSearchable>false</isSearchable> -->
+<!--   				<field-type>String</field-type> -->
+<!--   				<isEditable>true</isEditable> -->
+<!--  				<isVisible>true</isVisible> -->
+<!--   				<isParam>true</isParam> -->
+<!--   				<priority>1</priority> -->
+<!--   				<isShow>true</isShow> -->
+<!--   				<fieldGroup>关键信息</fieldGroup> -->
+<!--   			</field> -->
   			<field>
  				<name>target_quisition</name>
   				<display>战略目标</display>

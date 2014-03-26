@@ -263,7 +263,23 @@ public class DAOImpl {
 	            conn = DBConnector.getConnection();
 	            QueryRunner run = new QueryRunner();
 	            ResultSetHandler<Opportunity> h = new BeanHandler<Opportunity>(Opportunity.class);
-	            opportunity = run.query(conn, "SELECT * FROM opportunity where id=?", h, id);
+	            opportunity = run.query(conn, "SELECT * FROM opportunity  where id=?", h, id);
+	        } catch (SQLException e) {
+	            logger.error("failed to get user", e);
+	        } finally {
+	            DBHelper.closeConnection(conn);
+	        }
+	        return opportunity;
+	    }
+	    
+	    public static Opportunity getOpportunityByTacticsId(String id) {
+	        Connection conn = null;
+	        Opportunity opportunity = null;
+	        try {
+	            conn = DBConnector.getConnection();
+	            QueryRunner run = new QueryRunner();
+	            ResultSetHandler<Opportunity> h = new BeanHandler<Opportunity>(Opportunity.class);
+	            opportunity = run.query(conn, "SELECT opportunity.* FROM opportunity left join tactics on tactics.opportunity_id = opportunity.id where tactics.id=?", h, id);
 	        } catch (SQLException e) {
 	            logger.error("failed to get user", e);
 	        } finally {
@@ -904,7 +920,7 @@ public class DAOImpl {
 	         if(search_target == null|| search_target.equalsIgnoreCase("*")){
 	           search_target = "";
 	       }
-	           String sql = "select * from (select * from opportunity  where  (opportunity.name like '%"+search_target+"%' )) as a";
+	           String sql = "select * from (select opportunity.* from opportunity  left join contact on contact.account_id = opportunity.account_id  where contact.id = "+contactId+" and opportunity.name like '%"+search_target+"%' ) as atable ";
 	           logger.debug(sql );
 	           Connection conn = null;
 	           List lMap = Lists.newArrayList();

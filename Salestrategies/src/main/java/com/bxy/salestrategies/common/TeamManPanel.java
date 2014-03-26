@@ -104,7 +104,7 @@ public class TeamManPanel extends Panel {
         	}else if(type==4){
         		teamSql = "select * from (select tactics.*,tactics.id as rid from tactics left join opportunity on opportunity.id = tactics.opportunity_id where tactics.opportunity_id = ?) as atable";
         	}else if(type==5){
-        		teamSql = "select * from (select activity.*,activity.id as rid from activity left join opportunity on opportunity.id = activity.opportunity_id where activity.opportunity_id = ?) as atable";
+        		teamSql = "select * from (select activity.*,account.id as account_name ,activity.id as rid from activity  left join contact on contact.id = activity.contact_id left join account on account.id = contact.account_id left join opportunity on opportunity.id = activity.opportunity_id where activity.opportunity_id = ?) as atable";
         	}
         }else if(en.equalsIgnoreCase("tactics")){
         	if(type==0){
@@ -245,6 +245,7 @@ public class TeamManPanel extends Panel {
            final Account ac = DAOImpl.getAccountById(String.valueOf(lid));
            final Opportunity ot = DAOImpl.getOpportunityById(String.valueOf(lid));
            final Tactics at = DAOImpl.getTacticsById(String.valueOf(lid));
+           final Opportunity op = DAOImpl.getOpportunityByTacticsId(String.valueOf(lid));
         	add(new Link<Void>("add_users_link"){
                 @Override
                 public void onClick() {
@@ -254,11 +255,15 @@ public class TeamManPanel extends Panel {
                              params.put("account.id", ac.getId());
                              params.put("account.name", ac.getName());
                 		     this.setResponsePage(new CreateDataPage("contact",params));
-                	 }else if(currentEntityName.equalsIgnoreCase("tactics")){
-                		     params.put("tactics.id", at.getId());
+                	 }else if(currentEntityName.equalsIgnoreCase("account")&&(type==2)){
+                         params.put("account.id", ac.getId());
+                         params.put("account.name", ac.getName());
+            		     this.setResponsePage(new CreateDataPage("opportunity",params));
+            	 }else if(currentEntityName.equalsIgnoreCase("tactics")){
+		            		 params.put("opportunity.id", op.getId());
+		                     params.put("opportunity.name", op.getName());	     
+		            		 params.put("tactics.id", at.getId());
                              params.put("tactics.name", at.getName());
-                             params.put("opportunity.id", ot.getId());
-                             params.put("opportunity.name", ot.getName());
             		     this.setResponsePage(new CreateDataPage("activity",params));
                 	 }else{
                 		 this.setResponsePage(new SearchCRMUserPage(currentEntityName,entityId,userId,type));
