@@ -493,7 +493,8 @@ public class EntityDetailPage extends Index {
          add(empty7);
        add(new TeamManPanel("teamPanel",entityName,String.valueOf(lid),0));
        add(new TeamManPanel("teamPanel2",entityName,String.valueOf(lid),1));
-       add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));
+       /*add(new TeamManPanel("teamPanel3",entityName,String.valueOf(lid),2));*/
+       add(new EmptyPanel("teamPanel3"));
        add(new EmptyPanel("teamPanel4"));
        add(new EmptyPanel("teamPanel5"));
   	   

@@ -55,6 +55,7 @@ public class SelectEntryPage extends WebPage {
         String target = getRequest().getRequestParameters().getParameterValue("target").toString();
         //区分是哪一个数据
         String key = getRequest().getRequestParameters().getParameterValue("key").toString();
+        System.out.println("key:"+key);
         String relationEntityID = getRequest().getRequestParameters().getParameterValue("relationEntityID").toString();
         initPage(null,relationTableName,tragetEntity,excludeId,target,key,relationEntityID);
     }
@@ -136,12 +137,12 @@ public class SelectEntryPage extends WebPage {
                     	//判断key值，Key值中是属性name,根据relationEntityID 获取accountID,加入添加问题
                     	String sql = assembleSearchingSQL(entity);
                     	int accountId = 0;
-                    	if(("tactics").equals(key)||("activity").equals(key)){
+                    	if(("individual_met").equals(key)||("contact_id").equals(key)){
                     		//获取opportunityID获取业务机会然后获取accountID
                     		Opportunity opportunity = DAOImpl.getOpportunityByID(relationEntityID);
                     		accountId = opportunity.getAccount_id();
                     		sql +=" and account_id = "+accountId;
-                    	}else if(("contact").equals(key)){
+                    	}else if(("report_to").equals(key)){
                     		sql += "and account_id="+relationEntityID;
                     	}
                         maplist  = DAOImpl.queryEntityRelationList(sql);

@@ -13,7 +13,7 @@
                     var name = $(this).parent().parent().data("name");
                     var key = $(this).parent().parent().data("key");
                     var table_name = $(this).parent().parent().data("ename");
-                    if(key=="influence_to"||key=="report_to"||key=="contact_id"||key=="user_id"){
+                    if(key=="influence_to"||key=="report_to"||key=="contact_id"||key=="user_id"||key=="opportunity_id"||key=="account_id"||key=="contact"||key=="individual_met"||key=="tactics_id"){
                     	window.opener.$("#"+table_name+"_id"+key+"").val(id);
                         window.opener.$("#"+table_name+"_name"+key+"").val(name);
                     }else{

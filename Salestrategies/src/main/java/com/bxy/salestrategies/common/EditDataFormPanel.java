@@ -666,26 +666,45 @@ public static  void recordValueChanges(final Map data, Entity schema,
             //根据eid获取opportunityID
             if(entity.getName().equals("opportunitycontactteam")){
             	int relationEntityID =  DAOImpl.getOppContactTeamById(eid).getOpportunity_id();
-                params.set("relationEntityID",relationEntityID);
-                params.set("key", entity.getName());
+	            params.set("key",field.getName());
+	            params.set("relationEntityID", relationEntityID);
+	            BookmarkablePageLink bookLink =new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params);
+	            PopupSettings popupSettings = new PopupSettings("查找");
+	            add(bookLink.setPopupSettings(popupSettings));
+	            HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", model);
+	            hidden.add(new AttributeModifier("id", field.getRelationTable() + "_id"+field.getName()));
+	            add(hidden);
+	            TextField<String> text = new TextField<String>("selected_value_input", new Model(value));
+	            text.add(new AttributeModifier("id", field.getRelationTable()  + "_name"+field.getName()));
+	            add(text);
+            }else if(entity.getName().equals("contact")||entity.getName().equals("tactics")||entity.getName().equals("activity")){
+            	params.set("key",field.getName());
+	            params.set("relationEntityID", eid);
+	            BookmarkablePageLink bookLink =new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params);
+	            bookLink.add(new AttributeModifier("id",field.getName()+"_id"));
+	            PopupSettings popupSettings = new PopupSettings("查找");
+	            add(bookLink.setPopupSettings(popupSettings));
+	            if(field.getName().equals("contact_id")||field.getName().equals("individual_met")||field.getName().equals("report_to")){
+	            	bookLink.add(new AttributeModifier("onclick","getAccountId('"+field.getName()+"','"+entity.getName()+"')"));
+	            }
+	            HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", model);
+	            hidden.add(new AttributeModifier("id", field.getRelationTable() + "_id"+field.getName()));
+	            add(hidden);
+	            TextField<String> text = new TextField<String>("selected_value_input", new Model(value));
+	            text.add(new AttributeModifier("id", field.getRelationTable()  + "_name"+field.getName()));
+	            add(text);
+            }else{
+	            BookmarkablePageLink bookLink = new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params);
+	            bookLink.add(new AttributeModifier("id",field.getName()+"_id"));
+	            PopupSettings popupSettings = new PopupSettings("查找");
+	            add(bookLink.setPopupSettings(popupSettings));
+	            HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", model);
+	            hidden.add(new AttributeAppender("id",field.getRelationTable() + "_id"));
+	            add(hidden);
+	            TextField<String> text = new TextField<String>("selected_value_input", new Model(value));
+	            text.add(new AttributeAppender("id", field.getRelationTable() + "_name"));
+	            add(text);
             }
-            BookmarkablePageLink bookLink = new BookmarkablePageLink<Void>("search_btn", SelectEntryPage.class, params);
-            bookLink.add(new AttributeModifier("id",field.getName()+"_id"));
-            //添加onclick事件
-            /*if(entity.getName().equals("contact")||entity.getName().equals("tactics")||entity.getName().equals("activity"))
-    		{
-            	if(field.getName().equals("contact_id")||field.getName().equals("individual_met")||field.getName().equals("report_to")){
-            		bookLink.add(new AttributeModifier("onclick","getAccountId('"+field.getName()+"','"+entity.getName()+"')"));
-            	}
-            }*/
-            PopupSettings popupSettings = new PopupSettings("查找");
-            add(bookLink.setPopupSettings(popupSettings));
-            HiddenField<?> hidden = new HiddenField<String>("selected_id_hidden", model);
-            hidden.add(new AttributeAppender("id",field.getRelationTable() + "_id"));
-            add(hidden);
-            TextField<String> text = new TextField<String>("selected_value_input", new Model(value));
-            text.add(new AttributeAppender("id", field.getRelationTable() + "_name"));
-            add(text);
         }
     }
 

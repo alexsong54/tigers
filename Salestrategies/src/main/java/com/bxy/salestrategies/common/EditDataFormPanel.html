@@ -39,27 +39,36 @@
             }
         }
         function getAccountId(fieldName,entityName){
-        	var relationID;
+        	 var relationID;
         	var flag = true;
         		if(entityName=="contact"){
-        		relationID = $("#account_id").attr("value");
+        		relationID = $("#account_idaccount_id").attr("value");
+        		console.info("relationID:"+relationID);
         		if(relationID==-1){
         			flag =  false;
             		alert("请先选择客户名称");
             	}
         	}else if(entityName=="tactics"||entityName=="activity"){
-        		relationID = $("#opportunity_id").attr("value");
+        		console.info("relationID:"+relationID);
+        		relationID = $("#opportunity_idopportunity_id").attr("value");
         		if(relationID==-1){
         			flag =  false;
             		alert("请先选择商机名称");
             	}
         	}
         	if(flag){
-        		var test = $("#"+fieldName+"_id").attr("href","./bookmarkable/com.bxy.salestrategies.SelectEntryPage?en=contact&excludeName=contact&target=-1&relationEntityID="+relationID+"&key="+entityName);
+        		console.info("flag:"+flag);
+        		//var test = $("#"+fieldName+"_id").attr("href","./bookmarkable/com.bxy.salestrategies.SelectEntryPage?en=contact&excludeName=contact&target=-1&relationEntityID="+relationID+"&key="+entityName);
+        		var test = $("#"+fieldName+"_id").attr("href","javascript:void(0);")
+        		window.open("./bookmarkable/com.bxy.salestrategies.SelectEntryPage?en=contact&excludeName=contact&target=-1&relationEntityID="+relationID+""+"&key="+fieldName,"","scrollbars=no,location=no,menuBar=no,resizable=no,status=no,toolbar=no");try {if (w.blur) w.focus();}catch(ignore){}; return false;
+        	
+        		//window.open('./bookmarkable/com.bxy.salestrategies.SelectEntryPage?en=contact&excludeName=contact&target=-1&relationEntityID='+relationID+'&key='+entityName','',"scrollbars=no,location=no,menuBar=no,resizable=no,status=no,toolbar=no");
+        	        	
         	}else{
         		var test = $("#"+fieldName+"_id").attr("href","javascript:void(0);")
         	}
-        	var w = window.open(href, '__', 'scrollbars=no,location=no,menuBar=no,resizable=no,status=no,toolbar=no'); try {if (w.blur) w.focus();}catch(ignore){}; return false;
+        	//window.open(href, 'http://news.baidu.com/', 'scrollbars=no,location=no,menuBar=no,resizable=no,status=no,toolbar=no');
+        	//var w = window.open(href, '__', 'scrollbars=no,location=no,menuBar=no,resizable=no,status=no,toolbar=no'); try {if (w.blur) w.focus();}catch(ignore){}; return false;
    	    }
     </script>
 
